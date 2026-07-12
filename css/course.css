@@ -1,0 +1,89 @@
+/* course.css — Light Linen */
+.course-hero{background:var(--parchment);border-bottom:1px solid var(--cream);padding:52px 0 0}
+.course-hero-grid{display:grid;grid-template-columns:1fr 360px;gap:52px;align-items:start}
+.course-hero-content{padding-bottom:52px}
+.course-hero-pillar{font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--terra);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.course-hero-pillar::before{content:'';width:20px;height:1px;background:var(--terra)}
+.course-hero-title{font-family:var(--ff-display);font-size:clamp(40px,6vw,76px);font-weight:300;color:var(--ink);line-height:1.0;letter-spacing:-.025em;margin-bottom:18px}
+.course-hero-desc{font-family:var(--ff-heading);font-size:17px;font-style:italic;color:var(--stone);line-height:1.7;max-width:480px;margin-bottom:28px}
+.course-hero-meta{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+.course-meta-label{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin-bottom:3px}
+.course-meta-value{font-family:var(--ff-heading);font-size:14.5px;color:var(--ink)}
+.course-hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+
+/* Enrolment card */
+.course-enrol-card{background:var(--white);border:1px solid var(--cream);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-md)}
+.course-enrol-top{padding:22px;border-bottom:1px solid var(--cream);background:var(--parchment)}
+.course-enrol-price{font-family:var(--ff-display);font-size:44px;font-weight:300;color:var(--terra);line-height:1;margin-bottom:3px}
+.course-enrol-period{font-size:11.5px;letter-spacing:.06em;color:var(--stone)}
+.course-enrol-body{padding:22px}
+.course-enrol-includes{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:20px}
+.course-enrol-includes li{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--slate)}
+.course-enrol-includes li::before{content:'✓';color:var(--terra);font-size:11.5px;margin-top:1px;flex-shrink:0}
+.course-enrol-form{display:flex;flex-direction:column;gap:10px}
+.course-enrol-guarantee{text-align:center;font-size:11px;color:var(--stone);margin-top:10px}
+
+/* Content */
+.course-section{padding:56px 0;border-bottom:1px solid var(--cream)}
+.course-section:last-child{border-bottom:none}
+.course-section-title{font-family:var(--ff-heading);font-size:clamp(20px,2.8vw,30px);color:var(--ink);margin-bottom:32px;display:flex;align-items:center;gap:14px}
+.course-section-title::after{content:'';flex:1;height:1px;background:var(--cream)}
+
+.course-learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.course-learn-card{background:var(--white);border:1px solid var(--cream);border-radius:var(--r-lg);padding:22px;transition:box-shadow .25s,transform .25s}
+.course-learn-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.course-learn-icon{font-size:26px;margin-bottom:10px}
+.course-learn-title{font-family:var(--ff-heading);font-size:15px;color:var(--ink);margin-bottom:7px}
+.course-learn-desc{font-size:13px;color:var(--stone);line-height:1.65}
+
+/* Curriculum */
+.course-curriculum{display:flex;flex-direction:column;gap:1px;background:var(--cream);border:1px solid var(--cream);border-radius:var(--r-lg);overflow:hidden}
+.course-week{background:var(--white);transition:background .2s}
+.course-week:hover{background:var(--parchment)}
+.course-week-header{display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer}
+.course-week-num{font-family:var(--ff-display);font-size:22px;font-weight:300;color:var(--terra);opacity:.5;flex-shrink:0;line-height:1;width:36px}
+.course-week-title{font-family:var(--ff-heading);font-size:15px;color:var(--ink);flex:1}
+.course-week-toggle{font-size:16px;color:var(--stone);transition:transform .25s;line-height:1}
+.course-week.open .course-week-toggle{transform:rotate(180deg);color:var(--terra)}
+.course-week-body{display:none;padding:0 20px 18px 70px}
+.course-week.open .course-week-body{display:block}
+.course-week-desc{font-size:13.5px;color:var(--stone);line-height:1.7;margin-bottom:12px}
+.course-week-topics{list-style:none;display:flex;flex-direction:column;gap:5px}
+.course-week-topics li{font-size:13px;color:var(--slate);padding-left:14px;position:relative}
+.course-week-topics li::before{content:'—';position:absolute;left:0;color:var(--terra);font-size:10px}
+
+/* Who it's for */
+.course-who-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.course-who-item{display:flex;gap:12px;align-items:flex-start;padding:18px;background:var(--white);border:1px solid var(--cream);border-radius:var(--r-lg)}
+.course-who-icon{font-size:22px;flex-shrink:0}
+.course-who-title{font-family:var(--ff-heading);font-size:14.5px;color:var(--ink);margin-bottom:5px}
+.course-who-desc{font-size:12.5px;color:var(--stone);line-height:1.6}
+
+/* Testimonial */
+.course-testi{background:var(--parchment);border:1px solid var(--cream);border-radius:var(--r-lg);padding:32px}
+.course-testi-text{font-family:var(--ff-heading);font-size:17px;font-style:italic;color:var(--slate);line-height:1.75;margin-bottom:20px;position:relative}
+.course-testi-text::before{content:'\201C';font-family:var(--ff-display);font-size:72px;color:var(--cream-mid);position:absolute;top:-16px;left:-6px;line-height:1}
+.course-testi-text p{padding-left:16px}
+.course-testi-author{display:flex;align-items:center;gap:10px}
+.course-testi-avatar{width:40px;height:40px;border-radius:50%;background:var(--white);border:1.5px solid var(--cream-mid);display:flex;align-items:center;justify-content:center;font-family:var(--ff-heading);font-size:16px;color:var(--terra);flex-shrink:0}
+.course-testi-name{font-family:var(--ff-body);font-size:13px;font-weight:600;color:var(--ink)}
+.course-testi-cred{font-size:11.5px;color:var(--stone)}
+.course-testi-stars{font-size:11px;color:var(--terra);letter-spacing:2px;margin-top:3px}
+
+/* Layout */
+.course-layout{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:start;padding:56px 0}
+.course-main{min-width:0}
+.course-aside{position:sticky;top:calc(var(--nav-h) + 20px)}
+
+/* Enrolment section (bottom) */
+.course-enrol-section{background:var(--parchment);padding:64px 0}
+
+@media(max-width:1100px){
+  .course-hero-grid,.course-layout{grid-template-columns:1fr}
+  .course-aside{position:static}
+  .course-learn-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .course-learn-grid,.course-who-grid{grid-template-columns:1fr}
+  .course-hero-meta{grid-template-columns:1fr}
+}

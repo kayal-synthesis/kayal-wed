@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Blueprint: Discover What Your Birth Date Encodes | KAYAL SoulPath Institute</title>
+<meta name="description" content="Your birth date encodes a specific current running beneath every decision, relationship, and season of your life. Discover it free.">
+<link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1208;--bark:#3a2410;--slate:#4a3f34;--stone:#7a6a58;
+  --cream:#e8ddd0;--parchment:#f5f0e8;--linen:#faf7f2;--white:#ffffff;
+  --terra:#b5622a;--terra-l:#c97a3a;--terra-dim:#8a4820;--gold:#c99e2c;
+  --r:6px;--r-lg:12px;
+  --ff-d:'Georgia','Times New Roman',serif;
+  --ff-h:'Georgia',serif;
+  --ff-b:system-ui,-apple-system,sans-serif;
+}
+body{background:var(--linen);color:var(--ink);font-family:var(--ff-b);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(26,18,8,.93);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,158,44,.1);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;flex-direction:column;gap:1px}
+.nav-brand-name{font-family:var(--ff-d);font-size:16px;font-weight:400;color:var(--linen);letter-spacing:.06em;text-transform:uppercase}
+.nav-brand-sub{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,247,242,.38)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-back{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:rgba(250,247,242,.52);border:1px solid rgba(250,247,242,.1);border-radius:4px;padding:7px 14px;transition:all .2s}
+.nav-back:hover{color:var(--linen);border-color:rgba(250,247,242,.28)}
+.nav-cta{padding:8px 18px;background:var(--terra);color:#fff;border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.04em;transition:background .2s}
+.nav-cta:hover{background:var(--terra-l)}
+.hero{min-height:100vh;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(181,98,42,.09),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:op 8s ease-in-out infinite;pointer-events:none}
+@keyframes op{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.12)}}
+.df{position:absolute;inset:0;display:grid;grid-template-columns:repeat(18,1fr);opacity:.026;pointer-events:none;overflow:hidden}
+.df span{font-family:var(--ff-d);font-size:28px;font-weight:700;color:var(--gold);display:flex;align-items:center;justify-content:center;animation:dfa 4s ease-in-out infinite}
+.df span:nth-child(odd){animation-delay:2s}
+.df span:nth-child(3n){animation-delay:1s}
+@keyframes dfa{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-ring{position:relative;width:180px;height:180px;display:flex;align-items:center;justify-content:center;margin:0 auto 32px;z-index:1}
+.hero-ring svg{position:absolute;inset:0;width:100%;height:100%;animation:rs 20s linear infinite}
+@keyframes rs{to{transform:rotate(360deg)}}
+.hero-num{font-family:var(--ff-d);font-size:108px;font-weight:300;color:var(--linen);line-height:1;letter-spacing:-.04em;position:relative;z-index:1;transition:opacity .3s,transform .3s}
+.hero-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra-l);margin-bottom:24px;position:relative;z-index:1}
+.hero-title{font-family:var(--ff-d);font-size:clamp(28px,5vw,48px);font-weight:300;color:var(--linen);line-height:1.15;margin-bottom:16px;position:relative;z-index:1;max-width:600px}
+.hero-title em{font-style:italic;color:var(--terra-l)}
+.hero-sub{font-family:var(--ff-h);font-size:16px;font-style:italic;color:rgba(250,247,242,.52);line-height:1.75;max-width:480px;margin:0 auto 36px;position:relative;z-index:1}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1}
+.btn-p{padding:14px 28px;background:var(--terra);color:#fff;border:none;border-radius:4px;font-family:var(--ff-b);font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .2s;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px}
+.btn-p:hover{background:var(--terra-l);transform:translateY(-1px)}
+.btn-g{padding:14px 24px;background:transparent;color:rgba(250,247,242,.55);border:1px solid rgba(250,247,242,.16);border-radius:4px;font-family:var(--ff-b);font-size:13px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-g:hover{border-color:rgba(250,247,242,.38);color:var(--linen)}
+.section{padding:72px 24px}
+.container{max-width:1040px;margin:0 auto}
+.eyebrow{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);margin-bottom:10px}
+.stitle{font-family:var(--ff-d);font-size:clamp(22px,3vw,32px);font-weight:300;color:var(--ink);line-height:1.2;margin-bottom:10px}
+.stitle em{font-style:italic;color:var(--terra)}
+.slead{font-family:var(--ff-h);font-size:15px;font-style:italic;color:var(--stone);line-height:1.8;max-width:600px;margin-bottom:36px}
+.edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.edu-card{padding:28px 24px;background:var(--parchment);border:1px solid var(--cream);border-radius:var(--r-lg)}
+.edu-n{font-family:var(--ff-d);font-size:48px;font-weight:300;color:rgba(181,98,42,.13);line-height:1;margin-bottom:12px}
+.edu-t{font-family:var(--ff-h);font-size:16px;color:var(--ink);margin-bottom:8px}
+.edu-b{font-size:13.5px;color:var(--stone);line-height:1.75}
+.edu-b strong{color:var(--bark)}
+.paths-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
+.pc{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--white);border:1px solid var(--cream);border-radius:var(--r);transition:all .2s}
+.pc:hover{border-color:var(--terra);background:rgba(181,98,42,.04);transform:translateX(3px)}
+.pc-n{font-family:var(--ff-d);font-size:28px;font-weight:300;color:var(--terra);line-height:1;flex-shrink:0;width:32px}
+.pc-name{font-family:var(--ff-h);font-size:13px;color:var(--ink);margin-bottom:2px}
+.pc-key{font-size:11px;color:var(--stone)}
+.master-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.mc{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--ink);border-radius:var(--r)}
+.mc-n{font-family:var(--ff-d);font-size:24px;font-weight:300;color:var(--gold);flex-shrink:0;width:36px}
+.mc-name{font-family:var(--ff-h);font-size:13px;color:var(--linen);margin-bottom:2px}
+.mc-key{font-size:11px;color:rgba(250,247,242,.38)}
+.pe{margin-top:44px;padding:32px 36px;background:var(--white);border:1px solid var(--cream);border-radius:var(--r-lg)}
+.pe-title{font-family:var(--ff-d);font-size:22px;font-weight:300;color:var(--ink);margin-bottom:10px}
+.pe-body{font-family:var(--ff-h);font-size:14px;font-style:italic;color:var(--stone);line-height:1.8;margin-bottom:22px}
+.pe-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.pe-node{padding:14px 12px;background:var(--parchment);border:1px solid var(--cream);border-right:none;text-align:center}
+.pe-node:last-child{border-right:1px solid var(--cream);border-radius:0 var(--r) var(--r) 0}
+.pe-node:first-child{border-radius:var(--r) 0 0 var(--r)}
+.pe-node.cur{background:rgba(181,98,42,.07);border-color:rgba(181,98,42,.32)}
+.pe-lbl{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:5px}
+.pe-desc{font-family:var(--ff-h);font-size:11px;font-style:italic;color:var(--slate)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:768px){
+  .edu-grid,.paths-grid,.master-row{grid-template-columns:1fr}
+  .pe-flow{grid-template-columns:1fr 1fr}
+  .nav-cta{display:none}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="../index.html" class="nav-brand">
+    <div class="nav-brand-name">KAYAL</div>
+    <div class="nav-brand-sub">SoulPath Institute</div>
+  </a>
+  <div class="nav-right">
+    <a href="../tools.html" class="nav-back"><i class="fas fa-chevron-left" style="font-size:10px"></i> All Tools</a>
+    <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="nav-cta">Open LifeOS</a>
+  </div>
+</nav>
+
+<section class="hero" id="hero-section">
+  <div class="df" id="digit-field"></div>
+  <div class="hero-eyebrow">Free Reading · Soul Blueprint Science</div>
+  <div class="hero-ring">
+    <svg viewBox="0 0 180 180" fill="none">
+      <circle cx="90" cy="90" r="85" stroke="rgba(201,158,44,0.1)" stroke-width="1"/>
+      <circle cx="90" cy="90" r="82" stroke="rgba(201,158,44,0.07)" stroke-width="6" stroke-linecap="round" stroke-dasharray="8 49.7"/>
+      <circle id="ring-arc" cx="90" cy="90" r="82" stroke="rgba(181,98,42,0.52)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="0 514" stroke-dashoffset="-57" fill="none"/>
+      <circle id="ring-dot" cx="90" cy="8" r="4" fill="rgba(201,120,58,0.8)"/>
+    </svg>
+    <div class="hero-num" id="hero-num">1</div>
+  </div>
+  <h1 class="hero-title">Every birth date holds<br><em>a blueprint.</em></h1>
+  <p class="hero-sub">Your birth date encodes a specific current that has been running beneath every decision, relationship, and season of your life. This reading names it in plain language.</p>
+  <div class="hero-btns">
+    <button class="btn-p" onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth'})"><i class="fas fa-compass"></i> Reveal My Blueprint</button>
+    <button class="btn-g" onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth'})">Calculate Mine Now</button>
+  </div>
+</section>
+
+<section class="section" style="background:var(--linen)" id="calculator">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:36px" class="reveal" id="input-heading">
+      <div class="eyebrow">Reveal Yours</div>
+      <h2 class="stitle" style="margin-bottom:8px">Enter your birth date<br><em>to begin.</em></h2>
+      <p class="slead" style="margin:0 auto">Your date of birth is the only required field. Adding your birth name unlocks additional layers.</p>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--cream);border-radius:var(--r-lg);overflow:hidden;max-width:720px;margin:0 auto;box-shadow:0 4px 32px rgba(26,18,8,.06)" class="reveal">
+      <div id="calc-header" style="padding:32px 36px 24px;border-bottom:1px solid var(--cream);background:linear-gradient(135deg,var(--parchment),var(--white))">
+        <div style="font-size:32px;margin-bottom:10px">🔢</div>
+        <div style="font-family:var(--ff-d);font-size:24px;font-weight:300;color:var(--ink);margin-bottom:6px">Life Blueprint Reading</div>
+        <div style="font-family:var(--ff-h);font-size:13px;font-style:italic;color:var(--stone)">Free · Instant · No account required.</div>
+      </div>
+      <div style="padding:32px 36px" id="calc-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px" id="form-row">
+          <div>
+            <label style="display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin-bottom:8px">Your birth date <span style="color:var(--terra)">*</span></label>
+            <input type="date" id="inp-dob" style="width:100%;padding:13px 16px;border:1.5px solid var(--cream);border-radius:var(--r);font-family:var(--ff-b);font-size:15px;color:var(--ink);background:var(--white);outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--terra)'" onblur="this.style.borderColor='var(--cream)'">
+            <div style="font-size:11px;color:var(--stone);margin-top:5px;font-style:italic">Required to reveal your blueprint and life chapters.</div>
+          </div>
+          <div>
+            <label style="display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin-bottom:8px">Full birth name <span style="color:rgba(26,18,8,.3);font-style:italic;text-transform:none;letter-spacing:0">(optional)</span></label>
+            <input type="text" id="inp-name" placeholder="As it appears on your birth certificate" style="width:100%;padding:13px 16px;border:1.5px solid var(--cream);border-radius:var(--r);font-family:var(--ff-b);font-size:15px;color:var(--ink);background:var(--white);outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--terra)'" onblur="this.style.borderColor='var(--cream)'">
+            <div style="font-size:11px;color:var(--stone);margin-top:5px;font-style:italic">Personalises your reading further.</div>
+          </div>
+        </div>
+        <button id="calc-btn" onclick="calculate()" style="width:100%;padding:15px 24px;background:var(--terra);color:#fff;border:none;border-radius:var(--r);font-family:var(--ff-b);font-size:14px;font-weight:600;letter-spacing:.05em;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px">
+          <div id="btn-spin" style="display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite"></div>
+          <span id="btn-txt">Reveal My Life Blueprint</span>
+        </button>
+      </div>
+
+      <div id="result-panel" style="display:none;border-top:1px solid var(--cream);padding:32px 36px;animation:ri .5s ease">
+        <style>
+        @keyframes ri{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .r-section{margin-bottom:22px}
+        .r-lbl{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+        .r-lbl::after{content:'';flex:1;height:1px;background:var(--cream)}
+        .r-para{font-family:var(--ff-h);font-size:15.5px;font-style:italic;color:var(--slate);line-height:1.95;margin-bottom:14px;text-align:justify}
+        .r-para:last-child{margin-bottom:0}
+        .r-para strong{color:var(--bark);font-style:normal}
+        .r-pull{font-family:var(--ff-d);font-size:17px;font-weight:300;color:var(--ink);line-height:1.6;padding:18px 22px;border-left:3px solid var(--terra);background:rgba(181,98,42,.05);border-radius:0 var(--r) var(--r) 0;margin:16px 0}
+        .r-syn{border:1px solid rgba(181,98,42,.22);border-radius:var(--r-lg);padding:26px 28px;background:rgba(181,98,42,.04);margin:24px 0}
+        .r-syn .r-lbl{color:var(--gold)}
+        .r-syn .r-lbl::after{background:rgba(181,98,42,.16)}
+        .r-tension{font-family:var(--ff-h);font-size:16px;font-style:italic;color:var(--slate);line-height:1.9;margin-bottom:14px;text-align:justify}
+        .r-invite{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(181,98,42,.88);line-height:1.85;text-align:justify}
+        .act-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:20px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid rgba(181,98,42,.32);background:rgba(181,98,42,.06);color:var(--terra-dim)}
+        .act-btn:hover{background:rgba(181,98,42,.14);border-color:var(--terra)}
+        .act-btn.is-active{background:rgba(181,98,42,.18);border-color:var(--terra)}
+        .share-dd{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#fff;border:1px solid rgba(181,98,42,.22);border-radius:12px;padding:8px;display:none;flex-direction:column;gap:2px;min-width:190px;z-index:50;box-shadow:0 12px 32px rgba(26,18,8,.16)}
+        .share-dd.show{display:flex}
+        .share-opt{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:12.5px;color:var(--ink);cursor:pointer;transition:background .15s;background:none;border:none;text-align:left;width:100%}
+        .share-opt:hover{background:rgba(181,98,42,.08)}
+        .new-reading-link{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(181,98,42,.55);margin-bottom:20px;text-decoration:none;transition:color .2s}
+        .new-reading-link:hover{color:var(--terra)}
+
+        /* Reading bridge card — compact */
+        .lifeos-invite{padding:26px 28px;background:linear-gradient(135deg,rgba(201,158,44,.14),rgba(181,98,42,.08)),rgba(26,18,8,.97);border:1px solid rgba(201,158,44,.22);border-radius:var(--r-lg);position:relative;overflow:hidden}
+        .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(201,158,44,.14),transparent 70%);pointer-events:none}
+        .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(181,98,42,.16),transparent 70%);pointer-events:none}
+        .li-badge{display:inline-flex;align-items:center;gap:7px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:rgba(201,158,44,.10);border:1px solid rgba(201,158,44,.28);border-radius:20px;padding:6px 14px;margin-bottom:14px;position:relative;z-index:1}
+        .li-badge i{font-size:9px}
+        .li-title{font-family:var(--ff-d);font-size:clamp(17px,2.2vw,21px);font-weight:300;color:var(--linen);line-height:1.35;margin-bottom:9px;position:relative;z-index:1;max-width:500px}
+        .li-desc{font-family:var(--ff-h);font-size:13px;font-style:italic;color:rgba(250,247,242,.58);line-height:1.65;margin-bottom:20px;max-width:460px;position:relative;z-index:1}
+        .li-btns{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+        .li-btn-p{padding:12px 22px;background:var(--terra);color:#fff;border:none;border-radius:4px;font-family:var(--ff-b);font-size:12.5px;font-weight:600;letter-spacing:.04em;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background .2s}
+        .li-btn-p:hover{background:var(--terra-l)}
+        .li-btn-s{padding:12px 18px;background:transparent;color:rgba(250,247,242,.52);border:1px solid rgba(250,247,242,.12);border-radius:4px;font-family:var(--ff-b);font-size:12.5px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+        .li-btn-s:hover{color:var(--linen);border-color:rgba(250,247,242,.3)}
+        .li-foot{font-size:10.5px;color:rgba(250,247,242,.22);margin-top:14px;position:relative;z-index:1}
+        .li-foot a{color:rgba(201,158,44,.45)}
+
+        /* Upsell choice modal */
+        .um-backdrop{position:fixed;inset:0;background:rgba(26,18,8,.75);backdrop-filter:blur(6px);z-index:500;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s ease}
+        .um-backdrop.show{display:flex;opacity:1}
+        .um-modal{background:linear-gradient(160deg,rgba(44,24,16,.98),rgba(26,18,8,.99));border:1px solid rgba(201,158,44,.35);width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:8px 22px 28px;position:relative;transform:translateY(24px);transition:transform .3s ease;max-height:82vh;overflow-y:auto}
+        .um-backdrop.show .um-modal{transform:translateY(0)}
+        .um-handle{width:36px;height:4px;background:rgba(250,247,242,.25);border-radius:2px;margin:10px auto 18px}
+        .um-close{position:absolute;top:16px;right:18px;background:none;border:none;color:rgba(250,247,242,.5);font-size:16px;cursor:pointer;padding:6px;line-height:1}
+        .um-close:hover{color:var(--linen)}
+        .um-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+        .um-title{font-family:var(--ff-d);font-size:19px;font-weight:300;color:var(--linen);line-height:1.35;margin-bottom:20px;max-width:380px}
+        .um-options{display:flex;flex-direction:column;gap:10px}
+        .um-option{display:flex;align-items:center;gap:14px;padding:16px;background:rgba(255,255,255,.03);border:1px solid rgba(201,158,44,.28);border-radius:12px;text-decoration:none;transition:all .2s;position:relative}
+        .um-option:hover{border-color:rgba(201,158,44,.5);background:rgba(201,158,44,.08)}
+        .um-option.recommended{border-color:rgba(201,158,44,.5);background:rgba(201,158,44,.1)}
+        .um-opt-body{flex:1;min-width:0}
+        .um-opt-tag{display:inline-block;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(201,158,44,.16);border:1px solid rgba(201,158,44,.35);border-radius:10px;padding:2px 8px;margin-bottom:6px}
+        .um-opt-name{font-family:var(--ff-h);font-size:14.5px;color:var(--linen);margin-bottom:3px}
+        .um-opt-desc{font-size:12px;color:rgba(250,247,242,.5);line-height:1.5}
+        .um-opt-price{font-family:var(--ff-d);font-size:16px;color:var(--gold);flex-shrink:0}
+        .um-opt-arrow{color:rgba(250,247,242,.3);flex-shrink:0;font-size:13px}
+        @media(min-width:640px){
+          .um-backdrop{align-items:center}
+          .um-modal{border-radius:20px;padding:28px 28px 30px;max-height:min(600px,86vh)}
+          .um-handle{display:none}
+        }
+
+        </style>
+
+        <a href="#" class="new-reading-link" onclick="event.preventDefault();startNewBlueprintReading()"><i class="fas fa-arrow-left"></i> Read a different date</a>
+
+        <div style="display:flex;gap:10px;justify-content:center;margin:0 0 22px;flex-wrap:wrap">
+          <button class="act-btn" id="listen-btn" onclick="toggleSpeech()"><i class="fas fa-volume-up"></i><span id="listen-lbl">Listen to Your Reading</span></button>
+          <div style="position:relative;display:inline-block">
+            <button class="act-btn" onclick="toggleShare(event)"><i class="fas fa-share-nodes"></i> Share</button>
+            <div class="share-dd" id="share-dd">
+              <button class="share-opt" onclick="doShare('copy')"><i class="fas fa-link" style="color:var(--terra)"></i> Copy Link</button>
+              <button class="share-opt" onclick="doShare('twitter')"><i class="fab fa-x-twitter" style="color:var(--terra)"></i> Share on X</button>
+              <button class="share-opt" onclick="doShare('whatsapp')"><i class="fab fa-whatsapp" style="color:var(--terra)"></i> WhatsApp</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="r-intro" style="font-family:var(--ff-h);font-size:13px;font-style:italic;color:var(--stone);margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--cream)"></div>
+        <div id="r-tags" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px"></div>
+        <div id="reading-content"></div>
+
+        
+
+        <div class="lifeos-invite">
+          <div class="li-badge"><i class="fas fa-sparkles"></i><span id="li-eyebrow">If this reading has touched something real</span></div>
+          <div class="li-title" id="li-title">There is a deeper layer this reading has not yet reached.</div>
+          <p class="li-desc" id="li-desc">What you have received here is the core blueprint.</p>
+          <div class="li-btns">
+            <a href="#" id="lifeos-link" class="li-btn-p" onclick="return openUpsellModal(event)"><i class="fas fa-compass"></i> <span id="li-btn-label">Go Deeper</span></a>
+            <a href="../pages/enrol/apply.html" class="li-btn-s">Study at the Institute</a>
+          </div>
+          <div class="li-foot">Already a student? <a href="../pages/student/login.html">Sign in to your portal</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--parchment);border-top:1px solid var(--cream)">
+  <div class="container">
+    <div class="eyebrow">Explore More</div>
+    <h2 class="stitle">More layers<br><em>await.</em></h2>
+    <p class="slead">Each free tool reveals a different dimension of your blueprint. Together they form a complete picture.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px" class="reveal">
+      <a href="tool-compatibility.html" style="padding:22px 20px;background:var(--white);border:1px solid var(--cream);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--terra)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--cream)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">💞</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--ink);margin-bottom:6px">Compatibility Blueprint</div>
+        <div style="font-size:12px;color:var(--stone);line-height:1.55">The soul-level dynamic between any two people, revealed from birth dates.</div>
+      </a>
+      <a href="tool-face-reader.html" style="padding:22px 20px;background:var(--white);border:1px solid var(--cream);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--terra)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--cream)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">👁</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--ink);margin-bottom:6px">Face Energy Reader</div>
+        <div style="font-size:12px;color:var(--stone);line-height:1.55">Upload your photo to discover the elemental type encoded in your facial structure.</div>
+      </a>
+      <a href="tool-hand-map.html" style="padding:22px 20px;background:var(--white);border:1px solid var(--cream);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--terra)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--cream)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">🤚</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--ink);margin-bottom:6px">Hand Map Reader</div>
+        <div style="font-size:12px;color:var(--stone);line-height:1.55">Upload both palms. The comparison between your two hands reveals what neither shows alone.</div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:28px"><a href="../tools.html" style="font-size:13px;color:var(--terra);font-family:var(--ff-h);font-style:italic">View all free tools</a></div>
+  </div>
+</section>
+
+<footer style="background:var(--ink);padding:44px 24px 24px;border-top:1px solid rgba(201,158,44,.07)">
+  <div style="max-width:1040px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px">
+    <div style="font-family:var(--ff-d);font-size:20px;font-weight:300;color:var(--linen)">KAYAL</div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap">
+      <a href="../about.html" style="font-size:12px;color:rgba(250,247,242,.38)">About</a>
+      <a href="../tools.html" style="font-size:12px;color:rgba(250,247,242,.38)">Free Tools</a>
+      <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" style="font-size:12px;color:rgba(250,247,242,.38)">LifeOS</a>
+    </div>
+	<p style="font-size:11px;color:rgba(250,247,242,.3);line-height:1.6;max-width:640px;margin-top:14px;width:100%;text-align:center">Readings and content offered through KAYAL SoulPath Institute are for spiritual guidance and self-understanding. They are not a substitute for professional medical, legal, financial, or psychological advice. Always consult a qualified professional for decisions in these areas.</p>
+    <div style="font-size:11px;color:rgba(250,247,242,.2);margin-top:18px;width:100%;text-align:center;padding-top:18px;border-top:1px solid rgba(250,247,242,.05)">© 2026 KAYAL SoulPath Institute. All rights reserved.</div>
+  </div>
+</footer>
+
+<div id="toast-msg" style="position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--linen);padding:11px 22px;border-radius:24px;font-size:12.5px;z-index:300;opacity:0;pointer-events:none;transition:all .3s"></div>
+
+<div class="um-backdrop" id="um-backdrop" onclick="if(event.target===this)closeUpsellModal()">
+  <div class="um-modal">
+    <div class="um-handle"></div>
+    <button class="um-close" onclick="closeUpsellModal()"><i class="fas fa-times"></i></button>
+    <div class="um-eyebrow">Choose your reading</div>
+    <div class="um-title" id="um-title">Two readings fit what your Life Path just showed.</div>
+    <div class="um-options" id="um-options"></div>
+  </div>
+</div>
+
+<script>
+// ── READING DATA ─────────────────────────────────────────────────────────
+// Pure felt human experience. No methodology language shown to visitor.
+var READINGS={
+1:{tags:["Leadership","Independence","Courage","Initiative"],sections:[
+  {label:"Who You Are",paras:[
+    "Something in you has always needed to be moving toward something of your own. Not someone else's direction, not a borrowed destination, but something that has your specific name on it. You feel most alive when you are beginning something that did not exist before you reached for it, and most frustrated when you are asked to maintain what someone else built, on someone else's terms.",
+    "This is not ego. It is structure. The way you are built, you need a certain quality of agency over the direction of your own life in order to function at your full capacity. When that agency is removed, something essential goes quiet in you, and the people around you notice even when they cannot name what changed."
+  ]},
+  {label:"What Drives You",paras:[
+    "You are drawn to firsts. The first meeting, the first attempt, the first day of something new. There is a quality of aliveness in beginnings that you find difficult to replicate once something is already in motion. This is your most reliable guide to the work you are meant to be doing: if it asks you to originate, to initiate, to move where no one has moved before, it is yours.",
+    "People often describe you as confident, and in many situations you are. But what they are reading is more specific than confidence. It is the particular certainty of a person who has decided that their own judgment about the direction of their life is more reliable than the consensus of others. That certainty has cost you things. It has also produced everything significant you have ever built."
+  ]},
+  {label:"How You Love and How You Work",paras:[
+    "In relationships, the thing people find most compelling about you is the same thing that eventually becomes the point of friction: your independence. You do not need to be completed by another person, which makes you attractive. You also do not always know how to let someone in past the point of usefulness, which makes sustained intimacy more demanding than you typically acknowledge.",
+    "In work, you are at your best when given a problem that has not been solved yet, or a direction that has not been set yet. You are at your worst when asked to execute someone else's detailed plan with no room for your own input. The challenge is not capability. It is the quiet suffering of someone constitutionally built to lead, doing work structured to follow."
+  ]},
+  {label:"What To Watch For",paras:[
+    "Watch for the moment when independence becomes isolation. There is a version of the self-directedness you carry that slowly closes off the input and genuine support of others, until you are making large decisions in a room that only has your own voice in it. The most significant thing you build will require other people. The question is whether you can let them genuinely in, not just as helpers executing your vision, but as collaborators who might actually change the direction."
+  ]},
+  {label:"The Central Challenge",paras:[
+    "The recurring difficulty of your nature is the relationship between your need for sovereignty and your need for belonging. You want to move in your own direction. You also want someone who genuinely accompanies you. These two wants are not incompatible, but achieving them simultaneously requires more than your independence naturally asks for: the willingness to be changed by the people who love you, rather than simply accompanied by them."
+  ]}
+],synthesis:{tension:"The central tension you are living is between the strength of your individual direction and the depth of connection that direction sometimes makes difficult. You are someone who knows where you are going, which is genuinely rare. What your life is currently working on is finding the form of shared life that does not require you to diminish either the direction or the depth.",invitation:"What this reading is pointing toward: the specific relationship or collaboration where your direction and someone else's genuine input are both fully present at the same time. Not your vision, assisted by others. Something that neither of you would have reached alone."}},
+
+2:{tags:["Sensitivity","Cooperation","Intuition","Balance"],sections:[
+  {label:"Who You Are",paras:[
+    "You read situations before they have fully formed. You sense what is underneath a conversation before the other person has said the thing they are actually trying to say. You walk into a room and feel the mood of it with a precision that others, if they noticed it, would find uncanny. This is not a gift in the usual sense. It is a constitutional fact: you receive more information from your environment than most people do, and most of the time you receive it before you have chosen to.",
+    "This makes you extraordinarily useful in situations that require attunement and the ability to understand what others need before they can articulate it themselves. It also makes you exhausting to yourself in environments that are emotionally loud or structured in ways that ignore the subtler dimensions of how people actually feel."
+  ]},
+  {label:"What Drives You",paras:[
+    "You are moved by the quality of connection. Not connection in the abstract social sense, but the specific feeling of genuine encounter: when two people are actually present with each other, when something true is being said rather than something convenient, when the distance between people closes in a way that feels real rather than performed. You orient your life, at the deepest level, toward those moments.",
+    "This means you are deeply invested in the health of your relationships, sometimes to the point where the relationships become the primary project of your life. The work, the home, the daily schedule are all arranged, consciously or not, around the question of how the people you love are doing and what they need."
+  ]},
+  {label:"How You Love and How You Work",paras:[
+    "In love, you are genuinely present in a way that most people are not. When you attend to someone, they feel it. This is not a technique. It is simply how you are with people you care about: fully there, fully tuned in, noticing things they have not said and responding to them before they knew they needed a response. The risk is that this quality of presence can become so available that it trains people around you not to need to show up in the same way for you.",
+    "In work, you are most effective in environments where people matter, where the quality of relationships is part of the value being created. You are least effective in environments that treat people as interchangeable units of productivity. Not because you cannot perform there, but because something in you dies a little every day that it is required of you."
+  ]},
+  {label:"What To Watch For",paras:[
+    "Watch for the gap between what you sense and what you say. You carry an extraordinary amount of accurate perception about the people and situations around you, and you often keep it to yourself because you are concerned about the impact of naming what you see. The accumulation of accurate perceptions that have not been expressed is a specific kind of weight, and it tends to show up as the quiet exhaustion of a person attending to everyone else's reality while keeping their own experience largely private."
+  ]},
+  {label:"The Central Challenge",paras:[
+    "The recurring difficulty of your nature is the relationship between your sensitivity and your own needs. You are constitutionally oriented toward the needs of others, which is a genuine gift. It becomes a problem when that orientation means your own needs become the last ones anyone attends to, including you. The work of your life, in some form, is learning to receive what you so naturally give."
+  ]}
+],synthesis:{tension:"The central tension you are living is between the depth of your attunement to others and the difficulty of being equally attuned to yourself. You are someone who genuinely cares, which the world needs. What your life is working on is creating the conditions where that care also flows back toward you, not as a demand, but as a natural consequence of the depth of presence you offer others.",invitation:"What this reading is pointing toward: the relationship, the practice, or the environment where you are the one being attended to, where your experience is the thing someone is trying to understand, and where you can let yourself be fully seen without immediately redirecting the attention back outward."}},
+
+3:{tags:["Expression","Creativity","Joy","Communication"],sections:[
+  {label:"Who You Are",paras:[
+    "You have a specific relationship with expression that most people do not. For you, giving something outward form is not something you do after you have understood an experience. It is how you understand the experience. You think by speaking, feel by creating, and process by making something visible that was previously only internal.",
+    "This is why silence, for you, can feel like a form of suffocation that has nothing to do with the absence of sound. What it actually is is the absence of outlet. When you have genuine outlet, you are one of the most generative, warm, and life-giving presences that others will ever encounter. When you do not, you become smaller in ways that frighten you."
+  ]},
+  {label:"What Drives You",paras:[
+    "You are drawn to joy in an almost structural way. Not happiness, which is a state you can achieve through external conditions, but joy, which is the quality of aliveness that arrives when you are doing something that asks for your full expressive range. You can be in difficult circumstances and still feel it. You can be in comfortable circumstances and be entirely absent from it.",
+    "People find you magnetic when you are in this state, and they notice when you have left it. The people closest to you have probably learned to read whether the full version of you is present, because the difference between you when you are fully alive and you when you are managing or diminishing yourself is not subtle."
+  ]},
+  {label:"How You Love and How You Work",paras:[
+    "In love, you express care through creative attention: the specific way you notice someone, the particular thing you say that shows you were really listening, the gesture that is more creative than practical. You are most alive in relationships where there is genuine playfulness, genuine wit, and the kind of conversation that neither person could have had with anyone else.",
+    "In work, you are extraordinary in any domain that requires communication, creative thinking, or the ability to make complex things feel accessible and alive. You are at your most depleted when asked to produce the same thing repeatedly without any room for variation or genuine expression."
+  ]},
+  {label:"What To Watch For",paras:[
+    "Watch for the specific pattern of moving to the surface when the depth becomes uncomfortable. You have access to genuine profundity, to a creative depth that most people never reach. But depth requires a kind of sustained staying-with-difficulty that your nature finds genuinely hard. The corrective practice is noticing when you are brightening a situation that actually needed to be sat with, and choosing, for once, to sit."
+  ]},
+  {label:"The Central Challenge",paras:[
+    "The recurring difficulty of your nature is the relationship between expression and depth. You are constitutionally built to express, and you do it brilliantly. What your life is asking you to develop is the capacity to let that expression be rooted in something that does not need to be resolved into lightness. The creative work that will matter most to you is the work that comes from having stayed with something difficult long enough to understand it from the inside."
+  ]}
+],synthesis:{tension:"The central tension you are living is between your natural brightness and the depth that brightness sometimes skips over. You are someone who genuinely illuminates: rooms, conversations, relationships. What your life is working on is learning that the most significant illumination comes from someone who has also been willing to sit in the dark.",invitation:"What this reading is pointing toward: the creative work, the relationship, or the practice that asks you to go deeper than is comfortable, and to find that what you produce from that depth is the most authentically expressive thing you have ever made."}},
+
+4:{tags:["Stability","Discipline","Loyalty","Endurance"],sections:[
+  {label:"Who You Are",paras:[
+    "You understand, at a level that is structural rather than philosophical, that significant things are built slowly. While others are looking for the shortcut, you are laying the foundation. Not because you are unambitious. Because you understand that what is built quickly on inadequate foundations will not hold, and that the work of building properly is not a detour from the destination but the actual path to it.",
+    "This makes you one of the most genuinely reliable people anyone around you will ever encounter. When you say you will do something, it will be done. When you say you are someone's ally, you mean it across time and difficulty, not just in the easy season. People feel this about you before they can articulate it. The trust they extend to you is rarely misplaced."
+  ]},
+  {label:"What Drives You",paras:[
+    "You are motivated by solidity. By the feeling that what you are working on has genuine weight, genuine substance, and genuine permanence. Projects that go nowhere, relationships without foundation, work that produces no lasting result: these things do not just frustrate you. They disturb something fundamental in your nature, because the energy you bring to any undertaking is the energy of someone who is building to last.",
+    "This is also why you take commitments seriously in a way that sometimes surprises the people around you. A promise, to you, is not a conditional statement. It is a piece of architecture. Breaking it damages the structure. Honoring it, even at cost, maintains the integrity of the whole."
+  ]},
+  {label:"How You Love and How You Work",paras:[
+    "In love, you are steady in a way that is rarer than it sounds. You do not love in bursts. You love consistently, across seasons, through difficulty, in the quiet ordinary days that most romantic narratives skip over. The person who receives this kind of love sometimes does not notice how unusual it is until they have lost it and cannot find it elsewhere.",
+    "In work, you are most effective when given a real problem with real stakes and enough time to approach it methodically. You produce work that holds up under examination, under time, and under the specific scrutiny of people who know what they are looking at."
+  ]},
+  {label:"What To Watch For",paras:[
+    "Watch for the specific moment when the commitment you are honoring is no longer serving the thing it was meant to serve. You are so oriented toward follow-through that you can find yourself maintaining structures, relationships, or obligations long past the point where they are actually useful, simply because leaving feels like a failure of integrity. The corrective practice is a regular honest audit: not of whether you are being loyal, but of whether what you are being loyal to still deserves the investment."
+  ]},
+  {label:"The Central Challenge",paras:[
+    "The recurring difficulty of your nature is adaptability. You are structured for permanence, which is genuinely valuable, and genuinely limiting when the situation requires flexibility rather than durability. The work of your life, in one form or another, is learning to distinguish between the things that require the full weight of your commitment and the things that require you to let go gracefully and move."
+  ]}
+],synthesis:{tension:"The central tension you are living is between the depth of your commitment and the cost of carrying it past the point where it is actually building anything. You are someone who finishes what they start, which the world needs. What your life is working on is developing the discernment to know when finishing is wisdom and when it is stubbornness in a different coat.",invitation:"What this reading is pointing toward: the specific commitment in your life that has earned your full sustained investment, and the specific one that is asking, quietly, to be released so something new can be built in its place."}},
+
+5:{tags:["Freedom","Versatility","Adventure","Magnetism"],sections:[
+  {label:"Who You Are",paras:[
+    "You have a constitutional relationship with change that most people do not share. Where others experience significant change as a threat to something they have built, you experience the absence of change as a form of slow disappearance. You need the world to keep moving, and more specifically, you need to keep moving through it, encountering new dimensions of experience, because this is how you stay alive to yourself.",
+    "This is not restlessness in the negative sense, though it has been labeled that by people who needed you to stay still when staying still was not available to you. It is closer to a navigational requirement: you orient by movement, by the feeling of things opening ahead rather than closing behind."
+  ]},
+  {label:"What Drives You",paras:[
+    "You are drawn to the full range of human experience. Not the comfortable parts, not the sanctioned parts, but the actual full range. This is why your life has probably taken more turns than most people's, why your biography does not follow a single narrative arc, and why the people who knew you ten years ago sometimes have difficulty recognising the version of you that exists now.",
+    "You are magnetic precisely because of this quality. People feel, in your presence, that experience is larger than they had assumed, that the world contains more than their current life is showing them."
+  ]},
+  {label:"How You Love and How You Work",paras:[
+    "In love, you are most alive with someone who does not need you to be predictable. The relationship where you can show up differently each time without the other person reading it as inconsistency, where your evolving self is genuinely welcomed rather than managed, is the relationship that can hold you.",
+    "In work, you are most effective in environments that change, that require adaptability, that present genuinely different problems rather than the same problem repeated. You have an unusual ability to function in chaos and to find the pattern in disruption. The challenge is sustaining attention past the point where something feels new."
+  ]},
+  {label:"What To Watch For",paras:[
+    "Watch for the specific difference between moving toward something and moving away from something. Your constitution makes both feel identical in the moment. The corrective practice is a simple honest question before any significant move: am I going toward something I have actually named, or am I going away from something I have not yet faced?"
+  ]},
+  {label:"The Central Challenge",paras:[
+    "The recurring difficulty of your nature is the relationship between freedom and depth. You are constitutionally oriented toward breadth, toward the full range of experience. What your life is asking you to develop is the capacity to go deeply enough into at least one thing that you discover what exists beneath the surface layer that your movement usually skips."
+  ]}
+],synthesis:{tension:"The central tension you are living is between the genuine aliveness that movement brings you and the depth that movement sometimes prevents. You are someone who makes the world feel larger. What your life is working on is finding the form of depth that does not feel like confinement, the relationship or the work that keeps opening rather than closing even when you stay.",invitation:"What this reading is pointing toward: the specific thing in your life right now that is asking you to stay past the point where it stopped feeling new, because what exists beneath that surface has not yet been reached."}},
+
+6:{tags:["Love","Responsibility","Healing","Harmony"],sections:[
+  {label:"Who You Are",paras:[
+    "You have a quality of care that is structural rather than chosen. When you are with people you love, you notice what they need before they have articulated it. You adjust, accommodate, provide, and tend in ways that often go unacknowledged precisely because they are so seamlessly integrated into the texture of your presence. People feel better around you without always knowing why.",
+    "This care runs deep. It is not performed. When you love someone, you love the whole of them, including the parts they are not proud of, including the parts that have hurt you. This quality of love is genuinely rare, and the people who have been lucky enough to receive it tend to know, even if they could not always honor it, that they were in the presence of something unusual."
+  ]},
+  {label:"What Drives You",paras:[
+    "You are motivated by the wellbeing of the people and environments around you. When the people you love are flourishing, something in you is satisfied at a level that has nothing to do with your own achievements. When they are suffering, that suffering lands in you with a directness and weight that others sometimes find difficult to understand.",
+    "You also have a deep aesthetic relationship with harmony and beauty. You notice when something is off before others do, and you have an instinct toward making the space, the relationship, and the situation more whole. This instinct is one of your most significant gifts. It is also the thing that can exhaust you most, when it is never reciprocated."
+  ]},
+  {label:"How You Love and How You Work",paras:[
+    "In love, you are all-in in a way that most people are not. When you commit to someone, you commit with your full self. The risk is that this quality of commitment can attract people who are looking to be held rather than to genuinely meet you, and who find it comfortable to receive without equivalent return.",
+    "In work, you are most effective in roles where the quality of care you bring directly translates into outcomes: healing, teaching, counseling, creating beauty, or building environments where people can flourish. You are most depleted in environments where care is treated as irrelevant."
+  ]},
+  {label:"What To Watch For",paras:[
+    "Watch for the specific moment when your care becomes a form of control. The desire to make things better, to smooth the difficulty, to provide what others need before they ask, can slip without you noticing into managing others in ways that prevent them from developing the capacity to manage themselves."
+  ]},
+  {label:"The Central Challenge",paras:[
+    "The recurring difficulty of your nature is receiving. You give with extraordinary generosity and consistency. You find it genuinely difficult to be on the other end of that equation, to let someone care for you with the same completeness that you offer. The work of your life, in some form, is learning that accepting genuine care is not weakness. It is, in fact, the gift you give to the people who love you and want to show it."
+  ]}
+],synthesis:{tension:"The central tension you are living is between the depth of the care you give and the difficulty of letting it be returned. You are someone who makes the people around them feel genuinely loved. What your life is working on is building the conditions where that love is genuinely reciprocal, where you are tended as carefully as you tend.",invitation:"What this reading is pointing toward: the specific relationship or practice that requires you to be the one receiving, the one being seen, the one whose needs are the primary concern, and staying present in that position long enough to let it actually land."}},
+
+7:{tags:["Wisdom","Analysis","Depth","Spiritual insight"],sections:[
+  {label:"Who You Are",paras:[
+    "You ask the question behind the question. While others are concerned with what is happening, you are concerned with why it is happening, what it means, and what the pattern beneath it reveals about something larger than the immediate circumstance. This is not a learned habit. It is a constitutional orientation.",
+    "This quality produces a specific kind of intelligence that recognises when an explanation is technically accurate but fundamentally incomplete, that senses when the real thing has not yet been named even when the conversation appears to have resolved, and that holds open the questions others find it uncomfortable to leave unanswered."
+  ]},
+  {label:"What Drives You",paras:[
+    "You are drawn to understanding in the deep sense: not information, not expertise, but genuine comprehension that changes the way you see. A fact that does not shift your perspective is merely data. A genuine understanding is an experience, and you orient your life toward the accumulation of those experiences of real insight.",
+    "This is why solitude, for you, is not loneliness. It is the condition that allows genuine thinking, and genuine thinking is one of your deepest pleasures. You have probably spent significant portions of your life alone, not from social failure but from preference."
+  ]},
+  {label:"How You Love and How You Work",paras:[
+    "In love, you are most alive with someone who can genuinely meet you in the intellectual and philosophical dimensions of your inner life. Surface conversation, even pleasant surface conversation, leaves you slightly absent. The relationship that holds you is one where you can discuss what you actually think about things that actually matter.",
+    "In work, you are most effective when given the space to go deep. You are not built for breadth and speed. You are built for precision and depth, for the kind of thorough understanding of a problem or a domain that takes longer than the environment often allows but produces insight that cannot be produced any other way."
+  ]},
+  {label:"What To Watch For",paras:[
+    "Watch for the specific way your need for understanding can become a substitute for trust. You want to fully comprehend something before you commit to it, which is a reasonable instinct that can, taken to its limit, prevent you from committing to anything. Sometimes the understanding is only available from the inside."
+  ]},
+  {label:"The Central Challenge",paras:[
+    "The recurring difficulty of your nature is the relationship between knowledge and trust. You have a mind that seeks certainty through understanding, and a life that repeatedly asks you to act in the presence of uncertainty. The work of your life is developing the capacity to move forward without the full comprehension your nature finds reassuring, trusting that the understanding you need will arrive through the engagement rather than before it."
+  ]}
+],synthesis:{tension:"The central tension you are living is between the depth of your inner life and the difficulty of bringing that depth into contact with others without losing something essential in the translation. You are someone who understands things at a level most people cannot access. What your life is working on is finding the specific form through which that understanding can actually reach the world.",invitation:"What this reading is pointing toward: the relationship, the work, or the form of expression that creates a genuine bridge between your inner depth and the outer world, where what you understand can become something others can actually use."}},
+
+8:{tags:["Power","Abundance","Authority","Manifestation"],sections:[
+  {label:"Who You Are",paras:[
+    "You have a direct relationship with the material world that most people do not possess. You understand, at a level that feels almost physical, how things work: how organisations function, how money moves, how power accumulates, how large forces are assembled and directed. This understanding is not academic. It is practical and intuitive.",
+    "You are drawn to scale. Not because you need to impress, but because you genuinely think in terms of what is possible at scale, and the constraints of small thinking feel like a form of unnecessary limitation. The question you are always, in some background register, asking is: how large could this actually be?"
+  ]},
+  {label:"What Drives You",paras:[
+    "You are motivated by results. Not process, not intention, not effort: results. Visible, countable, significant results. This makes you extraordinarily effective and occasionally difficult to be in relationship with, because relationships do not always produce visible, countable results on any timeline your nature finds satisfying.",
+    "You also have an innate understanding of value: what things are worth, what they cost, what they could be worth with the right investment. What looks like materialism from the outside is often something more nuanced: a deep engagement with the material world as the primary domain in which the things you care about can be made real."
+  ]},
+  {label:"How You Love and How You Work",paras:[
+    "In love, you show care through provision, protection, and the practical demonstration of commitment. Grand gestures feel more natural to you than sustained small ones, which can create a gap between the scale of your love and the daily texture of how it is felt by the person receiving it.",
+    "In work, you are most effective when given genuine responsibility for significant outcomes and the authority to pursue them in your own way. Being directed in the granular detail of how to do work you already know how to do feels, to you, like being told how to breathe."
+  ]},
+  {label:"What To Watch For",paras:[
+    "Watch for the specific pattern in which the pursuit of significant results gradually crowds out the things that do not produce results in any measurable sense. Relationships, rest, the un-optimised dimensions of life: these matter, and the version of your nature that is only attending to what can be built or achieved will eventually notice their absence in ways that cannot be undone by achievement."
+  ]},
+  {label:"The Central Challenge",paras:[
+    "The recurring difficulty of your nature is the relationship between power and wisdom. The forces you are capable of assembling and directing require a quality of judgment and ethical clarity that is not automatically present simply because the capacity is. The work of your life is developing the internal calibration that ensures the scale of what you build is matched by the depth of your understanding of what it is actually for."
+  ]}
+],synthesis:{tension:"The central tension you are living is between the scale of what you are capable of building and the depth of what gives it meaning. You are someone who can make things happen at a level most people cannot approach. What your life is working on is developing the internal measure of what is actually worth building, separate from what is simply possible.",invitation:"What this reading is pointing toward: the specific work or direction that engages both your full capacity for scale and your deepest sense of what matters, where the magnitude of what you are building is matched by the significance of what it is actually for."}},
+
+9:{tags:["Compassion","Wisdom","Completion","Service"],sections:[
+  {label:"Who You Are",paras:[
+    "You carry more than you let on. The specific quality of your understanding of human difficulty is not theoretical. It comes from experience, from having been through enough of the full range of what life offers that you can meet almost anyone in almost any circumstance and genuinely recognise what they are carrying. This recognition is not performance. People feel it.",
+    "You are constitutionally oriented toward the universal. The specific and personal dimensions of life, while you care for them, tend to resolve themselves in your inner life into the patterns they represent. The friend who is struggling is never only your friend: they are the human being struggling, and what you feel for them includes something that extends beyond the personal relationship."
+  ]},
+  {label:"What Drives You",paras:[
+    "You are moved by completion. Not in the task-management sense, but in the deeper sense: the sense that something has run its full course and can now be released so that something new can begin. You have an unusual tolerance for endings, for the bittersweet quality of things concluding, that others find uncomfortable.",
+    "This is also why you are often the person others come to at the end of things: the end of a relationship, the end of a chapter, the moment when something is over and no one knows how to let it go gracefully. You know how. You have been here before, in your own life, many times."
+  ]},
+  {label:"How You Love and How You Work",paras:[
+    "In love, you love with the kind of compassion that holds another person's full complexity without needing them to be resolved into something simpler. You can be with someone's contradictions, their failures, their unfinished places, in a way that feels to them like genuine acceptance rather than tolerance.",
+    "In work, you are most effective when the work has genuine meaning, when it connects individual effort to something larger, when what you are doing matters not just for its immediate outcome but for what it contributes to a wider human story."
+  ]},
+  {label:"What To Watch For",paras:[
+    "Watch for the specific pattern of completing other people's cycles at the expense of your own. Your capacity for selfless service is genuine and significant. It becomes a problem when it functions as a way of avoiding the endings and the beginnings that belong specifically to you."
+  ]},
+  {label:"The Central Challenge",paras:[
+    "The recurring difficulty of your nature is release. You carry, quite literally, a great deal: experience, compassion, wisdom, the weight of others' stories. The work of your life is learning to set things down, to let cycles complete rather than extending them through continued caring, to trust that what you have given is enough."
+  ]}
+],synthesis:{tension:"The central tension you are living is between the fullness of what you carry and the necessity of setting it down. You are someone who understands life at depth, who can accompany others through their most difficult passages, and who carries the accumulated weight of that accompaniment. What your life is working on is finding the specific form of release that allows the next chapter to begin.",invitation:"What this reading is pointing toward: the specific thing that has run its full course and is asking to be completed, released, and honoured for what it was, so that you can bring your full self to whatever is beginning."}},
+
+11:{tags:["Intuition","Inspiration","Vision","Healing"],sections:[
+  {label:"Who You Are",paras:[
+    "You receive things. Not in the metaphorical sense, but in the practical sense: information, impressions, knowing that arrives through channels you did not choose and cannot fully explain. When you walk into a situation, you often know something about it before you have gathered any rational evidence, and that knowing is usually accurate.",
+    "This is not a mystical claim. It is a description of a nervous system that processes information at a frequency and sensitivity that most people do not access. The consequence is that you are navigating two layers of reality simultaneously at most times: the one that other people can see, and the one that you sense underneath it."
+  ]},
+  {label:"What Drives You",paras:[
+    "You are drawn toward the illumination of things that others cannot see. Toward the specific experience of making visible something that was previously hidden, of naming something that had been felt but not articulated, of being the one who says the thing that the room needed to hear but no one had said yet.",
+    "You are also drawn toward healing in the broadest sense: not necessarily the clinical kind, but the larger sense of making whole, of attending to what is broken, of presence that allows others to become more fully themselves."
+  ]},
+  {label:"How You Love and How You Work",paras:[
+    "In love, your sensitivity is both your greatest gift and your most demanding challenge. You feel what others feel with unusual precision, which makes you an extraordinarily attuned partner when you are well-resourced. The relationship that works for you is one with someone who understands that your sensitivity is not a weakness to be managed but a capacity to be honored.",
+    "In work, you are most effective when the work has a dimension of genuine service to others, when your particular form of perception can be genuinely used. Environments that insist on evidential rationality as the only valid form of knowing will consistently underuse you."
+  ]},
+  {label:"What To Watch For",paras:[
+    "Watch for the gap between what you perceive and what you can sustain. Your perceptive range is extraordinary, and it is not free. The cost of receiving information at the frequency you do is a nervous system that requires significantly more restoration than most people's. The corrective practice is regular, deliberate, private time that asks nothing of you."
+  ]},
+  {label:"The Central Challenge",paras:[
+    "The recurring difficulty of your nature is embodiment. Your gifts are of the spirit, the mind, the intuitive field, and they can become so primary that the physical and relational grounding of daily life receives less attention than it needs. The work of your life is finding the specific practices and structures that keep your extraordinary perception anchored in a life that is also genuinely livable."
+  ]}
+],synthesis:{tension:"The central tension you are living is between the elevation of what you can perceive and the groundedness that perceiving it requires. You are someone who sees further than most. What your life is working on is finding the specific form of grounding that does not diminish the vision but allows you to sustain it across a full life rather than in illuminated moments followed by depletion.",invitation:"What this reading is pointing toward: the practice, the relationship, or the structure that gives your sensitivity a container, so that what you perceive can become something that sustains you as much as it serves others."}},
+
+22:{tags:["Mastery","Vision","Discipline","Global impact"],sections:[
+  {label:"Who You Are",paras:[
+    "You think in structures that most people cannot hold simultaneously. The vision you carry is genuinely large: not large in the sense of ambitious, though you are that, but large in the sense of encompassing timelines, scales, and dimensions of impact that most people's thinking cannot quite reach. You do not experience this as grandiosity. You experience it as simply the natural size of the thing you can see needs to be built.",
+    "This quality of vision is paired with something unusual in people who carry it: you also know how to build. You understand that vision without execution is fantasy, and that the most extraordinary possible future is useless if there is no clear path from here to there."
+  ]},
+  {label:"What Drives You",paras:[
+    "You are motivated by the gap between what is and what could be. Not the personal gap, but the structural gap: the difference between the world as it currently operates and the world that is possible if someone builds the right thing in the right way at the right scale. You feel the pull of that gap as a form of obligation.",
+    "The challenge is that the scale of what you are designed to build is usually larger than any single chapter of your life can contain. This means you are often in the middle of something that is not yet finished, not yet visible to others, not yet legible as the significant thing it is."
+  ]},
+  {label:"How You Love and How You Work",paras:[
+    "In love, the scale of your inner life can be difficult to be with. You are not a small presence. The people who love you most are the ones who can hold the full weight of who you are without needing you to be smaller. The relationship that sustains you is one where the other person's own depth is genuine.",
+    "In work, you are genuinely most effective at the scale of the work that frightens smaller ambitions. You are not built for incremental. You are built for the thing that restructures the landscape."
+  ]},
+  {label:"What To Watch For",paras:[
+    "Watch for the specific way that the scale of your vision can become a burden that prevents you from finding satisfaction in what is already built. If everything is evaluated against the final vision, nothing that exists yet will ever be enough. The corrective practice is the ability to recognise, regularly, the genuine value in what is already standing."
+  ]},
+  {label:"The Central Challenge",paras:[
+    "The recurring difficulty of your nature is the distance between the scale of what you are here to build and the scale of what any single chapter of your life can actually contain. The work of your life is sustaining the building across that distance, finding the patience for incremental progress toward a destination that may not be reached in your lifetime."
+  ]}
+],synthesis:{tension:"The central tension you are living is between the scope of what you can see and the pace at which the world can receive it. You are someone who carries a genuinely significant vision. What your life is working on is finding the specific form of that vision that can begin to be built right now, in the conditions that actually exist.",invitation:"What this reading is pointing toward: the specific first structure of the larger thing you are here to build, the one that is possible with what is available now, and that creates the conditions for everything that comes after."}},
+
+33:{tags:["Teaching","Healing","Love","Selfless service"],sections:[
+  {label:"Who You Are",paras:[
+    "You carry a quality of love that is genuinely unconditional in a way that most human love is not. Not because you have achieved some spiritual ideal, but because it is your constitutional starting point: you encounter people, and your instinct is toward their wholeness, their flourishing, their becoming more fully what they were meant to be. This instinct operates before judgment.",
+    "This quality makes you one of the most genuinely healing presences that anyone around you will ever encounter. People become more themselves in your company. They feel, in ways they often cannot articulate, that they are seen without judgment and accompanied without condition."
+  ]},
+  {label:"What Drives You",paras:[
+    "You are motivated by transformation in others. Not the kind you produce by force or teaching or intervention, but the kind that happens in people when they are in the right conditions, and you are someone who knows how to create those conditions.",
+    "You are also drawn to truth in a specific way: the truth that frees, the truth that heals, the truth that gives people back to themselves rather than taking something from them. You know when the truth being spoken is serving the person, and when it is serving something else."
+  ]},
+  {label:"How You Love and How You Work",paras:[
+    "In love, you love with a completeness that most people cannot sustain and some cannot receive. You love the whole person, the parts they are proud of and the parts they are ashamed of, with equal care. The risk is that this quality can attract people who find the unconditional quality of your love comfortable in a way that means they never quite have to grow into fuller love themselves.",
+    "In work, you are most effective when the work is genuinely in service of others' transformation, when you can operate with the full depth of care your nature brings rather than the managed, professional, boundaried version that many working environments require."
+  ]},
+  {label:"What To Watch For",paras:[
+    "Watch for the specific pattern of giving so completely that the reserves available for your own life are chronically insufficient. Your capacity for selfless service is genuine and significant. It will not produce good in the world indefinitely if the vessel through which it operates is not itself cared for."
+  ]},
+  {label:"The Central Challenge",paras:[
+    "The recurring difficulty of your nature is the relationship between your love for others and the love available for yourself. You give from an inexhaustible depth when you are healthy, and from a depleted self when you are not. The work of your life is developing the practice of self-replenishment that matches the scale of what you give."
+  ]}
+],synthesis:{tension:"The central tension you are living is between the genuineness of your care for others and the sustainability of that care across a full life. You are someone who heals others simply by being fully present with them. What your life is working on is creating the conditions where that quality of presence is not continuously sourced from reserves that are never refilled.",invitation:"What this reading is pointing toward: the specific practice, relationship, or space in your life that exists purely for your own restoration, where you are the one being held, and where the depth of care you carry for others is returned to you."}}
+};
+
+
+var YQ={1:"a year of beginning: whatever you initiate now will shape the next nine years",2:"a year of cultivation and patience: relationships and quiet growth are the primary themes",3:"a year of creative expansion: what you have been building is ready to be expressed",4:"a year of foundational work: the practical structures of your life need attention",5:"a year of change and liberation: movement arrives whether invited or not",6:"a year of love and responsibility: the quality of your closest relationships is the central theme",7:"a year of reflection and inner development: understanding matters more than achievement",8:"a year of manifestation: what you have worked toward is becoming visible",9:"a year of completion: something has run its full course and is ready to be honoured and released",11:"a year of heightened intuition and spiritual clarity",22:"a year of significant building with lasting impact"};
+var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+function rd(n){if(n===11||n===22||n===33)return n;if(n<10)return n;return rd(String(n).split("").reduce(function(s,d){return s+parseInt(d)},0));}
+function dtLP(dob){var p=dob.split("-").map(Number),y=p[0],m=p[1],d=p[2];return rd(String(y).split("").concat(String(m).padStart(2,"0").split(""),String(d).padStart(2,"0").split("")).reduce(function(s,c){return s+parseInt(c)},0));}
+function pyear(dob){var p=dob.split("-").map(Number),m=p[1],d=p[2],cy=new Date().getFullYear();return rd(String(cy).split("").concat(String(m).padStart(2,"0").split(""),String(d).padStart(2,"0").split("")).reduce(function(s,c){return s+parseInt(c)},0));}
+
+function ord(n){var s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
+
+// Voice
+var isSpeaking=false,fullReadingText="",speechChunks=[],chunkIndex=0;
+function getBestVoice(){var voices=window.speechSynthesis.getVoices();if(!voices.length)return null;var pref=["Google UK English Female","Microsoft Libby Online (Natural) - English (United Kingdom)","Karen","Moira","Samantha","Victoria","Google US English"];for(var i=0;i<pref.length;i++){var v=voices.find(function(v){return v.name===pref[i];});if(v)return v;}var ef=voices.find(function(v){return v.lang.startsWith("en")&&v.name.toLowerCase().includes("female");});return ef||voices.find(function(v){return v.lang.startsWith("en");})||voices[0];}
+function toggleSpeech(){if(!("speechSynthesis" in window)){showToast("Voice not supported.");return;}var btn=document.getElementById("listen-btn"),lbl=document.getElementById("listen-lbl");if(isSpeaking){window.speechSynthesis.cancel();isSpeaking=false;speechChunks=[];chunkIndex=0;btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";return;}if(!fullReadingText)return;window.speechSynthesis.cancel();var raw=fullReadingText.split(/(?<=[.!?])\s+(?=[A-Z])/);speechChunks=[];for(var i=0;i<raw.length;i+=2){var c=raw.slice(i,i+2).join(" ").replace(/\s+/g," ").trim();if(c)speechChunks.push(c);}chunkIndex=0;function next(){if(chunkIndex>=speechChunks.length){isSpeaking=false;btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";return;}var u=new SpeechSynthesisUtterance(speechChunks[chunkIndex]);u.rate=0.82;u.pitch=1.05;var v=getBestVoice();if(v)u.voice=v;u.onend=function(){chunkIndex++;setTimeout(next,320);};u.onerror=function(){isSpeaking=false;btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";};window.speechSynthesis.speak(u);}if(window.speechSynthesis.getVoices().length)next();else window.speechSynthesis.onvoiceschanged=function(){next();};isSpeaking=true;btn.classList.add("is-active");lbl.textContent="Pause";}
+
+// Share
+function toggleShare(e){e.stopPropagation();document.getElementById("share-dd").classList.toggle("show");}
+document.addEventListener("click",function(){var d=document.getElementById("share-dd");if(d)d.classList.remove("show");});
+function showToast(msg){var t=document.getElementById("toast-msg");t.textContent=msg;t.style.opacity="1";t.style.transform="translateX(-50%) translateY(0)";setTimeout(function(){t.style.opacity="0";t.style.transform="translateX(-50%) translateY(20px)";},2400);}
+function doShare(m){document.getElementById("share-dd").classList.remove("show");var url="https://kayalsoulpath.com/pages/tool-life-blueprint.html";var text=window._shareText||"Discover the blueprint encoded in your birth date at KAYAL SoulPath Institute.";if(m==="copy"){navigator.clipboard&&navigator.clipboard.writeText(text+"\n"+url);showToast("Copied.");return;}var enc=encodeURIComponent,urls={twitter:"https://twitter.com/intent/tweet?text="+enc(text)+"&url="+enc(url),whatsapp:"https://wa.me/?text="+enc(text+" "+url)};if(urls[m])window.open(urls[m],"_blank","noopener");}
+
+// ── UPSELL DECISION (mirrors tool_registry.py life-path tools) ──
+// Master numbers (11/22/33) carry a distinct weight the registry treats separately.
+// Only 2 relevant life-path products fit this reading, so both branches show
+// both, just reordered so the best fit leads.
+var TOOL_META={
+  'master-number-reading':{name:'The Master Number Reading',price:'$47',desc:'Built specifically for 11, 22, and 33 Life Paths'},
+  'life-path-deep-dive':{name:'The Life Path Deep Dive',price:'$57',desc:'Your Life Path number decoded in full, not the generic version'}
+};
+var UPSELL_MAP={
+  master:{
+    toolId:'master-number-reading',
+    secondary:['life-path-deep-dive'],
+    eyebrow:'This is not a standard Life Path',
+    titleTpl:function(fn,lp){return (fn?fn+"'s":'A')+' Life Path '+lp+' carries a specific kind of weight.';},
+    desc:'The Master Number Reading is built specifically for 11, 22, and 33 Life Paths — the full weight of what you carry, decoded completely.',
+    ctaLabel:'See Our Recommended Reading',
+    modalTitle:'Two readings fit what your Life Path just showed.'
+  },
+  standard:{
+    toolId:'life-path-deep-dive',
+    secondary:['master-number-reading'],
+    eyebrow:'If this reading has touched something real',
+    titleTpl:function(fn,lp){return (fn?fn+"'s":'Your')+' Life Path '+lp+' has layers this reading has not yet reached.';},
+    desc:'The Life Path Deep Dive decodes your number in full, not the generic version, going into every dimension this teaser only opened the door to.',
+    ctaLabel:'See Our Recommended Reading',
+    modalTitle:'Two readings fit what your Life Path just showed.'
+  }
+};
+
+var currentLp=null,currentUp=null;
+
+function buildToolURL(toolId){
+  var p=new URLSearchParams();
+  var name=document.getElementById("inp-name").value.trim();
+  var dob=document.getElementById("inp-dob").value;
+  if(name)p.set("name",name);
+  if(dob)p.set("dob",dob);
+  if(currentLp)p.set("lifePath",currentLp);
+  p.set("src","freetool");
+  return "https://app.kayalsoulpath.com/tool/"+toolId+"?"+p.toString();
+}
+
+// ── UPSELL MODAL ──────────────────────────────────────────
+function openUpsellModal(e){
+  if(e)e.preventDefault();
+  if(!currentUp)return false;
+  document.getElementById("um-title").textContent=currentUp.modalTitle;
+  var order=[currentUp.toolId].concat(currentUp.secondary);
+  document.getElementById("um-options").innerHTML=order.map(function(id,i){
+    var meta=TOOL_META[id];
+    var isRec=(i===0);
+    return '<a class="um-option'+(isRec?' recommended':'')+'" href="'+buildToolURL(id)+'" target="_blank" rel="noopener">'+
+      '<div class="um-opt-body">'+
+        (isRec?'<span class="um-opt-tag">Best fit</span><br>':'')+
+        '<div class="um-opt-name">'+meta.name+'</div>'+
+        '<div class="um-opt-desc">'+meta.desc+'</div>'+
+      '</div>'+
+      '<div class="um-opt-price">'+meta.price+'</div>'+
+      '<i class="fas fa-chevron-right um-opt-arrow"></i>'+
+    '</a>';
+  }).join('');
+  document.getElementById("um-backdrop").classList.add("show");
+  return false;
+}
+function closeUpsellModal(){
+  document.getElementById("um-backdrop").classList.remove("show");
+}
+document.addEventListener("keydown",function(e){
+  if(e.key==="Escape")closeUpsellModal();
+});
+
+function calculate(){
+  var dob=document.getElementById("inp-dob").value;
+  var name=document.getElementById("inp-name").value.trim();
+  if(!dob){document.getElementById("inp-dob").focus();return;}
+  var btn=document.getElementById("calc-btn");
+  var spin=document.getElementById("btn-spin");
+  var txt=document.getElementById("btn-txt");
+  spin.style.display="block";txt.style.opacity=".6";btn.disabled=true;
+  setTimeout(function(){
+    spin.style.display="none";txt.style.opacity="1";btn.disabled=false;
+    var lp=dtLP(dob);
+    var data=READINGS[lp]||READINGS[1];
+    var parts=dob.split("-").map(Number),y=parts[0],m=parts[1],d=parts[2];
+    var py=pyear(dob);
+    var age=new Date().getFullYear()-y;
+    var fn=name?name.split(" ")[0]:"";
+    var intro=(fn?fn+", born on the "+ord(d)+" of "+MONTHS[m-1]+" "+y+".":"Born on the "+ord(d)+" of "+MONTHS[m-1]+" "+y+".");
+    document.getElementById("r-intro").textContent=intro;
+    document.getElementById("r-tags").innerHTML=data.tags.map(function(t){return"<span style='padding:4px 12px;background:rgba(181,98,42,.07);border:1px solid rgba(181,98,42,.18);border-radius:3px;font-size:11.5px;color:#4a3f34'>"+t+"</span>";}).join("");
+
+    // Build reading
+    var html="";
+    data.sections.forEach(function(sec){
+      html+="<div class='r-section'><div class='r-lbl'>"+sec.label+"</div>";
+      sec.paras.forEach(function(p){html+="<p class='r-para'>"+p+"</p>";});
+      html+="</div>";
+    });
+
+    // Year note as pull quote before synthesis
+    var yearNote=(fn?fn+", in":"In")+" "+new Date().getFullYear()+", at "+age+", you are in "+(YQ[py]||"a year of significant movement")+". This year is not happening around you. It is in conversation with everything your blueprint has been building toward.";
+    html+="<div class='r-section'><div class='r-lbl'>This Year</div><div class='r-pull'>"+yearNote+"</div></div>";
+
+    // Synthesis
+    html+="<div class='r-syn'><div class='r-lbl'>What This Reading Is Saying, Taken As A Whole</div><p class='r-tension'>"+data.synthesis.tension+"</p><p class='r-invite'>"+data.synthesis.invitation+"</p></div>";
+
+    document.getElementById("reading-content").innerHTML=html;
+
+    // Pinnacles moved to LifeOS premium
+
+    // Update invite copy and modal state
+    var isMaster=(lp===11||lp===22||lp===33);
+    var up=isMaster?UPSELL_MAP.master:UPSELL_MAP.standard;
+    currentLp=lp;currentUp=up;
+    document.getElementById("li-eyebrow").textContent=up.eyebrow;
+    document.getElementById("li-title").textContent=up.titleTpl(fn,lp);
+    document.getElementById("li-desc").textContent=up.desc;
+    document.getElementById("li-btn-label").textContent=up.ctaLabel;
+
+    // Speech
+    var readEl=document.createElement("div");readEl.innerHTML=html;
+    fullReadingText=readEl.textContent.replace(/\s+/g," ").trim();
+    window._shareText="I discovered what my birth date encodes at KAYAL SoulPath Institute. Qualities: "+data.tags.join(", ")+". Try yours free.";
+
+    // Show result — hide the hero and input step so it reads as a clean next screen
+    document.getElementById("hero-section").style.display="none";
+    document.getElementById("input-heading").style.display="none";
+    document.getElementById("calc-header").style.display="none";
+    document.getElementById("calc-body").style.display="none";
+    var panel=document.getElementById("result-panel");panel.style.display="block";
+    setTimeout(function(){panel.scrollIntoView({behavior:"smooth",block:"start"});},150);
+  },800);
+}
+
+function startNewBlueprintReading(){
+  document.getElementById("inp-dob").value="";
+  document.getElementById("inp-name").value="";
+  document.getElementById("result-panel").style.display="none";
+  document.getElementById("hero-section").style.display="flex";
+  document.getElementById("input-heading").style.display="block";
+  document.getElementById("calc-header").style.display="block";
+  document.getElementById("calc-body").style.display="block";
+  document.getElementById("calculator").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+document.getElementById("inp-dob").addEventListener("keydown",function(e){if(e.key==="Enter")calculate();});
+document.getElementById("inp-name").addEventListener("keydown",function(e){if(e.key==="Enter")calculate();});
+
+// Hero cycling number
+(function(){
+  var df=document.getElementById("digit-field"),h="",d="123456789";
+  for(var i=0;i<126;i++)h+="<span>"+d[i%9]+"</span>";
+  df.innerHTML=h;
+  var el=document.getElementById("hero-num"),arc=document.getElementById("ring-arc"),dot=document.getElementById("ring-dot");
+  var circ=2*Math.PI*82,idx=0;
+  function next(){idx=(idx+1)%9;var n=idx+1;el.style.opacity="0";el.style.transform="scale(.85)";setTimeout(function(){el.textContent=n;el.style.opacity="1";el.style.transform="scale(1)";var f=n/9,dl=circ*f;arc.style.strokeDasharray=dl+" "+(circ-dl);var ang=(f*360-90)*Math.PI/180,r=82;dot.setAttribute("cx",90+r*Math.cos(ang));dot.setAttribute("cy",90+r*Math.sin(ang));},300);}
+  setInterval(next,2000);
+})();
+
+// Reveal on scroll
+(function(){var els=document.querySelectorAll(".reveal");var io=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add("visible");io.unobserve(en.target);}});},{threshold:.12});els.forEach(function(el){io.observe(el);});})();
+
+// Responsive form row
+(function(){var r=document.getElementById("form-row");if(r&&window.innerWidth<640)r.style.gridTemplateColumns="1fr";})();
+</script>
+</body>
+</html>

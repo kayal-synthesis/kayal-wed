@@ -1,0 +1,47 @@
+/* contact.css — Light Linen */
+.contact-tabs{display:flex;gap:0;border:1px solid var(--cream);border-radius:var(--r);overflow:hidden;margin-bottom:40px;width:fit-content}
+.contact-tab{padding:10px 22px;font-size:13px;font-weight:500;color:var(--stone);background:var(--white);border:none;border-right:1px solid var(--cream);cursor:pointer;transition:all .2s;font-family:var(--ff-body)}
+.contact-tab:last-child{border-right:none}
+.contact-tab:hover{color:var(--terra);background:var(--parchment)}
+.contact-tab.active{background:var(--ink);color:var(--linen)}
+
+.contact-grid{display:grid;grid-template-columns:1fr 360px;gap:56px;align-items:start}
+.contact-form-panel{display:none}
+.contact-form-panel.active{display:block}
+
+.form-intro{margin-bottom:32px}
+.form-title{font-family:var(--ff-heading);font-size:26px;color:var(--ink);margin-bottom:8px}
+.form-desc{font-size:14.5px;color:var(--stone);line-height:1.7}
+.field-hint{font-size:11px;color:var(--stone);margin-top:4px;font-style:italic}
+
+.course-form-note{display:flex;gap:10px;padding:14px;background:rgba(181,98,42,.05);border:1px solid rgba(181,98,42,.15);border-radius:var(--r);margin-bottom:14px;font-size:13px;color:var(--slate);line-height:1.65}
+.course-form-note-icon{flex-shrink:0;width:18px;height:18px;background:var(--terra);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;margin-top:1px}
+
+.advert-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+.advert-stat{background:var(--parchment);border:1px solid var(--cream);border-radius:var(--r);padding:14px;text-align:center}
+.advert-stat-num{font-family:var(--ff-display);font-size:30px;font-weight:300;color:var(--terra);line-height:1;margin-bottom:3px}
+.advert-stat-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--stone)}
+
+/* Sidebar */
+.contact-sidebar{display:flex;flex-direction:column;gap:18px}
+.contact-info-card{background:var(--white);border:1px solid var(--cream);border-radius:var(--r-lg);padding:22px}
+.contact-info-title{font-family:var(--ff-heading);font-size:15.5px;color:var(--ink);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--cream)}
+.contact-info-item{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start}
+.contact-info-icon{font-size:17px;flex-shrink:0;margin-top:1px}
+.contact-info-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);margin-bottom:2px}
+.contact-info-value{font-size:13.5px;color:var(--slate)}
+
+/* FAQ */
+.contact-faq{margin-top:56px}
+.contact-faq-title{font-family:var(--ff-heading);font-size:clamp(20px,2.8vw,30px);color:var(--ink);margin-bottom:28px}
+.faq-item{border-bottom:1px solid var(--cream)}
+.faq-question{width:100%;text-align:left;background:none;border:none;display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:14px;font-family:var(--ff-heading);font-size:16.5px;color:var(--ink);line-height:1.4;cursor:pointer;transition:color .2s}
+.faq-question:hover{color:var(--terra)}
+.faq-chevron{font-size:17px;color:var(--stone);transition:transform .28s,color .2s;flex-shrink:0}
+.faq-item.open .faq-chevron{transform:rotate(180deg);color:var(--terra)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s var(--ease-expo)}
+.faq-item.open .faq-answer{max-height:400px}
+.faq-answer p{padding-bottom:18px;font-size:14.5px;color:var(--slate);line-height:1.8}
+
+@media(max-width:1100px){.contact-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.contact-tabs{width:100%;overflow-x:auto}.advert-stats-grid{grid-template-columns:1fr}}

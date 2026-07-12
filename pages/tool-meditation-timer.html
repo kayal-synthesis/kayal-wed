@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stillness Practice Timer | KAYAL SoulPath Institute</title>
+<meta name="description" content="A meditation timer with a personalised post-session reading. Sit in stillness. Discover what this moment is asking of you.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --void:#000000;--dark:#050507;--coal:#0a0a0f;--ash:#111118;
+  --ember:#1a1a28;--dusk:#222235;--indigo:#3a3a70;
+  --gold:#c8a030;--amber:#d47820;--pearl:#e8e0d0;--mist:#f0ece0;
+  --stone:#706858;--r:8px;--r-lg:16px;
+  --ff-d:'Georgia',serif;--ff-h:'Georgia',serif;
+  --ff-b:system-ui,-apple-system,sans-serif;
+}
+body{background:var(--void);color:var(--pearl);font-family:var(--ff-b);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(5,5,7,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(200,160,48,.08);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;flex-direction:column;gap:1px}
+.nav-brand-name{font-family:var(--ff-d);font-size:16px;font-weight:400;color:var(--pearl);letter-spacing:.06em;text-transform:uppercase}
+.nav-brand-sub{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,224,208,.3)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-back{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:rgba(200,160,48,.55);border:1px solid rgba(200,160,48,.15);border-radius:4px;padding:7px 14px;transition:all .2s}
+.nav-back:hover{color:var(--gold);border-color:rgba(200,160,48,.4)}
+.nav-cta{padding:8px 18px;background:rgba(200,160,48,.12);color:var(--gold);border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.04em;transition:all .2s;border:1px solid rgba(200,160,48,.2)}
+.nav-cta:hover{background:rgba(200,160,48,.2)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;background:radial-gradient(ellipse at 50% 35%,rgba(26,26,40,.8),var(--void))}
+.hero-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,160,48,.6);margin-bottom:28px}
+
+/* Mandala */
+.mandala-wrap{position:relative;width:260px;height:260px;margin:0 auto 40px;z-index:1}
+.mandala-svg{width:100%;height:100%}
+.m-ring-1{animation:m-rot 40s linear infinite}
+.m-ring-2{animation:m-rot 28s linear infinite reverse}
+.m-ring-3{animation:m-rot 16s linear infinite}
+@keyframes m-rot{to{transform:rotate(360deg)}}
+
+.hero-title{font-family:var(--ff-d);font-size:clamp(26px,5vw,48px);font-weight:300;color:var(--pearl);line-height:1.1;margin-bottom:16px}
+.hero-title em{font-style:italic;color:rgba(200,160,48,.85)}
+.hero-sub{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(232,224,208,.45);line-height:1.8;max-width:460px;margin:0 auto 36px}
+.hero-cta{padding:14px 32px;background:rgba(200,160,48,.1);color:var(--gold);border:1px solid rgba(200,160,48,.25);border-radius:var(--r);font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:10px;text-transform:uppercase}
+.hero-cta:hover{background:rgba(200,160,48,.18);transform:translateY(-2px)}
+
+/* MAIN */
+.main{max-width:680px;margin:0 auto;padding:80px 24px}
+.sec-label{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,160,48,.55);margin-bottom:10px}
+.sec-title{font-family:var(--ff-d);font-size:clamp(22px,3vw,32px);font-weight:300;color:var(--pearl);line-height:1.2;margin-bottom:10px}
+.sec-title em{font-style:italic;color:rgba(200,160,48,.85)}
+.sec-sub{font-family:var(--ff-h);font-size:14px;font-style:italic;color:rgba(232,224,208,.45);line-height:1.75;max-width:520px;margin-bottom:28px}
+
+/* SETUP */
+.setup-card{background:rgba(26,26,40,.5);border:1px solid rgba(200,160,48,.1);border-radius:var(--r-lg);padding:32px;margin-bottom:28px}
+.form-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px}
+.form-group{display:flex;flex-direction:column;gap:7px}
+.form-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,224,208,.45)}
+.form-input{padding:12px 14px;background:rgba(10,10,15,.7);border:1.5px solid rgba(200,160,48,.12);border-radius:var(--r);font-family:var(--ff-b);font-size:14px;color:var(--pearl);outline:none;transition:border-color .2s;resize:vertical}
+.form-input:focus{border-color:rgba(200,160,48,.4)}
+.form-input::placeholder{color:var(--stone)}
+textarea.form-input{min-height:72px;font-family:var(--ff-h);font-style:italic;font-size:14px}
+input[type=date].form-input{color-scheme:dark}
+
+.form-sep{height:1px;background:rgba(200,160,48,.08);margin:20px 0}
+
+.dur-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.dur-btn{padding:8px 16px;background:rgba(10,10,15,.6);border:1px solid rgba(200,160,48,.15);border-radius:var(--r);font-size:13px;color:rgba(232,224,208,.55);cursor:pointer;transition:all .2s}
+.dur-btn:hover{border-color:rgba(200,160,48,.4);color:var(--pearl)}
+.dur-btn.active{background:rgba(200,160,48,.12);border-color:rgba(200,160,48,.5);color:var(--gold)}
+
+.breath-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.breath-btn{padding:6px 14px;background:rgba(10,10,15,.5);border:1px solid rgba(200,160,48,.1);border-radius:20px;font-size:12px;color:rgba(232,224,208,.5);cursor:pointer;transition:all .2s}
+.breath-btn:hover{border-color:rgba(200,160,48,.3);color:var(--pearl)}
+.breath-btn.active{border-color:rgba(200,160,48,.4);color:rgba(200,160,48,.9);background:rgba(200,160,48,.08)}
+
+.start-btn{width:100%;padding:15px 24px;background:rgba(200,160,48,.1);color:var(--gold);border:1px solid rgba(200,160,48,.25);border-radius:var(--r);font-family:var(--ff-b);font-size:14px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;text-transform:uppercase}
+.start-btn:hover{background:rgba(200,160,48,.18);transform:translateY(-1px)}
+
+/* TIMER DISPLAY */
+#timer-display{display:none;text-align:center;padding:48px 24px}
+#timer-display.show{display:block;animation:fadeIn .8s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.timer-mandala-wrap{position:relative;width:320px;height:320px;margin:0 auto 32px;display:flex;align-items:center;justify-content:center}
+#breath-ring-svg{position:absolute;inset:0;width:100%;height:100%}
+.timer-geometry{animation:m-rot 60s linear infinite}
+.geo-counter{animation:m-rot 40s linear infinite reverse}
+.prog-track{fill:none;stroke:rgba(200,160,48,.06);stroke-width:2}
+.prog-fill{fill:none;stroke:rgba(200,160,48,.15);stroke-width:2;stroke-linecap:round;transition:stroke-dashoffset .5s ease,stroke .5s ease}
+
+.breath-phase{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,160,48,.6);height:20px;margin-bottom:8px;transition:color .3s}
+.breath-phase.active{color:rgba(200,160,48,.85)}
+
+.timer-time{font-family:var(--ff-d);font-size:64px;font-weight:300;color:var(--pearl);line-height:1;letter-spacing:-.02em}
+.timer-elapsed{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(232,224,208,.3);margin-top:6px}
+.timer-intention{font-family:var(--ff-h);font-size:14px;font-style:italic;color:rgba(200,160,48,.6);margin-bottom:24px;min-height:24px}
+
+.timer-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.tc-btn{padding:10px 22px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;letter-spacing:.04em}
+.tc-primary{background:rgba(200,160,48,.12);color:var(--gold);border:1px solid rgba(200,160,48,.25)}
+.tc-primary:hover{background:rgba(200,160,48,.2)}
+.tc-ghost{background:transparent;color:rgba(232,224,208,.4);border:1px solid rgba(232,224,208,.1)}
+.tc-ghost:hover{color:var(--pearl);border-color:rgba(232,224,208,.25)}
+
+/* BELL FLASH */
+.bell-flash{position:fixed;inset:0;background:rgba(200,160,48,.06);pointer-events:none;opacity:0;transition:opacity .3s;z-index:100}
+.bell-flash.ring{animation:bell-ring .6s ease}
+@keyframes bell-ring{0%,100%{opacity:0}30%{opacity:1}}
+
+/* COMPLETE CARD */
+#complete-card{display:none;background:rgba(10,10,15,.9);border:1px solid rgba(200,160,48,.18);border-radius:var(--r-lg);padding:40px;text-align:center;margin-top:28px}
+#complete-card.show{display:block;animation:fadeIn .6s ease}
+.comp-glyph{font-size:48px;margin-bottom:14px;display:block}
+.comp-title{font-family:var(--ff-d);font-size:26px;font-weight:300;color:var(--pearl);margin-bottom:10px}
+.comp-sub{font-family:var(--ff-h);font-size:14px;font-style:italic;color:var(--stone);line-height:1.75;margin-bottom:24px;max-width:380px;margin-left:auto;margin-right:auto}
+.comp-stats{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;padding:18px 0;border-top:1px solid rgba(200,160,48,.08);border-bottom:1px solid rgba(200,160,48,.08);margin-bottom:24px}
+.cs .cs-num{font-family:var(--ff-d);font-size:24px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:4px}
+.cs .cs-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
+
+/* POST-SESSION READING */
+#post-reading{display:none;margin-top:40px}
+#post-reading.show{display:block;animation:fadeIn .8s ease}
+.post-eyebrow{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,160,48,.55);margin-bottom:8px}
+.post-title{font-family:var(--ff-d);font-size:clamp(20px,3vw,28px);font-weight:300;color:var(--pearl);line-height:1.3;margin-bottom:24px}
+.post-title em{font-style:italic;color:rgba(200,160,48,.85)}
+.r-block{margin-bottom:26px}
+.r-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,160,48,.6);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.r-label::after{content:'';flex:1;height:1px;background:rgba(200,160,48,.1)}
+.r-para{font-family:var(--ff-h);font-size:15.5px;font-style:italic;color:rgba(232,224,208,.88);line-height:1.95;margin-bottom:14px;text-align:justify}
+.r-para:last-child{margin-bottom:0}
+.r-pull{font-family:var(--ff-d);font-size:18px;font-weight:300;color:var(--pearl);line-height:1.6;padding:22px 26px;border-left:3px solid rgba(200,160,48,.4);background:rgba(200,160,48,.05);border-radius:0 var(--r) var(--r) 0;margin:18px 0}
+.r-syn{border:1px solid rgba(200,160,48,.15);border-radius:var(--r-lg);padding:26px 28px;background:rgba(26,26,40,.3);margin:24px 0}
+.r-syn .r-label{color:var(--gold)}
+.r-syn .r-label::after{background:rgba(200,160,48,.12)}
+.r-tension{font-family:var(--ff-h);font-size:16px;font-style:italic;color:rgba(232,224,208,.88);line-height:1.9;margin-bottom:14px;text-align:justify}
+.r-invite{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(200,160,48,.85);line-height:1.85;text-align:justify}
+
+/* STATIC READING (before session, always shown) */
+.reading-section{margin-top:60px;padding-top:48px;border-top:1px solid rgba(200,160,48,.06)}
+
+/* LIFEOS INVITE */
+/* Reading bridge card — compact */
+.lifeos-invite{padding:26px 28px;background:linear-gradient(135deg,rgba(200,160,48,.14),rgba(212,120,32,.06)),rgba(5,5,7,.96);border:1px solid rgba(200,160,48,.22);border-radius:var(--r-lg);position:relative;overflow:hidden;margin-top:40px}
+.lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(200,160,48,.12),transparent 70%);pointer-events:none}
+.lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(212,120,32,.10),transparent 70%);pointer-events:none}
+.li-badge{display:inline-flex;align-items:center;gap:7px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:rgba(200,160,48,.10);border:1px solid rgba(200,160,48,.28);border-radius:20px;padding:6px 14px;margin-bottom:14px;position:relative;z-index:1}
+.li-badge i{font-size:9px}
+.li-title{font-family:var(--ff-d);font-size:clamp(17px,2.2vw,21px);font-weight:300;color:var(--pearl);line-height:1.35;margin-bottom:9px;position:relative;z-index:1;max-width:500px}
+.li-desc{font-family:var(--ff-h);font-size:13px;font-style:italic;color:rgba(232,224,208,.55);line-height:1.65;margin-bottom:20px;max-width:460px;position:relative;z-index:1}
+.li-btns{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+.li-btn-p{padding:12px 22px;background:rgba(200,160,48,.14);color:var(--gold);border:1px solid rgba(200,160,48,.28);border-radius:var(--r);font-family:var(--ff-b);font-size:12.5px;font-weight:600;letter-spacing:.04em;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.li-btn-p:hover{background:rgba(200,160,48,.22)}
+.li-btn-s{padding:12px 18px;background:transparent;color:rgba(232,224,208,.4);border:1px solid rgba(232,224,208,.1);border-radius:var(--r);font-family:var(--ff-b);font-size:12.5px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.li-btn-s:hover{color:var(--pearl);border-color:rgba(232,224,208,.25)}
+.li-foot{font-size:10.5px;color:rgba(232,224,208,.22);margin-top:14px;position:relative;z-index:1}
+.li-foot a{color:rgba(200,160,48,.35)}
+
+/* FOOTER */
+.footer{background:rgba(5,5,7,.97);border-top:1px solid rgba(200,160,48,.06);padding:36px 24px 20px;margin-top:80px}
+.footer-inner{max-width:680px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-brand{font-family:var(--ff-d);font-size:18px;font-weight:300;color:var(--pearl)}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:rgba(232,224,208,.3);transition:color .2s}
+.footer-links a:hover{color:rgba(232,224,208,.7)}
+.footer-copy{font-size:11px;color:rgba(232,224,208,.15);width:100%;text-align:center;padding-top:14px;border-top:1px solid rgba(200,160,48,.05);margin-top:14px}
+
+@media(max-width:600px){
+  .form-row{grid-template-columns:1fr}
+  .li-btns{flex-direction:column}
+  .main{padding:56px 16px 72px}
+  .setup-card{padding:22px 18px}
+  .timer-mandala-wrap{width:260px;height:260px}
+  .timer-time{font-size:52px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bell-flash" id="bell-flash"></div>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-brand">
+    <div class="nav-brand-name">KAYAL</div>
+    <div class="nav-brand-sub">SoulPath Institute</div>
+  </a>
+  <div class="nav-right">
+    <a href="../tools.html" class="nav-back"><i class="fas fa-chevron-left" style="font-size:10px"></i> All Tools</a>
+    <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="nav-cta">Open LifeOS</a>
+  </div>
+</nav>
+
+<section class="hero" id="hero-section">
+  <div class="hero-eyebrow">Free Practice · The Stillness Tool</div>
+  <div class="mandala-wrap">
+    <svg class="mandala-svg" viewBox="0 0 260 260">
+      <g class="m-ring-1" style="transform-origin:130px 130px">
+        <circle cx="130" cy="10" r="6" fill="none" stroke="rgba(200,160,48,.15)" stroke-width="1"/>
+        <circle cx="219" cy="59" r="6" fill="none" stroke="rgba(200,160,48,.12)" stroke-width="1"/>
+        <circle cx="219" cy="201" r="6" fill="none" stroke="rgba(200,160,48,.12)" stroke-width="1"/>
+        <circle cx="130" cy="250" r="6" fill="none" stroke="rgba(200,160,48,.15)" stroke-width="1"/>
+        <circle cx="41" cy="201" r="6" fill="none" stroke="rgba(200,160,48,.12)" stroke-width="1"/>
+        <circle cx="41" cy="59" r="6" fill="none" stroke="rgba(200,160,48,.12)" stroke-width="1"/>
+        <circle cx="130" cy="130" r="120" fill="none" stroke="rgba(200,160,48,.06)" stroke-width="1"/>
+      </g>
+      <g class="m-ring-2" style="transform-origin:130px 130px">
+        <polygon points="130,50 200,90 200,170 130,210 60,170 60,90" fill="none" stroke="rgba(200,160,48,.1)" stroke-width="1"/>
+        <polygon points="130,70 185,102 185,158 130,190 75,158 75,102" fill="none" stroke="rgba(200,160,48,.08)" stroke-width="1"/>
+      </g>
+      <g class="m-ring-3" style="transform-origin:130px 130px">
+        <polygon points="130,85 148,115 182,115 158,135 168,168 130,148 92,168 102,135 78,115 112,115" fill="none" stroke="rgba(200,160,48,.12)" stroke-width="1"/>
+        <circle cx="130" cy="130" r="30" fill="none" stroke="rgba(200,160,48,.18)" stroke-width="1"/>
+      </g>
+      <circle cx="130" cy="130" r="5" fill="rgba(200,160,48,.5)"/>
+    </svg>
+  </div>
+  <h1 class="hero-title">Sit in stillness.<br><em>Receive what arises.</em></h1>
+  <p class="hero-sub">A timer for the practice of returning. Add your birth date and the session ends with a reading specific to you and the cycle you are currently moving through.</p>
+  <button class="hero-cta" onclick="document.getElementById('setup-section').scrollIntoView({behavior:'smooth'})">
+    <i class="fas fa-circle"></i> Begin a Session
+  </button>
+</section>
+
+<main class="main">
+  <!-- SETUP -->
+  <div id="setup-section">
+    <div class="sec-label">Configure Your Session</div>
+    <h2 class="sec-title">Set your duration<br><em>and your intention.</em></h2>
+    <p class="sec-sub">An intention is not a goal. It is a direction: one word, one question, one quality you are offering your attention to in this session.</p>
+
+    <div class="setup-card">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Your name <span style="font-style:italic;letter-spacing:0;text-transform:none;font-size:9px;color:rgba(232,224,208,.3)">(optional)</span></label>
+          <input type="text" id="inp-name" class="form-input" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Date of birth <span style="font-style:italic;letter-spacing:0;text-transform:none;font-size:9px;color:rgba(232,224,208,.3)">(unlocks reading)</span></label>
+          <input type="date" id="inp-dob" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Today's date</label>
+          <input type="date" id="inp-date" class="form-input">
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-bottom:20px">
+        <label class="form-label">Your intention for this session</label>
+        <textarea id="inp-intention" class="form-input" placeholder="e.g. Clarity. Stillness. What is mine to release? Presence."></textarea>
+      </div>
+
+      <div class="form-sep"></div>
+
+      <div class="form-group" style="margin-bottom:16px">
+        <label class="form-label">Duration</label>
+        <div class="dur-row">
+          <button class="dur-btn" onclick="setDuration(5,this)">5 min</button>
+          <button class="dur-btn active" onclick="setDuration(10,this)">10 min</button>
+          <button class="dur-btn" onclick="setDuration(15,this)">15 min</button>
+          <button class="dur-btn" onclick="setDuration(20,this)">20 min</button>
+          <button class="dur-btn" onclick="setDuration(30,this)">30 min</button>
+          <button class="dur-btn" onclick="setDuration(45,this)">45 min</button>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-bottom:24px">
+        <label class="form-label">Breath guide</label>
+        <div class="breath-row">
+          <button class="breath-btn active" onclick="setBreath('4-4',this)">4-4 Simple</button>
+          <button class="breath-btn" onclick="setBreath('4-7-8',this)">4-7-8 Calm</button>
+          <button class="breath-btn" onclick="setBreath('6-2-6',this)">6-2-6 Deep</button>
+          <button class="breath-btn" onclick="setBreath('box',this)">Box Breath</button>
+          <button class="breath-btn" onclick="setBreath('none',this)">No guide</button>
+        </div>
+      </div>
+
+      <button class="start-btn" onclick="startTimer()">
+        <i class="fas fa-circle"></i> Begin Session
+      </button>
+    </div>
+
+    <!-- Static reading, always visible before session -->
+    <div class="reading-section">
+      <div class="r-block">
+        <div class="r-label">On Stillness</div>
+        <p class="r-para">Most people approach this practice as a task: something to be accomplished, completed correctly, done well. The productivity frame is the first thing to release. Stillness is not a performance. It is a return.</p>
+        <p class="r-para">What you return to in stillness is not blankness. It is a quality of presence that is always already there, beneath the noise of the thinking mind and the accumulated momentum of the day. The practice is simply the act of returning, again and again, without self-judgment, to that quality. The number of times you return is more important than how long you stay.</p>
+      </div>
+      <div class="r-pull">The moment you notice that you have been lost in thought and return your attention: that moment is the practice. Not the stillness before the thought and not the stillness after the return. The return itself is the practice.</div>
+      <div class="r-block">
+        <div class="r-label">On Consistency</div>
+        <p class="r-para">Five minutes every day is more valuable than forty-five minutes once a week. This is not a statement about discipline. It is a statement about the neurological and spiritual reality of practice. Consistency creates grooves. Those grooves become the path.</p>
+        <p class="r-para">The most common reason people abandon a stillness practice is not that they lack discipline. It is that they set an unrealistic standard and then experience their normal difficulty concentrating as failure. Ten minutes of divided attention, honestly offered, is more valuable than twenty minutes of performance.</p>
+      </div>
+      <div class="r-block">
+        <div class="r-label">On Intention</div>
+        <p class="r-para">An intention is not a goal. A goal moves toward a future state. An intention orients the quality of presence you bring to the current moment. Clarity is not a thing you will have at the end of the session. It is the quality you are offering your attention to while you sit. The distinction matters, because it removes the performance pressure that undermines most practices.</p>
+        <p class="r-para">The most powerful intentions are single words or simple questions. Gratitude. What is mine to release? Stillness. These are not mantras. They are directional signals, offered once at the beginning and then released into the space the practice creates.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMER DISPLAY -->
+  <div id="timer-display">
+    <div class="breath-phase" id="breath-phase"></div>
+    <div class="timer-mandala-wrap">
+      <svg id="breath-ring-svg" viewBox="0 0 320 320">
+        <g class="timer-geometry" style="transform-origin:160px 160px">
+          <circle cx="160" cy="160" r="140" fill="none" stroke="rgba(200,160,48,.05)" stroke-width="1"/>
+          <polygon points="160,20 280,110 240,250 80,250 40,110" fill="none" stroke="rgba(200,160,48,.04)" stroke-width="1"/>
+          <polygon points="160,100 220,140 200,210 120,210 100,140" fill="none" stroke="rgba(200,160,48,.06)" stroke-width="1"/>
+        </g>
+        <g class="geo-counter" style="transform-origin:160px 160px">
+          <polygon points="160,30 270,95 270,225 160,290 50,225 50,95" fill="none" stroke="rgba(200,160,48,.04)" stroke-width="1"/>
+        </g>
+        <circle class="prog-track" cx="160" cy="160" r="148"/>
+        <circle class="prog-fill" id="prog-circle" cx="160" cy="160" r="148" transform="rotate(-90 160 160)"/>
+        <circle id="breath-circle" cx="160" cy="160" r="60" fill="rgba(200,160,48,.03)" stroke="rgba(200,160,48,.18)" stroke-width="1.5"/>
+        <circle cx="160" cy="160" r="4" fill="rgba(200,160,48,.6)"/>
+      </svg>
+      <div style="position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;inset:0">
+        <div class="timer-time" id="timer-time">10:00</div>
+        <div class="timer-elapsed" id="timer-elapsed">0:00 elapsed</div>
+      </div>
+    </div>
+    <div class="timer-intention" id="timer-intention"></div>
+    <div class="timer-controls">
+      <button class="tc-btn tc-primary" id="pause-btn" onclick="togglePause()"><i class="fas fa-pause"></i> Pause</button>
+      <button class="tc-btn tc-ghost" onclick="resetTimer()"><i class="fas fa-redo"></i> Reset</button>
+      <button class="tc-btn tc-ghost" onclick="endEarly()"><i class="fas fa-check"></i> Complete</button>
+    </div>
+
+    <!-- Complete card -->
+    <div id="complete-card">
+      <span class="comp-glyph">🙏</span>
+      <div class="comp-title" id="comp-title">Session complete.</div>
+      <p class="comp-sub" id="comp-sub">You showed up. That is the entire practice.</p>
+      <div class="comp-stats" id="comp-stats"></div>
+      <button class="start-btn" onclick="newSession()" style="max-width:300px;margin:0 auto">
+        <i class="fas fa-circle"></i> Begin Another Session
+      </button>
+    </div>
+
+    <!-- Post-session personalised reading -->
+    <div id="post-reading">
+      <div class="post-eyebrow">Your reading for this session</div>
+      <div class="post-title" id="post-title"></div>
+      <div id="post-reading-content"></div>
+      <div class="lifeos-invite">
+        <div class="li-badge"><i class="fas fa-sparkles"></i><span id="li-eyebrow">If this practice is becoming something real</span></div>
+        <div class="li-title" id="li-title">Your stillness practice has a specific direction this year.</div>
+        <p class="li-desc" id="li-desc">What you have received here is a single session reading.</p>
+        <div class="li-btns">
+          <a href="https://app.kayalsoulpath.com/tool/personal-year-deep-dive" id="lifeos-link" class="li-btn-p" target="_blank" rel="noopener"><i class="fas fa-compass"></i> <span id="li-btn-label">Go Deeper</span></a>
+          <a href="../pages/enrol/apply.html" class="li-btn-s">Study at the Institute</a>
+        </div>
+        <div class="li-foot">Already a student? <a href="../pages/student/login.html">Sign in to your portal</a></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">KAYAL</div>
+    <div class="footer-links">
+      <a href="../tools.html">Free Tools</a>
+      <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener">LifeOS</a>
+      <a href="../index.html">Institute</a>
+    </div>
+	<p style="font-size:11px;color:rgba(250,247,242,.3);line-height:1.6;max-width:640px;margin-top:14px;width:100%;text-align:center">Readings and content offered through KAYAL SoulPath Institute are for spiritual guidance and self-understanding. They are not a substitute for professional medical, legal, financial, or psychological advice. Always consult a qualified professional for decisions in these areas.</p>
+    <div class="footer-copy">© 2026 KAYAL SoulPath Institute. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+// ── POST-SESSION READINGS per cycle ──────────────────────
+// Nine cycle-specific readings for after the session completes
+// Written in direct, felt language addressed to the person
+var CYCLE_READINGS={
+  1:{
+    title:"You sat at the beginning of something.",
+    sections:[
+      {label:"What This Session Was",paras:[
+        "The cycle you are currently moving through is one of opening. Not the comfortable kind of opening, where the way is clear and the destination is known, but the specific kind that asks you to step toward something before you can fully see where you are going. This practice, in this cycle, is not simply rest. It is preparation.",
+        "What stillness does in a cycle of beginning is different from what it does in any other phase. It gives you the quality of discernment you need before you commit the next chapter of your life to a direction. The noise you bring into the silence at the start of a session is exactly the material the practice is asking you to work with. Not to resolve it. To let it settle enough that you can hear what is underneath."
+      ]},
+      {label:"What Stillness Is Asking of You This Year",paras:[
+        "In a time of genuine beginning, the specific temptation is to use every quiet moment for planning. To treat the stillness as an opportunity for more thinking rather than a different quality of listening. The practice is most valuable in this cycle when you allow it to be genuinely unproductive, when you sit without an agenda for what the session will produce, and discover that what arrives in that unguarded space is more directionally useful than anything you could have planned.",
+        "What you are building in this cycle will be built on the quality of the inner listening you do in its opening months. The seeds planted now, including the seeds of a regular stillness practice, will determine the yield of the eight years ahead."
+      ]}
+    ],
+    synthesis:{
+      tension:"The central tension of sitting in stillness in a cycle of beginning is the pull between the genuine urgency of what is being initiated and the quality of inner quiet that allows that initiation to be genuinely yours rather than a reaction to external pressure.",
+      invitation:"What this session has been preparing you for: the one thing you will know with unusual clarity in the hours following this practice, because the stillness has made room for it. Trust that knowing."
+    }
+  },
+  2:{
+    title:"You sat in a cycle that rewards patience.",
+    sections:[
+      {label:"What This Session Was",paras:[
+        "The cycle you are currently moving through is one of slow and largely invisible development. The people around you may be seeing more dramatic movements in their lives right now. What you are building is not yet visible, which is exactly how it is supposed to be at this stage. The practice of sitting in stillness in this cycle is not about accessing dramatic insight. It is about cultivating the specific quality of patient attentiveness that this window of your life is asking you to develop.",
+        "What arises in the silence during this cycle tends to arrive quietly, as a sense of what needs attention, a feeling about a relationship, a recognition that something is forming beneath the surface of your life that you had not yet consciously registered. The practice makes you available to these quiet arrivals."
+      ]},
+      {label:"What Stillness Is Asking of You This Year",paras:[
+        "In a cycle of attunement, the practice of stillness is particularly aligned with the deeper work of the year because both ask for the same quality: the willingness to receive rather than to act, to listen rather than to direct, to trust what is forming before it is fully visible.",
+        "The specific gift of a regular stillness practice in this phase of your life is that it gives the invisible work somewhere to land. The connections you are building, the understanding that is deepening in ways you cannot fully account for: these are the real contents of this cycle, and the quiet you create in practice is where they become most audible."
+      ]}
+    ],
+    synthesis:{
+      tension:"The central tension of sitting in stillness in a cycle of cultivation is the instinct to measure the practice by what you produce in it, applied to a period of your life that is fundamentally asking you to release that measurement.",
+      invitation:"What this session has been preparing you for: the conversation, the relationship, or the inner recognition that you have been sensing but not yet fully attending to. The stillness has made you slightly more available to it."
+    }
+  },
+  3:{
+    title:"You sat in a cycle of creative charge.",
+    sections:[
+      {label:"What This Session Was",paras:[
+        "The cycle you are currently moving through is one of expression and outward expansion. There is more creative energy available to you in this phase than in most others, and the risk that comes with that abundance is dispersal: the scattering of a gift across too many directions at once. Sitting in stillness in a cycle like this is a specific act of containment. Not suppression, but the gathering that allows the energy to go deeper rather than wider.",
+        "What the practice does in a cycle of expansion is create a thread of inner continuity beneath the social and creative momentum of the year. Without that thread, the aliveness of this period can be experienced as exhilarating but ultimately shallow: a season of genuine activity that ends without anything deeply completed."
+      ]},
+      {label:"What Stillness Is Asking of You This Year",paras:[
+        "In a cycle of creative vitality, the most valuable question to carry into the practice is not what you want to create or share, but what is trying to emerge from the deepest level of your experience. Not the most exciting creative direction, and not the most socially resonant, but the truest one. The stillness makes that distinction legible.",
+        "The practice is also the antidote to the specific exhaustion of a highly expressive year: the kind that comes from giving outward continuously without an equal movement inward. What you return to in the stillness is the source that the expression is drawing from. Tending that source is the most important creative act of this cycle."
+      ]}
+    ],
+    synthesis:{
+      tension:"The central tension of sitting in stillness in a cycle of expansion is between the genuine aliveness that the outward movement brings and the depth that only the inward movement can reach.",
+      invitation:"What this session has been preparing you for: the specific creative act or conversation that is most genuinely yours right now, not the most visible or the most productive, but the one that comes from the deepest level of what this period of your life is actually opening."
+    }
+  },
+  4:{
+    title:"You sat in a cycle of foundational work.",
+    sections:[
+      {label:"What This Session Was",paras:[
+        "The cycle you are currently moving through is one of patient, methodical, sustained effort. It is not the most glamorous phase of the nine-year arc, but it is among the most consequential, because what is built carefully now will carry the weight of everything that follows. Sitting in stillness in a cycle like this is not a retreat from the work. It is the quality of inner calibration that allows the work to be done with the right kind of attention.",
+        "What the practice does in a cycle of construction is give you access to the specific quality of knowing that cannot be arrived at through effort: the recognition of what actually needs to be built, as distinct from what you have been assuming needs to be built. This distinction is more valuable than any amount of additional effort."
+      ]},
+      {label:"What Stillness Is Asking of You This Year",paras:[
+        "In a cycle of structural work, the practice of stillness asks you to bring the same quality of care and sustained attention to your inner life that the cycle is asking you to bring to your outer one. The foundations being built right now are not only practical. They are also the foundations of who you are becoming across this nine-year period.",
+        "The specific gift of sitting in stillness in this phase is the access it provides to what is genuinely load-bearing in your life right now: the relationships, the practices, the commitments that are worth the full weight of your attention, as distinct from the things you are attending to by habit rather than by genuine choice."
+      ]}
+    ],
+    synthesis:{
+      tension:"The central tension of sitting in stillness in a cycle of foundation-building is between the pull toward visible productivity and the equally real need for the kind of inner quiet that allows the foundations to be laid with genuine intention rather than simply with effort.",
+      invitation:"What this session has been preparing you for: a clearer sense of what in your life right now is genuinely worth building with everything you have, and what is simply occupying the time and attention that that building requires."
+    }
+  },
+  5:{
+    title:"You sat in the middle of movement.",
+    sections:[
+      {label:"What This Session Was",paras:[
+        "The cycle you are currently moving through is the most changeable of the nine-year arc. Things are moving in your life right now: plans shifting, directions emerging, some things that seemed stable revealing themselves as less fixed than you assumed. In a cycle like this, sitting in stillness is a specific act of anchoring. Not resistance to the change, but the quality of groundedness that allows you to respond to what is arriving rather than simply being moved by it.",
+        "What the practice does in a cycle of movement is create a point of stillness at the centre of the motion. The eye of the cycle, where you are present and aware rather than simply being carried. This is the most valuable thing you can build in a year when so much else is in flux: a reliable access to your own inner knowing, independent of the pace of external change."
+      ]},
+      {label:"What Stillness Is Asking of You This Year",paras:[
+        "In a cycle of liberation and change, the practice of stillness asks you to distinguish between what is changing because it genuinely needs to change and what is changing because change is in the air and you are moving with the current without having consciously chosen the direction. This distinction can only be made from a place of genuine quiet.",
+        "The sessions that feel most restless in this cycle, where the mind refuses to settle and the impulse to act is strongest, are often the sessions of most value. Not because the restlessness is resolved in them, but because sitting with it without immediately acting on it is the specific practice that this cycle requires."
+      ]}
+    ],
+    synthesis:{
+      tension:"The central tension of sitting in stillness in a cycle of change is that the energy that is moving through your life right now is genuinely energising, and the practice asks you to be still in the middle of it. This is not the same as resisting it. It is the quality of presence that allows the change to be conscious rather than reactive.",
+      invitation:"What this session has been preparing you for: a clearer sense of where in your life the movement is genuinely aligned with where you are going, and where it is simply movement. The stillness has made the distinction slightly more legible."
+    }
+  },
+  6:{
+    title:"You sat in a cycle of love and care.",
+    sections:[
+      {label:"What This Session Was",paras:[
+        "The cycle you are currently moving through is one of deepened relationship and responsibility. The people and commitments that matter most to you are particularly visible right now, and the quality of attention you bring to them has unusual consequences in this phase. Sitting in stillness in a cycle like this is not a withdrawal from that care. It is the act of replenishment that makes the care sustainable.",
+        "What the practice does in a cycle of love and service is give you access to the source that the giving is drawing from. The quality of presence you bring to the people and responsibilities of this cycle depends on whether that source is full or depleted. The practice, in this context, is not self-indulgence. It is a form of care for the people who depend on you."
+      ]},
+      {label:"What Stillness Is Asking of You This Year",paras:[
+        "In a cycle of responsibility, the practice of stillness asks you to extend toward yourself the same quality of genuine care that this cycle is asking you to extend toward others. This is not always easy for someone whose energy moves naturally toward the needs of others. But the practice of genuine self-attentiveness in this phase is what prevents the care from becoming depletion.",
+        "What arises in the stillness in a cycle of love often has to do with the relationship between what you are giving and what you are receiving. The practice creates the space to notice that difference honestly, without the performance of being fine, so that what needs to be addressed can be addressed from a place of real clarity rather than accumulated exhaustion."
+      ]}
+    ],
+    synthesis:{
+      tension:"The central tension of sitting in stillness in a cycle of love and care is the same tension that characterises the cycle itself: the relationship between the genuine depth of what you offer and the necessity of being genuinely replenished by what you receive.",
+      invitation:"What this session has been preparing you for: a clearer sense of where in your life the giving and receiving are genuinely in balance, and where the balance has quietly shifted in a direction that needs attending to."
+    }
+  },
+  7:{
+    title:"You sat in the year most suited to sitting.",
+    sections:[
+      {label:"What This Session Was",paras:[
+        "The cycle you are currently moving through is the most interior of the nine-year arc. The outward life may be quieter than usual, or it may be full of activity that somehow feels less central than what is developing inside. This is the specific quality of this phase: the inner life has more authority than usual, and what you understand through genuine reflection in this period is more valuable than what you could accumulate through equivalent amounts of action.",
+        "What the practice does in this cycle is not create access to something new. It opens what was always there, beneath the accumulated momentum of the previous six years, waiting for the quality of quiet that only this phase of the cycle makes reliably available. The sessions in this cycle often produce a quality of recognition rather than insight: the sense that something you always knew is finally being consciously acknowledged."
+      ]},
+      {label:"What Stillness Is Asking of You This Year",paras:[
+        "In a cycle of reflection and inner development, the practice of stillness is not a supplement to the deeper work of the year. It is the deeper work of the year. The understanding that this cycle is designed to produce is only available through the kind of sustained inner attention that the practice cultivates. What is being asked of you right now is a quality of honesty about your own experience that is most accessible from a place of genuine quiet.",
+        "The specific invitation of sitting regularly in this phase is to let yourself be genuinely alone with your own experience, without the management or the distraction that usually accompanies it. Not as an exercise in introspection, but as a form of trust: that what you encounter in the silence is real, and that what you understand there matters."
+      ]}
+    ],
+    synthesis:{
+      tension:"The central tension of sitting in stillness in the most contemplative cycle of the nine years is the paradox of effort: this is the cycle when the practice is most valuable and also the one when the instinct to fill the quiet with productivity is most difficult to resist.",
+      invitation:"What this session has been preparing you for: the specific understanding that this cycle is making available, the one that has been forming beneath the surface of your experience and is now, in the quiet following this practice, slightly more audible than it was before."
+    }
+  },
+  8:{
+    title:"You sat in a cycle of gathering momentum.",
+    sections:[
+      {label:"What This Session Was",paras:[
+        "The cycle you are currently moving through is one of material momentum and significant potential for external achievement. The work of the previous seven years is available to be converted into visible results in this phase, and the energy for purposeful action is genuinely high. Sitting in stillness in a cycle like this is the specific act of integrity that prevents the ambition from outrunning the wisdom.",
+        "What the practice does in a cycle of manifestation is give you reliable access to the quality of judgment that significant achievement requires. Not the strategic judgment of planning, but the deeper judgment of discernment: the ability to distinguish between what is worth the investment of this cycle's energy and what is simply available and therefore tempting."
+      ]},
+      {label:"What Stillness Is Asking of You This Year",paras:[
+        "In a cycle of achievement, the practice of stillness asks you to regularly return to the question of what the achievement is actually for. Not as a philosophical exercise, but as a practical act of calibration: ensuring that the considerable energy available to you in this phase is being directed toward something genuinely worth building, rather than simply something that is possible to build.",
+        "The specific gift of sitting regularly in this phase is the access it provides to your own deepest sense of value: what matters to you at a level that precedes strategy, reputation, and the metrics by which the external world measures success. That sense of value is the compass that makes the ambition of this cycle genuinely productive rather than simply impressive."
+      ]}
+    ],
+    synthesis:{
+      tension:"The central tension of sitting in stillness in a cycle of manifestation is between the genuine urgency of the opportunities available right now and the quality of inner calibration that ensures those opportunities are pursued with wisdom as well as ambition.",
+      invitation:"What this session has been preparing you for: a clearer sense of what among the available directions in your life right now is most genuinely worth the investment of everything this cycle is offering you. Not the most impressive possibility. The most meaningful one."
+    }
+  },
+  9:{
+    title:"You sat at the close of a nine-year arc.",
+    sections:[
+      {label:"What This Session Was",paras:[
+        "The cycle you are currently moving through is one of completion and release. The nine-year arc that began in the year of your last cycle 1 is drawing toward its close, and the dominant quality of this phase is the recognition of what has run its full course: relationships, ways of being, aspects of identity and circumstance that were appropriate for the chapter that is now ending and are no longer appropriate for the one that is beginning.",
+        "What the practice does in a cycle of completion is give you access to the specific quality of equanimity that release requires. Not detachment, which is a form of distance, but the genuine acceptance of endings that comes from understanding that what is completing has given what it came to give. The stillness in this cycle is particularly suited to receiving that understanding."
+      ]},
+      {label:"What Stillness Is Asking of You This Year",paras:[
+        "In a cycle of completion, the practice of stillness asks you to be genuinely present with what is ending, without either rushing toward the next beginning or holding on past the natural close of what is completing. This is perhaps the most demanding quality the practice can cultivate: the willingness to fully inhabit the ending rather than managing it from a distance.",
+        "What arises in the silence in a cycle like this often takes the form of grief, gratitude, or both simultaneously, for what the nine years have produced, for what they could not produce, and for the understanding that only the full arc could give. These are not problems to be resolved. They are the specific contents of this phase of the practice."
+      ]}
+    ],
+    synthesis:{
+      tension:"The central tension of sitting in stillness in a cycle of completion is the relationship between the genuine difficulty of what is ending and the genuine necessity of letting it end completely, so that the space it creates is real rather than provisional.",
+      invitation:"What this session has been preparing you for: the specific thing in your life that is ready to be honoured for what it was and released fully, so that what comes next can begin in genuinely open ground."
+    }
+  }
+};
+
+// ── NUMEROLOGY ────────────────────────────────────────────
+function rd(n){if(n===11||n===22||n===33)return n;if(n<10)return n;return rd(String(n).split("").reduce(function(s,d){return s+parseInt(d)},0));}
+function personalYear(dob){
+  var p=dob.split("-").map(Number),m=p[1],d=p[2],cy=new Date().getFullYear();
+  return rd(String(cy).split("").concat(String(m).padStart(2,"0").split(""),String(d).padStart(2,"0").split("")).reduce(function(s,c){return s+parseInt(c)},0));
+}
+
+// ── TIMER STATE ───────────────────────────────────────────
+var state={
+  duration:10,breath:"4-4",intention:"",name:"",dob:"",
+  totalSecs:600,remaining:600,elapsed:0,
+  running:false,paused:false,done:false,
+  breathPhase:"",breathSecs:0,breathMax:4,breathCycle:0,
+  interval:null,breathInterval:null,startTime:null
+};
+var breathStep=0,breathSecsLeft=0;
+
+var BREATH_PATTERNS={
+  "4-4":[{phase:"Breathe in",dur:4},{phase:"Breathe out",dur:4}],
+  "4-7-8":[{phase:"Breathe in",dur:4},{phase:"Hold",dur:7},{phase:"Breathe out",dur:8}],
+  "6-2-6":[{phase:"Breathe in",dur:6},{phase:"Hold",dur:2},{phase:"Breathe out",dur:6}],
+  "box":[{phase:"Breathe in",dur:4},{phase:"Hold",dur:4},{phase:"Breathe out",dur:4},{phase:"Hold",dur:4}],
+  "none":[]
+};
+
+// ── CONTROLS ──────────────────────────────────────────────
+function setDuration(mins,btn){
+  state.duration=mins;state.totalSecs=mins*60;state.remaining=mins*60;
+  document.querySelectorAll(".dur-btn").forEach(function(b){b.classList.remove("active");});
+  btn.classList.add("active");
+}
+function setBreath(pattern,btn){
+  state.breath=pattern;
+  document.querySelectorAll(".breath-btn").forEach(function(b){b.classList.remove("active");});
+  btn.classList.add("active");
+}
+
+// ── BREATH ────────────────────────────────────────────────
+function initBreath(){breathStep=0;breathSecsLeft=0;updateBreathDisplay();}
+function breathTick(){
+  var pattern=BREATH_PATTERNS[state.breath];
+  if(!pattern||pattern.length===0){document.getElementById("breath-phase").textContent="";animateBreath(0);return;}
+  breathSecsLeft--;
+  if(breathSecsLeft<=0){breathStep=(breathStep+1)%pattern.length;breathSecsLeft=pattern[breathStep].dur;}
+  var p=pattern[breathStep];
+  document.getElementById("breath-phase").textContent=p.phase.toUpperCase();
+  var progress=1-(breathSecsLeft/p.dur);
+  var isIn=p.phase==="Breathe in";var isOut=p.phase==="Breathe out";
+  var r=isIn?40+progress*50:isOut?90-progress*50:90;
+  animateBreath(r);
+}
+function updateBreathDisplay(){
+  var pattern=BREATH_PATTERNS[state.breath];
+  if(!pattern||pattern.length===0){document.getElementById("breath-phase").textContent="";animateBreath(60);return;}
+  breathStep=0;breathSecsLeft=pattern[0].dur;
+  document.getElementById("breath-phase").textContent=pattern[0].phase.toUpperCase();
+}
+function animateBreath(r){
+  var c=document.getElementById("breath-circle");
+  c.setAttribute("r",Math.max(20,Math.min(115,r)));
+  var ph=document.getElementById("breath-phase").textContent;
+  if(ph.includes("IN")){c.setAttribute("stroke","rgba(200,160,48,.35)");c.setAttribute("fill","rgba(200,160,48,.06)");}
+  else if(ph.includes("OUT")){c.setAttribute("stroke","rgba(200,160,48,.12)");c.setAttribute("fill","rgba(200,160,48,.02)");}
+  else{c.setAttribute("stroke","rgba(200,160,48,.22)");c.setAttribute("fill","rgba(200,160,48,.04)");}
+}
+
+// ── TIMER ─────────────────────────────────────────────────
+function startTimer(){
+  state.name=document.getElementById("inp-name").value.trim();
+  state.dob=document.getElementById("inp-dob").value;
+  state.intention=document.getElementById("inp-intention").value.trim();
+  state.totalSecs=state.duration*60;
+  state.remaining=state.totalSecs;
+  state.elapsed=0;state.done=false;state.paused=false;state.running=true;
+
+  document.getElementById("hero-section").style.display="none";
+  document.getElementById("setup-section").style.display="none";
+  var td=document.getElementById("timer-display");
+  td.style.display="block";
+  setTimeout(function(){td.classList.add("show");},50);
+  document.getElementById("complete-card").style.display="none";
+  document.getElementById("complete-card").classList.remove("show");
+  document.getElementById("post-reading").style.display="none";
+  document.getElementById("post-reading").classList.remove("show");
+
+  var fn=state.name?state.name.split(" ")[0]:"";
+  document.getElementById("timer-intention").textContent=state.intention||(fn?"Welcome, "+fn+". Settle in.":"Settle in. This time is yours.");
+
+  var r=148,circ=2*Math.PI*r;
+  var pc=document.getElementById("prog-circle");
+  pc.style.strokeDasharray=circ;
+  pc.style.strokeDashoffset=0;
+
+  initBreath();
+  updateTimerDisplay();
+  state.interval=setInterval(tick,1000);
+  var pat=BREATH_PATTERNS[state.breath];
+  if(pat&&pat.length>0){breathStep=0;breathSecsLeft=pat[0].dur;}
+}
+
+function tick(){
+  if(state.paused||!state.running)return;
+  state.remaining--;state.elapsed++;
+  breathTick();
+  updateTimerDisplay();
+  updateProgress();
+  if(state.remaining<=0)completeSession();
+}
+
+function updateTimerDisplay(){
+  var m=Math.floor(state.remaining/60),s=state.remaining%60;
+  document.getElementById("timer-time").textContent=m+":"+(s<10?"0":"")+s;
+  var em=Math.floor(state.elapsed/60),es=state.elapsed%60;
+  document.getElementById("timer-elapsed").textContent=em+":"+(es<10?"0":"")+es+" elapsed";
+}
+
+function updateProgress(){
+  var r=148,circ=2*Math.PI*r;
+  var pct=state.elapsed/state.totalSecs;
+  var pc=document.getElementById("prog-circle");
+  pc.style.strokeDashoffset=circ*(1-pct);
+  var opacity=0.15+pct*0.4;
+  pc.setAttribute("stroke","rgba(200,160,48,"+opacity+")");
+}
+
+function togglePause(){
+  state.paused=!state.paused;
+  var btn=document.getElementById("pause-btn");
+  btn.innerHTML=state.paused?"<i class='fas fa-play'></i> Resume":"<i class='fas fa-pause'></i> Pause";
+  if(!state.paused)document.getElementById("breath-phase").classList.add("active");
+  else document.getElementById("breath-phase").classList.remove("active");
+}
+
+function resetTimer(){
+  clearInterval(state.interval);state.interval=null;
+  state.running=false;state.paused=false;state.remaining=state.totalSecs;state.elapsed=0;
+  document.getElementById("timer-display").style.display="none";
+  document.getElementById("timer-display").classList.remove("show");
+  document.getElementById("setup-section").style.display="block";
+  document.getElementById("hero-section").style.display="flex";
+  document.getElementById("setup-section").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function endEarly(){completeSession();}
+
+function completeSession(){
+  clearInterval(state.interval);state.interval=null;
+  state.running=false;state.done=true;
+
+  var bf=document.getElementById("bell-flash");
+  bf.classList.remove("ring");
+  setTimeout(function(){bf.classList.add("ring");},50);
+
+  var mins=Math.floor(state.elapsed/60),secs=state.elapsed%60;
+  var fn=state.name?state.name.split(" ")[0]:"";
+  var comp=document.getElementById("complete-card");
+  document.getElementById("comp-title").textContent=(fn?"Well done, "+fn+".":"Session complete.")+" You sat.";
+  document.getElementById("comp-sub").textContent="The work of showing up is already done. Whatever arose in the space between your intention and the bell: that was the practice.";
+  document.getElementById("comp-stats").innerHTML=
+    "<div class='cs'><div class='cs-num'>"+mins+(secs>0?":"+(secs<10?"0":"")+secs:"")+"</div><div class='cs-label'>Minutes sat</div></div>"+
+    (state.intention?"<div class='cs'><div class='cs-num' style='font-size:14px;padding-top:8px'>"+state.intention.substring(0,20)+"</div><div class='cs-label'>Your intention</div></div>":"")+
+    "<div class='cs'><div class='cs-num'>"+(new Date().toISOString().split("T")[0])+"</div><div class='cs-label'>Date</div></div>";
+
+  comp.style.display="block";
+  setTimeout(function(){comp.classList.add("show");},50);
+  document.getElementById("breath-phase").textContent="";
+  animateBreath(60);
+
+  // Build post-session reading
+  buildPostReading(fn);
+
+  setTimeout(function(){comp.scrollIntoView({behavior:"smooth",block:"nearest"});},300);
+}
+
+function buildPostReading(fn){
+  var pr=document.getElementById("post-reading");
+  var dob=state.dob;
+
+  if(!dob){
+    // No DOB — show gentle static reading
+    document.getElementById("post-title").innerHTML="You returned. That is the whole of it.";
+    document.getElementById("post-reading-content").innerHTML=
+      "<div class='r-block'><div class='r-label'>What Just Happened</div>"+
+      "<p class='r-para'>"+(fn?fn+", you":"You")+" sat in stillness. Whether the session felt productive or scattered, deep or distracted, is beside the point. The practice is the returning, not the arriving. Every time you sit, you are building the capacity to return, and that capacity compounds across a practice in the same way that compound interest compounds across time.</p>"+
+      "<p class='r-para'>To unlock a reading specific to this period of your life, add your date of birth before your next session. The reading that follows will speak directly to what the current phase of your nine-year cycle is asking of your stillness practice.</p>"+
+      "</div>";
+    document.getElementById("li-eyebrow").textContent="If this practice is becoming something real";
+    document.getElementById("li-title").textContent="Your current year has a specific direction worth naming.";
+    document.getElementById("li-desc").textContent="Add your date of birth next time and the Personal Year Deep Dive will show you exactly what this year is asking of your practice.";
+    document.getElementById("li-btn-label").textContent="Explore the Personal Year Deep Dive";
+    var pNoDob=new URLSearchParams();
+    if(fn)pNoDob.set("name",fn);
+    pNoDob.set("src","freetool");
+    document.getElementById("lifeos-link").href="https://app.kayalsoulpath.com/tool/personal-year-deep-dive?"+pNoDob.toString();
+  } else {
+    // Has DOB — generate cycle-specific reading
+    var py=personalYear(dob);
+    var cr=CYCLE_READINGS[py]||CYCLE_READINGS[1];
+
+    document.getElementById("post-title").innerHTML=(fn?fn+", ":"")+cr.title;
+
+    var html="";
+    cr.sections.forEach(function(sec){
+      html+="<div class='r-block'><div class='r-label'>"+sec.label+"</div>";
+      sec.paras.forEach(function(p){html+="<p class='r-para'>"+p+"</p>";});
+      html+="</div>";
+    });
+
+    html+="<div class='r-syn'><div class='r-label'>What This Session Is Saying, Taken As A Whole</div>";
+    html+="<p class='r-tension'>"+cr.synthesis.tension+"</p>";
+    html+="<p class='r-invite'>"+cr.synthesis.invitation+"</p>";
+    html+="</div>";
+
+    document.getElementById("post-reading-content").innerHTML=html;
+
+    // Update LifeOS link and invite copy — routes to the tool that matches Personal Year directly
+    var p=new URLSearchParams();
+    if(fn)p.set("name",fn);p.set("dob",dob);p.set("cy",py);p.set("src","freetool");
+    document.getElementById("lifeos-link").href="https://app.kayalsoulpath.com/tool/personal-year-deep-dive?"+p.toString();
+    document.getElementById("li-eyebrow").textContent="If this practice is becoming something real";
+    document.getElementById("li-title").textContent=(fn?fn+", your":"Your")+" Personal Year "+py+" has layers this session only opened.";
+    document.getElementById("li-desc").textContent="The Personal Year Deep Dive gives you the full picture of the cycle you are currently moving through: what it is asking, and what it is offering.";
+    document.getElementById("li-btn-label").textContent="Get the Personal Year Deep Dive";
+  }
+
+  pr.style.display="block";
+  setTimeout(function(){pr.classList.add("show");},800);
+}
+
+function newSession(){
+  state.done=false;state.elapsed=0;
+  document.getElementById("complete-card").classList.remove("show");
+  document.getElementById("post-reading").classList.remove("show");
+  setTimeout(function(){
+    document.getElementById("complete-card").style.display="none";
+    document.getElementById("post-reading").style.display="none";
+    document.getElementById("timer-display").style.display="none";
+    document.getElementById("timer-display").classList.remove("show");
+    document.getElementById("setup-section").style.display="block";
+    document.getElementById("hero-section").style.display="flex";
+    document.getElementById("setup-section").scrollIntoView({behavior:"smooth",block:"start"});
+  },300);
+}
+
+// Set today's date
+(function(){
+  document.getElementById("inp-date").value=new Date().toISOString().split("T")[0];
+})();
+
+// Spacebar to pause
+document.addEventListener("keydown",function(e){
+  if(e.code==="Space"&&state.running&&!state.done){e.preventDefault();togglePause();}
+});
+</script>
+</body>
+</html>

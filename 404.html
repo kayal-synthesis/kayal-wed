@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found — KAYAL SoulPath Institute</title>
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.error-page { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 24px; background: var(--parchment); }
+.error-num { font-family: var(--ff-display); font-size: 160px; font-weight: 300; color: rgba(44,24,16,0.06); line-height: 1; margin-bottom: -40px; }
+.error-title { font-family: var(--ff-display); font-size: clamp(32px,4vw,52px); font-weight: 300; color: var(--ink); margin-bottom: 16px; }
+.error-desc { font-family: var(--ff-heading); font-size: 18px; font-style: italic; color: var(--stone); line-height: 1.65; max-width: 480px; margin: 0 auto 40px; }
+.error-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand"><div class="nav-brand-name">KAYAL</div><div class="nav-brand-sub">SoulPath Institute</div></a>
+    <div class="nav-right">
+      <a href="index.html" class="btn btn-outline" style="font-size:12px;padding:9px 20px">Back to Home</a>
+      <a href="https://app.kayalsoulpath.com" target="_blank" class="btn btn-primary" style="font-size:12px;padding:9px 20px">Open LifeOS</a>
+    </div>
+  </div>
+</nav>
+
+<div class="error-page">
+  <div class="error-num">404</div>
+  <h1 class="error-title">This path<br><em>leads nowhere.</em></h1>
+  <p class="error-desc">The page you are looking for does not exist, has been moved, or the link has changed. But your soul path is always exactly where it needs to be.</p>
+  <div class="error-links">
+    <a href="index.html" class="btn btn-primary">Return Home →</a>
+    <a href="pages/courses/index.html" class="btn btn-outline">Browse Courses</a>
+    <a href="tools.html" class="btn btn-outline">Free Tools</a>
+    <a href="contact.html" class="btn btn-ghost">Contact Us →</a>
+  </div>
+</div>
+
+<script src="js/global.js"></script>
+</body>
+</html>

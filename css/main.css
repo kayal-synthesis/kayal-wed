@@ -1,0 +1,3 @@
+/* main.css — shared overrides / additional utility */
+/* This file intentionally minimal — global.css handles the system */
+.hero-float { border-radius: 8px; }

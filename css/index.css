@@ -1,0 +1,229 @@
+/* ============================================================
+   KAYAL SoulPath — Homepage Styles v3 (Light Linen)
+   ============================================================ */
+
+/* ── HERO ── */
+.hero{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:560px;max-height:660px;
+  position:relative;overflow:hidden;
+  background:var(--parchment);
+  border-bottom:1px solid var(--cream);
+}
+.hero-watermark{
+  position:absolute;top:-40px;left:-20px;
+  font-family:var(--ff-display);font-size:500px;font-weight:300;
+  color:rgba(44,24,16,.025);line-height:1;
+  pointer-events:none;user-select:none;z-index:0;
+}
+.hero-left{
+  display:flex;align-items:center;justify-content:center;
+  padding:60px 48px;
+  position:relative;z-index:1;
+  text-align:center;
+}
+.hero-left-inner{max-width:480px;width:100%}
+
+.hero-title{
+  font-family:var(--ff-display);
+  font-size:clamp(40px,5vw,68px);font-weight:300;
+  line-height:1.02;letter-spacing:-.03em;color:var(--ink);margin-bottom:18px;
+}
+.hero-title em{font-style:italic;color:var(--terra)}
+
+.hero-desc{
+  font-family:var(--ff-heading);
+  font-size:clamp(15px,1.4vw,17px);font-style:italic;
+  color:var(--stone);line-height:1.75;margin-bottom:32px;max-width:440px;
+}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:40px}
+
+.hero-stats{
+  display:flex;align-items:center;justify-content:center;gap:24px;
+  padding-top:32px;border-top:1px solid var(--cream);
+}
+.hero-stat-num{
+  font-family:var(--ff-heading);font-size:28px;font-weight:500;
+  color:var(--terra);line-height:1;
+}
+.hero-stat-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);margin-top:4px}
+.hero-stat-divider{width:1px;height:36px;background:var(--cream);flex-shrink:0}
+
+/* Hero right image */
+.hero-right{position:relative;overflow:hidden}
+.hero-image-wrap{width:100%;height:100%;position:relative}
+.hero-img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+  transition:transform 8s ease;
+}
+.hero-right:hover .hero-img{transform:scale(1.03)}
+.hero-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(244,239,230,.25) 0%,transparent 40%);
+}
+
+/* Floating cards — compact & properly positioned */
+.hero-float{
+  position:absolute;
+  background:rgba(250,247,242,0.96);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid var(--cream);
+  padding:14px 18px;
+  box-shadow:var(--shadow-md);
+  min-width:160px;
+  border-radius:var(--r);z-index:2;
+}
+.hero-float-1{bottom:32px;left:24px}
+.hero-float-2{top:32px;right:24px}
+.hero-float-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin-bottom:5px}
+.hero-float-num{font-family:var(--ff-display);font-size:36px;font-weight:300;color:var(--terra);line-height:1;margin-bottom:3px}
+.hero-float-sub{font-family:var(--ff-heading);font-size:11.5px;font-style:italic;color:var(--slate);line-height:1.4;max-width:140px}
+.hero-float-moon{font-size:28px;line-height:1;margin-bottom:3px}
+.hero-float-moon-name{font-family:var(--ff-heading);font-size:13px;color:var(--ink)}
+
+/* ── PAIN CARDS ── */
+.pain-card{
+  background:var(--white);border:1px solid var(--cream);
+  border-left:3px solid var(--cream-mid);
+  border-radius:var(--r-lg);padding:24px 20px;
+  transition:border-left-color .25s,transform .25s,box-shadow .25s;
+}
+.pain-card:hover{border-left-color:var(--terra);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.pain-emoji{font-size:1.8rem;display:block;margin-bottom:12px}
+.pain-card h4{font-family:var(--ff-heading);font-size:16px;color:var(--ink);margin-bottom:8px;line-height:1.3}
+.pain-card p{font-size:13px;color:var(--stone);line-height:1.7}
+
+/* ── INTRO GRID ── */
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.intro-pillars{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--cream);border:1px solid var(--cream);
+  border-radius:var(--r-lg);overflow:hidden;
+}
+.pillar-card{background:var(--white);padding:26px 22px;transition:background .2s}
+.pillar-card:hover{background:var(--parchment)}
+.pillar-num{font-family:var(--ff-display);font-size:32px;font-weight:300;color:var(--terra);opacity:.5;line-height:1;margin-bottom:7px}
+.pillar-name{font-family:var(--ff-heading);font-size:15px;font-weight:500;color:var(--ink);margin-bottom:8px}
+.pillar-desc{font-size:13px;color:var(--stone);line-height:1.65}
+
+/* ── LIFEOS SECTION ── */
+.lifeos-section{padding:0 0 56px}
+.lifeos-card{background:var(--parchment);border:1px solid var(--cream);border-radius:var(--r-lg);overflow:hidden}
+.lifeos-card-inner{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.lifeos-content{padding:44px 38px;border-right:1px solid var(--cream)}
+.lifeos-features{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:28px}
+.lifeos-features li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--slate);line-height:1.55}
+.lifeos-features li::before{content:'';display:block;width:18px;height:1px;background:var(--terra);flex-shrink:0;margin-top:10px}
+.lifeos-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+
+.lifeos-mockup{padding:36px 28px;display:flex;align-items:center;justify-content:center}
+.app-mockup{background:var(--white);border:1px solid var(--cream);border-radius:var(--r-lg);overflow:hidden;width:100%;max-width:300px;box-shadow:var(--shadow-lg)}
+.app-mockup-bar{background:var(--ink);padding:11px 14px;display:flex;align-items:center;justify-content:space-between}
+.app-mockup-title{font-size:11px;letter-spacing:.07em;color:rgba(250,247,242,.5);font-family:var(--ff-body)}
+.app-mockup-live{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:blink 2.5s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.app-mockup-body{padding:18px 16px}
+.app-mockup-greeting{font-family:var(--ff-display);font-size:20px;font-weight:300;color:var(--ink);margin-bottom:2px}
+.app-mockup-sub{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);margin-bottom:14px}
+.app-mockup-card{background:var(--parchment);border:1px solid var(--cream);border-radius:6px;padding:12px;margin-bottom:9px}
+.app-mockup-card-title{font-size:10.5px;font-weight:500;color:var(--terra);letter-spacing:.04em;margin-bottom:5px}
+.app-mockup-card-body{font-family:var(--ff-heading);font-size:12.5px;font-style:italic;color:var(--slate);line-height:1.55}
+.app-mockup-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0 0;border-top:1px solid var(--cream);font-size:11.5px;color:var(--stone)}
+.app-mockup-arrow{color:var(--terra);font-weight:600}
+
+/* ── COURSES PREVIEW ── */
+.courses-preview-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--cream);border:1px solid var(--cream);
+  border-radius:var(--r-lg);overflow:hidden;
+}
+.course-preview-card{
+  background:var(--white);padding:24px 20px;
+  display:flex;align-items:flex-start;gap:14px;
+  transition:background .2s;text-decoration:none;position:relative;
+}
+.course-preview-card:hover{background:var(--parchment)}
+.course-preview-card:hover .course-preview-arrow{transform:translateX(4px);color:var(--terra)}
+.course-preview-num{font-family:var(--ff-display);font-size:26px;font-weight:300;color:var(--terra);opacity:.5;flex-shrink:0;line-height:1}
+.course-preview-body{flex:1}
+.course-preview-level{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:3px}
+.course-preview-name{font-family:var(--ff-heading);font-size:17px;color:var(--ink);margin-bottom:6px;line-height:1.2}
+.course-preview-desc{font-size:12.5px;color:var(--stone);line-height:1.6}
+.course-preview-arrow{position:absolute;bottom:20px;right:18px;color:var(--cream-mid);font-size:13px;transition:all .2s}
+
+/* ── BLOG PREVIEW ── */
+.blog-preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.blog-preview-card.blog-preview-featured{
+  text-decoration:none;display:flex;flex-direction:column;
+  background:var(--white);border:1px solid var(--cream);
+  border-radius:var(--r-lg);overflow:hidden;
+  transition:transform .25s,box-shadow .25s;
+}
+.blog-preview-featured:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.blog-preview-img-wrap{overflow:hidden;height:200px}
+.blog-preview-img{width:100%;height:100%;object-fit:cover;filter:saturate(.85);transition:transform .4s}
+.blog-preview-featured:hover .blog-preview-img{transform:scale(1.04)}
+.blog-preview-content{padding:22px;flex:1;display:flex;flex-direction:column}
+.blog-preview-meta{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.blog-preview-date{font-size:11px;color:var(--stone)}
+.blog-preview-title{font-family:var(--ff-heading);font-size:19px;font-weight:400;color:var(--ink);line-height:1.3;margin-bottom:10px;transition:color .2s}
+.blog-preview-featured:hover .blog-preview-title{color:var(--terra)}
+.blog-preview-excerpt{font-size:13px;color:var(--stone);line-height:1.65;margin-bottom:16px;flex:1}
+.blog-preview-read{font-size:12px;font-weight:600;letter-spacing:.07em;color:var(--terra)}
+
+.blog-preview-stack{
+  display:flex;flex-direction:column;gap:1px;
+  background:var(--cream);border:1px solid var(--cream);
+  border-radius:var(--r-lg);overflow:hidden;
+}
+.blog-preview-small{
+  background:var(--white);padding:20px;
+  text-decoration:none;flex:1;display:flex;flex-direction:column;transition:background .2s;
+}
+.blog-preview-small:hover{background:var(--parchment)}
+.blog-preview-small-meta{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.blog-preview-small-title{font-family:var(--ff-heading);font-size:15px;color:var(--ink);line-height:1.35;margin-bottom:10px;flex:1}
+.blog-preview-small:hover .blog-preview-small-title{color:var(--terra)}
+
+/* ── TESTIMONIALS ── */
+.testimonials-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--cream);border:1px solid var(--cream);
+  border-radius:var(--r-lg);overflow:hidden;
+}
+.testimonial-card{background:var(--white);padding:28px 24px}
+.testimonial-text{
+  font-family:var(--ff-heading);font-size:15px;font-style:italic;
+  color:var(--slate);line-height:1.75;margin-bottom:20px;position:relative;
+}
+.testimonial-text::before{content:'\201C';font-family:var(--ff-display);font-size:56px;color:var(--cream-mid);position:absolute;top:-10px;left:-4px;line-height:1}
+.testimonial-text p{padding-left:14px}
+.testimonial-author{display:flex;align-items:center;gap:10px}
+.testimonial-avatar{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--parchment);border:1.5px solid var(--cream-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--ff-heading);font-size:15px;color:var(--terra);flex-shrink:0;
+}
+.testimonial-name{font-family:var(--ff-body);font-size:12.5px;font-weight:600;color:var(--ink);margin-bottom:1px}
+.testimonial-cred{font-size:11px;color:var(--stone)}
+.testimonial-stars{font-size:10.5px;color:var(--terra);letter-spacing:2px;margin-top:3px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .hero{max-height:none}
+  .intro-grid{grid-template-columns:1fr;gap:40px}
+  .lifeos-card-inner{grid-template-columns:1fr}
+  .lifeos-content{border-right:none;border-bottom:1px solid var(--cream)}
+  .testimonials-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;min-height:auto;max-height:none}
+  .hero-left{padding:48px 24px;border-bottom:1px solid var(--cream)}
+  .hero-right{height:260px}
+  .hero-float{display:none}
+  .courses-preview-grid{grid-template-columns:1fr}
+  .blog-preview-grid{grid-template-columns:1fr}
+  .intro-pillars{grid-template-columns:1fr}
+}

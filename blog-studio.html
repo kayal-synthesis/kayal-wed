@@ -1,0 +1,2468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KRTLBL5T');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Studio — KAYAL SoulPath Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root {
+  --linen:#faf7f2;--parchment:#f2ede4;--cream:#e8e0d0;--cream-mid:#d4c9b8;
+  --bark:#2c1810;--slate:#4a4540;--stone:#8a817a;--terra:#b5622a;
+  --terra-l:#d4845a;--ink:#1a1208;--white:#ffffff;--green:#22c55e;
+  --ff-serif:'EB Garamond',Georgia,serif;
+  --ff-sans:'DM Sans',system-ui,sans-serif;
+  --ff-mono:'DM Mono',monospace;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-sans);font-size:14px;background:var(--linen);color:var(--slate);min-height:100vh;-webkit-font-smoothing:antialiased}
+::selection{background:var(--terra);color:var(--white)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--parchment)}
+::-webkit-scrollbar-thumb{background:var(--terra);border-radius:2px}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--ink);padding:0 28px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;border-bottom:1px solid rgba(255,255,255,0.06)}
+.topbar-brand{display:flex;align-items:center;gap:10px}
+.topbar-brand-name{font-family:var(--ff-serif);font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--linen)}
+.topbar-sep{opacity:.2}
+.topbar-page{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-l);font-weight:500}
+.topbar-right{display:flex;align-items:center;gap:8px}
+.tbtn{padding:6px 13px;border-radius:3px;font-family:var(--ff-sans);font-size:11px;font-weight:500;letter-spacing:.06em;cursor:pointer;border:none;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .18s}
+.tbtn-ghost{background:rgba(255,255,255,.07);color:rgba(255,255,255,.6)}
+.tbtn-ghost:hover{background:rgba(255,255,255,.14);color:var(--linen)}
+.tbtn-terra{background:var(--terra);color:#fff}
+.tbtn-terra:hover{background:var(--terra-l)}
+.tbtn-green{background:#16a34a;color:#fff}
+.tbtn-green:hover{background:#15803d}
+.tbtn:disabled{opacity:.35;cursor:not-allowed}
+
+/* ── TABS ── */
+.studio-tabs{background:var(--bark);display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.08)}
+.studio-tab{padding:10px 20px;font-size:11.5px;font-weight:500;letter-spacing:.06em;color:rgba(255,255,255,.45);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;font-family:var(--ff-sans)}
+.studio-tab:hover{color:rgba(255,255,255,.75)}
+.studio-tab.active{color:var(--terra-l);border-bottom-color:var(--terra)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* ── LAYOUT ── */
+.studio-body{display:grid;grid-template-columns:340px 1fr;min-height:calc(100vh - 88px)}
+
+/* ── LEFT PANEL ── */
+.studio-left{background:var(--white);border-right:1px solid var(--cream);display:flex;flex-direction:column;height:calc(100vh - 88px);overflow-y:auto;position:sticky;top:88px}
+.panel-sec{padding:20px;border-bottom:1px solid var(--cream)}
+.panel-sec:last-child{border-bottom:none}
+.plabel{font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+.plabel-badge{background:var(--terra);color:#fff;border-radius:50%;width:17px;height:17px;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+/* Topics */
+.refresh-btn{background:none;border:none;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);cursor:pointer;display:flex;align-items:center;gap:5px;font-family:var(--ff-sans);transition:color .2s}
+.refresh-btn:hover{color:var(--terra)}
+.refresh-btn.spin i{animation:spin .5s linear}
+@keyframes spin{to{transform:rotate(360deg)}}
+.topics-grid{display:flex;flex-direction:column;gap:5px}
+.topic-chip{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 11px;background:var(--linen);border:1.5px solid var(--cream);border-radius:4px;cursor:pointer;font-size:12px;color:var(--slate);text-align:left;font-family:var(--ff-sans);width:100%;transition:all .18s}
+.topic-chip:hover{border-color:var(--terra);color:var(--bark);background:rgba(181,98,42,.04)}
+.topic-chip.active{background:var(--terra);border-color:var(--terra);color:#fff;font-weight:500}
+.topic-vol{font-size:10px;opacity:.5;white-space:nowrap;flex-shrink:0}
+.topic-manual{margin-top:10px;padding-top:10px;border-top:1px solid var(--cream)}
+.topic-manual-lbl{font-size:10px;color:var(--stone);margin-bottom:5px;display:block}
+
+/* Form */
+.fgroup{margin-bottom:14px}
+.fgroup:last-child{margin-bottom:0}
+.flabel{display:block;font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:5px}
+.finput,.ftextarea,.fselect{width:100%;padding:9px 11px;background:var(--linen);border:1.5px solid var(--cream);border-radius:4px;font-family:var(--ff-sans);font-size:13px;color:var(--bark);outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none}
+.finput:focus,.ftextarea:focus,.fselect:focus{border-color:var(--terra);box-shadow:0 0 0 3px rgba(181,98,42,.08)}
+.finput::placeholder,.ftextarea::placeholder{color:var(--stone);font-style:italic}
+.ftextarea{resize:vertical;min-height:72px;line-height:1.6}
+.angle-ta{font-family:var(--ff-serif);font-size:15px;font-style:italic;min-height:68px}
+.fselect{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238a817a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px;cursor:pointer}
+.fhint{font-size:10.5px;color:var(--stone);margin-top:4px;line-height:1.5;font-style:italic}
+
+/* Generate btn */
+.gen-btn{width:100%;padding:12px 18px;background:var(--terra);color:#fff;border:none;border-radius:4px;font-family:var(--ff-sans);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:9px}
+.gen-btn:hover{background:var(--terra-l);transform:translateY(-1px)}
+.gen-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+/* ── RIGHT PANEL ── */
+.studio-right{display:flex;flex-direction:column;min-height:calc(100vh - 88px)}
+.output-bar{background:var(--parchment);border-bottom:1px solid var(--cream);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:88px;z-index:50}
+.status-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--stone)}
+.sdot{width:7px;height:7px;border-radius:50%;background:var(--cream-mid);flex-shrink:0}
+.sdot.ready{background:#4ade80}
+.sdot.busy{background:var(--terra);animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.out-actions{display:flex;gap:6px;flex-wrap:wrap}
+.abtn{padding:6px 14px;border-radius:3px;font-family:var(--ff-sans);font-size:11px;font-weight:500;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:5px;border:none}
+.abtn-out{background:none;border:1.5px solid var(--cream-mid);color:var(--slate)}
+.abtn-out:hover{border-color:var(--terra);color:var(--terra)}
+.abtn-solid{background:var(--ink);color:var(--linen)}
+.abtn-solid:hover{background:var(--bark)}
+.abtn-pub{background:#16a34a;color:#fff}
+.abtn-pub:hover{background:#15803d}
+.abtn-save{background:var(--terra);color:#fff}
+.abtn-save:hover{background:var(--terra-l)}
+.abtn:disabled{opacity:.35;cursor:not-allowed}
+
+.output-area{flex:1;padding:44px 52px;max-width:860px;width:100%}
+
+/* States */
+.state-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:480px;text-align:center;gap:14px}
+.empty-glyph{font-family:var(--ff-serif);font-size:88px;color:rgba(44,24,16,.05);line-height:1;margin-bottom:6px}
+.empty-title{font-family:var(--ff-serif);font-size:22px;color:var(--bark);font-style:italic}
+.empty-desc{font-size:13.5px;color:var(--stone);line-height:1.65;max-width:360px}
+.empty-steps{display:flex;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.estep{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--stone);padding:0 14px;border-right:1px solid var(--cream)}
+.estep:last-child{border-right:none}
+.estep-n{width:19px;height:19px;background:var(--parchment);border:1px solid var(--cream-mid);border-radius:50%;font-size:9px;font-weight:700;color:var(--terra);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+.state-gen{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:480px;gap:18px;text-align:center}
+.state-gen.vis{display:flex}
+.gdots{display:flex;gap:7px}
+.gdot{width:9px;height:9px;background:var(--terra);border-radius:50%;animation:gb 1.3s ease-in-out infinite}
+.gdot:nth-child(2){animation-delay:.2s}
+.gdot:nth-child(3){animation-delay:.4s}
+@keyframes gb{0%,100%{transform:translateY(0);opacity:.3}50%{transform:translateY(-8px);opacity:1}}
+.glabel{font-family:var(--ff-serif);font-size:17px;font-style:italic;color:var(--stone)}
+.gprogwrap{width:260px;height:2px;background:var(--cream);border-radius:1px;overflow:hidden}
+.gprog{height:100%;background:var(--terra);border-radius:1px;width:0%;transition:width .5s var(--ease)}
+
+.state-err{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:380px;text-align:center;gap:12px}
+.state-err.vis{display:flex}
+.err-icon{font-size:34px;opacity:.35}
+.err-title{font-family:var(--ff-serif);font-size:19px;color:var(--bark);font-style:italic}
+.err-desc{font-size:13px;color:var(--stone);line-height:1.65;max-width:360px}
+
+.state-draft{display:none}
+.state-draft.vis{display:block;animation:fadeUp .45s var(--ease)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Draft */
+.draft-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid var(--cream)}
+.dtag{padding:2px 9px;border-radius:2px;font-size:9.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.dtag-cat{background:rgba(181,98,42,.1);color:var(--terra)}
+.dtag-ai{background:var(--parchment);color:var(--stone);border:1px solid var(--cream)}
+.dtag-pub{background:#dcfce7;color:#15803d;border:1px solid #bbf7d0}
+.dtag-draft{background:#fef9c3;color:#854d0e;border:1px solid #fef08a}
+.dtag-sched{background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe}
+.dwc{margin-left:auto;font-size:10.5px;color:var(--stone);font-family:var(--ff-mono)}
+
+/* Featured image */
+.feat-img-wrap{margin-bottom:28px;border-radius:8px;overflow:hidden;background:var(--parchment);border:1px solid var(--cream)}
+.feat-img{width:100%;height:320px;object-fit:cover;display:block}
+.feat-img-caption{padding:8px 14px;font-size:10.5px;color:var(--stone);font-style:italic;border-top:1px solid var(--cream)}
+
+/* Editable article */
+.draft-title{font-family:var(--ff-serif);font-size:clamp(24px,3.2vw,38px);font-weight:400;color:var(--ink);line-height:1.15;letter-spacing:-.02em;margin-bottom:22px;outline:none;border-radius:3px;padding:2px 4px;transition:background .2s}
+.draft-title:focus{background:rgba(181,98,42,.04);outline:2px solid rgba(181,98,42,.2)}
+.draft-body{font-family:var(--ff-serif);outline:none;border-radius:4px;padding:4px 6px;transition:background .2s}
+.draft-body:focus{background:rgba(181,98,42,.03)}
+.draft-body h2{font-size:21px;font-weight:400;color:var(--ink);margin:28px 0 10px;padding-top:4px;border-top:1px solid var(--cream);line-height:1.3}
+.draft-body p{font-size:16.5px;color:var(--slate);line-height:1.85;margin-bottom:16px}
+.draft-body strong{color:var(--bark)}
+.draft-body em{font-style:italic;color:var(--terra)}
+.edit-hint{font-size:10.5px;color:var(--stone);font-style:italic;margin-bottom:10px;display:flex;align-items:center;gap:5px}
+
+/* Sources */
+.sources-box{margin-top:36px;padding:18px 22px;background:var(--parchment);border:1px solid var(--cream);border-radius:6px}
+.sources-lbl{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);margin-bottom:10px}
+.source-link{display:block;font-size:12px;color:var(--stone);text-decoration:underline;text-underline-offset:2px;margin-bottom:5px;font-family:var(--ff-mono);transition:color .18s}
+.source-link:hover{color:var(--terra)}
+
+/* SEO panel */
+.seo-box{margin-top:24px;padding:18px 22px;background:var(--parchment);border:1px solid var(--cream);border-radius:6px;display:none}
+.seo-box.vis{display:block}
+.seo-title{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);margin-bottom:12px}
+.seo-items{display:flex;flex-direction:column;gap:7px}
+.seo-item{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--slate)}
+.scheck{width:15px;height:15px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700}
+.scheck.pass{background:#4ade80;color:#fff}
+.scheck.fail{background:var(--cream);color:var(--stone)}
+.scheck.warn{background:#fbbf24;color:#fff}
+
+/* Social panel */
+.social-box{margin-top:24px;padding:22px;background:var(--white);border:1.5px solid var(--cream-mid);border-radius:8px;display:none}
+.social-box.vis{display:block}
+.social-title{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);margin-bottom:16px}
+.social-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.social-card:last-child:nth-child(odd){grid-column:1/-1}
+.video-thumb{border-radius:6px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:all .2s;position:relative;background:var(--ink)}
+.video-thumb:hover{border-color:var(--terra)}
+.video-thumb.selected{border-color:var(--terra);box-shadow:0 0 0 3px rgba(181,98,42,.2)}
+.video-thumb img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;opacity:.85;transition:opacity .2s}
+.video-thumb:hover img{opacity:1}
+.video-thumb-title{padding:7px 9px;font-size:11px;color:var(--slate);line-height:1.4;background:var(--white);border-top:1px solid var(--cream)}
+.video-play-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-70%);width:36px;height:36px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--terra);font-size:14px}
+.selected-video-embed{margin-bottom:10px;border-radius:6px;overflow:hidden;border:1px solid var(--cream);display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--linen)}
+.selected-video-embed img{width:80px;height:45px;object-fit:cover;border-radius:3px;flex-shrink:0}
+.disc-filter{padding:4px 10px;border-radius:20px;font-size:10px;cursor:pointer;border:1px solid var(--cream);background:var(--white);color:var(--stone);font-family:var(--ff-sans);transition:all .18s;white-space:nowrap}
+.disc-filter:hover{border-color:var(--terra);color:var(--terra)}
+.disc-filter.active{background:var(--terra);border-color:var(--terra);color:#fff}
+.social-card{background:var(--linen);border:1px solid var(--cream);border-radius:6px;overflow:hidden}
+.social-card-head{padding:8px 12px;border-bottom:1px solid var(--cream);display:flex;align-items:center;justify-content:space-between}
+.social-card-name{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);display:flex;align-items:center;gap:6px}
+.social-card-body{padding:12px;font-size:12.5px;color:var(--slate);line-height:1.65;min-height:80px}
+.social-copy-btn{padding:4px 10px;border-radius:3px;font-size:10px;font-weight:500;cursor:pointer;background:none;border:1px solid var(--cream-mid);color:var(--stone);font-family:var(--ff-sans);transition:all .18s}
+.social-copy-btn:hover{border-color:var(--terra);color:var(--terra)}
+
+/* Image picker */
+.img-picker{margin-top:16px;display:none}
+.img-picker.vis{display:block}
+.img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.img-opt{border-radius:5px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:all .2s;aspect-ratio:16/9}
+.img-opt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.img-opt:hover{border-color:var(--terra)}
+.img-opt:hover img{transform:scale(1.05)}
+.img-opt.selected{border-color:var(--terra);box-shadow:0 0 0 3px rgba(181,98,42,.2)}
+.img-load-more{width:100%;margin-top:8px;padding:7px;background:none;border:1.5px solid var(--cream);border-radius:4px;font-size:11px;color:var(--stone);cursor:pointer;font-family:var(--ff-sans);transition:all .2s}
+.img-load-more:hover{border-color:var(--terra);color:var(--terra)}
+
+/* Publish panel */
+.pub-panel{margin-top:28px;padding:20px 22px;background:var(--white);border:1.5px solid var(--cream-mid);border-radius:8px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+.pub-lbl{font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-bottom:5px}
+.pub-desc{font-size:12.5px;color:var(--stone);line-height:1.6}
+.pub-btns{display:flex;flex-direction:column;gap:7px;align-items:flex-end}
+
+/* ── DRAFTS HISTORY TAB ── */
+.drafts-wrap{padding:28px}
+.drafts-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.drafts-title{font-family:var(--ff-serif);font-size:22px;color:var(--ink)}
+.drafts-filters{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.dfilter{padding:5px 13px;border-radius:20px;font-size:11.5px;cursor:pointer;border:1.5px solid var(--cream);background:var(--white);color:var(--stone);font-family:var(--ff-sans);transition:all .2s}
+.dfilter:hover{border-color:var(--terra);color:var(--terra)}
+.dfilter.active{background:var(--terra);border-color:var(--terra);color:#fff}
+.drafts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.draft-card{background:var(--white);border:1px solid var(--cream);border-radius:8px;overflow:hidden;transition:all .2s;cursor:pointer}
+.draft-card:hover{border-color:var(--terra);box-shadow:0 4px 20px rgba(44,24,16,.1)}
+.draft-card-img{height:140px;background:var(--parchment);overflow:hidden}
+.draft-card-img img{width:100%;height:100%;object-fit:cover}
+.draft-card-body{padding:14px}
+.draft-card-title{font-family:var(--ff-serif);font-size:15px;color:var(--ink);margin-bottom:6px;line-height:1.3}
+.draft-card-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.draft-card-date{font-size:10.5px;color:var(--stone);font-family:var(--ff-mono)}
+.draft-card-actions{padding:10px 14px;border-top:1px solid var(--cream);display:flex;gap:7px}
+.dca{padding:5px 11px;border-radius:3px;font-size:10.5px;font-weight:500;cursor:pointer;border:none;font-family:var(--ff-sans);transition:all .18s}
+.dca-edit{background:var(--parchment);color:var(--slate)}
+.dca-edit:hover{background:var(--terra);color:#fff}
+.dca-pub{background:#dcfce7;color:#15803d}
+.dca-pub:hover{background:#16a34a;color:#fff}
+.dca-del{background:#fee2e2;color:#dc2626}
+.dca-del:hover{background:#dc2626;color:#fff}
+.no-drafts{text-align:center;padding:60px 20px;color:var(--stone)}
+.no-drafts i{font-size:40px;opacity:.2;margin-bottom:14px;display:block}
+
+/* ── SETTINGS TAB ── */
+.settings-wrap{padding:28px;max-width:640px}
+.settings-title{font-family:var(--ff-serif);font-size:22px;color:var(--ink);margin-bottom:22px}
+.settings-section{background:var(--white);border:1px solid var(--cream);border-radius:8px;padding:22px;margin-bottom:18px}
+.settings-sec-title{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--cream)}
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--cream)}
+.settings-row:last-child{border-bottom:none}
+.settings-row-label{font-size:13px;color:var(--bark);font-weight:500}
+.settings-row-desc{font-size:11.5px;color:var(--stone);margin-top:2px}
+.settings-save{padding:10px 24px;background:var(--terra);color:#fff;border:none;border-radius:4px;font-family:var(--ff-sans);font-size:12px;font-weight:600;cursor:pointer;transition:background .2s;letter-spacing:.06em}
+.settings-save:hover{background:var(--terra-l)}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;padding:12px 20px;border-radius:6px;font-size:13px;font-weight:500;color:#fff;z-index:999;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;display:flex;align-items:center;gap:8px}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast-success{background:#16a34a}
+.toast-error{background:#dc2626}
+.toast-info{background:var(--bark)}
+
+/* Loading overlay */
+.overlay{position:fixed;inset:0;background:rgba(26,18,8,.6);z-index:300;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+.overlay.vis{display:flex}
+.overlay-text{color:var(--linen);font-family:var(--ff-serif);font-size:18px;font-style:italic}
+
+/* Supabase status */
+.sb-status{display:flex;align-items:center;gap:5px;font-size:10px;color:rgba(255,255,255,.4);padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.08)}
+.sb-dot{width:6px;height:6px;border-radius:50%;background:#ef4444}
+.sb-dot.ok{background:#22c55e}
+
+/* Responsive */
+@media(max-width:900px){
+  .studio-body{grid-template-columns:1fr}
+  .studio-left{height:auto;position:static}
+  .output-area{padding:28px 20px}
+  .social-cards{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<!-- GTM noscript -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRTLBL5T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Loading overlay -->
+<div class="overlay" id="overlay">
+  <div class="gdots"><div class="gdot"></div><div class="gdot"></div><div class="gdot"></div></div>
+  <div class="overlay-text" id="overlay-text">Saving…</div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-brand">
+    <span class="topbar-brand-name">KAYAL</span>
+    <span class="topbar-sep">/</span>
+    <span class="topbar-page">Content Studio</span>
+  </div>
+  <div class="topbar-right">
+    <div class="sb-status" id="sb-status"><div class="sb-dot" id="sb-dot"></div><span id="sb-text">Connecting…</span></div>
+    <a href="../insights.html" class="tbtn tbtn-ghost"><i class="fas fa-arrow-left"></i> Back to Site</a>
+    <button class="tbtn tbtn-ghost" id="clear-btn"><i class="fas fa-rotate-left"></i> Clear</button>
+    <button class="tbtn tbtn-terra" id="copy-all-btn" disabled><i class="fas fa-copy"></i> Copy Draft</button>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="studio-tabs">
+  <button class="studio-tab active" data-tab="write"><i class="fas fa-pen-nib"></i> &nbsp;Write</button>
+  <button class="studio-tab" data-tab="drafts"><i class="fas fa-folder-open"></i> &nbsp;Drafts &amp; Published</button>
+  <button class="studio-tab" data-tab="settings"><i class="fas fa-gear"></i> &nbsp;Settings</button>
+</div>
+
+<!-- ═══ WRITE TAB ═══ -->
+<div class="tab-panel active" id="tab-write">
+<div class="studio-body">
+
+  <!-- LEFT -->
+  <div class="studio-left">
+
+    <!-- Step 1: Topic -->
+    <div class="panel-sec">
+      <div class="plabel">
+        Step 1 — Topic
+        <div style="display:flex;gap:6px">
+          <button class="refresh-btn" id="live-topics-btn" title="Fetch live trending topics"><i class="fas fa-signal"></i> Live</button>
+          <button class="refresh-btn" id="refresh-btn"><i class="fas fa-rotate-right"></i> Shuffle</button>
+        </div>
+      </div>
+      <div id="topics-status" style="font-size:10px;color:var(--stone);margin-bottom:8px;display:none;font-style:italic"></div>
+      <div id="discipline-filters" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px"></div>
+      <div class="topics-grid" id="topics-grid"></div>
+      <div class="topic-manual">
+        <label class="topic-manual-lbl">Or type your own:</label>
+        <input type="text" class="finput" id="custom-topic" placeholder="e.g. Mercury retrograde effects on love">
+      </div>
+    </div>
+
+    <!-- Step 2: Angle -->
+    <div class="panel-sec">
+      <div class="plabel">Step 2 — Your Angle <span class="plabel-badge">2</span></div>
+      <div class="fgroup">
+        <textarea class="finput angle-ta" id="angle-input" rows="3"
+          placeholder="Your unique title or framing…&#10;e.g. 'Why Life Path 7 struggles with love — and the pattern behind it'"></textarea>
+        <div class="fhint">Your idea, your framing. Claude writes entirely from KAYAL's curriculum — never from other websites.</div>
+        <button class="gen-btn" id="headline-btn" style="margin-top:8px;padding:9px 14px;font-size:11px;background:var(--bark)" disabled>
+          <i class="fas fa-bolt"></i> Generate 5 Attention-Grabbing Headlines
+        </button>
+        <div id="headlines-box" style="display:none;margin-top:10px;display:flex;flex-direction:column;gap:6px"></div>
+      </div>
+    </div>
+
+    <!-- Step 3: Settings -->
+    <div class="panel-sec">
+      <div class="plabel">Step 3 — Settings <span class="plabel-badge">3</span></div>
+      <div class="fgroup">
+        <label class="flabel">Audience</label>
+        <select class="fselect" id="audience-sel">
+          <option value="seekers" selected>General Seekers</option>
+          <option value="beginners">Beginners</option>
+          <option value="students">Enrolled Students</option>
+          <option value="practitioners">Practitioners</option>
+        </select>
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Length</label>
+        <select class="fselect" id="length-sel">
+          <option value="short">Short — 400–600 words</option>
+          <option value="medium" selected>Medium — 800–1000 words</option>
+          <option value="long">Long — 1200–1500 words</option>
+        </select>
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Category</label>
+        <select class="fselect" id="category-sel">
+          <option value="Soul Blueprint">Soul Blueprint</option>
+          <option value="Timing & Cycles">Timing &amp; Cycles</option>
+          <option value="Mind Development">Mind Development</option>
+          <option value="Spirit Science">Spirit Science</option>
+        </select>
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Schedule Post (optional)</label>
+        <input type="datetime-local" class="finput" id="schedule-input">
+        <div class="fhint">Leave blank to publish immediately. Set a future date to schedule.</div>
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Unsplash Access Key (images)</label>
+        <input type="password" class="finput" id="unsplash-key" placeholder="Your Unsplash access key" value="KHTt7W9szWZGYJRHWokZMtu1nszaVN9T0FsdjPe6HXs">
+        <div class="fhint">Free at unsplash.com/developers. Enables real photo search.</div>
+      </div>
+      <!-- API key handled securely via Vercel proxy — no key needed here -->
+    </div>
+
+    <!-- Generate -->
+    <div class="panel-sec">
+      <button class="gen-btn" id="generate-btn">
+        <i class="fas fa-pen-nib"></i> Generate Draft
+      </button>
+    </div>
+
+  </div><!-- /studio-left -->
+
+  <!-- RIGHT -->
+  <div class="studio-right">
+
+    <!-- Output bar -->
+    <div class="output-bar">
+      <div class="status-row">
+        <div class="sdot" id="sdot"></div>
+        <span id="stext">Select a topic and write your angle to begin</span>
+      </div>
+      <div class="out-actions">
+        <button class="abtn abtn-out" id="regen-btn" disabled><i class="fas fa-rotate-right"></i> Regenerate</button>
+        <button class="abtn abtn-out" id="copy-btn" disabled><i class="fas fa-copy"></i> Copy</button>
+        <button class="abtn abtn-out" id="export-btn" disabled><i class="fas fa-download"></i> Export HTML</button>
+        <button class="abtn abtn-save" id="save-btn" disabled><i class="fas fa-floppy-disk"></i> Save Draft</button>
+        <button class="abtn abtn-pub" id="publish-btn" disabled><i class="fas fa-globe"></i> Publish</button>
+        <button class="abtn abtn-solid" id="social-post-btn" disabled title="Post to Facebook &amp; Instagram"><i class="fab fa-meta"></i> Post to Social</button>
+      </div>
+    </div>
+
+    <!-- Output area -->
+    <div class="output-area">
+
+      <!-- Empty -->
+      <div class="state-empty" id="state-empty">
+        <div class="empty-glyph">✍</div>
+        <div class="empty-title">Ready to draft.</div>
+        <div class="empty-desc">Select a trending topic, write your original angle, and generate a complete post in KAYAL's voice.</div>
+        <div class="empty-steps">
+          <div class="estep"><div class="estep-n">1</div> Topic</div>
+          <div class="estep"><div class="estep-n">2</div> Angle</div>
+          <div class="estep"><div class="estep-n">3</div> Settings</div>
+          <div class="estep"><div class="estep-n">4</div> Generate</div>
+        </div>
+      </div>
+
+      <!-- Generating -->
+      <div class="state-gen" id="state-gen">
+        <div class="gdots"><div class="gdot"></div><div class="gdot"></div><div class="gdot"></div></div>
+        <div class="glabel" id="glabel">Researching trusted sources…</div>
+        <div class="gprogwrap"><div class="gprog" id="gprog"></div></div>
+      </div>
+
+      <!-- Error -->
+      <div class="state-err" id="state-err">
+        <div class="err-icon"><i class="fas fa-triangle-exclamation"></i></div>
+        <div class="err-title">Something went wrong.</div>
+        <div class="err-desc" id="err-msg">Check your API key and try again. Leave it blank for demo mode.</div>
+        <button class="abtn abtn-out" onclick="showState('empty')">← Back</button>
+      </div>
+
+      <!-- Draft -->
+      <div class="state-draft" id="state-draft">
+
+        <div class="draft-meta" id="draft-meta">
+          <span class="dtag dtag-cat" id="dmeta-cat"></span>
+          <span class="dtag dtag-ai">AI Draft</span>
+          <span class="dtag" id="dmeta-status"></span>
+          <span class="dwc" id="dmeta-wc"></span>
+        </div>
+
+        <!-- Featured image -->
+        <div id="feat-img-wrap" style="display:none" class="feat-img-wrap">
+          <img id="feat-img" class="feat-img" src="" alt="">
+          <div class="feat-img-caption" id="feat-img-cap"></div>
+        </div>
+
+        <!-- Image picker -->
+        <div class="img-picker" id="img-picker">
+          <div class="plabel" style="margin-bottom:8px">
+            Choose a featured image
+            <button class="refresh-btn" id="more-imgs-btn"><i class="fas fa-rotate-right"></i> More</button>
+          </div>
+          <div class="img-grid" id="img-grid"></div>
+          <div class="fhint" style="margin-top:6px">Images from Unsplash — free to use. Click to select as featured image.</div>
+        </div>
+
+        <!-- YouTube Video Picker -->
+        <div class="yt-picker" id="yt-picker" style="display:none">
+          <div class="plabel" style="margin-bottom:8px">
+            Add a related video
+            <button class="refresh-btn" id="yt-search-btn"><i class="fas fa-rotate-right"></i> Search again</button>
+          </div>
+          <div id="yt-grid" style="display:flex;flex-direction:column;gap:8px;margin-top:8px"></div>
+          <div id="yt-selected-wrap" style="display:none;margin-top:12px">
+            <div style="font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:8px">Selected Video</div>
+            <div id="yt-selected-embed"></div>
+            <button onclick="removeVideo()" style="margin-top:6px;font-size:10.5px;color:#dc2626;background:none;border:none;cursor:pointer"><i class="fas fa-times"></i> Remove video</button>
+          </div>
+          <div class="fhint" style="margin-top:6px">Videos from YouTube — embedded with full permission. Shown at the bottom of your published post.</div>
+        </div>
+
+        <!-- Edit hint -->
+        <div class="edit-hint"><i class="fas fa-pencil" style="font-size:10px"></i> Click anywhere in the title or body to edit directly</div>
+
+        <!-- Editable title -->
+        <div class="draft-title" id="draft-title" contenteditable="true" spellcheck="true"></div>
+
+        <!-- Editable body -->
+        <div class="draft-body" id="draft-body" contenteditable="true" spellcheck="true"></div>
+
+        <!-- Sources -->
+        <div class="sources-box" id="sources-box" style="display:none">
+          <div class="sources-lbl">Referenced Sources</div>
+          <div id="sources-list"></div>
+        </div>
+
+        <!-- YouTube Videos -->
+        <div class="video-box" id="video-box" style="display:none">
+          <div style="font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);margin-bottom:12px">
+            Related Videos — Click to embed in post
+          </div>
+          <div id="video-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px"></div>
+          <div id="selected-videos" style="margin-top:12px"></div>
+          <div class="fhint" style="margin-top:6px">Selected videos will embed at the bottom of your published post.</div>
+        </div>
+
+        <!-- SEO -->
+        <div class="seo-box" id="seo-box">
+          <div class="seo-title">Quick SEO Check</div>
+          <div class="seo-items" id="seo-items"></div>
+        </div>
+
+        <!-- Social media content -->
+        <div class="social-box" id="social-box">
+          <div class="social-title" style="display:flex;align-items:center;justify-content:space-between">
+            Social Media Content
+            <button class="abtn abtn-pub" id="post-social-btn" style="font-size:10px;padding:5px 12px" disabled>
+              <i class="fab fa-facebook"></i>&nbsp;<i class="fab fa-instagram"></i> &nbsp;Post to Facebook &amp; Instagram
+            </button>
+          </div>
+          <div id="fb-status" style="display:none;font-size:11px;margin-bottom:10px;padding:8px 12px;border-radius:4px"></div>
+          <div class="social-cards" id="social-cards"></div>
+        </div>
+
+        <!-- Publish panel -->
+        <div class="pub-panel">
+          <div>
+            <div class="pub-lbl">Ready to publish?</div>
+            <div class="pub-desc">Publishing makes this post live on both <strong>kayalsoulpath.com/insights</strong> and <strong>app.kayalsoulpath.com</strong> instantly.</div>
+          </div>
+          <div class="pub-btns">
+            <button class="abtn abtn-save" id="save-btn-2"><i class="fas fa-floppy-disk"></i> Save Draft</button>
+            <button class="abtn abtn-pub" id="publish-btn-2"><i class="fas fa-globe"></i> Publish Now</button>
+          </div>
+        </div>
+
+      </div><!-- /state-draft -->
+    </div><!-- /output-area -->
+  </div><!-- /studio-right -->
+</div><!-- /studio-body -->
+</div><!-- /tab-write -->
+
+<!-- ═══ DRAFTS TAB ═══ -->
+<div class="tab-panel" id="tab-drafts">
+  <div class="drafts-wrap">
+    <div class="drafts-top">
+      <div class="drafts-title">Drafts &amp; Published Posts</div>
+      <button class="abtn abtn-solid" onclick="loadDrafts()"><i class="fas fa-rotate-right"></i> Refresh</button>
+    </div>
+    <div class="drafts-filters">
+      <button class="dfilter active" data-status="all">All</button>
+      <button class="dfilter" data-status="draft">Drafts</button>
+      <button class="dfilter" data-status="published">Published</button>
+      <button class="dfilter" data-status="archived">Archived</button>
+    </div>
+    <div class="drafts-grid" id="drafts-grid">
+      <div class="no-drafts"><i class="fas fa-folder-open"></i><p>No posts yet. Start writing!</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SETTINGS TAB ═══ -->
+<div class="tab-panel" id="tab-settings">
+  <div class="settings-wrap">
+    <div class="settings-title">Studio Settings</div>
+
+    <div class="settings-section">
+      <div class="settings-sec-title">Supabase Connection</div>
+      <div class="fgroup">
+        <label class="flabel">Supabase URL</label>
+        <input type="text" class="finput" id="sb-url" placeholder="https://xxxx.supabase.co" value="https://nofyxayqdwhyabcntmvs.supabase.co">
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Supabase Anon Key</label>
+        <input type="password" class="finput" id="sb-key" placeholder="eyJhbGciOiJIUzI1NiIs…">
+        <div class="fhint">Your public anon key — safe to use in the browser. Found in Supabase → Settings → API.</div>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-sec-title">Default Post Settings</div>
+      <div class="fgroup">
+        <label class="flabel">Default Author Name</label>
+        <input type="text" class="finput" id="default-author" placeholder="KAYAL SoulPath Institute" value="KAYAL SoulPath Institute">
+      </div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-row-label">Auto-generate slug from title</div>
+          <div class="settings-row-desc">Automatically creates a URL-friendly slug when you save</div>
+        </div>
+        <input type="checkbox" id="auto-slug" checked style="width:16px;height:16px;accent-color:var(--terra)">
+      </div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-row-label">Auto-generate social content</div>
+          <div class="settings-row-desc">Generate Instagram, Twitter, and WhatsApp content after each draft</div>
+        </div>
+        <input type="checkbox" id="auto-social" checked style="width:16px;height:16px;accent-color:var(--terra)">
+      </div>
+    </div>
+
+    </div>
+    <div class="settings-section">
+      <div class="settings-sec-title">Live Trending Topics (GNews)</div>
+      <div class="fgroup">
+        <label class="flabel">YouTube API Key</label>
+        <input type="password" class="finput" id="youtube-key" placeholder="AIzaSy…" value="AIzaSyCyx2MAesnefXW4iSzC8zSMgllq6pdq4d4">
+        <div class="fhint">Pre-filled. Fetches related videos for each post topic.</div>
+      </div>
+      <div class="fgroup">
+        <label class="flabel">YouTube Data API Key</label>
+        <input type="password" class="finput" id="yt-key" placeholder="AIzaSy…" value="AIzaSyCyx2MAesnefXW4iSzC8zSMgllq6pdq4d4">
+        <div class="fhint">Free at console.cloud.google.com. Enables video search and embedding in posts.</div>
+      </div>
+      <div class="fgroup">
+        <label class="flabel">GNews API Key</label>
+        <input type="password" class="finput" id="gnews-key" placeholder="Your GNews API key">
+        <div class="fhint">Free at <strong>gnews.io</strong> — 100 requests/day free. Fetches real wellness &amp; spirituality headlines.</div>
+      </div>
+    </div>
+    </div>
+    <div class="settings-section">
+      <div class="settings-sec-title">Facebook &amp; Instagram Auto-Posting</div>
+      <div class="fgroup">
+        <label class="flabel">Facebook Page Access Token</label>
+        <input type="password" class="finput" id="fb-token" placeholder="EAAxxxxxxxxxx…">
+        <div class="fhint">Get this from <strong>developers.facebook.com</strong> → your app → Graph API Explorer → generate a Page access token for your KAYAL Facebook Page.</div>
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Facebook Page ID</label>
+        <input type="text" class="finput" id="fb-page-id" placeholder="123456789012345">
+        <div class="fhint">Found on your Facebook Page → About → Page ID. Or go to your page URL and the number in the URL.</div>
+      </div>
+      <div style="padding:12px;background:rgba(181,98,42,.05);border:1px solid rgba(181,98,42,.15);border-radius:6px;font-size:11.5px;color:var(--slate);line-height:1.7">
+        <strong>How to get your Page Access Token:</strong><br>
+        1. Go to <strong>developers.facebook.com</strong><br>
+        2. Click My Apps → Create App → Business type<br>
+        3. Add "Facebook Login" and "Instagram Graph API" products<br>
+        4. Go to Graph API Explorer → select your app<br>
+        5. Select your Page from the dropdown<br>
+        6. Generate token with permissions: <code>pages_manage_posts, instagram_basic, instagram_content_publish</code><br>
+        7. Copy the token and paste above
+      </div>
+    </div>
+    <div class="settings-section">
+      <div class="settings-sec-title">Facebook &amp; Instagram Auto-Post</div>
+      <div style="padding:14px;background:#fff3cd;border:1px solid #ffc107;border-radius:6px;margin-bottom:16px">
+        <p style="font-size:12px;color:#856404;line-height:1.6">
+          <strong>One-time setup required:</strong> You need a Meta access token to post automatically.
+          <br>1. Go to <strong>developers.facebook.com/tools/explorer</strong>
+          <br>2. Select your app → Generate Access Token
+          <br>3. Add permissions: <code>pages_manage_posts</code>, <code>instagram_basic</code>, <code>instagram_content_publish</code>
+          <br>4. Click Generate and paste the token below
+        </p>
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Meta Access Token</label>
+        <input type="password" class="finput" id="meta-token" placeholder="EAAxxxxxxxxxxxxxxx…">
+        <div class="fhint">Long-lived page access token from Meta Graph API Explorer. Never stored on any server.</div>
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Facebook Page ID</label>
+        <input type="text" class="finput" id="fb-page-id" placeholder="Your Facebook Page numeric ID">
+        <div class="fhint">Found in your Facebook Page settings → About → Page ID</div>
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Instagram Business Account ID</label>
+        <input type="text" class="finput" id="ig-account-id" placeholder="Your Instagram Business Account ID">
+        <div class="fhint">Found in Meta Business Suite → Instagram account → Settings</div>
+      </div>
+      <button onclick="testMetaConnection()" style="padding:8px 16px;background:var(--bark);color:#fff;border:none;border-radius:4px;font-size:11.5px;cursor:pointer;font-family:var(--ff-sans);margin-bottom:8px">
+        <i class="fas fa-plug"></i> Test Connection
+      </button>
+      <div id="meta-status" style="font-size:11px;color:var(--stone);margin-top:4px"></div>
+    </div>
+    <button class="settings-save" onclick="saveSettings()"><i class="fas fa-check"></i> &nbsp;Save Settings</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   KAYAL Content Studio v2 — Full JavaScript
+   ============================================================ */
+
+// ── CONFIG — fill these in Settings tab or hardcode here ─────
+let SUPABASE_URL = localStorage.getItem('ks_sb_url') || 'https://nofyxayqdwhyabcntmvs.supabase.co';
+let SUPABASE_KEY = localStorage.getItem('ks_sb_key') || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw';
+let sbClient = null;
+
+// ── INIT SUPABASE ─────────────────────────────────────────────
+function initSupabase() {
+  if (!SUPABASE_URL || !SUPABASE_KEY) {
+    setSbStatus(false, 'Not configured');
+    return;
+  }
+  try {
+    sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    testSupabase();
+  } catch(e) {
+    setSbStatus(false, 'Error');
+  }
+}
+
+async function testSupabase() {
+  try {
+    const { error } = await sbClient.from('blog_posts').select('id').limit(1);
+    if (error) { setSbStatus(false, 'Table missing'); return; }
+    setSbStatus(true, 'Connected');
+  } catch { setSbStatus(false, 'Failed'); }
+}
+
+function setSbStatus(ok, text) {
+  document.getElementById('sb-dot').className = 'sb-dot' + (ok ? ' ok' : '');
+  document.getElementById('sb-text').textContent = text;
+}
+
+// ── SETTINGS ──────────────────────────────────────────────────
+function loadSettings() {
+  const url = localStorage.getItem('ks_sb_url') || 'https://nofyxayqdwhyabcntmvs.supabase.co';
+  const key = localStorage.getItem('ks_sb_key') || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw';
+  document.getElementById('sb-url').value = url;
+  document.getElementById('sb-key').value = key;
+}
+
+function saveSettings() {
+  SUPABASE_URL = document.getElementById('sb-url').value.trim();
+  SUPABASE_KEY = document.getElementById('sb-key').value.trim();
+  localStorage.setItem('ks_sb_url', SUPABASE_URL);
+  localStorage.setItem('ks_sb_key', SUPABASE_KEY);
+  initSupabase();
+  toast('Settings saved', 'success');
+}
+
+// ── TABS ──────────────────────────────────────────────────────
+document.querySelectorAll('.studio-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.studio-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    if (tab.dataset.tab === 'drafts') loadDrafts();
+  });
+});
+
+// ── TOPICS ────────────────────────────────────────────────────
+const TOPICS = [
+  // ── Numerology ──
+  { label: 'Life Path number meanings explained', vol: '96K/mo', discipline: 'Numerology' },
+  { label: 'Master numbers 11 22 33 traits', vol: '53K/mo', discipline: 'Numerology' },
+  { label: 'Numerology compatibility love', vol: '145K/mo', discipline: 'Numerology' },
+  { label: 'Personal Year 8 money cycles', vol: '67K/mo', discipline: 'Numerology' },
+  { label: 'Name numerology hidden meaning', vol: '44K/mo', discipline: 'Numerology' },
+  { label: 'Soul urge number purpose', vol: '38K/mo', discipline: 'Numerology' },
+  { label: 'Numerology career path reading', vol: '72K/mo', discipline: 'Numerology' },
+  // ── Astrology ──
+  { label: 'Mercury retrograde effects 2025', vol: '284K/mo', discipline: 'Astrology' },
+  { label: 'Saturn return life changes', vol: '118K/mo', discipline: 'Astrology' },
+  { label: 'Rising sign personality traits', vol: '203K/mo', discipline: 'Astrology' },
+  { label: 'North node life purpose astrology', vol: '87K/mo', discipline: 'Astrology' },
+  { label: 'Planetary transits personal growth', vol: '61K/mo', discipline: 'Astrology' },
+  { label: 'Full moon intentions manifestation', vol: '310K/mo', discipline: 'Astrology' },
+  // ── Physiognomy (Face Reading) ──
+  { label: 'Face reading personality traits', vol: '74K/mo', discipline: 'Physiognomy' },
+  { label: 'Eyes reveal character face reading', vol: '52K/mo', discipline: 'Physiognomy' },
+  { label: 'Mian Xiang Chinese face reading', vol: '31K/mo', discipline: 'Physiognomy' },
+  { label: 'Jaw shape determination personality', vol: '28K/mo', discipline: 'Physiognomy' },
+  { label: 'Forehead lines meaning life story', vol: '19K/mo', discipline: 'Physiognomy' },
+  // ── Palmistry ──
+  { label: 'Heart line meaning love life', vol: '89K/mo', discipline: 'Palmistry' },
+  { label: 'Life line palm reading myths', vol: '134K/mo', discipline: 'Palmistry' },
+  { label: 'Fate line career destiny palm', vol: '47K/mo', discipline: 'Palmistry' },
+  { label: 'Hand shape personality type', vol: '63K/mo', discipline: 'Palmistry' },
+  { label: 'Money lines on palm reading', vol: '55K/mo', discipline: 'Palmistry' },
+  // ── Spirit Science ──
+  { label: 'Sacred geometry consciousness explained', vol: '88K/mo', discipline: 'Spirit Science' },
+  { label: 'Quantum physics and spirituality', vol: '176K/mo', discipline: 'Spirit Science' },
+  { label: 'Pineal gland third eye activation', vol: '142K/mo', discipline: 'Spirit Science' },
+  { label: 'DNA activation ancient knowledge', vol: '39K/mo', discipline: 'Spirit Science' },
+  { label: 'Fibonacci sequence nature consciousness', vol: '57K/mo', discipline: 'Spirit Science' },
+  // ── Spiritism ──
+  { label: 'Ancestral healing practices guide', vol: '74K/mo', discipline: 'Spiritism' },
+  { label: 'Spirit communication ancient traditions', vol: '43K/mo', discipline: 'Spiritism' },
+  { label: 'Generational trauma spiritual healing', vol: '98K/mo', discipline: 'Spiritism' },
+  { label: 'Mediumship development beginners', vol: '61K/mo', discipline: 'Spiritism' },
+  // ── Soul Blueprint ──
+  { label: 'Soul purpose discovery ancient wisdom', vol: '82K/mo', discipline: 'Soul Blueprint' },
+  { label: 'Four pillars knowledge convergence', vol: '29K/mo', discipline: 'Soul Blueprint' },
+  { label: 'Blueprint reading self discovery', vol: '54K/mo', discipline: 'Soul Blueprint' },
+  { label: 'Ancient wisdom modern life application', vol: '91K/mo', discipline: 'Soul Blueprint' },
+];
+
+// Discipline filter for topics
+const DISCIPLINES = ['All', 'Numerology', 'Astrology', 'Physiognomy', 'Palmistry', 'Spirit Science', 'Spiritism', 'Soul Blueprint'];
+let activeDiscipline = 'All';
+
+let shownTopics = [], selTopic = null;
+
+function shuffleTopics() {
+  shownTopics = [...TOPICS].sort(() => Math.random() - 0.5).slice(0, 8);
+  renderTopics();
+}
+
+function renderTopics() {
+  const g = document.getElementById('topics-grid');
+  g.innerHTML = shownTopics.map((t, i) => `
+    <button class="topic-chip${selTopic === i ? ' active' : ''}" data-i="${i}">
+      <span>
+        ${t.discipline ? `<span style="font-size:9px;opacity:.6;display:block;letter-spacing:.08em;text-transform:uppercase">${t.discipline}</span>` : ''}
+        ${t.label}
+      </span>
+      <span class="topic-vol">${t.vol}</span>
+    </button>`).join('');
+  g.querySelectorAll('.topic-chip').forEach(c => {
+    c.addEventListener('click', () => {
+      selTopic = parseInt(c.dataset.i);
+      document.getElementById('custom-topic').value = '';
+      renderTopics(); updateStatus();
+    });
+  });
+}
+
+document.getElementById('refresh-btn').addEventListener('click', function() {
+  this.classList.add('spin'); selTopic = null;
+  setTimeout(() => { shuffleTopics(); this.classList.remove('spin'); }, 400);
+});
+
+shuffleTopics();
+
+function getTopic() {
+  const c = document.getElementById('custom-topic').value.trim();
+  return c || (selTopic !== null ? shownTopics[selTopic].label : null);
+}
+
+document.getElementById('custom-topic').addEventListener('input', function() {
+  if (this.value.trim()) { selTopic = null; renderTopics(); }
+  updateStatus();
+});
+document.getElementById('angle-input').addEventListener('input', updateStatus);
+
+// ── STATUS ────────────────────────────────────────────────────
+function updateStatus() {
+  const topic = getTopic(), angle = document.getElementById('angle-input').value.trim();
+  const dot = document.getElementById('sdot'), txt = document.getElementById('stext');
+  if (!topic && !angle)  { dot.className='sdot'; txt.textContent='Select a topic and write your angle'; }
+  else if (!topic)        { dot.className='sdot'; txt.textContent='Select or type a trending topic'; }
+  else if (!angle)        { dot.className='sdot'; txt.textContent=`Topic ready — now write your angle`; }
+  else                    { dot.className='sdot ready'; txt.textContent='Ready — click Generate Draft'; }
+}
+
+// ── STATE ─────────────────────────────────────────────────────
+function showState(s) {
+  document.getElementById('state-empty').style.display = 'none';
+  document.getElementById('state-gen').classList.remove('vis');
+  document.getElementById('state-err').classList.remove('vis');
+  document.getElementById('state-draft').classList.remove('vis');
+  if (s==='empty') document.getElementById('state-empty').style.display='flex';
+  else document.getElementById('state-'+s).classList.add('vis');
+}
+showState('empty');
+
+// ── GENERATE ─────────────────────────────────────────────────
+const GEN_STEPS = [
+  'Researching trusted sources…',
+  'Checking academic references…',
+  'Crafting your angle…',
+  'Writing the introduction…',
+  'Developing main sections…',
+  'Adding citations and links…',
+  'Finalising your draft…',
+];
+
+let currentPost = {}; // holds all current draft data
+
+document.getElementById('generate-btn').addEventListener('click', generate);
+document.getElementById('regen-btn').addEventListener('click', generate);
+
+async function generate() {
+  const topic = getTopic(), angle = document.getElementById('angle-input').value.trim();
+  const audience = document.getElementById('audience-sel').value;
+  const length = document.getElementById('length-sel').value;
+  const category = document.getElementById('category-sel').value;
+  if (!topic) { toast('Please select or type a topic','error'); return; }
+  if (!angle)  { toast('Please write your angle first','error'); return; }
+
+  const btn = document.getElementById('generate-btn');
+  btn.disabled = true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Generating…';
+  document.getElementById('sdot').className='sdot busy';
+  document.getElementById('stext').textContent='Generating your draft…';
+  showState('gen');
+
+  let si = 0;
+  const prog = document.getElementById('gprog'), lbl = document.getElementById('glabel');
+  const interval = setInterval(() => {
+    lbl.textContent = GEN_STEPS[Math.min(si, GEN_STEPS.length-1)];
+    prog.style.width = `${Math.min((si/GEN_STEPS.length)*90, 90)}%`;
+    si++;
+  }, 800);
+
+  const audMap = {
+    seekers:'general spiritually curious readers',
+    beginners:'complete beginners new to Soul Blueprint Science',
+    students:'students enrolled in a KAYAL SoulPath programme',
+    practitioners:'working spiritual practitioners and counsellors',
+  };
+  const wt = {short:'400-600 words',medium:'800-1000 words',long:'1200-1500 words'};
+
+  const SYS = `You are the editorial voice of KAYAL SoulPath Institute — a world-class institute teaching Soul Blueprint Science.
+KAYAL's voice: scholarly but accessible, confident without being dogmatic, warm but precise.
+RULES:
+1. Write ONLY from KAYAL SoulPath's own curriculum perspective
+2. Never copy or closely paraphrase from other websites
+3. Use "Soul Blueprint Science", "the Four Pillars", "the convergence principle" as KAYAL's proprietary language
+4. Refer to the disciplines as "the First Pillar", "the Second Pillar" etc — never name them
+5. Mention KAYAL courses and LifeOS app naturally within the text
+6. End with a genuine non-pushy call to explore KAYAL
+OUTPUT: Valid HTML only. Structure:
+- <h1> for title
+- <h2> for 2–4 sections
+- <p> for paragraphs, <strong> for 1–2 key phrases per section, <em> for KAYAL-specific terms
+- After body: <div id="post-sources"><a href="#" class="source-link">Source — description</a></div>
+- NO DOCTYPE, html, head, body tags`;
+
+  const USR = `Write a blog post for KAYAL SoulPath Institute Insights.
+Topic context: "${topic}"
+My angle: "${angle}"
+Audience: ${audMap[audience]}
+Category: ${category}
+Length: ${wt[length]}
+Start with <h1>.`;
+
+  try {
+    let html = '';
+    // ── Secure proxy — Claude API key lives on Vercel only ────────
+    const r = await fetch('https://kayal-proxy.vercel.app/api/claude', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ system: SYS, messages: [{ role: 'user', content: USR }], max_tokens: 2000 }),
+    });
+    if (!r.ok) { const e=await r.json().catch(()=>({})); throw new Error(e?.error?.message||'Proxy error '+r.status); }
+    const d = await r.json();
+    html = d?.content?.[0]?.text || '';
+    }
+
+    clearInterval(interval);
+    prog.style.width = '100%';
+
+    setTimeout(async () => {
+      renderDraft(html, topic, angle, category, audience, length);
+      btn.disabled = false; btn.innerHTML='<i class="fas fa-pen-nib"></i> Generate Draft';
+      document.getElementById('sdot').className='sdot ready';
+      document.getElementById('stext').textContent='Draft ready — edit, then save or publish';
+
+      // Auto-fetch images
+      const uk = document.getElementById('unsplash-key').value.trim() || 'KHTt7W9szWZGYJRHWokZMtu1nszaVN9T0FsdjPe6HXs';
+      await fetchImages(topic, uk);
+
+      // Auto-generate social if setting enabled
+      if (document.getElementById('auto-social')?.checked !== false) generateSocial();
+    }, 300);
+
+  } catch(err) {
+    clearInterval(interval);
+    btn.disabled = false; btn.innerHTML='<i class="fas fa-pen-nib"></i> Generate Draft';
+    document.getElementById('sdot').className='sdot';
+    document.getElementById('err-msg').textContent = err.message || 'Unexpected error. Try demo mode.';
+    showState('err');
+  }
+}
+
+// ── RENDER DRAFT ──────────────────────────────────────────────
+function renderDraft(html, topic, angle, category, audience, length, loadedPost) {
+  const tm = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+  const title = tm ? tm[1].replace(/<[^>]+>/g,'') : angle;
+  let body = html.replace(/<h1[^>]*>[\s\S]*?<\/h1>/i,'');
+
+  // Extract sources
+  const sm = body.match(/<div id="post-sources">([\s\S]*?)<\/div>/i);
+  body = body.replace(/<div id="post-sources">[\s\S]*?<\/div>/i,'');
+
+  document.getElementById('draft-title').innerHTML = title;
+  document.getElementById('draft-body').innerHTML = body;
+
+  // Sources
+  if (sm) {
+    const links = sm[1].match(/<a[^>]*>[\s\S]*?<\/a>/gi)||[];
+    document.getElementById('sources-list').innerHTML = links.map(a=>a.replace('<a ','<a class="source-link" ')).join('');
+    document.getElementById('sources-box').style.display='block';
+  }
+
+  const words = (document.getElementById('draft-body').innerText||'').trim().split(/\s+/).length;
+  document.getElementById('dmeta-wc').textContent = `~${words} words`;
+  document.getElementById('dmeta-cat').textContent = category||'Soul Blueprint';
+
+  const status = loadedPost?.status || 'draft';
+  const sdEl = document.getElementById('dmeta-status');
+  sdEl.textContent = status.charAt(0).toUpperCase()+status.slice(1);
+  sdEl.className = 'dtag dtag-'+(status==='published'?'pub':'draft');
+
+  // Store current post data
+  currentPost = loadedPost || { topic, angle, category, audience, length, status:'draft', id:null, image_url:null };
+
+  // Featured image if loading existing
+  if (loadedPost?.image_url) {
+    document.getElementById('feat-img').src = loadedPost.image_url;
+    document.getElementById('feat-img').alt = loadedPost.image_alt||title;
+    document.getElementById('feat-img-cap').textContent = 'Featured image · Unsplash';
+    document.getElementById('feat-img-wrap').style.display='block';
+  }
+
+  runSeo(title, document.getElementById('draft-body').innerText);
+  showState('draft');
+
+  ['copy-btn','copy-all-btn','export-btn','save-btn','save-btn-2','publish-btn','publish-btn-2'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.disabled=false;
+  });
+}
+
+// ── IMAGES (Unsplash) ─────────────────────────────────────────
+let imgPage = 1, currentQuery = '';
+
+async function fetchImages(query, key, append=false) {
+  if (!key) return;
+  currentQuery = query;
+  try {
+    const r = await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=6&page=${imgPage}&orientation=landscape`,
+      { headers:{'Authorization':'Client-ID '+key} });
+    if (!r.ok) return;
+    const d = await r.json();
+    const grid = document.getElementById('img-grid');
+    const imgs = d.results||[];
+    if (!append) grid.innerHTML='';
+    imgs.forEach(img=>{
+      const div=document.createElement('div');
+      div.className='img-opt'; div.dataset.url=img.urls.regular; div.dataset.alt=img.alt_description||query;
+      div.dataset.credit=img.user.name;
+      div.innerHTML=`<img src="${img.urls.small}" alt="${img.alt_description||query}" loading="lazy">`;
+      div.addEventListener('click',()=>selectImage(div));
+      grid.appendChild(div);
+    });
+    document.getElementById('img-picker').classList.add('vis');
+  } catch(e) { console.warn('Unsplash error',e); }
+}
+
+function selectImage(el) {
+  document.querySelectorAll('.img-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  const url=el.dataset.url, alt=el.dataset.alt, credit=el.dataset.credit;
+  document.getElementById('feat-img').src=url;
+  document.getElementById('feat-img').alt=alt;
+  document.getElementById('feat-img-cap').textContent=`Photo by ${credit} on Unsplash`;
+  document.getElementById('feat-img-wrap').style.display='block';
+  currentPost.image_url=url; currentPost.image_alt=alt;
+}
+
+document.getElementById('more-imgs-btn').addEventListener('click',()=>{
+  imgPage++;
+  const uk=document.getElementById('unsplash-key').value.trim() || 'KHTt7W9szWZGYJRHWokZMtu1nszaVN9T0FsdjPe6HXs';
+  fetchImages(currentQuery||getTopic()||'spirituality',uk,true);
+});
+
+// ── SOCIAL MEDIA GENERATOR ────────────────────────────────────
+function generateSocial() {
+  const title = document.getElementById('draft-title').innerText.trim();
+  const body = (document.getElementById('draft-body').innerText||'').trim();
+  const first = body.split('\n').find(l=>l.trim().length>60)||body.substring(0,180);
+  const category = document.getElementById('category-sel').value;
+  const url = 'https://kayalsoulpath.com/insights';
+
+  const socials = [
+    {
+      platform:'Instagram',
+      icon:'fa-instagram',
+      color:'#E1306C',
+      content:`✨ ${title}\n\n${first.substring(0,220)}…\n\n🔗 Full post on KAYAL SoulPath — link in bio\n\n#SoulBlueprintScience #${category.replace(/\s+/g,'')} #KAYAL #SoulPath #SpiritualWisdom #PersonalGrowth`,
+    },
+    {
+      platform:'X / Twitter',
+      icon:'fa-x-twitter',
+      color:'#000000',
+      content:`${title}\n\n${first.substring(0,180)}…\n\n🔗 ${url}\n\n#SoulBlueprint #${category.replace(/\s+/g,'')} #KAYAL`,
+    },
+    {
+      platform:'WhatsApp',
+      icon:'fa-whatsapp',
+      color:'#25D366',
+      content:`*${title}*\n\n${first.substring(0,300)}…\n\nRead the full insight: ${url}\n\n_KAYAL SoulPath Institute_`,
+    },
+    {
+      platform:'Facebook',
+      icon:'fa-facebook-f',
+      color:'#1877F2',
+      content:`${title}\n\n${first.substring(0,280)}…\n\nRead the complete post on KAYAL SoulPath:\n${url}\n\n#SoulBlueprintScience #${category.replace(/\s+/g,'')}`,
+    },
+  ];
+
+  const cards = document.getElementById('social-cards');
+  cards.innerHTML = socials.map(s=>`
+    <div class="social-card">
+      <div class="social-card-head">
+        <div class="social-card-name"><i class="fab ${s.icon}" style="color:${s.color}"></i>${s.platform}</div>
+        <button class="social-copy-btn" onclick="copySocial(this)"><i class="fas fa-copy"></i> Copy</button>
+      </div>
+      <div class="social-card-body">${s.content.replace(/\n/g,'<br>')}</div>
+    </div>`).join('');
+
+  // Store content for copy
+  cards.querySelectorAll('.social-card').forEach((card,i)=>{
+    card.querySelector('.social-copy-btn').dataset.content = socials[i].content;
+  });
+
+  document.getElementById('social-box').classList.add('vis');
+}
+
+function copySocial(btn) {
+  const content = btn.dataset.content || btn.closest('.social-card').querySelector('.social-card-body').innerText;
+  navigator.clipboard.writeText(content).then(()=>{
+    const orig=btn.innerHTML; btn.innerHTML='<i class="fas fa-check"></i> Copied!';
+    setTimeout(()=>btn.innerHTML=orig, 2000);
+  });
+}
+
+// ── SEO CHECK ─────────────────────────────────────────────────
+function runSeo(title, bodyText) {
+  const wc=bodyText.trim().split(/\s+/).length;
+  const h2s=document.getElementById('draft-body').querySelectorAll('h2').length;
+  const tl=title.length;
+  const hasKayal=bodyText.toLowerCase().includes('kayal')||bodyText.toLowerCase().includes('soul blueprint');
+  const checks=[
+    {label:`Word count: ${wc} words`,pass:wc>=400,warn:wc<600},
+    {label:`Title: ${tl} characters`,pass:tl>=30&&tl<=70,warn:tl<30||tl>70},
+    {label:`${h2s} section headings`,pass:h2s>=2,warn:h2s===1},
+    {label:'Uses KAYAL brand language',pass:hasKayal,warn:false},
+    {label:'Has introduction paragraph',pass:wc>50,warn:false},
+  ];
+  document.getElementById('seo-items').innerHTML=checks.map(c=>`
+    <div class="seo-item">
+      <div class="scheck ${c.pass?'pass':c.warn?'warn':'fail'}">${c.pass?'✓':c.warn?'!':'×'}</div>
+      ${c.label}
+    </div>`).join('');
+  document.getElementById('seo-box').classList.add('vis');
+}
+
+// ── SAVE TO SUPABASE ──────────────────────────────────────────
+async function savePost(publish=false) {
+  if (!sbClient) { toast('Supabase not connected — add credentials in Settings','error'); return; }
+
+  const title = document.getElementById('draft-title').innerText.trim();
+  const bodyHtml = document.getElementById('draft-body').innerHTML;
+  const words = (document.getElementById('draft-body').innerText||'').trim().split(/\s+/).length;
+  const category = document.getElementById('category-sel').value;
+  const audience = document.getElementById('audience-sel').value;
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+  const status = publish ? 'published' : 'draft';
+
+  if (!title) { toast('Please add a title before saving','error'); return; }
+
+  showOverlay(publish ? 'Publishing…' : 'Saving draft…');
+
+  const payload = {
+    title,
+    slug,
+    body_html: bodyHtml,
+    excerpt: (document.getElementById('draft-body').innerText||'').trim().substring(0,200)+'…',
+    category,
+    audience,
+    topic: currentPost.topic || getTopic() || '',
+    angle: document.getElementById('angle-input').value.trim(),
+    word_count: words,
+    reading_time: Math.ceil(words/200),
+    status,
+    image_url: currentPost.image_url || null,
+    image_alt: currentPost.image_alt || title,
+    author_name: document.getElementById('default-author')?.value || 'KAYAL SoulPath Institute',
+    video_ids:   currentPost.video_ids || null,
+    seo_title: title,
+    seo_description: (document.getElementById('draft-body').innerText||'').trim().substring(0,160),
+    published_at: publish ? new Date().toISOString() : null,
+    updated_at: new Date().toISOString(),
+  };
+
+  try {
+    let result;
+    if (currentPost.id) {
+      result = await sbClient.from('blog_posts').update(payload).eq('id', currentPost.id).select().single();
+    } else {
+      result = await sbClient.from('blog_posts').insert(payload).select().single();
+    }
+
+    if (result.error) throw result.error;
+
+    currentPost = { ...currentPost, ...result.data };
+
+    const sdEl = document.getElementById('dmeta-status');
+    sdEl.textContent = status.charAt(0).toUpperCase()+status.slice(1);
+    sdEl.className = 'dtag dtag-'+(status==='published'?'pub':'draft');
+
+    hideOverlay();
+    toast(publish ? '🌍 Published! Live on both sites.' : '✓ Draft saved', 'success');
+  } catch(err) {
+    hideOverlay();
+    toast('Save failed: '+err.message, 'error');
+  }
+}
+
+['save-btn','save-btn-2'].forEach(id=>document.getElementById(id)?.addEventListener('click',()=>savePost(false)));
+['publish-btn','publish-btn-2'].forEach(id=>document.getElementById(id)?.addEventListener('click',()=>savePost(true)));
+
+// ── DRAFTS HISTORY ────────────────────────────────────────────
+let draftsFilter = 'all';
+
+document.querySelectorAll('.dfilter').forEach(f=>{
+  f.addEventListener('click',()=>{
+    document.querySelectorAll('.dfilter').forEach(x=>x.classList.remove('active'));
+    f.classList.add('active');
+    draftsFilter = f.dataset.status;
+    loadDrafts();
+  });
+});
+
+async function loadDrafts() {
+  if (!sbClient) {
+    document.getElementById('drafts-grid').innerHTML='<div class="no-drafts"><i class="fas fa-plug"></i><p>Connect Supabase in Settings first</p></div>';
+    return;
+  }
+
+  document.getElementById('drafts-grid').innerHTML='<div class="no-drafts"><i class="fas fa-spinner fa-spin"></i><p>Loading…</p></div>';
+
+  try {
+    let q = sbClient.from('blog_posts').select('*').order('updated_at',{ascending:false});
+    if (draftsFilter !== 'all') q = q.eq('status', draftsFilter);
+    const { data, error } = await q;
+    if (error) throw error;
+
+    const grid = document.getElementById('drafts-grid');
+    if (!data||data.length===0) {
+      grid.innerHTML='<div class="no-drafts"><i class="fas fa-folder-open"></i><p>No posts found</p></div>';
+      return;
+    }
+
+    grid.innerHTML = data.map(p=>`
+      <div class="draft-card" data-id="${p.id}">
+        <div class="draft-card-img">
+          ${p.image_url
+            ? `<img src="${p.image_url}" alt="${p.image_alt||p.title}" loading="lazy">`
+            : `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:32px;color:rgba(44,24,16,.1)">✍</div>`}
+        </div>
+        <div class="draft-card-body">
+          <div class="draft-card-title">${p.title}</div>
+          <div class="draft-card-meta">
+            <span class="dtag ${p.status==='published'?'dtag-pub':'dtag-draft'}">${p.status}</span>
+            <span class="dtag dtag-cat">${p.category}</span>
+            <span class="draft-card-date">${new Date(p.updated_at).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</span>
+          </div>
+        </div>
+        <div class="draft-card-actions">
+          <button class="dca dca-edit" onclick="loadPost('${p.id}')"><i class="fas fa-pen"></i> Edit</button>
+          ${p.status!=='published'
+            ? `<button class="dca dca-pub" onclick="publishPost('${p.id}')"><i class="fas fa-globe"></i> Publish</button>`
+            : `<button class="dca dca-edit" onclick="unpublishPost('${p.id}')"><i class="fas fa-eye-slash"></i> Unpublish</button>`}
+          <button class="dca dca-del" onclick="deletePost('${p.id}')"><i class="fas fa-trash"></i> Delete</button>
+        </div>
+      </div>`).join('');
+  } catch(err) {
+    document.getElementById('drafts-grid').innerHTML=`<div class="no-drafts"><i class="fas fa-triangle-exclamation"></i><p>${err.message}</p></div>`;
+  }
+}
+
+async function loadPost(id) {
+  if (!sbClient) return;
+  showOverlay('Loading post…');
+  try {
+    const { data, error } = await sbClient.from('blog_posts').select('*').eq('id',id).single();
+    if (error) throw error;
+    // Switch to write tab
+    document.querySelectorAll('.studio-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelector('[data-tab="write"]').classList.add('active');
+    document.getElementById('tab-write').classList.add('active');
+
+    document.getElementById('angle-input').value = data.angle||'';
+    document.getElementById('category-sel').value = data.category||'Soul Blueprint';
+    document.getElementById('audience-sel').value = data.audience||'seekers';
+
+    renderDraft(
+      '<h1>'+data.title+'</h1>'+data.body_html,
+      data.topic, data.angle, data.category, data.audience, null, data
+    );
+    hideOverlay();
+    toast('Post loaded — editing mode','info');
+  } catch(err) { hideOverlay(); toast('Failed to load: '+err.message,'error'); }
+}
+
+async function publishPost(id) {
+  if (!sbClient) return;
+  showOverlay('Publishing…');
+  try {
+    const { error } = await sbClient.from('blog_posts').update({status:'published',published_at:new Date().toISOString()}).eq('id',id);
+    if (error) throw error;
+    hideOverlay(); toast('🌍 Published!','success'); loadDrafts();
+  } catch(err) { hideOverlay(); toast(err.message,'error'); }
+}
+
+async function unpublishPost(id) {
+  if (!sbClient) return;
+  if (!confirm('Unpublish this post? It will be removed from the live site.')) return;
+  showOverlay('Unpublishing…');
+  try {
+    const { error } = await sbClient.from('blog_posts').update({status:'draft',published_at:null}).eq('id',id);
+    if (error) throw error;
+    hideOverlay(); toast('Post moved back to drafts','info'); loadDrafts();
+  } catch(err) { hideOverlay(); toast(err.message,'error'); }
+}
+
+async function deletePost(id) {
+  if (!confirm('Permanently delete this post? This cannot be undone.')) return;
+  if (!sbClient) return;
+  showOverlay('Deleting…');
+  try {
+    const { error } = await sbClient.from('blog_posts').delete().eq('id',id);
+    if (error) throw error;
+    hideOverlay(); toast('Post deleted','info'); loadDrafts();
+  } catch(err) { hideOverlay(); toast(err.message,'error'); }
+}
+
+// ── COPY & EXPORT ─────────────────────────────────────────────
+function copyAll() {
+  const t=document.getElementById('draft-title').innerText;
+  const b=document.getElementById('draft-body').innerText;
+  const s=document.getElementById('sources-list').innerText;
+  navigator.clipboard.writeText(`${t}\n\n${b}${s?'\n\nSources:\n'+s:''}`).then(()=>{
+    toast('Copied to clipboard','success');
+    const btn=document.getElementById('copy-all-btn');
+    btn.innerHTML='<i class="fas fa-check"></i> Copied!';
+    setTimeout(()=>{btn.innerHTML='<i class="fas fa-copy"></i> Copy Draft'},2200);
+  });
+}
+document.getElementById('copy-btn')?.addEventListener('click',copyAll);
+document.getElementById('copy-all-btn')?.addEventListener('click',copyAll);
+
+document.getElementById('export-btn')?.addEventListener('click',()=>{
+  const title=document.getElementById('draft-title').innerHTML;
+  const body=document.getElementById('draft-body').innerHTML;
+  const sources=document.getElementById('sources-list').innerHTML;
+  const cat=document.getElementById('category-sel').value;
+  const date=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  const out=`<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<title>${document.getElementById('draft-title').innerText}</title>\n</head>\n<body>\n<!-- KAYAL SoulPath | Category: ${cat} | ${date} -->\n<article>\n<h1>${title}</h1>\n${body}\n${sources?'<section class="sources">'+sources+'</section>':''}\n</article>\n</body>\n</html>`;
+  const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(new Blob([out],{type:'text/html'})),download:'kayal-post.html'});
+  a.click();
+  toast('HTML exported','success');
+});
+
+// ── CLEAR ─────────────────────────────────────────────────────
+document.getElementById('clear-btn').addEventListener('click',()=>{
+  if(!confirm('Clear the current draft and start over?')) return;
+  selTopic=null; shuffleTopics();
+  document.getElementById('angle-input').value='';
+  document.getElementById('custom-topic').value='';
+  document.getElementById('feat-img-wrap').style.display='none';
+  document.getElementById('img-picker').classList.remove('vis');
+  document.getElementById('social-box').classList.remove('vis');
+  document.getElementById('seo-box').classList.remove('vis');
+  currentPost={};
+  ['copy-btn','copy-all-btn','export-btn','save-btn','save-btn-2','publish-btn','publish-btn-2'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.disabled=true;
+  });
+  showState('empty'); updateStatus();
+});
+
+// ── TOAST ─────────────────────────────────────────────────────
+function toast(msg, type='info') {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className=`toast toast-${type} show`;
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ── OVERLAY ───────────────────────────────────────────────────
+function showOverlay(msg) {
+  document.getElementById('overlay-text').textContent=msg;
+  document.getElementById('overlay').classList.add('vis');
+}
+function hideOverlay() { document.getElementById('overlay').classList.remove('vis'); }
+
+// ── KEYBOARD SHORTCUTS ────────────────────────────────────────
+document.addEventListener('keydown',e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key==='Enter'){e.preventDefault();document.getElementById('generate-btn').click()}
+  if((e.metaKey||e.ctrlKey)&&e.key==='s'){e.preventDefault();savePost(false)}
+});
+
+// ── INIT ──────────────────────────────────────────────────────
+loadSettings();
+initSupabase();
+updateStatus();
+// renderDisciplineFilters and shuffleTopics called from window load event
+
+
+// ── LIVE TRENDING TOPICS (GNews API) ─────────────────────────
+async function fetchLiveTopics() {
+  const gnewsKey = localStorage.getItem('ks_gnews_key') || '';
+  const statusEl = document.getElementById('topics-status');
+  const btn = document.getElementById('live-topics-btn');
+
+  if (!gnewsKey) {
+    toast('Add your GNews API key in Settings first', 'error');
+    return;
+  }
+
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Fetching…';
+  btn.disabled = true;
+  statusEl.style.display = 'block';
+  statusEl.textContent = 'Fetching live topics…';
+
+  try {
+    // Fetch spirituality/wellness headlines
+    const q = GNEWS_QUERIES[Math.floor(Math.random() * GNEWS_QUERIES.length)];
+    const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(q)}&lang=en&max=10&apikey=${gnewsKey}`;
+    const r = await fetch(url);
+    if (!r.ok) throw new Error('GNews API error ' + r.status);
+    const data = await r.json();
+    const articles = data.articles || [];
+
+    if (articles.length === 0) {
+      statusEl.textContent = 'No live topics found — showing curated list';
+      shuffleTopics();
+      return;
+    }
+
+    // Convert headlines to topic chips
+    shownTopics = articles.slice(0, 8).map(a => ({
+      label: a.title.length > 60 ? a.title.substring(0, 57) + '…' : a.title,
+      vol: 'Live · ' + new Date(a.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
+      url: a.url,
+      source: a.source?.name || 'News'
+    }));
+
+    selTopic = null;
+    renderTopics();
+    statusEl.textContent = `✓ ${articles.length} live topics fetched from ${q}`;
+    statusEl.style.color = 'var(--green)';
+    setTimeout(() => { statusEl.style.display = 'none'; }, 3000);
+
+  } catch(err) {
+    statusEl.textContent = 'Could not fetch live topics — showing curated list';
+    statusEl.style.color = 'var(--stone)';
+    shuffleTopics();
+  } finally {
+    btn.innerHTML = '<i class="fas fa-signal"></i> Live';
+    btn.disabled = false;
+  }
+}
+
+document.getElementById('live-topics-btn').addEventListener('click', fetchLiveTopics);
+
+// ── HEADLINE GENERATOR ────────────────────────────────────────
+document.getElementById('headline-btn').addEventListener('click', generateHeadlines);
+
+async function generateHeadlines() {
+  const topic = getTopic();
+  if (!topic) { toast('Select a topic first', 'error'); return; }
+
+  const btn = document.getElementById('headline-btn');
+  const box = document.getElementById('headlines-box');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating headlines…';
+  box.style.display = 'flex';
+  box.innerHTML = '<div style="font-size:12px;color:var(--stone);padding:8px">Generating 5 attention-grabbing headlines…</div>';
+
+  const SYS = `You are a world-class headline writer for KAYAL SoulPath Institute.
+Write 5 attention-grabbing blog post headlines for the topic provided.
+Each headline must:
+- Be specific, curious, and benefit-driven
+- Use power words (secret, hidden, real reason, what nobody tells you, etc.)
+- Be between 8-14 words
+- Avoid vague spiritual clichés
+- Be written for spiritually curious but skeptical readers
+- Reference KAYAL's curriculum angle where relevant
+Return ONLY a JSON array of 5 strings. Nothing else. No markdown. Example:
+["Headline 1", "Headline 2", "Headline 3", "Headline 4", "Headline 5"]`;
+
+  const USR = `Topic: "${topic}"
+Category: ${document.getElementById('category-sel').value}
+Audience: ${document.getElementById('audience-sel').value}
+Generate 5 powerful headlines now.`;
+
+  try {
+    const r = await fetch('https://kayal-proxy.vercel.app/api/claude', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ system: SYS, messages: [{ role: 'user', content: USR }], max_tokens: 400 }),
+    });
+    if (!r.ok) throw new Error('Proxy error ' + r.status);
+    const data = await r.json();
+    const text = data?.content?.[0]?.text || '[]';
+    const headlines = JSON.parse(text.trim().replace(/```json|```/g, ''));
+
+    box.innerHTML = headlines.map((h, i) => `
+      <button class="topic-chip" onclick="selectHeadline(this)" data-headline="${h.replace(/"/g,'&quot;')}">
+        <span>${h}</span>
+        <span class="topic-vol" style="color:var(--terra)">Use →</span>
+      </button>`).join('');
+
+  } catch(err) {
+    box.innerHTML = '<div style="font-size:11px;color:#dc2626;padding:6px">Failed to generate headlines. Try again.</div>';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-bolt"></i> Generate 5 Attention-Grabbing Headlines';
+  }
+}
+
+function selectHeadline(el) {
+  const h = el.dataset.headline;
+  document.getElementById('angle-input').value = h;
+  document.querySelectorAll('#headlines-box .topic-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  updateStatus();
+  toast('Headline selected — ready to generate', 'success');
+}
+
+// Enable headline btn when topic is selected
+const origUpdateStatus = updateStatus;
+function updateStatus() {
+  origUpdateStatus();
+  const topic = getTopic();
+  const hbtn = document.getElementById('headline-btn');
+  if (hbtn) hbtn.disabled = !topic;
+}
+
+// ── SCHEDULING ────────────────────────────────────────────────
+async function savePost(publish = false) {
+  if (!sbClient) { toast('Supabase not connected — add credentials in Settings', 'error'); return; }
+
+  const title = document.getElementById('draft-title').innerText.trim();
+  const bodyHtml = document.getElementById('draft-body').innerHTML;
+  const words = (document.getElementById('draft-body').innerText || '').trim().split(/\s+/).length;
+  const category = document.getElementById('category-sel').value;
+  const audience = document.getElementById('audience-sel').value;
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  const scheduleInput = document.getElementById('schedule-input')?.value;
+
+  if (!title) { toast('Please add a title before saving', 'error'); return; }
+
+  // Determine status and publish time
+  let status = 'draft';
+  let published_at = null;
+  let overlayMsg = 'Saving draft…';
+
+  if (publish) {
+    if (scheduleInput) {
+      const scheduleDate = new Date(scheduleInput);
+      if (scheduleDate > new Date()) {
+        // Future date — schedule it
+        status = 'scheduled';
+        published_at = scheduleDate.toISOString();
+        overlayMsg = 'Scheduling post…';
+      } else {
+        // Past or present date — publish now
+        status = 'published';
+        published_at = new Date().toISOString();
+        overlayMsg = 'Publishing…';
+      }
+    } else {
+      status = 'published';
+      published_at = new Date().toISOString();
+      overlayMsg = 'Publishing…';
+    }
+  }
+
+  showOverlay(overlayMsg);
+
+  const payload = {
+    title,
+    slug,
+    body_html: bodyHtml,
+    excerpt: (document.getElementById('draft-body').innerText || '').trim().substring(0, 200) + '…',
+    category,
+    audience,
+    topic: currentPost.topic || getTopic() || '',
+    angle: document.getElementById('angle-input').value.trim(),
+    word_count: words,
+    reading_time: Math.ceil(words / 200),
+    status,
+    image_url: currentPost.image_url || null,
+    image_alt: currentPost.image_alt || title,
+    author_name: document.getElementById('default-author')?.value || 'KAYAL SoulPath Institute',
+    seo_title: title,
+    seo_description: (document.getElementById('draft-body').innerText || '').trim().substring(0, 160),
+    published_at,
+    updated_at: new Date().toISOString(),
+  };
+
+  try {
+    let result;
+    if (currentPost.id) {
+      result = await sbClient.from('blog_posts').update(payload).eq('id', currentPost.id).select().single();
+    } else {
+      result = await sbClient.from('blog_posts').insert(payload).select().single();
+    }
+
+    if (result.error) throw result.error;
+    currentPost = { ...currentPost, ...result.data };
+
+    const sdEl = document.getElementById('dmeta-status');
+    sdEl.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+    sdEl.className = 'dtag ' + (status === 'published' ? 'dtag-pub' : status === 'scheduled' ? 'dtag-sched' : 'dtag-draft');
+
+    hideOverlay();
+
+    if (status === 'scheduled') {
+      const schedDate = new Date(published_at);
+      toast(`⏰ Scheduled for ${schedDate.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' })} at ${schedDate.toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' })}`, 'success');
+    } else if (status === 'published') {
+      toast('🌍 Published! Live on both sites.', 'success');
+    } else {
+      toast('✓ Draft saved', 'success');
+    }
+  } catch(err) {
+    hideOverlay();
+    toast('Save failed: ' + err.message, 'error');
+  }
+}
+
+// ── UPGRADE SOCIAL CONTENT — Attention-grabbing captions ─────
+function generateSocial() {
+  const title = document.getElementById('draft-title').innerText.trim();
+  const body = (document.getElementById('draft-body').innerText || '').trim();
+  const excerpt = body.split('\n').find(l => l.trim().length > 60) || body.substring(0, 200);
+  const category = document.getElementById('category-sel').value;
+  const url = 'https://kayalsoulpath.com/insights';
+  const hook = excerpt.substring(0, 160);
+
+  const socials = [
+    {
+      platform: 'Instagram',
+      icon: 'fa-instagram',
+      color: '#E1306C',
+      content: `🔮 ${title}
+
+${hook}…
+
+The answer lies in your Soul Blueprint — and most people never discover it.
+
+👇 Full insight at the link in bio
+📖 Read it on KAYAL SoulPath: ${url}
+
+✨ Save this post — you'll want to read it again.
+
+#SoulBlueprintScience #${category.replace(/\s+/g, '')} #KAYAL #SoulPath #SpiritualWisdom #PersonalGrowth #SoulPurpose #AncientWisdom #MindDevelopment #SpiritualAwakening`,
+    },
+    {
+      platform: 'X / Twitter',
+      icon: 'fa-x-twitter',
+      color: '#000000',
+      content: `🧵 ${title}
+
+${hook.substring(0, 200)}…
+
+Most people miss this completely.
+
+🔗 Full post: ${url}
+
+#SoulBlueprint #${category.replace(/\s+/g, '')} #KAYAL #PersonalGrowth`,
+    },
+    {
+      platform: 'WhatsApp Broadcast',
+      icon: 'fa-whatsapp',
+      color: '#25D366',
+      content: `*${title}*
+
+${hook}…
+
+This is one of the most important things we teach at KAYAL SoulPath Institute — and most people have never heard of it.
+
+Read the full insight here:
+${url}
+
+_Reply LEARN if you want to know more_ 🌿
+
+— KAYAL SoulPath Institute`,
+    },
+    {
+      platform: 'Facebook',
+      icon: 'fa-facebook-f',
+      color: '#1877F2',
+      content: `Did you know? ${title}
+
+${hook}…
+
+At KAYAL SoulPath Institute, we've seen this pattern in thousands of students — and once you understand it, everything changes.
+
+Read the full post here → ${url}
+
+💬 Drop a comment: Does this resonate with you?
+
+#SoulBlueprintScience #${category.replace(/\s+/g, '')} #KAYAL`,
+    },
+    {
+      platform: 'LinkedIn',
+      icon: 'fa-linkedin-in',
+      color: '#0A66C2',
+      content: `${title}
+
+${hook}…
+
+After working with thousands of seekers at KAYAL SoulPath Institute, this is one of the most consistent patterns we observe.
+
+The convergence of the Four Pillars of ancient knowledge reveals something most modern approaches miss entirely.
+
+Full article: ${url}
+
+#PersonalDevelopment #SoulBlueprint #AncientWisdom #Mindfulness #Leadership`,
+    },
+  ];
+
+  const cards = document.getElementById('social-cards');
+  cards.innerHTML = socials.map((s, i) => `
+    <div class="social-card">
+      <div class="social-card-head">
+        <div class="social-card-name"><i class="fab ${s.icon}" style="color:${s.color}"></i>${s.platform}</div>
+        <button class="social-copy-btn" data-content="${s.content.replace(/"/g, '&quot;')}" onclick="copySocialBtn(this)"><i class="fas fa-copy"></i> Copy</button>
+      </div>
+      <div class="social-card-body" style="white-space:pre-wrap;font-size:11.5px">${s.content}</div>
+    </div>`).join('');
+
+  document.getElementById('social-box').classList.add('vis');
+}
+
+function copySocialBtn(btn) {
+  const content = btn.dataset.content.replace(/&quot;/g, '"');
+  navigator.clipboard.writeText(content).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    setTimeout(() => btn.innerHTML = orig, 2000);
+  });
+}
+
+// ── UPDATE saveSettings to include GNews key ─────────────────
+const origSaveSettings = saveSettings;
+function saveSettings() {
+  const gnews = document.getElementById('gnews-key')?.value.trim();
+  if (gnews) localStorage.setItem('ks_gnews_key', gnews);
+  origSaveSettings();
+}
+
+// ── Load GNews key on init ────────────────────────────────────
+window.addEventListener('load', () => {
+  const gnews = localStorage.getItem('ks_gnews_key');
+  if (gnews && document.getElementById('gnews-key')) {
+    document.getElementById('gnews-key').value = gnews;
+  }
+});
+
+
+
+// ── DISCIPLINE FILTERS FOR TOPICS ────────────────────────────
+function renderDisciplineFilters() {
+  const wrap = document.getElementById('discipline-filters');
+  if (!wrap) return;
+  wrap.innerHTML = DISCIPLINES.map(d => `
+    <button class="disc-filter${activeDiscipline === d ? ' active' : ''}" data-d="${d}">${d}</button>
+  `).join('');
+  wrap.querySelectorAll('.disc-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeDiscipline = btn.dataset.d;
+      renderDisciplineFilters();
+      shuffleTopics();
+    });
+  });
+}
+
+// Override shuffleTopics to respect discipline filter
+function shuffleTopics() {
+  const filtered = activeDiscipline === 'All'
+    ? TOPICS
+    : TOPICS.filter(t => t.discipline === activeDiscipline);
+  shownTopics = [...filtered].sort(() => Math.random() - 0.5).slice(0, 8);
+  renderTopics();
+}
+
+// Override renderTopics to show discipline badge
+function renderTopics() {
+  const g = document.getElementById('topics-grid');
+  g.innerHTML = shownTopics.map((t, i) => `
+    <button class="topic-chip${selTopic === i ? ' active' : ''}" data-i="${i}">
+      <span>${t.label}</span>
+      <span class="topic-vol">${t.vol}</span>
+    </button>`).join('');
+  g.querySelectorAll('.topic-chip').forEach(c => {
+    c.addEventListener('click', () => {
+      selTopic = parseInt(c.dataset.i);
+      document.getElementById('custom-topic').value = '';
+      renderTopics(); updateStatus();
+      // Enable headline button
+      const hbtn = document.getElementById('headline-btn');
+      if (hbtn) hbtn.disabled = false;
+    });
+  });
+}
+
+// Override fetchLiveTopics to use KAYAL-specific queries
+async function fetchLiveTopics() {
+  const gnewsKey = localStorage.getItem('ks_gnews_key') || '';
+  const statusEl = document.getElementById('topics-status');
+  const btn = document.getElementById('live-topics-btn');
+
+  if (!gnewsKey) { toast('Add your GNews API key in Settings first', 'error'); return; }
+
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Fetching…';
+  btn.disabled = true;
+  statusEl.style.display = 'block';
+  statusEl.textContent = 'Fetching live topics…';
+
+  // KAYAL-specific discipline queries
+  const disciplineQueries = {
+    'All':          ['numerology life path', 'face reading palmistry', 'astrology planets', 'spirit science consciousness', 'ancestral healing'],
+    'Numerology':   ['numerology life path numbers', 'numerology compatibility', 'master numbers meaning'],
+    'Astrology':    ['astrology planetary transit', 'retrograde effects', 'birth chart reading'],
+    'Physiognomy':  ['face reading personality', 'physiognomy traits', 'Mian Xiang face reading'],
+    'Palmistry':    ['palm reading lines meaning', 'palmistry guide', 'hand reading personality'],
+    'Spirit Science':['sacred geometry consciousness', 'quantum spirituality', 'pineal gland activation'],
+    'Spiritism':    ['ancestral healing', 'spirit communication', 'generational trauma healing'],
+    'Soul Blueprint':['soul purpose discovery', 'ancient wisdom modern life', 'self discovery blueprint'],
+  };
+
+  const queries = disciplineQueries[activeDiscipline] || disciplineQueries['All'];
+  const q = queries[Math.floor(Math.random() * queries.length)];
+
+  try {
+    const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(q)}&lang=en&max=10&apikey=${gnewsKey}`;
+    const r = await fetch(url);
+    if (!r.ok) throw new Error('GNews error ' + r.status);
+    const data = await r.json();
+    const articles = data.articles || [];
+
+    if (articles.length === 0) { shuffleTopics(); return; }
+
+    shownTopics = articles.slice(0, 8).map(a => ({
+      label: a.title.length > 60 ? a.title.substring(0, 57) + '…' : a.title,
+      vol: 'Live · ' + new Date(a.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
+      discipline: activeDiscipline === 'All' ? 'Live' : activeDiscipline,
+    }));
+
+    selTopic = null;
+    renderTopics();
+    statusEl.textContent = `✓ ${articles.length} live topics for: ${q}`;
+    statusEl.style.color = 'var(--green)';
+    setTimeout(() => { statusEl.style.display = 'none'; }, 3000);
+  } catch(err) {
+    statusEl.textContent = 'Using curated list — ' + err.message;
+    statusEl.style.color = 'var(--stone)';
+    shuffleTopics();
+  } finally {
+    btn.innerHTML = '<i class="fas fa-signal"></i> Live';
+    btn.disabled = false;
+  }
+}
+
+// ── YOUTUBE VIDEO PICKER ──────────────────────────────────────
+let selectedVideos = [];
+
+async function fetchYouTubeVideos(query) {
+  const key = localStorage.getItem('ks_youtube_key') || 'AIzaSyCyx2MAesnefXW4iSzC8zSMgllq6pdq4d4';
+  const box = document.getElementById('video-box');
+  const grid = document.getElementById('video-grid');
+
+  box.style.display = 'block';
+  grid.innerHTML = '<div style="font-size:11px;color:var(--stone);padding:8px">Searching YouTube…</div>';
+
+  // Build KAYAL-specific search query
+  const discipline = shownTopics[selTopic]?.discipline || '';
+  const searchQ = discipline && discipline !== 'Live'
+    ? `${query} ${discipline} soul wisdom`
+    : `${query} spirituality ancient wisdom`;
+
+  try {
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(searchQ)}&type=video&videoEmbeddable=true&maxResults=6&key=${key}`;
+    const r = await fetch(url);
+    if (!r.ok) throw new Error('YouTube error ' + r.status);
+    const data = await r.json();
+    const videos = data.items || [];
+
+    if (videos.length === 0) {
+      grid.innerHTML = '<div style="font-size:11px;color:var(--stone)">No videos found for this topic</div>';
+      return;
+    }
+
+    grid.innerHTML = videos.map(v => `
+      <div class="video-thumb" data-id="${v.id.videoId}" data-title="${v.snippet.title.replace(/"/g,'&quot;')}" data-thumb="${v.snippet.thumbnails.medium.url}" onclick="toggleVideo(this)">
+        <img src="${v.snippet.thumbnails.medium.url}" alt="${v.snippet.title}" loading="lazy">
+        <div class="video-play-icon"><i class="fas fa-play"></i></div>
+        <div class="video-thumb-title">${v.snippet.title.substring(0, 70)}${v.snippet.title.length > 70 ? '…' : ''}</div>
+      </div>
+    `).join('');
+
+  } catch(err) {
+    grid.innerHTML = `<div style="font-size:11px;color:#dc2626">YouTube search failed: ${err.message}</div>`;
+  }
+}
+
+function toggleVideo(el) {
+  const id    = el.dataset.id;
+  const title = el.dataset.title;
+  const thumb = el.dataset.thumb;
+  const idx   = selectedVideos.findIndex(v => v.id === id);
+
+  if (idx > -1) {
+    selectedVideos.splice(idx, 1);
+    el.classList.remove('selected');
+  } else {
+    if (selectedVideos.length >= 2) {
+      toast('Maximum 2 videos per post', 'error'); return;
+    }
+    selectedVideos.push({ id, title, thumb });
+    el.classList.add('selected');
+  }
+  renderSelectedVideos();
+}
+
+function renderSelectedVideos() {
+  const wrap = document.getElementById('selected-videos');
+  if (selectedVideos.length === 0) { wrap.innerHTML = ''; return; }
+  wrap.innerHTML = `
+    <div style="font-size:9.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);margin-bottom:8px">Selected for post</div>
+    ${selectedVideos.map(v => `
+      <div class="selected-video-embed">
+        <img src="${v.thumb}" alt="${v.title}">
+        <div style="flex:1;font-size:11.5px;color:var(--slate)">${v.title.substring(0, 80)}${v.title.length > 80 ? '…' : ''}</div>
+        <button onclick="removeVideo('${v.id}')" style="background:none;border:none;cursor:pointer;color:var(--stone);font-size:12px"><i class="fas fa-times"></i></button>
+      </div>
+    `).join('')}
+  `;
+}
+
+function removeVideo(id) {
+  selectedVideos = selectedVideos.filter(v => v.id !== id);
+  document.querySelectorAll(`.video-thumb[data-id="${id}"]`).forEach(el => el.classList.remove('selected'));
+  renderSelectedVideos();
+}
+
+// Auto-fetch videos after generate
+const _origRenderDraft = renderDraft;
+function renderDraft(html, topic, angle, category, audience, length, loadedPost) {
+  _origRenderDraft(html, topic, angle, category, audience, length, loadedPost);
+  selectedVideos = [];
+  if (topic) fetchYouTubeVideos(topic);
+  if (loadedPost?.video_ids) {
+    try {
+      const ids = JSON.parse(loadedPost.video_ids);
+      if (ids.length) {
+        // Re-select saved videos
+        ids.forEach(v => selectedVideos.push(v));
+        renderSelectedVideos();
+      }
+    } catch {}
+  }
+}
+
+// ── FACEBOOK & INSTAGRAM AUTO-POSTING ────────────────────────
+document.getElementById('post-social-btn')?.addEventListener('click', postToSocial);
+
+async function postToSocial() {
+  const fbToken  = localStorage.getItem('ks_fb_token') || '';
+  const fbPageId = localStorage.getItem('ks_fb_page_id') || '';
+
+  if (!fbToken || !fbPageId) {
+    toast('Add your Facebook Page token and Page ID in Settings', 'error');
+    return;
+  }
+
+  const title   = document.getElementById('draft-title').innerText.trim();
+  const body    = document.getElementById('draft-body').innerText.trim();
+  const fbCaption = getFacebookCaption();
+  const imgUrl  = currentPost.image_url || null;
+  const postUrl = currentPost.slug
+    ? `https://kayalsoulpath.com/pages/insights/${currentPost.slug}.html`
+    : 'https://kayalsoulpath.com/insights';
+
+  const fbStatus = document.getElementById('fb-status');
+  const btn = document.getElementById('post-social-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting…';
+  fbStatus.style.display = 'block';
+  fbStatus.style.background = '#fef9c3';
+  fbStatus.style.color = '#854d0e';
+  fbStatus.textContent = 'Posting to Facebook…';
+
+  let fbSuccess = false, igSuccess = false;
+
+  try {
+    // ── Post to Facebook Page ─────────────────────────────────
+    const fbBody = {
+      message: fbCaption + '\n\n' + postUrl,
+      published: true,
+    };
+    if (imgUrl) fbBody.link = postUrl;
+
+    const fbRes = await fetch(
+      `https://graph.facebook.com/v19.0/${fbPageId}/feed`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...fbBody, access_token: fbToken }),
+      }
+    );
+    const fbData = await fbRes.json();
+    if (fbData.error) throw new Error('Facebook: ' + fbData.error.message);
+    fbSuccess = true;
+    fbStatus.textContent = '✓ Posted to Facebook! Now posting to Instagram…';
+
+    // ── Get Instagram Business Account ID ────────────────────
+    const igAccountRes = await fetch(
+      `https://graph.facebook.com/v19.0/${fbPageId}?fields=instagram_business_account&access_token=${fbToken}`
+    );
+    const igAccountData = await igAccountRes.json();
+    const igId = igAccountData?.instagram_business_account?.id;
+
+    if (!igId) {
+      fbStatus.style.background = '#dcfce7';
+      fbStatus.style.color = '#15803d';
+      fbStatus.textContent = '✓ Posted to Facebook! Instagram not connected to this Page — check Meta Business Suite.';
+      btn.innerHTML = '<i class="fab fa-facebook"></i>&nbsp;<i class="fab fa-instagram"></i> &nbsp;Post to Facebook & Instagram';
+      btn.disabled = false;
+      return;
+    }
+
+    // ── Post to Instagram ─────────────────────────────────────
+    const igCaption = getInstagramCaption();
+
+    if (imgUrl) {
+      // Create media container
+      const containerRes = await fetch(
+        `https://graph.facebook.com/v19.0/${igId}/media`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            image_url: imgUrl,
+            caption: igCaption,
+            access_token: fbToken,
+          }),
+        }
+      );
+      const containerData = await containerRes.json();
+      if (containerData.error) throw new Error('Instagram container: ' + containerData.error.message);
+
+      // Publish the container
+      const publishRes = await fetch(
+        `https://graph.facebook.com/v19.0/${igId}/media_publish`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            creation_id: containerData.id,
+            access_token: fbToken,
+          }),
+        }
+      );
+      const publishData = await publishRes.json();
+      if (publishData.error) throw new Error('Instagram publish: ' + publishData.error.message);
+      igSuccess = true;
+    } else {
+      fbStatus.textContent = '✓ Facebook posted! Instagram requires an image — add a featured image to post there too.';
+    }
+
+    // ── Final status ──────────────────────────────────────────
+    fbStatus.style.background = '#dcfce7';
+    fbStatus.style.color = '#15803d';
+    if (igSuccess) {
+      fbStatus.textContent = '🎉 Posted to Facebook AND Instagram successfully!';
+      toast('🎉 Live on Facebook and Instagram!', 'success');
+    } else {
+      fbStatus.textContent = '✓ Posted to Facebook! Instagram skipped — no image selected.';
+      toast('✓ Posted to Facebook', 'success');
+    }
+
+    // Log to admin_logs in Supabase
+    if (sbClient) {
+      await sbClient.from('admin_logs').insert({
+        action: 'social_post',
+        details: { platforms: [fbSuccess && 'facebook', igSuccess && 'instagram'].filter(Boolean), title },
+        created_at: new Date().toISOString(),
+      });
+    }
+
+  } catch(err) {
+    fbStatus.style.background = '#fee2e2';
+    fbStatus.style.color = '#dc2626';
+    fbStatus.textContent = '✗ Error: ' + err.message;
+    toast('Posting failed: ' + err.message, 'error');
+  } finally {
+    btn.innerHTML = '<i class="fab fa-facebook"></i>&nbsp;<i class="fab fa-instagram"></i> &nbsp;Post to Facebook & Instagram';
+    btn.disabled = false;
+  }
+}
+
+// Get the Facebook caption from social cards
+function getFacebookCaption() {
+  const cards = document.querySelectorAll('.social-card');
+  for (const card of cards) {
+    const name = card.querySelector('.social-card-name');
+    if (name && name.innerText.includes('Facebook')) {
+      return card.querySelector('.social-card-body').innerText;
+    }
+  }
+  return document.getElementById('draft-title').innerText;
+}
+
+// Get the Instagram caption from social cards
+function getInstagramCaption() {
+  const cards = document.querySelectorAll('.social-card');
+  for (const card of cards) {
+    const name = card.querySelector('.social-card-name');
+    if (name && name.innerText.includes('Instagram')) {
+      return card.querySelector('.social-card-body').innerText;
+    }
+  }
+  return document.getElementById('draft-title').innerText;
+}
+
+// Enable post-social-btn when social content is generated
+const _origGenerateSocial = generateSocial;
+function generateSocial() {
+  _origGenerateSocial();
+  const btn = document.getElementById('post-social-btn');
+  if (btn) btn.disabled = false;
+}
+
+// ── UPDATE saveSettings for new keys ─────────────────────────
+const _origSaveSettings2 = saveSettings;
+function saveSettings() {
+  const ytKey   = document.getElementById('youtube-key')?.value.trim();
+  const fbToken = document.getElementById('fb-token')?.value.trim();
+  const fbPage  = document.getElementById('fb-page-id')?.value.trim();
+  if (ytKey)   localStorage.setItem('ks_youtube_key', ytKey);
+  if (fbToken) localStorage.setItem('ks_fb_token', fbToken);
+  if (fbPage)  localStorage.setItem('ks_fb_page_id', fbPage);
+  _origSaveSettings2();
+}
+
+// ── LOAD saved keys on init ───────────────────────────────────
+window.addEventListener('load', () => {
+  const yt = localStorage.getItem('ks_youtube_key') || 'AIzaSyCyx2MAesnefXW4iSzC8zSMgllq6pdq4d4';
+  const fb = localStorage.getItem('ks_fb_token') || '';
+  const pg = localStorage.getItem('ks_fb_page_id') || '';
+  if (document.getElementById('youtube-key')) document.getElementById('youtube-key').value = yt;
+  if (fb && document.getElementById('fb-token')) document.getElementById('fb-token').value = fb;
+  if (pg && document.getElementById('fb-page-id')) document.getElementById('fb-page-id').value = pg;
+
+  // Init discipline filters
+  renderDisciplineFilters();
+  shuffleTopics();
+});
+
+// ── SAVE videos to Supabase alongside post ───────────────────
+const _origSavePost = savePost;
+async function savePost(publish = false) {
+  // Store selected video IDs in currentPost before saving
+  if (selectedVideos.length > 0) {
+    currentPost.video_ids = JSON.stringify(selectedVideos);
+  }
+  await _origSavePost(publish);
+}
+
+
+
+// ── YOUTUBE VIDEO SEARCH & EMBED ──────────────────────────────
+let selectedVideoId = null;
+let selectedVideoTitle = null;
+
+async function searchYouTube(query) {
+  const ytKey = localStorage.getItem('ks_yt_key') || 'AIzaSyCyx2MAesnefXW4iSzC8zSMgllq6pdq4d4';
+  if (!ytKey) { toast('YouTube API key not configured','error'); return; }
+
+  const grid = document.getElementById('yt-grid');
+  grid.innerHTML = '<div style="font-size:12px;color:var(--stone);padding:8px"><i class="fas fa-spinner fa-spin"></i> Searching YouTube…</div>';
+  document.getElementById('yt-picker').style.display = 'block';
+
+  try {
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query + ' soul spirituality wisdom')}&maxResults=5&type=video&videoEmbeddable=true&key=${ytKey}`;
+    const r = await fetch(url);
+    if (!r.ok) throw new Error('YouTube API error ' + r.status);
+    const data = await r.json();
+    const items = data.items || [];
+
+    if (items.length === 0) {
+      grid.innerHTML = '<div style="font-size:12px;color:var(--stone)">No videos found for this topic.</div>';
+      return;
+    }
+
+    grid.innerHTML = items.map(v => `
+      <div class="yt-result" data-id="${v.id.videoId}" data-title="${v.snippet.title.replace(/"/g,'&quot;')}"
+        style="display:flex;gap:10px;padding:10px;border:1.5px solid var(--cream);border-radius:6px;cursor:pointer;transition:all .18s;background:var(--linen)"
+        onmouseover="this.style.borderColor='var(--terra)'" onmouseout="this.style.borderColor=selectedVideoId===this.dataset.id?'var(--terra)':'var(--cream)'"
+        onclick="selectVideo(this)">
+        <img src="https://img.youtube.com/vi/${v.id.videoId}/mqdefault.jpg" style="width:100px;height:56px;object-fit:cover;border-radius:4px;flex-shrink:0">
+        <div style="flex:1;min-width:0">
+          <p style="font-size:12px;font-weight:500;color:var(--bark);line-height:1.4;margin-bottom:4px">${v.snippet.title}</p>
+          <p style="font-size:10.5px;color:var(--stone)">${v.snippet.channelTitle}</p>
+        </div>
+        <div style="flex-shrink:0;color:var(--stone);font-size:11px;padding-top:2px">${selectedVideoId===v.id.videoId?'✓ Selected':''}</div>
+      </div>`).join('');
+
+  } catch(err) {
+    grid.innerHTML = `<div style="font-size:11px;color:#dc2626">${err.message}</div>`;
+  }
+}
+
+function selectVideo(el) {
+  selectedVideoId = el.dataset.id;
+  selectedVideoTitle = el.dataset.title;
+  // Highlight selected
+  document.querySelectorAll('.yt-result').forEach(r => {
+    r.style.borderColor = r.dataset.id === selectedVideoId ? 'var(--terra)' : 'var(--cream)';
+    r.style.background = r.dataset.id === selectedVideoId ? 'rgba(181,98,42,.04)' : 'var(--linen)';
+    r.querySelector('div:last-child').textContent = r.dataset.id === selectedVideoId ? '✓ Selected' : '';
+  });
+  // Show embed preview
+  document.getElementById('yt-selected-embed').innerHTML = `
+    <iframe width="100%" height="200" src="https://www.youtube.com/embed/${selectedVideoId}"
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen style="border-radius:6px"></iframe>`;
+  document.getElementById('yt-selected-wrap').style.display = 'block';
+  currentPost.video_id = selectedVideoId;
+  currentPost.video_title = selectedVideoTitle;
+  toast('Video selected — will be embedded in the published post','success');
+}
+
+function removeVideo() {
+  selectedVideoId = null; selectedVideoTitle = null;
+  currentPost.video_id = null; currentPost.video_title = null;
+  document.getElementById('yt-selected-wrap').style.display = 'none';
+  document.getElementById('yt-grid').innerHTML = '';
+  document.getElementById('yt-picker').style.display = 'none';
+  toast('Video removed','info');
+}
+
+document.getElementById('yt-search-btn')?.addEventListener('click', () => {
+  const topic = getTopic() || 'ancient wisdom spiritual';
+  searchYouTube(topic);
+});
+
+// ── AUTO-SEARCH YOUTUBE AFTER GENERATE ────────────────────────
+// Hook into the existing generate flow — search YouTube after images
+const _origGenDone = window._genDone;
+
+// ── FACEBOOK + INSTAGRAM AUTO-POST ────────────────────────────
+async function testMetaConnection() {
+  const token = localStorage.getItem('ks_meta_token') || document.getElementById('meta-token')?.value.trim();
+  const pageId = localStorage.getItem('ks_fb_page_id') || document.getElementById('fb-page-id')?.value.trim();
+  const statusEl = document.getElementById('meta-status');
+
+  if (!token || !pageId) {
+    statusEl.textContent = '✗ Please fill in token and Page ID first';
+    statusEl.style.color = '#dc2626';
+    return;
+  }
+
+  statusEl.textContent = 'Testing connection…';
+  statusEl.style.color = 'var(--stone)';
+
+  try {
+    const r = await fetch(`https://graph.facebook.com/v19.0/${pageId}?fields=name,fan_count&access_token=${token}`);
+    const data = await r.json();
+    if (data.error) throw new Error(data.error.message);
+    statusEl.textContent = `✓ Connected to: ${data.name} (${(data.fan_count||0).toLocaleString()} followers)`;
+    statusEl.style.color = '#16a34a';
+    toast('Meta connection successful', 'success');
+  } catch(err) {
+    statusEl.textContent = '✗ ' + err.message;
+    statusEl.style.color = '#dc2626';
+  }
+}
+
+async function postToSocial() {
+  const token    = localStorage.getItem('ks_meta_token') || document.getElementById('meta-token')?.value.trim();
+  const pageId   = localStorage.getItem('ks_fb_page_id') || document.getElementById('fb-page-id')?.value.trim();
+  const igId     = localStorage.getItem('ks_ig_id') || document.getElementById('ig-account-id')?.value.trim();
+
+  if (!token || !pageId) {
+    toast('Add your Meta token and Page ID in Settings first', 'error');
+    return;
+  }
+
+  const title    = document.getElementById('draft-title').innerText.trim();
+  const body     = (document.getElementById('draft-body').innerText || '').trim();
+  const excerpt  = body.substring(0, 200) + '…';
+  const url      = 'https://kayalsoulpath.com/insights';
+  const category = document.getElementById('category-sel').value;
+  const imgUrl   = currentPost.image_url || null;
+
+  // Build Facebook caption
+  const fbCaption = `${title}\n\n${excerpt}\n\nRead the full insight: ${url}\n\n#SoulBlueprintScience #${category.replace(/\s+/g,'')} #KAYAL`;
+
+  showOverlay('Posting to Facebook…');
+
+  try {
+    // ── Post to Facebook Page ─────────────────────────────────
+    const fbBody = {
+      message: fbCaption,
+      access_token: token,
+    };
+    if (imgUrl) fbBody.link = url; // attach article URL with preview
+
+    const fbRes = await fetch(`https://graph.facebook.com/v19.0/${pageId}/feed`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(fbBody),
+    });
+    const fbData = await fbRes.json();
+    if (fbData.error) throw new Error('Facebook: ' + fbData.error.message);
+
+    // ── Post to Instagram (if configured) ────────────────────
+    let igResult = null;
+    if (igId && imgUrl) {
+      // Instagram requires an image URL
+      // Step 1: Create media container
+      const igCreateRes = await fetch(`https://graph.facebook.com/v19.0/${igId}/media`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          image_url: imgUrl,
+          caption: `✨ ${title}\n\n${excerpt}\n\n🔗 Link in bio\n\n#SoulBlueprintScience #${category.replace(/\s+/g,'')} #KAYAL #SoulPath #SpiritualWisdom`,
+          access_token: token,
+        }),
+      });
+      const igCreate = await igCreateRes.json();
+      if (igCreate.error) throw new Error('Instagram: ' + igCreate.error.message);
+
+      // Step 2: Publish the container
+      const igPubRes = await fetch(`https://graph.facebook.com/v19.0/${igId}/media_publish`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ creation_id: igCreate.id, access_token: token }),
+      });
+      igResult = await igPubRes.json();
+      if (igResult.error) throw new Error('Instagram publish: ' + igResult.error.message);
+    }
+
+    hideOverlay();
+
+    const igMsg = igResult ? ' and Instagram' : ' (Instagram skipped — no image or account ID)';
+    toast(`✓ Posted to Facebook${igMsg}`, 'success');
+
+    // Log to admin_logs
+    if (sbClient) {
+      await sbClient.from('admin_logs').insert({
+        action: 'social_post',
+        details: { facebook_post_id: fbData.id, instagram: !!igResult, title },
+        created_at: new Date().toISOString(),
+      });
+    }
+
+  } catch(err) {
+    hideOverlay();
+    toast('Social post failed: ' + err.message, 'error');
+    console.error('Social post error:', err);
+  }
+}
+
+document.getElementById('social-post-btn')?.addEventListener('click', postToSocial);
+
+// ── SAVE SOCIAL SETTINGS ──────────────────────────────────────
+const _origSaveSettings2 = saveSettings;
+function saveSettings() {
+  const metaToken = document.getElementById('meta-token')?.value.trim();
+  const fbPageId  = document.getElementById('fb-page-id')?.value.trim();
+  const igId      = document.getElementById('ig-account-id')?.value.trim();
+  const ytKey     = document.getElementById('yt-key')?.value.trim();
+  if (metaToken) localStorage.setItem('ks_meta_token', metaToken);
+  if (fbPageId)  localStorage.setItem('ks_fb_page_id', fbPageId);
+  if (igId)      localStorage.setItem('ks_ig_id', igId);
+  if (ytKey)     localStorage.setItem('ks_yt_key', ytKey);
+  _origSaveSettings2();
+}
+
+// Load social settings on init
+window.addEventListener('load', () => {
+  const metaToken = localStorage.getItem('ks_meta_token');
+  const fbPageId  = localStorage.getItem('ks_fb_page_id');
+  const igId      = localStorage.getItem('ks_ig_id');
+  if (metaToken && document.getElementById('meta-token'))  document.getElementById('meta-token').value  = metaToken;
+  if (fbPageId  && document.getElementById('fb-page-id')) document.getElementById('fb-page-id').value  = fbPageId;
+  if (igId      && document.getElementById('ig-account-id')) document.getElementById('ig-account-id').value = igId;
+});
+
+// ── ENABLE SOCIAL POST BTN AFTER DRAFT READY ─────────────────
+const _origRenderDraft = renderDraft;
+function renderDraft(html, topic, angle, category, audience, length, loadedPost) {
+  _origRenderDraft(html, topic, angle, category, audience, length, loadedPost);
+
+  // Enable social post button
+  const spBtn = document.getElementById('social-post-btn');
+  if (spBtn) spBtn.disabled = false;
+
+  // Auto-search YouTube for this topic
+  const ytKey = localStorage.getItem('ks_yt_key') || 'AIzaSyCyx2MAesnefXW4iSzC8zSMgllq6pdq4d4';
+  if (ytKey && topic) {
+    setTimeout(() => searchYouTube(topic), 500);
+  }
+}
+
+// ── INCLUDE VIDEO IN SAVED POST ───────────────────────────────
+// Patch savePost to include video_id and video_title in payload
+const _origSavePost = savePost;
+async function savePost(publish = false) {
+  await _origSavePost(publish);
+}
+
+// ── ADD VIDEO EMBED TO RENDERED POST BODY ─────────────────────
+// When loading a saved post that has a video, show the embed
+const _origLoadPost = loadPost;
+async function loadPost(id) {
+  await _origLoadPost(id);
+  // Check if loaded post has a video
+  if (currentPost.video_id) {
+    selectedVideoId = currentPost.video_id;
+    selectedVideoTitle = currentPost.video_title;
+    document.getElementById('yt-selected-embed').innerHTML = `
+      <iframe width="100%" height="200" src="https://www.youtube.com/embed/${selectedVideoId}"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen style="border-radius:6px"></iframe>`;
+    document.getElementById('yt-selected-wrap').style.display = 'block';
+    document.getElementById('yt-picker').style.display = 'block';
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
+new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
+"https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,"script","dataLayer","GTM-KRTLBL5T");</script>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="shortcut icon" type="image/png" href="images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Soul Blueprint Tools | KAYAL SoulPath Institute</title>
+<meta name="description" content="8 free Soul Blueprint Science tools: Life Blueprint, Compatibility Blueprint, Soul Timing Window, Face Energy Reader, Hand Map Reader and more.">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ══════════════════════════════════════════════════════════
+   TOOLS PAGE — self-contained styles
+   Uses only confirmed tokens from css/global.css, plus its
+   own locally-defined additions (e.g. --k-gold, which does
+   not exist as a shared token and should not be assumed).
+   ══════════════════════════════════════════════════════════ */
+:root{
+  --k-gold: #c99e2c;
+  --k-gold-dim: rgba(201,158,44,.32);
+}
+
+/* ── Compact hero: this page's job is to get to the tools
+   immediately, not hold a reader with long-form text, so the
+   shared .page-hero/.section spacing (built for editorial
+   pages) is overridden here, locally, without touching the
+   shared classes used elsewhere on the site. ────────────── */
+.page-hero{padding:28px 0 22px}
+.page-hero-title{margin-bottom:6px}
+.tools-section{padding:20px 0 64px}
+
+/* ── Filter chips + counter ──────────────────────────────── */
+.tools-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
+.filter-chips{display:flex;flex-wrap:wrap;gap:8px}
+.filter-chip{font-family:var(--ff-body);font-size:12.5px;font-weight:500;letter-spacing:.03em;color:var(--slate);background:var(--white);border:1px solid var(--cream);border-radius:20px;padding:8px 18px;cursor:pointer;transition:all .2s var(--ease)}
+.filter-chip:hover{border-color:var(--terra);color:var(--terra)}
+.filter-chip.active{background:var(--ink);border-color:var(--ink);color:var(--linen)}
+.tools-progress{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--stone)}
+.tools-progress strong{color:var(--terra);font-size:14px}
+.progress-dots{display:flex;gap:4px}
+.progress-dot{width:6px;height:6px;border-radius:50%;background:var(--cream-mid);transition:background .4s}
+.progress-dot.done{background:var(--terra)}
+
+/* ── Tool grid + cards ───────────────────────────────────── */
+.tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.tool-card{background:var(--white);border:1px solid var(--cream);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease);position:relative}
+.tool-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--tc,var(--terra))}
+.tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--tc,var(--terra))}
+.tool-card.filtered-out{display:none}
+.tc-head{padding:26px 24px 16px;display:flex;align-items:flex-start;gap:16px}
+.tc-icon-wrap{flex-shrink:0;width:52px;height:52px;border-radius:50%;background:var(--parchment);border:1.5px solid var(--tc,var(--terra));display:flex;align-items:center;justify-content:center;font-size:24px;transition:background .25s,transform .25s}
+.tool-card:hover .tc-icon-wrap{background:var(--tc,var(--terra));transform:scale(1.06)}
+.tc-titles{flex:1;min-width:0}
+.tc-pillar{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--tc,var(--terra));font-weight:600;margin-bottom:5px}
+.tc-name{font-family:var(--ff-heading);font-size:19.5px;color:var(--ink);line-height:1.2}
+.tc-hook{font-family:var(--ff-heading);font-size:13px;font-style:italic;color:var(--stone);line-height:1.6;padding:0 24px;margin-bottom:14px}
+.tc-body{padding:0 24px 16px;flex:1}
+.tc-desc{font-size:12.5px;color:var(--stone);line-height:1.65;margin-bottom:14px}
+.tc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tc-tag{font-size:10px;padding:3px 10px;border-radius:20px;background:var(--parchment);border:1px solid var(--cream);color:var(--slate)}
+.tc-foot{padding:14px 24px 20px;border-top:1px solid var(--cream);display:flex;align-items:center;justify-content:space-between}
+.tc-meta{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone);display:flex;align-items:center;gap:5px}
+.tc-cta{padding:9px 18px;background:var(--tc,var(--terra));color:#fff;border:none;border-radius:4px;font-family:var(--ff-body);font-size:11.5px;font-weight:600;letter-spacing:.04em;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:all .2s}
+.tc-cta:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.tc-blueprint{--tc:#b5622a}
+.tc-name-tool{--tc:#7a4fb5}
+.tc-uday{--tc:#3a6ab5}
+.tc-compat{--tc:#b54a78}
+.tc-timing{--tc:#3a9a6e}
+.tc-face{--tc:#7a3fb5}
+.tc-hand{--tc:#3a8a55}
+.tc-meditation{--tc:#8a7a4a}
+
+/* ── Closing band: LifeOS + Affiliate combined ──────────────── */
+.closing-band{background:var(--ink);border-radius:var(--r-lg);padding:48px 44px;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;margin-top:56px}
+.closing-main-title{font-family:var(--ff-heading);font-size:24px;color:var(--linen);margin-bottom:10px;line-height:1.3}
+.closing-main-desc{font-size:14px;color:rgba(250,247,242,.55);line-height:1.75;margin-bottom:22px}
+.closing-main-desc.personalized{color:rgba(250,247,242,.7)}
+.closing-divider{border-left:1px solid rgba(250,247,242,.1);padding-left:40px}
+.closing-aff-title{font-family:var(--ff-heading);font-size:15px;font-style:italic;color:var(--k-gold);margin-bottom:8px}
+.closing-aff-desc{font-size:12.5px;color:rgba(250,247,242,.45);line-height:1.65;margin-bottom:16px}
+
+@media(max-width:900px){
+  .tools-grid{grid-template-columns:1fr}
+  .closing-band{grid-template-columns:1fr;padding:32px 24px}
+  .closing-divider{border-left:none;border-top:1px solid rgba(250,247,242,.1);padding-left:0;padding-top:24px}
+}
+@media(max-width:540px){
+  .tools-controls{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRTLBL5T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- Announcement -->
+<div class="announcement-bar">
+  <span>New intake 2026 &middot; Soul Blueprint Science. <strong>Limited places.</strong></span>
+  <a href="pages/courses/index.html">View all courses</a>
+  <button class="announcement-bar-close">x</button>
+</div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-brand-name">KAYAL</div>
+      <div class="nav-brand-sub">SoulPath Institute</div>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+      <li class="nav-item">
+        <button class="nav-link" data-dropdown="courses">Courses
+          <svg class="nav-caret" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="nav-dropdown">
+          <a href="pages/courses/numerology.html">&#128290; Numerology</a>
+          <a href="pages/courses/astrology.html">&#9800; Astrology</a>
+          <a href="pages/courses/physiognomy.html">&#128065;&#65039; Physiognomy &middot; Face Reading</a>
+          <a href="pages/courses/palmistry.html">&#129354; Palmistry &middot; Palm Reading</a>
+          <a href="pages/courses/spirit-science.html">&#10024; Spirit Science</a>
+          <a href="pages/courses/index.html" style="border-top:1px solid rgba(201,158,44,.15);margin-top:6px;padding-top:12px;color:var(--terra)">All Programmes &#8594;</a>
+        </div>
+      </li>
+      <li class="nav-item"><a href="tools.html" class="nav-link">Free Tools</a></li>
+      <li class="nav-item"><a href="insights.html" class="nav-link">Insights</a></li>
+      <li class="nav-item"><a href="consultation.html" class="nav-link">Consultation</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="pages/courses/index.html" class="btn btn-outline" style="font-size:12px;padding:9px 20px">Enrol Now</a>
+      <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:12px;padding:9px 20px">Open LifeOS</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobile-nav">
+  <button class="nav-mobile-close" id="mobile-close">x</button>
+  <ul class="nav-mobile-links">
+    <li><a href="about.html">About</a></li>
+    <li>
+      <button class="nav-mobile-toggle">Courses &#9660;</button>
+      <div class="nav-mobile-sub">
+        <a href="pages/courses/numerology.html">Numerology</a>
+        <a href="pages/courses/astrology.html">Astrology</a>
+        <a href="pages/courses/physiognomy.html">Physiognomy</a>
+        <a href="pages/courses/palmistry.html">Palmistry</a>
+        <a href="pages/courses/spirit-science.html">Spirit Science</a>
+        <a href="pages/courses/index.html">All Programmes</a>
+      </div>
+    </li>
+    <li><a href="tools.html">Free Tools</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="consultation.html">Consultation</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-mobile-actions">
+    <a href="pages/courses/index.html" class="btn btn-outline" style="justify-content:center">Enrol Now</a>
+    <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-primary" style="justify-content:center">Open LifeOS</a>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="page-hero">
+  <div class="container">
+    <div class="eyebrow">Free Tools &middot; Soul Blueprint Science</div>
+    <h1 class="page-hero-title">Eight tools.<br><em>Four pillars.</em></h1>
+    <p class="page-hero-sub">Free to explore, in any order, for as long as you like. What you do with what you find is entirely your choice.</p>
+  </div>
+</div>
+
+<section class="section tools-section">
+  <div class="container">
+
+    <div class="tools-controls reveal">
+      <div class="filter-chips" id="filter-chips" role="group" aria-label="Filter tools by pillar">
+        <button class="filter-chip active" data-filter="all">All Tools</button>
+        <button class="filter-chip" data-filter="numerology">Numerology</button>
+        <button class="filter-chip" data-filter="physiognomy">Physiognomy</button>
+        <button class="filter-chip" data-filter="palmistry">Palmistry</button>
+        <button class="filter-chip" data-filter="stillness">Stillness</button>
+      </div>
+      <div class="tools-progress">
+        <span>Explored <strong id="cnum">0</strong> of 8</span>
+        <div class="progress-dots">
+          <div class="progress-dot" id="pd1"></div><div class="progress-dot" id="pd2"></div><div class="progress-dot" id="pd3"></div><div class="progress-dot" id="pd4"></div>
+          <div class="progress-dot" id="pd5"></div><div class="progress-dot" id="pd6"></div><div class="progress-dot" id="pd7"></div><div class="progress-dot" id="pd8"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tools-grid reveal" id="tools-grid">
+
+      <!-- Life Blueprint -->
+      <div class="tool-card tc-blueprint" data-pillar="numerology" data-tool="1" onclick="goTool(1,'pages/tool-life-blueprint.html')">
+        <div class="tc-head">
+          <div class="tc-icon-wrap">🔢</div>
+          <div class="tc-titles">
+            <div class="tc-pillar">The First Pillar</div>
+            <div class="tc-name">Life Blueprint</div>
+          </div>
+        </div>
+        <p class="tc-hook">"The number encoded into the day you were born shapes the entire arc of your life."</p>
+        <div class="tc-body">
+          <p class="tc-desc">Discover your Soul Number and all four Pinnacle cycles, with a complete personalised reading of your gifts, challenges, and current timing.</p>
+          <div class="tc-tags"><span class="tc-tag">Life purpose</span><span class="tc-tag">Core challenges</span><span class="tc-tag">Pinnacle cycles</span></div>
+        </div>
+        <div class="tc-foot">
+          <div class="tc-meta"><i class="fas fa-bolt"></i> 2 min</div>
+          <a href="pages/tool-life-blueprint.html" class="tc-cta" onclick="event.stopPropagation()"><i class="fas fa-arrow-right"></i> Begin</a>
+        </div>
+      </div>
+
+      <!-- Name Vibration -->
+      <div class="tool-card tc-name-tool" data-pillar="numerology" data-tool="2" onclick="goTool(2,'pages/tool-name-vibration.html')">
+        <div class="tc-head">
+          <div class="tc-icon-wrap">✍️</div>
+          <div class="tc-titles">
+            <div class="tc-pillar">The First Pillar</div>
+            <div class="tc-name">Name Vibration</div>
+          </div>
+        </div>
+        <p class="tc-hook">"Every name carries a precise numerical signature. Most people have never read theirs."</p>
+        <div class="tc-body">
+          <p class="tc-desc">Enter any name to reveal its Expression Number, Soul Urge, and Personality: the signature it broadcasts and the nature it shapes in its bearer.</p>
+          <div class="tc-tags"><span class="tc-tag">Expression number</span><span class="tc-tag">Soul urge</span><span class="tc-tag">Any name</span></div>
+        </div>
+        <div class="tc-foot">
+          <div class="tc-meta"><i class="fas fa-bolt"></i> 1 min</div>
+          <a href="pages/tool-name-vibration.html" class="tc-cta" onclick="event.stopPropagation()"><i class="fas fa-arrow-right"></i> Begin</a>
+        </div>
+      </div>
+
+      <!-- Compatibility -->
+      <div class="tool-card tc-compat" data-pillar="numerology" data-tool="4" onclick="goTool(4,'pages/tool-compatibility.html')">
+        <div class="tc-head">
+          <div class="tc-icon-wrap">💞</div>
+          <div class="tc-titles">
+            <div class="tc-pillar">The First Pillar</div>
+            <div class="tc-name">Compatibility Blueprint</div>
+          </div>
+        </div>
+        <p class="tc-hook">"Some connections are written before the meeting. Yours is no exception."</p>
+        <div class="tc-body">
+          <p class="tc-desc">Enter two birth dates to reveal the soul-level dynamic between you: the gifts, the friction, and what each of you brings that the other cannot provide alone.</p>
+          <div class="tc-tags"><span class="tc-tag">Alignment score</span><span class="tc-tag">Dynamic reading</span><span class="tc-tag">Year timing</span></div>
+        </div>
+        <div class="tc-foot">
+          <div class="tc-meta"><i class="fas fa-bolt"></i> 3 min</div>
+          <a href="pages/tool-compatibility.html" class="tc-cta" onclick="event.stopPropagation()"><i class="fas fa-arrow-right"></i> Begin</a>
+        </div>
+      </div>
+
+      <!-- Universal Day -->
+      <div class="tool-card tc-uday" data-pillar="numerology" data-tool="3" onclick="goTool(3,'pages/tool-universal-day.html')">
+        <div class="tc-head">
+          <div class="tc-icon-wrap">📅</div>
+          <div class="tc-titles">
+            <div class="tc-pillar">Timing &amp; Cycles</div>
+            <div class="tc-name">Universal Day</div>
+          </div>
+        </div>
+        <p class="tc-hook">"Every date carries a vibration. The day you choose is not neutral."</p>
+        <div class="tc-body">
+          <p class="tc-desc">Discover the universal energy of today, any future date, or any date in history, and your personal vibration within it.</p>
+          <div class="tc-tags"><span class="tc-tag">Today's energy</span><span class="tc-tag">Personal day</span><span class="tc-tag">Decision timing</span></div>
+        </div>
+        <div class="tc-foot">
+          <div class="tc-meta"><i class="fas fa-bolt"></i> Instant</div>
+          <a href="pages/tool-universal-day.html" class="tc-cta" onclick="event.stopPropagation()"><i class="fas fa-arrow-right"></i> Begin</a>
+        </div>
+      </div>
+
+      <!-- Soul Timing -->
+      <div class="tool-card tc-timing" data-pillar="numerology" data-tool="5" onclick="goTool(5,'pages/tool-soul-timing.html')">
+        <div class="tc-head">
+          <div class="tc-icon-wrap">🌀</div>
+          <div class="tc-titles">
+            <div class="tc-pillar">Timing &amp; Cycles</div>
+            <div class="tc-name">Soul Timing Window</div>
+          </div>
+        </div>
+        <p class="tc-hook">"Life moves in nine-year cycles. Knowing which one you are in changes everything."</p>
+        <div class="tc-body">
+          <p class="tc-desc">Discover your current nine-year cycle position: what year you are in, what it is asking of you, and what it is preparing you for.</p>
+          <div class="tc-tags"><span class="tc-tag">Personal year</span><span class="tc-tag">Nine-year map</span><span class="tc-tag">What to do now</span></div>
+        </div>
+        <div class="tc-foot">
+          <div class="tc-meta"><i class="fas fa-bolt"></i> 3 min</div>
+          <a href="pages/tool-soul-timing.html" class="tc-cta" onclick="event.stopPropagation()"><i class="fas fa-arrow-right"></i> Begin</a>
+        </div>
+      </div>
+
+      <!-- Face Reader -->
+      <div class="tool-card tc-face" data-pillar="physiognomy" data-tool="6" onclick="goTool(6,'pages/tool-face-reader.html')">
+        <div class="tc-head">
+          <div class="tc-icon-wrap">👁️</div>
+          <div class="tc-titles">
+            <div class="tc-pillar">The Third Pillar</div>
+            <div class="tc-name">Face Energy Reader</div>
+          </div>
+        </div>
+        <p class="tc-hook">"Your face has been speaking your whole life. This is the first time someone has read what it says."</p>
+        <div class="tc-body">
+          <p class="tc-desc">Upload a photo. Real facial analysis identifies your elemental face type and delivers a deep personalised reading, built on your actual measurements.</p>
+          <div class="tc-tags"><span class="tc-tag">Elemental type</span><span class="tc-tag">Real face geometry</span><span class="tc-tag">Privacy safe</span></div>
+        </div>
+        <div class="tc-foot">
+          <div class="tc-meta"><i class="fas fa-camera"></i> Photo</div>
+          <a href="pages/tool-face-reader.html" class="tc-cta" onclick="event.stopPropagation()"><i class="fas fa-arrow-right"></i> Begin</a>
+        </div>
+      </div>
+
+      <!-- Hand Map -->
+      <div class="tool-card tc-hand" data-pillar="palmistry" data-tool="7" onclick="goTool(7,'pages/tool-hand-map.html')">
+        <div class="tc-head">
+          <div class="tc-icon-wrap">🤚</div>
+          <div class="tc-titles">
+            <div class="tc-pillar">The Fourth Pillar</div>
+            <div class="tc-name">Hand Map Reader</div>
+          </div>
+        </div>
+        <p class="tc-hook">"Your hand is the most intimate map you carry. Every line has always known."</p>
+        <div class="tc-body">
+          <p class="tc-desc">Upload a palm photo. Real hand analysis reads your geometry and line formations to deliver your hand type and traits, your actual lines, not a stock illustration.</p>
+          <div class="tc-tags"><span class="tc-tag">Hand type</span><span class="tc-tag">Line quality</span><span class="tc-tag">Privacy safe</span></div>
+        </div>
+        <div class="tc-foot">
+          <div class="tc-meta"><i class="fas fa-camera"></i> Photo</div>
+          <a href="pages/tool-hand-map.html" class="tc-cta" onclick="event.stopPropagation()"><i class="fas fa-arrow-right"></i> Begin</a>
+        </div>
+      </div>
+
+      <!-- Meditation Timer -->
+      <div class="tool-card tc-meditation" data-pillar="stillness" data-tool="8" onclick="goTool(8,'pages/tool-meditation-timer.html')">
+        <div class="tc-head">
+          <div class="tc-icon-wrap">🕯️</div>
+          <div class="tc-titles">
+            <div class="tc-pillar">Stillness Practice</div>
+            <div class="tc-name">Sacred Timer</div>
+          </div>
+        </div>
+        <p class="tc-hook">"Five minutes of genuine stillness changes the quality of every hour that follows it."</p>
+        <div class="tc-body">
+          <p class="tc-desc">A breath-guided meditation timer with sacred geometry, intention-setting, and session tracking. No account, no app, just a quiet room.</p>
+          <div class="tc-tags"><span class="tc-tag">Breath guides</span><span class="tc-tag">Intention setting</span><span class="tc-tag">5&ndash;45 min</span></div>
+        </div>
+        <div class="tc-foot">
+          <div class="tc-meta"><i class="fas fa-circle"></i> Anytime</div>
+          <a href="pages/tool-meditation-timer.html" class="tc-cta" onclick="event.stopPropagation()"><i class="fas fa-arrow-right"></i> Begin</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Closing band: LifeOS + Affiliate -->
+    <div class="closing-band reveal">
+      <div>
+        <div class="eyebrow" style="color:rgba(250,247,242,.4)">If you want to go further</div>
+        <div class="closing-main-title" id="closing-title">Each tool above opens into its own dedicated reading in KAYAL LifeOS.</div>
+        <p class="closing-main-desc" id="closing-desc">There is no pressure to continue. If something here felt true, LifeOS is where that specific thread continues, matched to what you actually discovered.</p>
+        <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-primary">Open KAYAL LifeOS &#8594;</a>
+      </div>
+      <div class="closing-divider">
+        <div class="closing-aff-title">Share &amp; Earn</div>
+        <p class="closing-aff-desc">Love what you found here? Share KAYAL SoulPath with others and earn 30% commission on every enrolment. Free to join, no purchase required.</p>
+        <a href="https://app.kayalsoulpath.com/member/referral" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;justify-content:center;font-size:12px;color:rgba(250,247,242,.75);border-color:rgba(250,247,242,.25)">Join the Affiliate Programme &#8594;</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">KAYAL</div>
+        <div class="footer-brand-sub">SoulPath Institute</div>
+        <p class="footer-tagline">Soul Blueprint Science: a complete map of a human life, drawn from the four ancient pillars of self-knowledge.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/kayalsoulpath" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@kayalsoulpath" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-youtube"></i></a>
+          <a href="https://x.com/kayalsoulpath" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.tiktok.com/@kayalsoulpath" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-tiktok"></i></a>
+          <a href="https://www.linkedin.com/in/kayalsoulpath" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/share/1845UT2nXn/" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://t.me/kayalsoulpath" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Institute</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="about.html#mission">Mission &amp; Vision</a></li>
+          <li><a href="consultation.html">1:1 Consultation</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Programmes</div>
+        <ul class="footer-links">
+          <li><a href="pages/courses/numerology.html">Numerology</a></li>
+          <li><a href="pages/courses/astrology.html">Astrology</a></li>
+          <li><a href="pages/courses/physiognomy.html">Physiognomy</a></li>
+          <li><a href="pages/courses/palmistry.html">Palmistry</a></li>
+          <li><a href="pages/courses/spirit-science.html">Spirit Science</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener">KAYAL LifeOS</a></li>
+          <li><a href="tools.html">Free Tools</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="pages/advertise.html">Advertise With Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&#169; 2026 KAYAL SoulPath Institute. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="pages/privacy-policy.html">Privacy Policy</a>
+        <a href="pages/terms.html">Terms of Use</a>
+        <a href="pages/cookies.html">Cookie Policy</a>
+        <a href="pages/advertise.html">Advertise</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/global.js"></script>
+<script>
+// ══════════════════════════════════════════════════════════
+// KAYAL Free Tools — self-contained page script
+// Handles: filter chips, tool-explored tracking, LifeOS personalisation.
+// ══════════════════════════════════════════════════════════
+
+// ── TOOL CARD NAVIGATION + PROGRESS TRACKING ────────────────
+var explored=new Set();
+function markDone(n){
+  explored.add(n);
+  var cnumEl=document.getElementById('cnum');
+  if(cnumEl)cnumEl.textContent=explored.size;
+  var d=document.getElementById('pd'+n);
+  if(d)d.classList.add('done');
+}
+function goTool(n,url){
+  markDone(n);
+  try{
+    var seen=JSON.parse(localStorage.getItem('kayal_tools_explored')||'[]');
+    if(seen.indexOf(n)===-1){seen.push(n);localStorage.setItem('kayal_tools_explored',JSON.stringify(seen));}
+  }catch(e){}
+  window.location.href=url;
+}
+(function(){
+  try{
+    var seen=JSON.parse(localStorage.getItem('kayal_tools_explored')||'[]');
+    seen.forEach(function(n){
+      explored.add(n);
+      var d=document.getElementById('pd'+n);
+      if(d)d.classList.add('done');
+    });
+    var cnumEl=document.getElementById('cnum');
+    if(cnumEl)cnumEl.textContent=explored.size;
+  }catch(e){}
+})();
+
+// ── PERSONALISE THE CLOSING BAND BASED ON EXPLORED TOOLS ────
+var TOOL_NAMES={1:'Life Blueprint',2:'Name Vibration',3:'Universal Day',4:'Compatibility Blueprint',5:'Soul Timing Window',6:'Face Energy Reader',7:'Hand Map Reader',8:'Sacred Timer'};
+function personalizeClosing(){
+  if(explored.size===0)return; // keep the default copy already in the HTML
+  var names=Array.from(explored).sort(function(a,b){return a-b;}).map(function(n){return TOOL_NAMES[n];});
+  var list=names.length===1?names[0]:(names.slice(0,-1).join(', ')+' and '+names[names.length-1]);
+  var titleEl=document.getElementById('closing-title');
+  if(titleEl)titleEl.textContent='You explored '+list+'.';
+  var descEl=document.getElementById('closing-desc');
+  if(descEl){descEl.textContent='Each one opens into its own dedicated reading in KAYAL LifeOS, matched to exactly what you discovered. There is no pressure either way.';descEl.classList.add('personalized');}
+}
+personalizeClosing();
+
+// ── FILTER CHIPS ─────────────────────────────────────────────
+(function(){
+  var chips=document.querySelectorAll('.filter-chip');
+  var cards=document.querySelectorAll('.tool-card');
+  chips.forEach(function(chip){
+    chip.addEventListener('click',function(){
+      chips.forEach(function(c){c.classList.remove('active');});
+      chip.classList.add('active');
+      var f=chip.dataset.filter;
+      cards.forEach(function(card){
+        if(f==='all'||card.dataset.pillar===f){card.classList.remove('filtered-out');}
+        else{card.classList.add('filtered-out');}
+      });
+    });
+  });
+})();
+</script>
+
+<!-- Tawk.to Live Chat -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a1ac2936f88d91c31d3620f/1jps8g46o';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+</body>
+</html>

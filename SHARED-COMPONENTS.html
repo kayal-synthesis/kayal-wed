@@ -1,0 +1,286 @@
+<!-- ============================================================
+     KAYAL SoulPath — Shared HTML Snippets
+     
+     HOW TO USE ON CPANEL:
+     Since cPanel serves static HTML (no PHP/Node includes),
+     copy the NAV and FOOTER blocks into each page directly.
+     The paths below use root-relative paths (/css/, /js/)
+     so they work from any subdirectory.
+     
+     For the ROOT pages (index.html, tools.html etc.):
+       href="/css/global.css"  →  href="css/global.css"
+       src="/js/global.js"     →  src="js/global.js"
+       
+     For SUBDIRECTORY pages (pages/courses/numerology.html):
+       href="/css/global.css"  →  href="../../css/global.css"
+       src="/js/global.js"     →  src="../../js/global.js"
+     
+     The snippets below show ROOT-level paths.
+     ============================================================ -->
+
+<!-- ═══════════════════════════════════════════════════════
+     HEAD BLOCK (paste inside <head> of every page)
+     Adjust the <title> and meta description per page.
+     ═══════════════════════════════════════════════════════ -->
+<!--
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="KAYAL SoulPath Institute — Soul Blueprint Science for those who seek a complete map of their life.">
+<meta property="og:title" content="KAYAL SoulPath Institute">
+<meta property="og:description" content="Soul Blueprint Science — a complete map of your life.">
+<meta property="og:image" content="https://kayalsoulpath.com/images/og-image.jpg">
+<link rel="icon" href="images/favicon.ico">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+-->
+
+<!-- ═══════════════════════════════════════════════════════
+     ANNOUNCEMENT BAR
+     ═══════════════════════════════════════════════════════ -->
+<!--
+<div class="announcement-bar">
+  <span>New intake now open — Soul Blueprint Science programmes for 2026</span>
+  <a href="pages/courses/index.html">View Courses</a>
+  <button class="announcement-bar-close" aria-label="Close">×</button>
+</div>
+-->
+
+<!-- ═══════════════════════════════════════════════════════
+     NAVIGATION (ROOT-LEVEL version)
+     ✅ UPDATED: app.kayalsoulpath.com, rel=noopener added
+     ═══════════════════════════════════════════════════════ -->
+<!--
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-brand-name">KAYAL</div>
+      <div class="nav-brand-sub">SoulPath Institute</div>
+    </a>
+
+    <ul class="nav-links">
+      <li class="nav-item">
+        <a href="about.html" class="nav-link">About</a>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-dropdown="courses">
+          Courses
+          <svg class="nav-caret" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M1 1l4 4 4-4"/>
+          </svg>
+        </button>
+        <div class="nav-dropdown">
+          <a href="pages/courses/numerology.html">🔢 Numerology</a>
+          <a href="pages/courses/astrology.html">♈ Astrology</a>
+          <a href="pages/courses/physiognomy.html">👁️ Physiognomy — Face Reading</a>
+          <a href="pages/courses/palmistry.html">🤚 Palmistry — Palm Reading</a>
+          <a href="pages/courses/spirit-science.html">✨ Spirit Science</a>
+          <a href="pages/courses/index.html" style="border-top:1px solid rgba(201,158,44,.15);margin-top:6px;padding-top:12px;color:var(--terra);">All Programmes →</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="tools.html" class="nav-link">Free Tools</a>
+      </li>
+      <li class="nav-item">
+        <a href="insights.html" class="nav-link">Insights</a>
+      </li>
+      <li class="nav-item">
+        <a href="pages/consultation.html" class="nav-link">Consultation</a>
+      </li>
+      <li class="nav-item">
+        <a href="contact.html" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="pages/courses/index.html" class="btn btn-outline" style="font-size:12px;padding:9px 20px">Enrol Now</a>
+      <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:12px;padding:9px 20px">
+        Open LifeOS
+        <svg class="btn-icon" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M3 9h12M9 3l6 6-6 6"/>
+        </svg>
+      </a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="mobile-nav">
+  <button class="nav-mobile-close" id="mobile-close">×</button>
+  <ul class="nav-mobile-links">
+    <li><a href="about.html">About</a></li>
+    <li>
+      <button class="nav-mobile-toggle">Courses ▾</button>
+      <div class="nav-mobile-sub">
+        <a href="pages/courses/numerology.html">Numerology</a>
+        <a href="pages/courses/astrology.html">Astrology</a>
+        <a href="pages/courses/physiognomy.html">Physiognomy</a>
+        <a href="pages/courses/palmistry.html">Palmistry</a>
+        <a href="pages/courses/spirit-science.html">Spirit Science</a>
+        <a href="pages/courses/index.html">All Programmes</a>
+      </div>
+    </li>
+    <li><a href="tools.html">Free Tools</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="pages/consultation.html">Consultation</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-mobile-actions">
+    <a href="pages/courses/index.html" class="btn btn-outline" style="justify-content:center">Enrol Now</a>
+    <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-primary" style="justify-content:center">Open LifeOS</a>
+  </div>
+</div>
+-->
+
+<!-- ═══════════════════════════════════════════════════════
+     RELIABLE PROGRAMMES/COURSES DROPDOWN (CSS + JS)
+     
+     Fixes unstable hover-based dropdowns: moving the mouse
+     diagonally from the button to the panel drops out of the
+     hover zone and closes it early, and there's no real hover
+     state on tablets at all. This replaces hover with
+     click-to-toggle, which works the same way on desktop
+     and touch.
+     
+     ADD THE CSS BELOW TO: css/global.css
+     ADD THE JS BELOW TO:  js/global.js
+     Once both are in the shared files, every page that uses
+     the standard nav markup above gets this automatically —
+     no more per-page patching needed.
+     ═══════════════════════════════════════════════════════ -->
+<!--
+CSS (add to css/global.css):
+
+.nav-item{position:relative}
+.nav-link[data-dropdown]{display:flex;align-items:center;gap:6px;cursor:pointer;background:none;border:none;font:inherit;padding:inherit}
+.nav-caret{transition:transform .2s ease}
+.nav-item.dropdown-open .nav-caret{transform:rotate(180deg)}
+.nav-dropdown{
+  position:absolute;top:100%;left:50%;
+  transform:translateX(-50%) translateY(6px);
+  min-width:250px;background:#fff;
+  border:1px solid rgba(201,158,44,.22);
+  border-radius:10px;
+  box-shadow:0 14px 36px rgba(0,0,0,.14);
+  padding:10px;display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .16s ease,transform .16s ease,visibility .16s;
+  z-index:300;
+}
+.nav-dropdown.open{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-dropdown a{display:block;padding:9px 12px;border-radius:6px;color:var(--ink);font-size:13.5px;text-decoration:none;transition:background .15s}
+.nav-dropdown a:hover{background:rgba(201,158,44,.08)}
+
+JS (add to js/global.js):
+
+(function(){
+  function closeAll(){
+    document.querySelectorAll('.nav-item.dropdown-open').forEach(function(item){
+      item.classList.remove('dropdown-open');
+      var panel = item.querySelector('.nav-dropdown');
+      var btn = item.querySelector('[data-dropdown]');
+      if(panel) panel.classList.remove('open');
+      if(btn) btn.setAttribute('aria-expanded','false');
+    });
+  }
+  document.querySelectorAll('[data-dropdown]').forEach(function(btn){
+    var item = btn.closest('.nav-item');
+    var panel = item ? item.querySelector('.nav-dropdown') : null;
+    if(!item || !panel) return;
+    btn.setAttribute('aria-expanded','false');
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var wasOpen = item.classList.contains('dropdown-open');
+      closeAll();
+      if(!wasOpen){
+        item.classList.add('dropdown-open');
+        panel.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+  document.addEventListener('click', closeAll);
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeAll(); });
+})();
+-->
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER (ROOT-LEVEL version)
+     ✅ UPDATED: app.kayalsoulpath.com, 149 tools,
+                 contact@kayalsoulpath.com, rel=noopener
+     ✅ UPDATED: scope-of-practice disclaimer is now
+                 auto-injected by js/global.js above
+                 .footer-bottom on every page. No need to
+                 add it manually here or on any page.
+     ═══════════════════════════════════════════════════════ -->
+<!--
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">KAYAL</div>
+        <div class="footer-brand-sub">SoulPath Institute</div>
+        <p class="footer-brand-desc">
+          Soul Blueprint Science — a complete map of a human life, drawn from the four ancient pillars of holistic knowledge.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="footer-social" aria-label="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" class="footer-social" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="footer-social" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Institute</div>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="about.html#mission">Mission & Vision</a></li>
+          <li><a href="about.html#faculty">Faculty</a></li>
+          <li><a href="about.html#accreditation">Accreditation</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Programmes</div>
+        <ul class="footer-links">
+          <li><a href="pages/courses/numerology.html">Numerology</a></li>
+          <li><a href="pages/courses/astrology.html">Astrology</a></li>
+          <li><a href="pages/courses/physiognomy.html">Physiognomy</a></li>
+          <li><a href="pages/courses/palmistry.html">Palmistry</a></li>
+          <li><a href="pages/courses/spirit-science.html">Spirit Science</a></li>
+          <li><a href="pages/consultation.html">1:1 Consultation</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Kayal LifeOS</div>
+        <ul class="footer-links">
+          <li><a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener">Launch the App ↗</a></li>
+          <li><a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener">All 149 Tools</a></li>
+          <li><a href="tools.html">Free Tools</a></li>
+          <li><a href="insights.html">Insights & Research</a></li>
+          <li><a href="mailto:contact@kayalsoulpath.com">contact@kayalsoulpath.com</a></li>
+          <li><a href="contact.html#advertise">Advertise With Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- .footer-disclaimer is inserted here automatically by global.js -->
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 KAYAL SoulPath Institute. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="pages/privacy-policy.html">Privacy Policy</a>
+        <a href="pages/terms.html">Terms of Use</a>
+        <a href="pages/cookies.html">Cookie Policy</a>
+        <a href="contact.html#advertise">Advertise</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/global.js"></script>
+-->
