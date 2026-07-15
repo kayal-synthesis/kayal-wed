@@ -1,5 +1,5 @@
 /* ============================================================
-   KAYAL SoulPath — Homepage Styles v3 (Light Linen)
+   KAYAL SoulPath — Homepage Styles v4 (CLEAN HERO)
    ============================================================ */
 
 /* ── HERO ── */
@@ -210,7 +210,11 @@
 .testimonial-cred{font-size:11px;color:var(--stone)}
 .testimonial-stars{font-size:10.5px;color:var(--terra);letter-spacing:2px;margin-top:3px}
 
-/* ── RESPONSIVE ── */
+/* ============================================================
+   RESPONSIVE — ALL MOBILE FIXES APPLIED HERE
+   ============================================================ */
+
+/* ── Tablet 1100px ── */
 @media(max-width:1100px){
   .hero{max-height:none}
   .intro-grid{grid-template-columns:1fr;gap:40px}
@@ -218,12 +222,284 @@
   .lifeos-content{border-right:none;border-bottom:1px solid var(--cream)}
   .testimonials-grid{grid-template-columns:1fr}
 }
+
+/* ── Mobile 768px ── */
 @media(max-width:768px){
+  /* Prevent horizontal scroll */
+  html, body { overflow-x:hidden !important; width:100% !important; max-width:100% !important; }
+  * { max-width:100% !important; box-sizing:border-box !important; }
+
+  /* Hero */
   .hero{grid-template-columns:1fr;min-height:auto;max-height:none}
   .hero-left{padding:48px 24px;border-bottom:1px solid var(--cream)}
   .hero-right{height:260px}
   .hero-float{display:none}
+  .hero-watermark{display:none}
+  .hero-title{font-size:clamp(32px,7vw,38px) !important}
+  .hero-desc{font-size:15px !important;max-width:100% !important}
+  .hero-actions{flex-direction:column;align-items:center;gap:12px;width:100%}
+  .hero-actions .btn{width:100%;max-width:280px;justify-content:center}
+
+  /* Hero stats */
+  .hero-stats{flex-wrap:wrap;gap:16px;justify-content:center}
+
+  /* Intro */
+  .intro-grid{grid-template-columns:1fr;gap:28px}
+  .intro-pillars{grid-template-columns:1fr 1fr;gap:1px}
+
+  /* LifeOS */
+  .lifeos-content{padding:28px 20px !important}
+  .lifeos-features li{font-size:13px}
+
+  /* Courses */
   .courses-preview-grid{grid-template-columns:1fr}
+  .course-preview-desc{font-size:13.5px}
+
+  /* Blog */
   .blog-preview-grid{grid-template-columns:1fr}
-  .intro-pillars{grid-template-columns:1fr}
+  .blog-preview-content{padding:18px}
+  .blog-preview-stack{gap:12px}
+  .blog-preview-img-wrap{height:180px}
+
+  /* Testimonials */
+  .testimonials-grid{grid-template-columns:1fr}
+  .testimonial-card{padding:20px 16px}
+
+  /* Pain cards - fix for .pain-cards-grid if used */
+  .pain-cards-grid{grid-template-columns:1fr !important;gap:16px !important}
+  .pain-card{padding:20px 16px !important}
+  .pain-card p{font-size:14px}
+
+  /* Discipline band fix */
+  .discipline-band{overflow:hidden !important;width:100% !important}
+  .discipline-scroll{overflow-x:auto !important;-webkit-overflow-scrolling:touch !important;padding:0 12px !important;gap:20px !important}
+  .discipline-item{font-size:11px !important;flex-shrink:0 !important}
+
+  /* Vision pillars */
+  .vision-pillars{grid-template-columns:1fr 1fr !important;gap:24px 16px !important}
+  .vision-pillars::before{display:none !important}
+  .vp-desc{max-width:100% !important;font-size:14px !important;text-align:center !important}
+
+  /* Admissions */
+  .admissions-band{grid-template-columns:1fr !important;padding:24px 18px !important}
+
+  /* Newsletter */
+  .newsletter-form{flex-direction:column !important;border:none !important;background:transparent !important;gap:8px !important}
+  .newsletter-input{border:1.5px solid var(--cream,#e8e0d0) !important;border-radius:5px !important;padding:13px 15px !important}
+  .newsletter-submit{border-radius:5px !important;padding:13px 20px !important}
+
+  /* ── FOOTER: 3 COLUMNS ON MOBILE ── */
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px 20px !important;
+  }
+  /* Remove the special full‑width treatment for the brand column */
+  .footer-grid > div:first-child {
+    grid-column: auto !important;
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+  }
+  .footer-brand-name {
+    font-size: 16px !important;
+  }
+  .footer-tagline {
+    font-size: 11px !important;
+    max-width: 100% !important;
+  }
+  .footer-social{min-height:44px !important;min-width:44px !important}
+  .footer-links a{font-size:12px !important;min-height:40px !important}
+  .footer-bottom{flex-direction:column !important;align-items:flex-start !important;gap:12px !important}
+  .footer-legal{flex-wrap:wrap !important;gap:12px !important}
+  .footer-legal a{font-size:11px !important;min-height:40px !important}
+
+  /* Breadcrumb */
+  .breadcrumb{flex-wrap:wrap !important;gap:4px 8px !important}
+
+  /* Widgets */
+  .sidebar-col{grid-template-columns:1fr !important;gap:14px !important}
+  .widget-head{font-size:10px !important;padding:10px 14px !important}
+  .widget-body{padding:14px !important}
+
+  /* Tags */
+  .tag{font-size:10px !important;padding:4px 10px !important}
+
+  /* Section padding */
+  .section{padding:40px 0 !important}
+  .section-alt{padding:40px 0 !important}
+  .container{padding:0 18px !important}
+
+  /* All grids to 1 column if they exist */
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr !important;gap:16px !important}
+
+  /* Spirit section */
+  .spirit-grid{grid-template-columns:1fr !important;gap:28px !important}
+  .spirit-img-wrap{aspect-ratio:4/3 !important}
+  .spirit-content p{font-size:14px !important;text-align:left !important}
+
+  /* Tool links */
+  .w-tool-link{padding:12px 14px !important;min-height:56px !important}
+
+  /* ── STRONGER TEXT SHADOW FOR READABILITY ── */
+  .hero-title {
+    text-shadow: 0 4px 20px rgba(0,0,0,0.7), 0 2px 8px rgba(0,0,0,0.5) !important;
+  }
+  .hero-actions .btn {
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+}
+
+/* ── Small mobile 480px ── */
+@media(max-width:480px){
+  .container{padding:0 16px !important}
+  .intro-pillars{grid-template-columns:1fr !important}
+  .vision-pillars{grid-template-columns:1fr !important;gap:28px !important}
+  .vp-icon-wrap{width:50px !important;height:50px !important}
+  .vp-icon-wrap svg{width:22px !important;height:22px !important}
+  .vp-title{font-size:17px !important}
+  .vp-desc{font-size:14px !important;max-width:100% !important}
+
+  /* ── FOOTER: KEEP 3 COLUMNS ON SMALL PHONES ── */
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px 12px !important;
+  }
+  .footer-grid > div:first-child {
+    grid-column: auto !important;
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+  }
+  .footer-brand-name {
+    font-size: 14px !important;
+  }
+  .footer-links a {
+    font-size: 11px !important;
+  }
+  .footer-tagline{margin-bottom:8px !important}
+  .footer-social{min-height:40px !important;min-width:40px !important}
+
+  .hero-actions .btn{font-size:13px !important;padding:14px 20px !important;min-height:48px !important}
+  .btn{font-size:11px !important;padding:10px 18px !important;min-height:44px !important}
+
+  .newsletter-title{font-size:clamp(24px,7vw,30px) !important}
+  .newsletter-desc{font-size:14px !important}
+  .newsletter-input{font-size:16px !important;padding:14px 15px !important}
+  .newsletter-submit{font-size:12px !important;padding:14px 20px !important}
+
+  .section{padding:32px 0 !important}
+  .section-alt{padding:32px 0 !important}
+  .page-columns{padding-top:20px !important;padding-bottom:32px !important;gap:20px !important}
+
+  .courses-preview-grid{gap:12px !important}
+  .course-preview-card{padding:16px 14px !important}
+  .course-preview-desc{font-size:14px !important}
+
+  .blog-preview-content{padding:16px !important}
+  .blog-preview-title{font-size:17px !important}
+
+  .pain-card{padding:20px 16px !important}
+  .admissions-band{padding:20px 14px !important}
+  .admissions-steps{gap:12px !important}
+
+  .w-tool-name{font-size:13.5px !important}
+  .w-tool-meta{font-size:10.5px !important}
+
+  .discipline-item{font-size:11px !important;gap:6px !important}
+  .discipline-scroll{gap:16px !important}
+}
+
+/* ── Extra small 380px ── */
+@media(max-width:380px){
+  .container{padding:0 12px !important}
+  .advance-slider .item{height:65vh !important;min-height:320px !important}
+  .advance-slider .hero-title{font-size:clamp(24px,6vw,28px) !important}
+  .advance-slider .hero-desc{font-size:13px !important;padding:0 4px !important}
+  .btn{font-size:10px !important;padding:10px 14px !important;min-height:40px !important}
+  .hero-actions .btn{font-size:12px !important;padding:12px 16px !important}
+  .footer-grid{gap:16px 8px !important}
+  .footer-links a{font-size:11px !important;min-height:36px !important}
+  .footer-social{min-height:40px !important;min-width:40px !important}
+  .mobile-sticky-cta .btn{font-size:10px !important;padding:10px 4px !important;min-height:40px !important}
+  body{padding-bottom:56px !important}
+  .w-energy-num{font-size:56px !important}
+  .w-pd-num{font-size:44px !important}
+  .vision-pillars{gap:20px !important}
+  .vp-title{font-size:15px !important}
+  .vp-desc{font-size:13px !important}
+}
+
+/* ============================================================
+   MOBILE STICKY CTA — FIXED
+   ============================================================ */
+
+.mobile-sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 1px solid var(--cream, #e8e0d0);
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  z-index: 999;
+  gap: 10px;
+  box-shadow: 0 -4px 20px rgba(44, 24, 16, 0.10);
+  width: 100%;
+  max-width: 100%;
+}
+
+.mobile-sticky-cta .btn {
+  flex: 1;
+  justify-content: center;
+  font-size: 12px;
+  padding: 14px 8px;
+  min-height: 48px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .mobile-sticky-cta {
+    display: flex !important;
+  }
+  body {
+    padding-bottom: 72px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-sticky-cta {
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom)) !important;
+    gap: 8px !important;
+  }
+  .mobile-sticky-cta .btn {
+    font-size: 11px !important;
+    padding: 12px 6px !important;
+    min-height: 44px !important;
+  }
+  body {
+    padding-bottom: 64px !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   FORCE FIXED NAVIGATION (always at top, hamburger always accessible)
+   ════════════════════════════════════════════════════════════ */
+
+#nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+  background: rgba(250, 247, 242, 0.97) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 2px 20px rgba(44, 24, 16, 0.1) !important;
+  height: 64px !important;
+}
+
+/* Add top padding to body so content doesn't hide behind fixed nav */
+body {
+  padding-top: 64px !important;
 }
