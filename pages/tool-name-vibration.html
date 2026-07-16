@@ -145,20 +145,20 @@ input[type=date].form-input{color-scheme:dark}
 
 /* LifeOS invite */
 /* Reading bridge card — compact */
-.lifeos-invite{padding:26px 28px;background:linear-gradient(135deg,rgba(107,63,160,.22),rgba(200,160,48,.06)),rgba(8,6,15,.94);border:1px solid rgba(107,63,160,.28);border-radius:var(--r-lg);position:relative;overflow:hidden}
+.lifeos-invite{max-width:540px;margin:0 auto;padding:26px 28px;background:linear-gradient(135deg,rgba(107,63,160,.24),rgba(200,160,48,.08)),rgba(8,6,15,.94);border:1px solid rgba(107,63,160,.28);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(107,63,160,.16),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(200,160,48,.10),transparent 70%);pointer-events:none}
-.li-badge{display:inline-flex;align-items:center;gap:7px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--lilac);background:rgba(107,63,160,.14);border:1px solid rgba(107,63,160,.32);border-radius:20px;padding:6px 14px;margin-bottom:14px;position:relative;z-index:1}
-.li-badge i{font-size:9px}
-.li-title{font-family:var(--ff-d);font-size:clamp(17px,2.2vw,21px);font-weight:300;color:var(--pearl);line-height:1.35;margin-bottom:9px;position:relative;z-index:1;max-width:500px}
-.li-desc{font-family:var(--ff-h);font-size:13px;font-style:italic;color:rgba(157,112,208,.65);line-height:1.65;margin-bottom:20px;max-width:460px;position:relative;z-index:1}
+.li-badge{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:rgba(200,160,48,.12);border:1px solid rgba(200,160,48,.4);border-radius:20px;padding:7px 15px;margin-bottom:14px;position:relative;z-index:1}
+.li-badge i{font-size:10px}
+.li-title{font-family:var(--ff-d);font-size:clamp(19px,2.6vw,23px);font-weight:400;color:var(--mist);line-height:1.3;margin-bottom:10px;position:relative;z-index:1}
+.li-desc{font-family:var(--ff-h);font-size:13.5px;font-style:italic;color:rgba(232,224,248,.72);line-height:1.65;margin-bottom:18px;position:relative;z-index:1}
 .li-btns{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
 .li-btn-p{padding:12px 22px;background:linear-gradient(135deg,var(--purple),var(--amethyst));color:#fff;border:none;border-radius:var(--r);font-family:var(--ff-b);font-size:12.5px;font-weight:600;letter-spacing:.04em;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
 .li-btn-p:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(107,63,160,.35)}
-.li-btn-s{padding:12px 18px;background:transparent;color:rgba(157,112,208,.6);border:1px solid rgba(107,63,160,.22);border-radius:var(--r);font-family:var(--ff-b);font-size:12.5px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.li-btn-s{padding:12px 18px;background:transparent;color:rgba(157,112,208,.7);border:1px solid rgba(107,63,160,.28);border-radius:var(--r);font-family:var(--ff-b);font-size:12.5px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
 .li-btn-s:hover{color:var(--lilac);border-color:rgba(107,63,160,.5)}
-.li-foot{font-size:10.5px;color:rgba(157,112,208,.3);margin-top:14px;position:relative;z-index:1}
-.li-foot a{color:rgba(107,63,160,.45)}
+.li-foot{font-size:10.5px;color:rgba(157,112,208,.35);margin-top:13px;position:relative;z-index:1}
+.li-foot a{color:rgba(157,112,208,.6)}
 
 /* Upsell choice modal */
 .um-backdrop{position:fixed;inset:0;background:rgba(8,6,15,.75);backdrop-filter:blur(6px);z-index:500;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s ease}
@@ -199,6 +199,7 @@ input[type=date].form-input{color-scheme:dark}
   .form-grid{grid-template-columns:1fr}
   .layers-card{grid-template-columns:1fr}
   .li-btns{flex-direction:column}
+  .lifeos-invite{max-width:100%;padding:20px 20px}
   .main{padding:56px 16px 72px}
   .lifeos-invite{padding:20px 18px}
 }
@@ -533,18 +534,25 @@ var SYNTHESIS={
 };
 
 // ── VOICE ─────────────────────────────────────────────────
-var isSpeaking=false,fullReadingText="",speechChunks=[],chunkIndex=0;
+var isSpeaking=false,fullReadingText="",speechChunks=[],chunkIndex=0,speechKeepAlive=null;
 function getBestVoice(){
   var voices=window.speechSynthesis.getVoices();if(!voices.length)return null;
-  var pref=["Google UK English Female","Microsoft Libby Online (Natural) - English (United Kingdom)","Karen","Moira","Samantha","Victoria","Google US English"];
+  // Named voices known to sound genuinely natural, checked first
+  var pref=["Microsoft Libby Online (Natural) - English (United Kingdom)","Microsoft Sonia Online (Natural) - English (United Kingdom)","Microsoft Aria Online (Natural) - English (United States)","Google UK English Female","Karen","Moira","Samantha","Victoria","Google US English"];
   for(var i=0;i<pref.length;i++){var v=voices.find(function(v){return v.name===pref[i];});if(v)return v;}
+  // Generic catch-all: any English voice explicitly labelled Natural/Neural/
+  // Enhanced/Premium — modern OS voices carry these labels and are a real
+  // step up from legacy robotic voices, even if not on the named list above
+  var tagged=voices.find(function(v){return v.lang.startsWith("en")&&/natural|neural|enhanced|premium/i.test(v.name);});
+  if(tagged)return tagged;
   var ef=voices.find(function(v){return v.lang.startsWith("en")&&v.name.toLowerCase().includes("female");});
   return ef||voices.find(function(v){return v.lang.startsWith("en");})||voices[0];
 }
+function stopSpeechKeepAlive(){if(speechKeepAlive){clearInterval(speechKeepAlive);speechKeepAlive=null;}}
 function toggleSpeech(){
   if(!("speechSynthesis" in window)){showToast("Voice not supported.");return;}
   var btn=document.getElementById("listen-btn"),lbl=document.getElementById("listen-lbl");
-  if(isSpeaking){window.speechSynthesis.cancel();isSpeaking=false;speechChunks=[];chunkIndex=0;btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";return;}
+  if(isSpeaking){window.speechSynthesis.cancel();stopSpeechKeepAlive();isSpeaking=false;speechChunks=[];chunkIndex=0;btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";return;}
   if(!fullReadingText)return;
   window.speechSynthesis.cancel();
   var raw=fullReadingText.split(/(?<=[.!?])\s+(?=[A-Z])/);
@@ -552,16 +560,35 @@ function toggleSpeech(){
   for(var i=0;i<raw.length;i+=2){var c=raw.slice(i,i+2).join(" ").replace(/\s+/g," ").trim();if(c)speechChunks.push(c);}
   chunkIndex=0;
   function next(){
-    if(chunkIndex>=speechChunks.length){isSpeaking=false;btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";return;}
-    var u=new SpeechSynthesisUtterance(speechChunks[chunkIndex]);
-    u.rate=0.82;u.pitch=1.05;var v=getBestVoice();if(v)u.voice=v;
-    u.onend=function(){chunkIndex++;setTimeout(next,320);};
-    u.onerror=function(){isSpeaking=false;btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";};
+    if(chunkIndex>=speechChunks.length){isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";return;}
+    var chunk=speechChunks[chunkIndex];
+    var u=new SpeechSynthesisUtterance(chunk);
+    // Small natural variance per chunk instead of perfectly identical
+    // rate/pitch every time — real speech drifts slightly line to line
+    u.rate=0.80+Math.random()*0.05;
+    u.pitch=1.02+Math.random()*0.07;
+    var v=getBestVoice();if(v)u.voice=v;
+    u.onend=function(){
+      chunkIndex++;
+      // Slightly longer breath-pause after a question or the end of a
+      // thought, shorter mid-flow — approximates natural reading rhythm
+      var endedChunk=chunk;
+      var pause=/[?]$/.test(endedChunk)?520:(340+Math.random()*140);
+      setTimeout(next,pause);
+    };
+    u.onerror=function(){isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";};
     window.speechSynthesis.speak(u);
   }
   if(window.speechSynthesis.getVoices().length)next();
   else window.speechSynthesis.onvoiceschanged=function(){next();};
   isSpeaking=true;btn.classList.add("is-active");lbl.textContent="Pause";
+  stopSpeechKeepAlive();
+  speechKeepAlive=setInterval(function(){
+    if(window.speechSynthesis.speaking&&!window.speechSynthesis.paused){
+      window.speechSynthesis.pause();
+      window.speechSynthesis.resume();
+    }
+  },9000);
 }
 
 // ── SHARE ─────────────────────────────────────────────────
@@ -638,6 +665,22 @@ var UPSELL_MAP={
     ctaLabel:'See Our Recommended Reading',
     modalTitle:'Two readings fit what your name just showed.'
   }
+};
+
+// First sentence of a synthesis tension paragraph — every entry in SYNTHESIS
+// is written as "The central tension...is between X and Y." so splitting on
+// the first period reliably isolates a short, self-contained lead line.
+function tensionLead(syn){
+  var s=(syn&&syn.tension)?syn.tension.split('.')[0].trim():'';
+  return s?s+'.':'';
+}
+
+// What each recommended reading specifically resolves — reused across all
+// 12 numbers so the desc stays specific per-number (via tensionLead) without
+// needing 24 hand-written paragraphs.
+var REC_BRIDGE={
+  'expression-number-reading':'The Expression Number Reading traces this exact pattern through your full birth name and shows precisely where it is meant to be built.',
+  'soul-urge-reading':'The Soul Urge Reading names precisely what sits beneath that tension — the part of this name a free reading can only point toward.'
 };
 
 var currentName='',currentFname='',currentDob='',currentUp=null;
@@ -733,16 +776,18 @@ function calculate(){
     // Two layers - shown as felt qualities, not methodology labels + numbers
     var soulData=ND[res.soulUrge]||ND[1];
     var persData=ND[res.personality]||ND[1];
+    var soulDesc=(soulData.soul_reads&&soulData.soul_reads.soul)||soulData.core;
+    var persDesc=(persData.soul_reads&&persData.soul_reads.personality)||persData.core;
     document.getElementById("layers-card").innerHTML=
       "<div class='layer-card'>"+
         "<div class='layer-icon'>What this name wants at soul level</div>"+
         "<div class='layer-qual'>"+soulData.n+"</div>"+
-        "<div class='layer-desc'>"+soulData.core+"</div>"+
+        "<div class='layer-desc'>"+soulDesc+"</div>"+
       "</div>"+
       "<div class='layer-card'>"+
         "<div class='layer-icon'>How the world encounters this name</div>"+
         "<div class='layer-qual'>"+persData.n+"</div>"+
-        "<div class='layer-desc'>"+persData.core+"</div>"+
+        "<div class='layer-desc'>"+persDesc+"</div>"+
       "</div>";
 
     // Age note
@@ -780,15 +825,22 @@ function calculate(){
     var up=isAligned?UPSELL_MAP.aligned:UPSELL_MAP.gap;
     currentUp=up;currentName=nameRaw;currentFname=fname;currentDob=dob;
 
-    // Update invite copy
+    // Update invite copy — desc is now built from THIS reading's own
+    // synthesis tension, not a generic aligned/gap template
+    var lead=tensionLead(syn);
+    var bridge=REC_BRIDGE[up.toolId];
     document.getElementById("li-eyebrow").textContent=up.eyebrow;
     document.getElementById("li-title").textContent=up.titleTpl(fn1);
-    document.getElementById("li-desc").textContent=up.desc;
+    document.getElementById("li-desc").textContent=(lead&&bridge)?(lead+" "+bridge):up.desc;
     document.getElementById("li-btn-label").textContent=up.ctaLabel;
 
-    // Speech text
+    // Speech text — include the invite copy too, so listening all the way
+    // through actually reaches the invitation instead of stopping short
     var readEl=document.createElement("div");readEl.innerHTML=html;
-    fullReadingText=readEl.textContent.replace(/\s+/g," ").trim();
+    var readingSpeech=readEl.textContent.replace(/\s+/g," ").trim();
+    var inviteDesc=(lead&&bridge)?(lead+" "+bridge):up.desc;
+    var inviteSpeech=(up.titleTpl(fn1)+" "+inviteDesc).replace(/\s+/g," ").trim();
+    fullReadingText=(readingSpeech+" "+inviteSpeech).replace(/\s+/g," ").trim();
     window._shareText="I discovered the vibration encoded in my name at KAYAL SoulPath Institute: "+data.t.join(", ")+". Try yours free.";
 
     // Show — hide the hero and input step so it reads as a clean next screen

@@ -182,19 +182,19 @@ input[type=date].form-input{color-scheme:dark}
 .share-toast-msg.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* Reading bridge card — compact */
-.lifeos-invite{padding:26px 28px;background:linear-gradient(135deg,rgba(124,79,208,.22),rgba(212,168,67,.08)),rgba(13,10,20,.92);border:1px solid rgba(212,168,67,.22);border-radius:var(--r-lg);margin-bottom:0;position:relative;overflow:hidden}
+.lifeos-invite{max-width:540px;margin:0 auto;padding:26px 28px;background:linear-gradient(135deg,rgba(124,79,208,.22),rgba(212,168,67,.08)),rgba(13,10,20,.92);border:1px solid rgba(212,168,67,.22);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(212,168,67,.16),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(124,79,208,.18),transparent 70%);pointer-events:none}
-.li-badge{display:inline-flex;align-items:center;gap:7px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:rgba(212,168,67,.10);border:1px solid rgba(212,168,67,.28);border-radius:20px;padding:6px 14px;margin-bottom:14px;position:relative;z-index:1}
-.li-badge i{font-size:9px}
-.li-title{font-family:var(--ff-display);font-size:clamp(17px,2.2vw,21px);font-weight:300;color:var(--cream);line-height:1.35;margin-bottom:9px;position:relative;z-index:1;max-width:500px}
-.li-desc{font-family:var(--ff-heading);font-size:13px;font-style:italic;color:rgba(208,192,240,.75);line-height:1.65;margin-bottom:20px;max-width:460px;position:relative;z-index:1}
+.li-badge{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:rgba(212,168,67,.12);border:1px solid rgba(212,168,67,.4);border-radius:20px;padding:7px 15px;margin-bottom:14px;position:relative;z-index:1}
+.li-badge i{font-size:10px}
+.li-title{font-family:var(--ff-display);font-size:clamp(19px,2.6vw,23px);font-weight:400;color:var(--cream);line-height:1.3;margin-bottom:10px;position:relative;z-index:1}
+.li-desc{font-family:var(--ff-heading);font-size:13.5px;font-style:italic;color:rgba(208,192,240,.75);line-height:1.65;margin-bottom:18px;position:relative;z-index:1}
 .li-btns{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
 .li-btn-p{padding:12px 22px;background:linear-gradient(135deg,var(--purple),var(--amethyst));color:#fff;border:none;border-radius:var(--r);font-family:var(--ff-body);font-size:12.5px;font-weight:600;letter-spacing:.04em;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
 .li-btn-p:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,79,208,.4)}
 .li-btn-s{padding:12px 18px;background:transparent;color:rgba(208,192,240,.72);border:1px solid rgba(124,79,208,.28);border-radius:var(--r);font-family:var(--ff-body);font-size:12.5px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
 .li-btn-s:hover{color:var(--lavender);border-color:rgba(124,79,208,.55)}
-.li-foot{font-size:10.5px;color:rgba(208,192,240,.40);margin-top:14px;position:relative;z-index:1}
+.li-foot{font-size:10.5px;color:rgba(208,192,240,.40);margin-top:13px;position:relative;z-index:1}
 .li-foot a{color:rgba(212,168,67,.5)}
 
 /* Upsell choice modal */
@@ -249,7 +249,7 @@ input[type=date].form-input{color-scheme:dark}
   .upload-btns{flex-direction:column;align-items:center}
   .hero-iris-wrap{width:160px;height:160px}
   .main{padding:56px 16px 72px}
-  .lifeos-invite{padding:20px 18px}
+  .lifeos-invite{max-width:100%;padding:20px 18px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
@@ -301,7 +301,7 @@ input[type=date].form-input{color-scheme:dark}
         <input type="text" id="inp-name" class="form-input" placeholder="Enter your name">
       </div>
       <div class="dob-group">
-        <label class="form-label" for="inp-dob">Date of birth <span style="color:#c09ae0">*</span></label>
+        <label class="form-label" for="inp-dob">Date of birth <span style="color:rgba(196,176,232,.4)">(optional)</span></label>
         <input type="date" id="inp-dob" class="form-input">
       </div>
     </div>
@@ -572,12 +572,6 @@ function dist(a,b){return Math.sqrt(Math.pow(a.x-b.x,2)+Math.pow(a.y-b.y,2));}
 
 function startAnalysis(){
   hideError();
-  // DOB is required: reading cannot be complete without it
-  var dob=document.getElementById('inp-dob').value;
-  if(!dob){
-    showError('Your date of birth is required to complete the reading. It allows us to calculate your current year energy, health cycle, and today\'s specific quality alongside your facial structure. Without it the reading would be incomplete.');
-    return;
-  }
   var overlay=document.getElementById('analysing-overlay');
   overlay.classList.remove('hidden');
   setStep(1);
@@ -911,6 +905,10 @@ function getBestVoice(){
     var v=voices.find(function(v){return v.name===preferred[i];});
     if(v)return v;
   }
+  // Generic catch-all: any English voice explicitly labelled Natural/Neural/
+  // Enhanced/Premium — catches modern OS voices not on the named list above
+  var tagged=voices.find(function(v){return v.lang.startsWith('en')&&/natural|neural|enhanced|premium/i.test(v.name);});
+  if(tagged)return tagged;
   // Fallback: any English female
   var engFemale=voices.find(function(v){return v.lang.startsWith('en')&&v.name.toLowerCase().includes('female');});
   if(engFemale)return engFemale;
@@ -929,13 +927,14 @@ function cleanForSpeech(text){
     .trim();
 }
 
-var speechChunks=[];var chunkIndex=0;
+var speechChunks=[];var chunkIndex=0;var speechKeepAlive=null;
+function stopSpeechKeepAlive(){if(speechKeepAlive){clearInterval(speechKeepAlive);speechKeepAlive=null;}}
 
 function toggleSpeech(){
   if(!('speechSynthesis' in window)){showToast('Voice not supported in this browser.');return;}
   var btn=document.getElementById('listen-btn');var lbl=document.getElementById('listen-btn-label');
   if(isSpeaking){
-    window.speechSynthesis.cancel();
+    window.speechSynthesis.cancel();stopSpeechKeepAlive();
     isSpeaking=false;speechChunks=[];chunkIndex=0;
     btn.classList.remove('is-active');lbl.textContent='Listen to Your Reading';
     return;
@@ -955,17 +954,22 @@ function toggleSpeech(){
 
   function speakNext(){
     if(chunkIndex>=speechChunks.length){
-      isSpeaking=false;btn.classList.remove('is-active');lbl.textContent='Listen to Your Reading';
+      isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove('is-active');lbl.textContent='Listen to Your Reading';
       return;
     }
-    var u=new SpeechSynthesisUtterance(speechChunks[chunkIndex]);
-    u.rate=0.82;
-    u.pitch=1.05;
+    var thisChunk=speechChunks[chunkIndex];
+    var u=new SpeechSynthesisUtterance(thisChunk);
+    u.rate=0.80+Math.random()*0.05;
+    u.pitch=1.02+Math.random()*0.07;
     u.volume=1;
     var voice=getBestVoice();
     if(voice)u.voice=voice;
-    u.onend=function(){chunkIndex++;setTimeout(speakNext,320);};  // 320ms pause between chunks
-    u.onerror=function(){isSpeaking=false;btn.classList.remove('is-active');lbl.textContent='Listen to Your Reading';};
+    u.onend=function(){
+      chunkIndex++;
+      var pause=/[?]$/.test(thisChunk)?520:(340+Math.random()*140);
+      setTimeout(speakNext,pause);
+    };
+    u.onerror=function(){isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove('is-active');lbl.textContent='Listen to Your Reading';};
     window.speechSynthesis.speak(u);
   }
 
@@ -977,6 +981,13 @@ function toggleSpeech(){
   }
 
   isSpeaking=true;btn.classList.add('is-active');lbl.textContent='Pause';
+  stopSpeechKeepAlive();
+  speechKeepAlive=setInterval(function(){
+    if(window.speechSynthesis.speaking&&!window.speechSynthesis.paused){
+      window.speechSynthesis.pause();
+      window.speechSynthesis.resume();
+    }
+  },9000);
 }
 function toggleShareMenu(e){e.stopPropagation();document.getElementById('share-dropdown').classList.toggle('show');}
 document.addEventListener('click',function(){var d=document.getElementById('share-dropdown');if(d)d.classList.remove('show');});
@@ -1052,6 +1063,21 @@ var UPSELL_MAP = {
   }
 };
 
+// First sentence of a face-synthesis tension paragraph — used to build a
+// per-element invite description instead of a static per-element template
+function tensionLead(syn){
+  var s=(syn&&syn.tension)?syn.tension.split('.')[0].trim():'';
+  return s?s+'.':'';
+}
+// What each recommended reading specifically resolves — combined with
+// tensionLead() this gives all 5 elements their own specific desc without
+// hand-writing 5 separate paragraphs
+var REC_BRIDGE={
+  'second-half-reading':'The Second Half Reading shows exactly which decades ahead carry your fullest expression, once this pattern has somewhere real to go.',
+  'leadership-signature':'The Leadership Signature names precisely what to do with this, instead of carrying it quietly or giving it away.',
+  'money-wound-reading':'The Money Wound Reading traces this exact pattern back to the specific belief that is shaping what you think you are allowed to have.'
+};
+
 function buildToolURL(toolId){
   var p=new URLSearchParams();
   if(currentName)p.set('name',currentName);
@@ -1105,20 +1131,9 @@ function buildResult(metrics){
   currentElement=el.primary;
   var data=ELEMENTS[el.primary];
   var sec=ELEMENTS[el.secondary];
-  // DOB is mandatory: calculate all personalised layers
-  var age=getAge(currentDob);
-  var py=personalYear(currentDob);
-  var pd=personalDay(currentDob);
-  var yearEl=getYearElement(py);
-  var interaction=getInteraction(el.primary,yearEl);
-  var yearReading=YEAR_READINGS[el.primary][interaction];
-  var dayReading=DAY_READINGS[pd]||DAY_READINGS[1];
-  var healthData=HEALTH_READINGS[el.primary];
-  var isHighYear=(interaction==='generating'||interaction==='supporting'||interaction==='amplifying');
-  var healthCurrent=isHighYear?healthData.current_high:healthData.current_low;
-  // Today's date for display
-  var today=new Date();
-  var todayStr=today.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+  // DOB is optional: age personalises the "Current Season" section when
+  // given, and the existing no-age fallback copy handles it when not
+  var age=currentDob?getAge(currentDob):null;
 
   // Element reveal card
   document.getElementById('el-reveal').style.background='linear-gradient(135deg,'+data.gradFrom+','+data.gradTo+')';
@@ -1170,17 +1185,8 @@ function buildResult(metrics){
   html+='<div class="reading-pull">'+data.readings[0]+'</div>';
   html+='<div class="reading-block"><div class="reading-block-label">Your Current Season</div>';
   html+='<p class="reading-para">'+seasonNote+'</p></div>';
-  html+='<div class="reading-block"><div class="reading-block-label">What This Means For Your Life</div>';
-  html+='<p class="reading-para">'+data.readings[1]+'</p>';
-  html+='<p class="reading-para">'+data.readings[2]+'</p></div>';
   html+='<div class="reading-block"><div class="reading-block-label">Relationships</div>';
   html+='<p class="reading-para">'+(eyeIsWide?data.relationships.wide:data.relationships.narrow)+'</p></div>';
-  html+='<div class="reading-block"><div class="reading-block-label">Work and Calling</div>';
-  html+='<p class="reading-para">'+(jawIsWide?data.career.wide:data.career.narrow)+'</p></div>';
-  html+='<div class="reading-block"><div class="reading-block-label">What To Watch For</div>';
-  html+='<p class="reading-para">'+data.watchFor+'</p></div>';
-  html+='<div class="reading-block"><div class="reading-block-label">The Deepest Challenge Your Face Carries</div>';
-  html+='<p class="reading-para">'+data.wound+'</p></div>';
 
   // ── SYNTHESIS: what the whole reading says ────────────────
   var FACE_SYNTHESIS={
@@ -1215,18 +1221,23 @@ function buildResult(metrics){
 
       document.getElementById('reading-content').innerHTML=html;
 
-  // Update invite block
+  // Update invite block — desc now built from THIS element's own
+  // synthesis tension, not a static per-element template
   var up=UPSELL_MAP[el.primary];
   currentUp=up;
+  var lead=tensionLead(faceSyn);
+  var bridge=REC_BRIDGE[up.toolId];
+  var inviteDesc=(lead&&bridge)?(lead+' '+bridge):up.desc;
   document.getElementById('li-eyebrow').textContent=up.eyebrow;
   document.getElementById('li-title').textContent=up.titleTpl(fn);
-  document.getElementById('li-desc').textContent=up.desc;
+  document.getElementById('li-desc').textContent=inviteDesc;
   document.getElementById('li-btn-label').textContent=up.ctaLabel;
 
-  // Speech text: derived from rendered HTML to ensure audio matches paragraphs
+  // Speech text: derived from rendered HTML to ensure audio matches paragraphs,
+  // plus the invite title so listening reaches the actual invitation
   var readingEl=document.createElement('div');
   readingEl.innerHTML=html;
-  fullReadingText=readingEl.textContent.replace(/\s+/g,' ').trim();
+  fullReadingText=(readingEl.textContent+' '+up.titleTpl(fn)+' '+(bridge||up.desc)).replace(/\s+/g,' ').trim();
   window._shareText=(fn?fn+'\'s':'My')+' Face Energy Reading: '+data.title+' ('+data.name+' element), '+data.traits.slice(0,3).join(', ')+'. Discover your own elemental face type, free, at KAYAL SoulPath Institute.';
 
   // Update PDF button with personalised URL

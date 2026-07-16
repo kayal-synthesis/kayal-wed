@@ -145,13 +145,13 @@ input[type=date].form-input{color-scheme:dark}
 
 /* LIFEOS INVITE */
 /* Reading bridge card — compact */
-.lifeos-invite{padding:26px 28px;background:linear-gradient(135deg,rgba(200,160,48,.14),rgba(212,120,32,.06)),rgba(5,5,7,.96);border:1px solid rgba(200,160,48,.22);border-radius:var(--r-lg);position:relative;overflow:hidden;margin-top:40px}
+.lifeos-invite{max-width:540px;margin:40px auto 0;padding:26px 28px;background:linear-gradient(135deg,rgba(200,160,48,.14),rgba(212,120,32,.06)),rgba(5,5,7,.96);border:1px solid rgba(200,160,48,.22);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(200,160,48,.12),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(212,120,32,.10),transparent 70%);pointer-events:none}
-.li-badge{display:inline-flex;align-items:center;gap:7px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:rgba(200,160,48,.10);border:1px solid rgba(200,160,48,.28);border-radius:20px;padding:6px 14px;margin-bottom:14px;position:relative;z-index:1}
-.li-badge i{font-size:9px}
-.li-title{font-family:var(--ff-d);font-size:clamp(17px,2.2vw,21px);font-weight:300;color:var(--pearl);line-height:1.35;margin-bottom:9px;position:relative;z-index:1;max-width:500px}
-.li-desc{font-family:var(--ff-h);font-size:13px;font-style:italic;color:rgba(232,224,208,.55);line-height:1.65;margin-bottom:20px;max-width:460px;position:relative;z-index:1}
+.li-badge{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:rgba(200,160,48,.12);border:1px solid rgba(200,160,48,.4);border-radius:20px;padding:7px 15px;margin-bottom:14px;position:relative;z-index:1}
+.li-badge i{font-size:10px}
+.li-title{font-family:var(--ff-d);font-size:clamp(19px,2.6vw,23px);font-weight:400;color:var(--mist);line-height:1.3;margin-bottom:10px;position:relative;z-index:1}
+.li-desc{font-family:var(--ff-h);font-size:13.5px;font-style:italic;color:rgba(232,224,208,.65);line-height:1.65;margin-bottom:18px;position:relative;z-index:1}
 .li-btns{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
 .li-btn-p{padding:12px 22px;background:rgba(200,160,48,.14);color:var(--gold);border:1px solid rgba(200,160,48,.28);border-radius:var(--r);font-family:var(--ff-b);font-size:12.5px;font-weight:600;letter-spacing:.04em;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
 .li-btn-p:hover{background:rgba(200,160,48,.22)}
@@ -758,7 +758,8 @@ function buildPostReading(fn){
     document.getElementById("lifeos-link").href="https://app.kayalsoulpath.com/tool/personal-year-deep-dive?"+p.toString();
     document.getElementById("li-eyebrow").textContent="If this practice is becoming something real";
     document.getElementById("li-title").textContent=(fn?fn+", your":"Your")+" Personal Year "+py+" has layers this session only opened.";
-    document.getElementById("li-desc").textContent="The Personal Year Deep Dive gives you the full picture of the cycle you are currently moving through: what it is asking, and what it is offering.";
+    var tLead=cr.synthesis&&cr.synthesis.tension?cr.synthesis.tension.split(".")[0].trim()+".":"";
+    document.getElementById("li-desc").textContent=tLead?(tLead+" The Personal Year Deep Dive gives you the full picture of this cycle: what it is asking, and what it is offering."):"The Personal Year Deep Dive gives you the full picture of the cycle you are currently moving through: what it is asking, and what it is offering.";
     document.getElementById("li-btn-label").textContent="Get the Personal Year Deep Dive";
   }
 

@@ -184,13 +184,13 @@ a{color:inherit;text-decoration:none}
         .new-reading-link:hover{color:var(--terra)}
 
         /* Reading bridge card — compact */
-        .lifeos-invite{padding:26px 28px;background:linear-gradient(135deg,rgba(201,158,44,.14),rgba(181,98,42,.08)),rgba(26,18,8,.97);border:1px solid rgba(201,158,44,.22);border-radius:var(--r-lg);position:relative;overflow:hidden}
+        .lifeos-invite{max-width:540px;margin:0 auto;padding:26px 28px;background:linear-gradient(135deg,rgba(201,158,44,.14),rgba(181,98,42,.08)),rgba(26,18,8,.97);border:1px solid rgba(201,158,44,.22);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
         .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(201,158,44,.14),transparent 70%);pointer-events:none}
         .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(181,98,42,.16),transparent 70%);pointer-events:none}
-        .li-badge{display:inline-flex;align-items:center;gap:7px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:rgba(201,158,44,.10);border:1px solid rgba(201,158,44,.28);border-radius:20px;padding:6px 14px;margin-bottom:14px;position:relative;z-index:1}
-        .li-badge i{font-size:9px}
-        .li-title{font-family:var(--ff-d);font-size:clamp(17px,2.2vw,21px);font-weight:300;color:var(--linen);line-height:1.35;margin-bottom:9px;position:relative;z-index:1;max-width:500px}
-        .li-desc{font-family:var(--ff-h);font-size:13px;font-style:italic;color:rgba(250,247,242,.58);line-height:1.65;margin-bottom:20px;max-width:460px;position:relative;z-index:1}
+        .li-badge{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:rgba(201,158,44,.12);border:1px solid rgba(201,158,44,.4);border-radius:20px;padding:7px 15px;margin-bottom:14px;position:relative;z-index:1}
+        .li-badge i{font-size:10px}
+        .li-title{font-family:var(--ff-d);font-size:clamp(19px,2.6vw,23px);font-weight:400;color:var(--linen);line-height:1.3;margin-bottom:10px;position:relative;z-index:1}
+        .li-desc{font-family:var(--ff-h);font-size:13.5px;font-style:italic;color:rgba(250,247,242,.65);line-height:1.65;margin-bottom:18px;position:relative;z-index:1}
         .li-btns{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
         .li-btn-p{padding:12px 22px;background:var(--terra);color:#fff;border:none;border-radius:4px;font-family:var(--ff-b);font-size:12.5px;font-weight:600;letter-spacing:.04em;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background .2s}
         .li-btn-p:hover{background:var(--terra-l)}
@@ -581,9 +581,44 @@ function pyear(dob){var p=dob.split("-").map(Number),m=p[1],d=p[2],cy=new Date()
 function ord(n){var s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
 
 // Voice
-var isSpeaking=false,fullReadingText="",speechChunks=[],chunkIndex=0;
-function getBestVoice(){var voices=window.speechSynthesis.getVoices();if(!voices.length)return null;var pref=["Google UK English Female","Microsoft Libby Online (Natural) - English (United Kingdom)","Karen","Moira","Samantha","Victoria","Google US English"];for(var i=0;i<pref.length;i++){var v=voices.find(function(v){return v.name===pref[i];});if(v)return v;}var ef=voices.find(function(v){return v.lang.startsWith("en")&&v.name.toLowerCase().includes("female");});return ef||voices.find(function(v){return v.lang.startsWith("en");})||voices[0];}
-function toggleSpeech(){if(!("speechSynthesis" in window)){showToast("Voice not supported.");return;}var btn=document.getElementById("listen-btn"),lbl=document.getElementById("listen-lbl");if(isSpeaking){window.speechSynthesis.cancel();isSpeaking=false;speechChunks=[];chunkIndex=0;btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";return;}if(!fullReadingText)return;window.speechSynthesis.cancel();var raw=fullReadingText.split(/(?<=[.!?])\s+(?=[A-Z])/);speechChunks=[];for(var i=0;i<raw.length;i+=2){var c=raw.slice(i,i+2).join(" ").replace(/\s+/g," ").trim();if(c)speechChunks.push(c);}chunkIndex=0;function next(){if(chunkIndex>=speechChunks.length){isSpeaking=false;btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";return;}var u=new SpeechSynthesisUtterance(speechChunks[chunkIndex]);u.rate=0.82;u.pitch=1.05;var v=getBestVoice();if(v)u.voice=v;u.onend=function(){chunkIndex++;setTimeout(next,320);};u.onerror=function(){isSpeaking=false;btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";};window.speechSynthesis.speak(u);}if(window.speechSynthesis.getVoices().length)next();else window.speechSynthesis.onvoiceschanged=function(){next();};isSpeaking=true;btn.classList.add("is-active");lbl.textContent="Pause";}
+var isSpeaking=false,fullReadingText="",speechChunks=[],chunkIndex=0,speechKeepAlive=null;
+function getBestVoice(){
+  var voices=window.speechSynthesis.getVoices();if(!voices.length)return null;
+  var pref=["Google UK English Female","Microsoft Libby Online (Natural) - English (United Kingdom)","Karen","Moira","Samantha","Victoria","Google US English"];
+  for(var i=0;i<pref.length;i++){var v=voices.find(function(v){return v.name===pref[i];});if(v)return v;}
+  var tagged=voices.find(function(v){return v.lang.startsWith("en")&&/natural|neural|enhanced|premium/i.test(v.name);});
+  if(tagged)return tagged;
+  var ef=voices.find(function(v){return v.lang.startsWith("en")&&v.name.toLowerCase().includes("female");});
+  return ef||voices.find(function(v){return v.lang.startsWith("en");})||voices[0];
+}
+function stopSpeechKeepAlive(){if(speechKeepAlive){clearInterval(speechKeepAlive);speechKeepAlive=null;}}
+function toggleSpeech(){
+  if(!("speechSynthesis" in window)){showToast("Voice not supported.");return;}
+  var btn=document.getElementById("listen-btn"),lbl=document.getElementById("listen-lbl");
+  if(isSpeaking){window.speechSynthesis.cancel();stopSpeechKeepAlive();isSpeaking=false;speechChunks=[];chunkIndex=0;btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";return;}
+  if(!fullReadingText)return;
+  window.speechSynthesis.cancel();
+  var raw=fullReadingText.split(/(?<=[.!?])\s+(?=[A-Z])/);
+  speechChunks=[];
+  for(var i=0;i<raw.length;i+=2){var c=raw.slice(i,i+2).join(" ").replace(/\s+/g," ").trim();if(c)speechChunks.push(c);}
+  chunkIndex=0;
+  function next(){
+    if(chunkIndex>=speechChunks.length){isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";return;}
+    var chunk=speechChunks[chunkIndex];
+    var u=new SpeechSynthesisUtterance(chunk);
+    u.rate=0.80+Math.random()*0.05;u.pitch=1.02+Math.random()*0.07;var v=getBestVoice();if(v)u.voice=v;
+    u.onend=function(){chunkIndex++;var pause=/[?]$/.test(chunk)?520:(340+Math.random()*140);setTimeout(next,pause);};
+    u.onerror=function(){isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";};
+    window.speechSynthesis.speak(u);
+  }
+  if(window.speechSynthesis.getVoices().length)next();
+  else window.speechSynthesis.onvoiceschanged=function(){next();};
+  isSpeaking=true;btn.classList.add("is-active");lbl.textContent="Pause";
+  stopSpeechKeepAlive();
+  speechKeepAlive=setInterval(function(){
+    if(window.speechSynthesis.speaking&&!window.speechSynthesis.paused){window.speechSynthesis.pause();window.speechSynthesis.resume();}
+  },9000);
+}
 
 // Share
 function toggleShare(e){e.stopPropagation();document.getElementById("share-dd").classList.toggle("show");}
@@ -621,6 +656,19 @@ var UPSELL_MAP={
 };
 
 var currentLp=null,currentUp=null;
+
+// First sentence of a Life Path synthesis tension paragraph — used to build
+// a per-number invite description instead of a static per-bucket one
+function tensionLead(syn){
+  var s=(syn&&syn.tension)?syn.tension.split(".")[0].trim():"";
+  return s?s+".":"";
+}
+// What each recommended reading specifically resolves — combined with
+// tensionLead() this gives all 11 Life Path numbers their own specific desc
+var REC_BRIDGE={
+  "master-number-reading":"The Master Number Reading is built specifically for this weight, decoding what an 11, 22, or 33 actually carries and asks of you.",
+  "life-path-deep-dive":"The Life Path Deep Dive traces this exact tension through every dimension this teaser only opened the door to."
+};
 
 function buildToolURL(toolId){
   var p=new URLSearchParams();
@@ -705,14 +753,20 @@ function calculate(){
     var isMaster=(lp===11||lp===22||lp===33);
     var up=isMaster?UPSELL_MAP.master:UPSELL_MAP.standard;
     currentLp=lp;currentUp=up;
+    var lead=tensionLead(data.synthesis);
+    var bridge=REC_BRIDGE[up.toolId];
+    var inviteDesc=(lead&&bridge)?(lead+" "+bridge):up.desc;
     document.getElementById("li-eyebrow").textContent=up.eyebrow;
     document.getElementById("li-title").textContent=up.titleTpl(fn,lp);
-    document.getElementById("li-desc").textContent=up.desc;
+    document.getElementById("li-desc").textContent=inviteDesc;
     document.getElementById("li-btn-label").textContent=up.ctaLabel;
 
-    // Speech
+    // Speech — include the invite title too, so listening reaches the
+    // actual invitation instead of stopping at synthesis. Skip repeating
+    // the lead sentence in audio since it was just spoken as part of the
+    // synthesis paragraph.
     var readEl=document.createElement("div");readEl.innerHTML=html;
-    fullReadingText=readEl.textContent.replace(/\s+/g," ").trim();
+    fullReadingText=(readEl.textContent+" "+up.titleTpl(fn,lp)+" "+(bridge||up.desc)).replace(/\s+/g," ").trim();
     window._shareText="I discovered what my birth date encodes at KAYAL SoulPath Institute. Qualities: "+data.tags.join(", ")+". Try yours free.";
 
     // Show result — hide the hero and input step so it reads as a clean next screen
