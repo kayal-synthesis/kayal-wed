@@ -679,7 +679,7 @@ function getSynthesis(el1,el2,sn1,sn2,n1,n2,ms1,ms2){
 }
 
 // ── STATE ──────────────────────────────────────────────────
-var _d1='',_n1='',_d2='',_n2='',isSpeaking=false,fullText='',speechChunks=[],chunkIndex=0,speechKeepAlive=null,currentUtterance=null;
+var _d1='',_n1='',_d2='',_n2='',isSpeaking=false,fullText='',speechChunks=[],chunkIndex=0,speechKeepAlive=null;
 
 // ── UPSELL DECISION (mirrors tool_registry.py chain for this tool) ──
 // Only 3 relevant love-domain products fit this reading, so every score
@@ -947,7 +947,6 @@ function toggleSpeech(){
     if(chunkIndex>=speechChunks.length){isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove('active');lbl.textContent='Listen';return;}
     var chunk=speechChunks[chunkIndex];
     var u=new SpeechSynthesisUtterance(chunk);
-    currentUtterance=u;
     u.rate=0.85+Math.random()*0.05;
     u.pitch=1.0+Math.random()*0.06;
     var v=getBestVoice();if(v)u.voice=v;

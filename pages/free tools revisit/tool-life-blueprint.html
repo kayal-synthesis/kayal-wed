@@ -581,7 +581,7 @@ function pyear(dob){var p=dob.split("-").map(Number),m=p[1],d=p[2],cy=new Date()
 function ord(n){var s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
 
 // Voice
-var isSpeaking=false,fullReadingText="",speechChunks=[],chunkIndex=0,speechKeepAlive=null,currentUtterance=null;
+var isSpeaking=false,fullReadingText="",speechChunks=[],chunkIndex=0,speechKeepAlive=null;
 function getBestVoice(){
   var voices=window.speechSynthesis.getVoices();if(!voices.length)return null;
   var pref=["Google UK English Female","Microsoft Libby Online (Natural) - English (United Kingdom)","Karen","Moira","Samantha","Victoria","Google US English"];
@@ -606,7 +606,6 @@ function toggleSpeech(){
     if(chunkIndex>=speechChunks.length){isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";return;}
     var chunk=speechChunks[chunkIndex];
     var u=new SpeechSynthesisUtterance(chunk);
-    currentUtterance=u;
     u.rate=0.80+Math.random()*0.05;u.pitch=1.02+Math.random()*0.07;var v=getBestVoice();if(v)u.voice=v;
     u.onend=function(){chunkIndex++;var pause=/[?]$/.test(chunk)?520:(340+Math.random()*140);setTimeout(next,pause);};
     u.onerror=function(){isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";};

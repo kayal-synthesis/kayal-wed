@@ -534,7 +534,7 @@ var SYNTHESIS={
 };
 
 // ── VOICE ─────────────────────────────────────────────────
-var isSpeaking=false,fullReadingText="",speechChunks=[],chunkIndex=0,speechKeepAlive=null,currentUtterance=null;
+var isSpeaking=false,fullReadingText="",speechChunks=[],chunkIndex=0,speechKeepAlive=null;
 function getBestVoice(){
   var voices=window.speechSynthesis.getVoices();if(!voices.length)return null;
   // Named voices known to sound genuinely natural, checked first
@@ -563,7 +563,6 @@ function toggleSpeech(){
     if(chunkIndex>=speechChunks.length){isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove("is-active");lbl.textContent="Listen to Your Reading";return;}
     var chunk=speechChunks[chunkIndex];
     var u=new SpeechSynthesisUtterance(chunk);
-    currentUtterance=u;
     // Small natural variance per chunk instead of perfectly identical
     // rate/pitch every time — real speech drifts slightly line to line
     u.rate=0.80+Math.random()*0.05;
