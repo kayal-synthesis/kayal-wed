@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KRTLBL5T');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="../../images/favicon.svg">
+<link rel="shortcut icon" type="image/png" href="../../images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Programmes — KAYAL SoulPath Institute</title>
+<meta name="description" content="Study Soul Blueprint Science through five certified programmes: Numerology, Astrology, Physiognomy, Palmistry, and Spirit Science. Beginner to professional in one structured journey.">
+<link rel="stylesheet" href="../../css/global.css">
+<link rel="stylesheet" href="../../css/course.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+.prog-card {
+  background: var(--white);
+  border: 1px solid var(--cream);
+  border-radius: 16px;
+  padding: 40px;
+  height: 100%;
+  transition: box-shadow .25s, transform .25s;
+  display: flex;
+  flex-direction: column;
+}
+.prog-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,.07);
+  transform: translateY(-3px);
+}
+.prog-card-icon { font-size: 48px; margin-bottom: 20px; }
+.prog-card-pillar {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 8px;
+  font-family: var(--ff-body);
+  font-weight: 600;
+}
+.prog-card-level {
+  font-size: 11px;
+  font-family: var(--ff-heading);
+  font-style: italic;
+  color: var(--stone);
+  margin-bottom: 10px;
+}
+.prog-card h2 {
+  font-family: var(--ff-heading);
+  font-size: 26px;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.prog-card p {
+  font-size: 14.5px;
+  color: var(--slate);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  flex: 1;
+}
+.prog-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  border-top: 1px solid var(--cream);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.prog-card-price {
+  font-family: var(--ff-display);
+  font-size: 32px;
+  color: var(--terra);
+  line-height: 1;
+}
+.prog-card-install {
+  font-size: 11px;
+  color: var(--stone);
+  margin-top: 3px;
+}
+
+/* Bundle card */
+.bundle-card {
+  background: var(--ink);
+  border-radius: 16px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.bundle-card-content {}
+.bundle-eyebrow {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--terra-l);
+  margin-bottom: 10px;
+  font-family: var(--ff-body);
+}
+.bundle-title {
+  font-family: var(--ff-heading);
+  font-size: 28px;
+  color: var(--linen);
+  margin-bottom: 12px;
+}
+.bundle-desc {
+  font-size: 14px;
+  color: rgba(250,247,242,.55);
+  line-height: 1.75;
+  font-family: var(--ff-heading);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+.bundle-includes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.bundle-tag {
+  padding: 5px 12px;
+  background: rgba(201,158,44,.12);
+  border: 1px solid rgba(201,158,44,.2);
+  border-radius: 20px;
+  font-size: 11.5px;
+  color: var(--terra-l);
+}
+.bundle-price-wrap {
+  text-align: center;
+  flex-shrink: 0;
+}
+.bundle-price {
+  font-family: var(--ff-display);
+  font-size: 52px;
+  font-weight: 300;
+  color: var(--linen);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.bundle-was {
+  font-size: 13px;
+  color: rgba(250,247,242,.35);
+  text-decoration: line-through;
+  margin-bottom: 4px;
+}
+.bundle-saving {
+  font-size: 12px;
+  color: #4ade80;
+  margin-bottom: 20px;
+}
+@media(max-width:900px){
+  .bundle-card { grid-template-columns: 1fr; }
+  .bundle-price-wrap { text-align: left; }
+}
+@media(max-width:768px){
+  .prog-grid { grid-template-columns: 1fr !important; }
+}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KRTLBL5T"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="announcement-bar">
+  <span>New intake open for 2026 — limited places available across all programmes.</span>
+  <a href="./index.html">View all courses</a>
+  <button class="announcement-bar-close">×</button>
+</div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="../../index.html" class="nav-brand">
+      <div class="nav-brand-name">KAYAL</div>
+      <div class="nav-brand-sub">SoulPath Institute</div>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-item"><a href="../../about.html" class="nav-link">About</a></li>
+      <li class="nav-item">
+        <button class="nav-link" data-dropdown="courses">Courses
+          <svg class="nav-caret" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="nav-dropdown">
+          <a href="./numerology.html">🔢 Numerology</a>
+          <a href="./astrology.html">♈ Astrology</a>
+          <a href="./physiognomy.html">👁️ Physiognomy — Face Reading</a>
+          <a href="./palmistry.html">🤚 Palmistry — Palm Reading</a>
+          <a href="./spirit-science.html">✨ Spirit Science</a>
+          <a href="./index.html" style="border-top:1px solid rgba(201,158,44,.15);margin-top:6px;padding-top:12px;color:var(--terra);">All Programmes →</a>
+        </div>
+      </li>
+      <li class="nav-item"><a href="../../tools.html" class="nav-link">Free Tools</a></li>
+      <li class="nav-item"><a href="../../insights.html" class="nav-link">Insights</a></li>
+      <li class="nav-item"><a href="../../consultation.html" class="nav-link">Consultation</a></li>
+      <li class="nav-item"><a href="../../contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="./index.html" class="btn btn-outline" style="font-size:12px;padding:9px 20px">All Programmes</a>
+      <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:12px;padding:9px 20px">Open LifeOS</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobile-nav">
+  <button class="nav-mobile-close" id="mobile-close">×</button>
+  <ul class="nav-mobile-links">
+    <li><a href="../../about.html">About</a></li>
+    <li>
+      <button class="nav-mobile-toggle">Courses ▾</button>
+      <div class="nav-mobile-sub">
+        <a href="./numerology.html">Numerology</a>
+        <a href="./astrology.html">Astrology</a>
+        <a href="./physiognomy.html">Physiognomy</a>
+        <a href="./palmistry.html">Palmistry</a>
+        <a href="./spirit-science.html">Spirit Science</a>
+        <a href="./index.html">All Programmes</a>
+      </div>
+    </li>
+    <li><a href="../../tools.html">Free Tools</a></li>
+    <li><a href="../../insights.html">Insights</a></li>
+    <li><a href="../../consultation.html">Consultation</a></li>
+    <li><a href="../../contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-mobile-actions">
+    <a href="./index.html" class="btn btn-outline" style="justify-content:center">All Programmes</a>
+    <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-primary" style="justify-content:center">Open LifeOS</a>
+  </div>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero" style="padding-top:calc(var(--nav-h) + 40px)">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-sep">—</span>
+      <span>All Programmes</span>
+    </div>
+    <div class="eyebrow">Five Disciplines · One System</div>
+    <h1 class="page-hero-title">Soul Blueprint<br><em>Programmes</em></h1>
+    <p class="page-hero-sub">Certified study in the four ancient pillars of self-knowledge — and the unified framework that ties them together. Every programme takes you from complete beginner to professional-level competency. Each stands alone. Together, they form the complete system.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <!-- Four Pillars Grid -->
+    <div class="prog-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:24px">
+
+      <!-- Numerology -->
+      <a href="./numerology.html" style="text-decoration:none;display:block">
+        <div class="prog-card">
+          <div class="prog-card-icon">🔢</div>
+          <div class="prog-card-pillar">Pillar One · 12 Weeks</div>
+          <div class="prog-card-level">No prior knowledge required — beginner to professional in 12 weeks</div>
+          <h2>Numerology</h2>
+          <p>The mathematical blueprint of your existence. Life Path, Expression, Soul Urge, four Pinnacles, and Personal Year cycles — the complete numerological portrait of a human life. The most accessible of the four pillars and the one most students begin with.</p>
+          <div class="prog-card-footer">
+            <div>
+              <div class="prog-card-price">$697</div>
+              <div class="prog-card-install">or 3 × $249/mo instalment</div>
+            </div>
+            <span class="btn btn-outline" style="font-size:12px">Enrol Now →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Astrology -->
+      <a href="./astrology.html" style="text-decoration:none;display:block">
+        <div class="prog-card">
+          <div class="prog-card-icon">♈</div>
+          <div class="prog-card-pillar">Pillar Two · 14 Weeks</div>
+          <div class="prog-card-level">Complete beginner to certified practitioner in 14 weeks</div>
+          <h2>Astrology</h2>
+          <p>Personal sky map interpretation, timing cycles, houses, aspects, and predictive work — the celestial map that describes your nature, your relationships, and your exact timing windows with extraordinary depth.</p>
+          <div class="prog-card-footer">
+            <div>
+              <div class="prog-card-price">$897</div>
+              <div class="prog-card-install">or 3 × $309/mo instalment</div>
+            </div>
+            <span class="btn btn-outline" style="font-size:12px">Enrol Now →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Physiognomy -->
+      <a href="./physiognomy.html" style="text-decoration:none;display:block">
+        <div class="prog-card">
+          <div class="prog-card-icon">👁️</div>
+          <div class="prog-card-pillar">Pillar Three · 10 Weeks</div>
+          <div class="prog-card-level">From zero to professional face reader in 10 weeks</div>
+          <h2>Physiognomy</h2>
+          <p>Classical face reading — how the structure of the face encodes character, natural gifts, and life patterns. A discipline used by physicians, judges, and counsellors across cultures for over 3,000 years. One of the most unique offerings in our curriculum.</p>
+          <div class="prog-card-footer">
+            <div>
+              <div class="prog-card-price">$447</div>
+              <div class="prog-card-install">or 3 × $159/mo instalment</div>
+            </div>
+            <span class="btn btn-outline" style="font-size:12px">Enrol Now →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Palmistry -->
+      <a href="./palmistry.html" style="text-decoration:none;display:block">
+        <div class="prog-card">
+          <div class="prog-card-icon">🤚</div>
+          <div class="prog-card-pillar">Pillar Four · 10 Weeks</div>
+          <div class="prog-card-level">No experience needed — from palm anatomy to full soul reading in 10 weeks</div>
+          <h2>Palmistry</h2>
+          <p>The lines, mounts, and hand structure form a living map of vitality, relationships, timing, and soul's purpose. Unlike other pillars, the palm changes as your life evolves — making it both diagnostic and predictive in ways no other system can match.</p>
+          <div class="prog-card-footer">
+            <div>
+              <div class="prog-card-price">$447</div>
+              <div class="prog-card-install">or 3 × $159/mo instalment</div>
+            </div>
+            <span class="btn btn-outline" style="font-size:12px">Enrol Now →</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Spirit Science — full width featured -->
+    <a href="./spirit-science.html" style="text-decoration:none;display:block;margin-bottom:24px">
+      <div style="background:linear-gradient(135deg,rgba(181,98,42,.07),var(--white));border:1.5px solid rgba(201,158,44,.2);border-radius:16px;padding:40px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;transition:box-shadow .25s" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,.07)'" onmouseout="this.style.boxShadow=''">
+        <div>
+          <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:6px;font-family:var(--ff-body);font-weight:600">Synthesis Programme · 12 Weeks · Most Advanced</div>
+          <div style="font-family:var(--ff-heading);font-size:12px;font-style:italic;color:var(--stone);margin-bottom:12px">Open to sincere beginners — from foundational studies to full integration in 12 weeks</div>
+          <h2 style="font-family:var(--ff-heading);font-size:30px;color:var(--ink);margin-bottom:14px">✨ Spirit Science</h2>
+          <p style="font-size:15px;color:var(--slate);line-height:1.85;margin-bottom:24px;max-width:540px">Consciousness studies, vibrational science, the five elements, celestial hierarchy, Kabbalah, Solomonic seals, sound technology, and the unified framework that explains why all four pillars converge. The programme that makes everything else make sense.</p>
+          <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+            <div>
+              <div style="font-family:var(--ff-display);font-size:36px;color:var(--terra);line-height:1">$997</div>
+              <div style="font-size:11px;color:var(--stone);margin-top:3px">or 3 × $349/mo instalment</div>
+            </div>
+            <span class="btn btn-primary">Enrol in Spirit Science — $997 →</span>
+          </div>
+        </div>
+        <div style="text-align:center;font-size:80px;opacity:.6;flex-shrink:0">✨</div>
+      </div>
+    </a>
+
+    <!-- Full Blueprint Bundle -->
+    <div class="bundle-card" style="margin-bottom:48px">
+      <div class="bundle-card-content">
+        <div class="bundle-eyebrow">Best Value · Complete System</div>
+        <div class="bundle-title">Full Blueprint Bundle — All Five Programmes</div>
+        <div class="bundle-desc">Every pillar. The synthesis. One complete journey from first encounter with the system to full professional-level mastery of all four ancient disciplines and their unified framework.</div>
+        <div class="bundle-includes">
+          <span class="bundle-tag">🔢 Numerology</span>
+          <span class="bundle-tag">♈ Astrology</span>
+          <span class="bundle-tag">👁️ Physiognomy</span>
+          <span class="bundle-tag">🤚 Palmistry</span>
+          <span class="bundle-tag">✨ Spirit Science</span>
+        </div>
+        <a href="../../pages/enrol/apply.html" class="btn btn-primary" style="font-size:13px">Enquire About the Bundle →</a>
+      </div>
+      <div class="bundle-price-wrap">
+        <div class="bundle-was">$3,485 separately</div>
+        <div class="bundle-price">$2,997</div>
+        <div class="bundle-saving">You save $488</div>
+        <a href="../../pages/enrol/apply.html" class="btn btn-outline" style="color:var(--linen);border-color:rgba(250,247,242,.2);font-size:12px;justify-content:center">Get Bundle →</a>
+      </div>
+    </div>
+
+    <!-- Consultation CTA -->
+    <div style="background:var(--parchment);border:1px solid rgba(201,158,44,.15);border-radius:16px;padding:40px;text-align:center">
+      <div class="eyebrow" style="justify-content:center">Not sure where to start?</div>
+      <h3 style="font-family:var(--ff-heading);font-size:28px;color:var(--ink);margin-bottom:12px">Book a Private Consultation First</h3>
+      <p style="font-size:15px;color:var(--stone);line-height:1.8;margin-bottom:28px;max-width:560px;margin-left:auto;margin-right:auto">A discovery call with a KAYAL faculty member. We will assess your profile and recommend the programme that best matches your background and goals.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="../../consultation.html" class="btn btn-primary">Book a Consultation</a>
+        <a href="../../contact.html" class="btn btn-outline">Ask a Question</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-inner">
+      <div class="eyebrow" style="justify-content:center;color:var(--stone)">Stay informed</div>
+      <h2 class="newsletter-title">Programme updates<br><em>and insights.</em></h2>
+      <p class="newsletter-desc">New intake dates, faculty insights, and early-access enrolment — delivered to your inbox.</p>
+      <form class="newsletter-form" action="https://formspree.io/f/maqkkzlv" method="POST">
+        <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
+        <button type="submit" class="newsletter-submit">Subscribe →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">KAYAL</div>
+        <div class="footer-brand-sub">SoulPath Institute</div>
+        <p class="footer-tagline">Soul Blueprint Science — a complete map of a human life, drawn from the four ancient pillars of self-knowledge.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://x.com/kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.tiktok.com/@kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://www.linkedin.com/in/kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/share/1845UT2nXn/" target="_blank" rel="noopener" class="footer-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://t.me/kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Programmes</div>
+        <ul class="footer-links">
+          <li><a href="./numerology.html">Numerology</a></li>
+          <li><a href="./astrology.html">Astrology</a></li>
+          <li><a href="./physiognomy.html">Physiognomy</a></li>
+          <li><a href="./palmistry.html">Palmistry</a></li>
+          <li><a href="./spirit-science.html">Spirit Science</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Institute</div>
+        <ul class="footer-links">
+          <li><a href="../../about.html">Our Story</a></li>
+          <li><a href="../../consultation.html">1:1 Consultation</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener">Kayal LifeOS ↗</a></li>
+          <li><a href="../../tools.html">Free Tools</a></li>
+          <li><a href="../../insights.html">Insights</a></li>
+          <li><a href="../advertise.html">Advertise With Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 KAYAL SoulPath Institute. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="../privacy-policy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Use</a>
+        <a href="../cookies.html">Cookie Policy</a>
+        <a href="../advertise.html">Advertise</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../js/global.js"></script>
+
+<!-- Tawk.to Live Chat -->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a1ac2936f88d91c31d3620f/1jps8g46o';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+</body>
+</html>
