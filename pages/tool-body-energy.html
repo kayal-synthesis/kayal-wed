@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitality Blueprint | KAYAL SoulPath Institute</title>
+<meta name="description" content="Your birth date encodes a real pattern in how your energy actually works: what sustains it, what drains it, and where it tends to get stuck. Discover it free.">
+<meta property="og:title" content="Vitality Blueprint | KAYAL SoulPath Institute">
+<meta property="og:description" content="Your birth date reveals how your energy actually works: what sustains it, what drains it, where it gets stuck. A free reading from KAYAL SoulPath Institute.">
+<meta property="og:url" content="https://kayalsoulpath.com/pages/tool-body-energy.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KAYAL SoulPath Institute">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vitality Blueprint | KAYAL SoulPath Institute">
+<meta name="twitter:description" content="Your birth date reveals how your energy actually works: what sustains it, what drains it, where it gets stuck. A free reading from KAYAL SoulPath Institute.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0c0a08;--deep:#181210;--ember:#2a1810;--rust:#6b3018;
+  --amber:#c8642a;--gold:#d4943a;--cream:#f0e4d0;--linen:#f8f2e8;
+  --stone:#8a7868;--r:8px;--r-lg:16px;
+  --ff-d:'Georgia','Times New Roman',serif;
+  --ff-h:'Georgia',serif;
+  --ff-b:system-ui,-apple-system,sans-serif;
+}
+body{background:var(--ink);color:var(--cream);font-family:var(--ff-b);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(12,10,8,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(200,100,42,.14);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;flex-direction:column;gap:1px}
+.nav-brand-name{font-family:var(--ff-d);font-size:16px;font-weight:400;color:var(--cream);letter-spacing:.06em;text-transform:uppercase}
+.nav-brand-sub{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,228,208,.35)}
+.nav-back{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:rgba(212,148,58,.65);border:1px solid rgba(200,100,42,.22);border-radius:4px;padding:7px 14px;transition:all .2s}
+.nav-back:hover{color:var(--gold);border-color:rgba(200,100,42,.5)}
+.nav-cta{padding:8px 18px;background:var(--amber);color:var(--linen);border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.04em;transition:background .2s;border:none}
+.nav-cta:hover{background:var(--gold)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 25%,rgba(107,48,24,.4),transparent 58%),var(--ink)}
+.pulse-wrap{position:relative;width:200px;height:200px;margin:0 auto 36px;z-index:1;display:flex;align-items:center;justify-content:center}
+.pulse-ring{position:absolute;border-radius:50%;border:1px solid rgba(200,100,42,.28);animation:pulse-out 3s ease-out infinite}
+.pulse-ring:nth-child(2){animation-delay:1s}
+.pulse-ring:nth-child(3){animation-delay:2s}
+@keyframes pulse-out{0%{width:60px;height:60px;opacity:.8}100%{width:200px;height:200px;opacity:0}}
+.pulse-center{position:relative;z-index:1;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle at 40% 35%,rgba(212,148,58,.5),rgba(12,10,8,.9));border:1px solid rgba(200,100,42,.4);display:flex;align-items:center;justify-content:center;font-size:28px}
+
+.hero-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;position:relative;z-index:1}
+.hero-title{font-family:var(--ff-d);font-size:clamp(26px,5vw,48px);font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:16px;position:relative;z-index:1}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(212,148,58,.7);line-height:1.8;max-width:480px;margin:0 auto 36px;position:relative;z-index:1}
+.hero-cta{padding:14px 32px;background:linear-gradient(135deg,var(--rust),var(--amber));color:var(--linen);border:none;border-radius:var(--r);font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:10px;position:relative;z-index:1;text-transform:uppercase}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,100,42,.4)}
+
+/* MAIN */
+.main{max-width:860px;margin:0 auto;padding:80px 24px}
+.s-label{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.s-title{font-family:var(--ff-d);font-size:clamp(22px,3vw,32px);font-weight:300;color:var(--cream);line-height:1.2;margin-bottom:10px}
+.s-title em{font-style:italic;color:var(--gold)}
+.s-sub{font-family:var(--ff-h);font-size:14px;font-style:italic;color:rgba(240,228,208,.6);line-height:1.75;max-width:560px;margin-bottom:32px}
+
+/* Form */
+.form-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:12px;margin-bottom:20px}
+.form-group{display:flex;flex-direction:column;gap:7px}
+.form-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,228,208,.55)}
+.form-input{padding:13px 16px;background:rgba(42,24,16,.5);border:1.5px solid rgba(200,100,42,.22);border-radius:var(--r);font-family:var(--ff-b);font-size:15px;color:var(--cream);outline:none;transition:border-color .2s}
+.form-input:focus{border-color:var(--amber)}
+.form-input::placeholder{color:var(--stone)}
+input[type=date].form-input{color-scheme:dark}
+.calc-btn{width:100%;padding:15px 24px;background:linear-gradient(135deg,var(--rust),var(--amber));color:var(--linen);border:none;border-radius:var(--r);font-family:var(--ff-b);font-size:14px;font-weight:600;letter-spacing:.05em;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:4px}
+.calc-btn:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(200,100,42,.35)}
+.calc-btn .cspin{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.calc-btn.loading .cspin{display:block}
+.calc-btn.loading span{opacity:.6}
+
+/* RESULT */
+#result-section{display:none;margin-top:48px}
+#result-section.show{display:block;animation:fadeUp .5s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+.pattern-header{padding:44px 36px;border-radius:var(--r-lg);text-align:center;position:relative;overflow:hidden;margin-bottom:28px;background:linear-gradient(160deg,rgba(42,24,16,.9),rgba(12,10,8,.98));border:1px solid rgba(200,100,42,.24)}
+.pattern-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(200,100,42,.14),transparent 60%)}
+.pattern-eyebrow{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(212,148,58,.6);margin-bottom:10px;position:relative;z-index:1}
+.pattern-phrase{font-family:var(--ff-d);font-size:clamp(22px,4vw,36px);font-weight:300;color:var(--cream);line-height:1.25;margin-bottom:16px;position:relative;z-index:1}
+.pattern-phrase em{font-style:italic;color:var(--gold)}
+.pattern-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;position:relative;z-index:1}
+.pattern-tag{padding:4px 13px;border-radius:20px;font-size:11.5px;background:rgba(200,100,42,.16);border:1px solid rgba(200,100,42,.32);color:var(--gold)}
+
+.reading-block{margin-bottom:26px}
+.r-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.r-label::after{content:'';flex:1;height:1px;background:rgba(200,100,42,.24)}
+.r-para{font-family:var(--ff-h);font-size:15.5px;font-style:italic;color:rgba(240,228,208,.9);line-height:1.95;margin-bottom:14px;text-align:justify}
+.r-para:last-child{margin-bottom:0}
+.r-syn{border:1px solid rgba(200,100,42,.26);border-radius:var(--r-lg);padding:26px 28px;background:rgba(42,24,16,.34);margin:24px 0}
+.r-syn .r-label{color:var(--gold)}
+.r-tension{font-family:var(--ff-h);font-size:16px;font-style:italic;color:rgba(240,228,208,.9);line-height:1.9;margin-bottom:14px;text-align:justify}
+.r-invite{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(212,148,58,.9);line-height:1.85;text-align:justify}
+
+/* Action bar */
+.action-bar{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;padding:16px 20px;background:rgba(42,24,16,.38);border:1px solid rgba(200,100,42,.2);border-radius:var(--r)}
+.act-btn{padding:9px 16px;border-radius:var(--r);font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;background:transparent;color:rgba(240,228,208,.7);border:1px solid rgba(200,100,42,.28)}
+.act-btn:hover{border-color:var(--amber);color:var(--amber)}
+.act-btn.is-active{background:rgba(200,100,42,.26);color:var(--amber);border-color:var(--amber)}
+.share-wrap{position:relative}
+.share-dd{position:absolute;top:calc(100% + 8px);left:0;background:var(--ember);border:1px solid rgba(200,100,42,.28);border-radius:var(--r);padding:6px;display:none;flex-direction:column;gap:2px;min-width:150px;z-index:10}
+.share-dd.show{display:flex}
+.share-opt{padding:8px 12px;font-size:12.5px;color:rgba(240,228,208,.75);border-radius:4px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.share-opt:hover{background:rgba(200,100,42,.18);color:var(--cream)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ember);color:var(--cream);padding:10px 20px;border-radius:20px;font-size:12.5px;border:1px solid rgba(200,100,42,.32);opacity:0;pointer-events:none;transition:all .3s;z-index:300}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Invite card + modal, matching the multi-option pattern */
+.invite-card{margin-top:36px;padding:30px 32px;border-radius:var(--r-lg);background:linear-gradient(160deg,rgba(200,100,42,.18),rgba(12,10,8,.6));border:1px solid rgba(212,148,58,.3)}
+.li-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.li-title{font-family:var(--ff-d);font-size:20px;font-weight:300;color:var(--cream);line-height:1.35;margin-bottom:10px}
+.li-desc{font-family:var(--ff-h);font-size:13.5px;font-style:italic;color:rgba(240,228,208,.7);line-height:1.75;margin-bottom:18px}
+.li-btn-p{padding:12px 24px;background:linear-gradient(135deg,var(--gold),#a8722e);color:var(--ink);border:none;border-radius:var(--r);font-size:13px;font-weight:700;letter-spacing:.03em;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.li-btn-p:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,148,58,.32)}
+.li-secondary{margin-top:12px;font-size:12px;color:rgba(240,228,208,.5);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+.um-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:400;padding:20px}
+.um-backdrop.show{display:flex}
+.um-modal{background:var(--deep);border:1px solid rgba(200,100,42,.28);border-radius:var(--r-lg);padding:28px;max-width:440px;width:100%;max-height:80vh;overflow-y:auto}
+.um-title{font-family:var(--ff-d);font-size:19px;font-weight:300;color:var(--cream);margin-bottom:18px}
+.um-option{display:flex;align-items:center;gap:14px;padding:16px;border:1px solid rgba(200,100,42,.2);border-radius:var(--r);margin-bottom:10px;cursor:pointer;transition:all .2s;text-decoration:none;color:inherit}
+.um-option:hover{border-color:var(--amber);background:rgba(200,100,42,.08)}
+.um-option.recommended{border-color:var(--gold);background:rgba(212,148,58,.08)}
+.um-opt-tag{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.um-opt-body{flex:1}
+.um-opt-name{font-family:var(--ff-h);font-size:14px;color:var(--cream);margin-bottom:2px}
+.um-opt-desc{font-size:11.5px;color:rgba(240,228,208,.55)}
+.um-opt-price{font-family:var(--ff-d);font-size:16px;color:var(--gold);flex-shrink:0}
+.um-close{text-align:center;font-size:12px;color:rgba(240,228,208,.4);cursor:pointer;margin-top:8px}
+
+.restart-row{text-align:center;margin-top:20px}
+.restart-btn{font-size:12.5px;color:rgba(240,228,208,.5);border:1px solid rgba(200,100,42,.22);border-radius:var(--r);padding:9px 20px;cursor:pointer;transition:all .2s;background:transparent}
+.restart-btn:hover{color:var(--cream);border-color:rgba(200,100,42,.5)}
+
+@media(max-width:640px){
+  .form-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-brand">
+    <div class="nav-brand-name">KAYAL</div>
+    <div class="nav-brand-sub">SoulPath Institute</div>
+  </a>
+  <div style="display:flex;align-items:center;gap:12px">
+    <a href="../tools.html" class="nav-back"><i class="fas fa-chevron-left" style="font-size:10px"></i> All Tools</a>
+    <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="nav-cta">Open LifeOS</a>
+  </div>
+</nav>
+
+<section class="hero" id="hero-section">
+  <div class="hero-eyebrow">Free Reading &middot; Soul Blueprint Science</div>
+  <div class="pulse-wrap">
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+    <div class="pulse-center">⚡</div>
+  </div>
+  <h1 class="hero-title">Your energy has a <em>real</em> pattern.<br>Most people never learn it.</h1>
+  <p class="hero-sub">Your birth date encodes how your energy actually works: what genuinely sustains it, what quietly drains it, and where it tends to get stuck.</p>
+  <button class="hero-cta" onclick="document.getElementById('calc-section').scrollIntoView({behavior:'smooth'})"><i class="fas fa-bolt"></i> Find Your Pattern</button>
+</section>
+
+<div class="main">
+  <section id="calc-section">
+    <div class="s-label">Step One</div>
+    <h2 class="s-title">What's your body and energy actually <em>built</em> for?</h2>
+    <p class="s-sub">Enter your birth date. Your name is optional, used only to personalise the reading.</p>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Your Name (Optional)</label>
+        <input type="text" class="form-input" id="inp-name" placeholder="First name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date of Birth</label>
+        <input type="date" class="form-input" id="inp-dob">
+      </div>
+    </div>
+    <button class="calc-btn" id="calc-btn" onclick="calculate()">
+      <span id="btn-txt">Reveal Your Pattern</span>
+      <div class="cspin" id="btn-spin"></div>
+    </button>
+  </section>
+
+  <section id="result-section">
+    <div class="pattern-header">
+      <div class="pattern-eyebrow" id="p-eyebrow">Your Body &amp; Energy Pattern</div>
+      <div class="pattern-phrase" id="p-phrase"></div>
+      <div class="pattern-tags" id="p-tags"></div>
+    </div>
+
+    <div class="action-bar">
+      <button class="act-btn" id="listen-btn" onclick="toggleSpeech()"><i class="fas fa-volume-up"></i> <span id="listen-lbl">Listen to Reading</span></button>
+      <div class="share-wrap">
+        <button class="act-btn" onclick="toggleShare(event)"><i class="fas fa-share-nodes"></i> Share</button>
+        <div class="share-dd" id="share-dd">
+          <div class="share-opt" onclick="doShare('copy')"><i class="fas fa-link"></i> Copy link</div>
+          <div class="share-opt" onclick="doShare('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</div>
+          <div class="share-opt" onclick="doShare('twitter')"><i class="fab fa-x-twitter"></i> X</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="reading-content"></div>
+
+    <div class="invite-card">
+      <div class="li-eyebrow" id="li-eyebrow">If this reading has been useful</div>
+      <div class="li-title" id="li-title"></div>
+      <p class="li-desc" id="li-desc"></p>
+      <a href="#" id="lifeos-link" class="li-btn-p" target="_blank" rel="noopener"><i class="fas fa-bolt"></i> <span id="li-btn-label">See My Recommended Reading</span></a>
+      <div class="li-secondary" onclick="openUpsellModal(event)">See all readings that fit this pattern</div>
+    </div>
+
+    <div class="restart-row">
+      <button class="restart-btn" onclick="startNewReading()">Try a different date</button>
+    </div>
+  </section>
+</div>
+
+<div class="um-backdrop" id="um-backdrop" onclick="if(event.target===this)closeUpsellModal()">
+  <div class="um-modal">
+    <div class="um-title" id="um-title">Three readings fit what this pattern just showed.</div>
+    <div id="um-options"></div>
+    <div class="um-close" onclick="closeUpsellModal()">Close</div>
+  </div>
+</div>
+
+<div class="toast" id="toast-msg"></div>
+
+<script>
+// ── CORE NUMEROLOGY (identical reduction logic reused across the free-
+// tool set, not reimplemented, so results stay consistent with every
+// other tool that also reduces a birth date to a Life Path number) ──
+function rd(n){if(n===11||n===22||n===33)return n;if(n<10)return n;return rd(String(n).split("").reduce(function(s,d){return s+parseInt(d);},0));}
+function dtLP(dob){var p=dob.split("-").map(Number),y=p[0],m=p[1],d=p[2];return rd(String(y).split("").concat(String(m).padStart(2,"0").split(""),String(d).padStart(2,"0").split("")).reduce(function(s,c){return s+parseInt(c);},0));}
+
+// ── READINGS ──────────────────────────────────────────────
+var PATTERNS={
+  1:{
+    phrase:'Energy that <em>burns fast</em>',
+    tags:['High initial drive','Prone to burnout','Needs real physical outlets'],
+    paras:[
+      "A One's energy moves in strong, immediate bursts. When you're driving toward something, the energy is genuinely abundant, this is not a pattern that runs low easily on its own. What actually depletes a One is pushing through the burst without ever letting it complete, starting the next thing before the current one has genuinely finished.",
+      "The real risk is not laziness, it's the opposite: treating rest as a interruption rather than part of the cycle. A One who never lets a burst fully land tends to accumulate a specific kind of fatigue that doesn't show up as tiredness so much as irritability and shortened patience.",
+      "What genuinely helps: real physical outlets for the drive itself, not passive rest. A One recovers faster through movement that matches the intensity of the drive than through simply stopping."
+    ],
+    synthesis:{tension:"The tension is between the drive to start and the discipline to finish. Energy that never completes a cycle never actually replenishes, no matter how much of it there was to begin with.",invitation:"Let bursts finish before starting the next one, that is where the real recovery happens, not in stopping."}
+  },
+  2:{
+    phrase:'Energy that <em>absorbs</em>',
+    tags:['Highly attuned to others','Prone to quiet depletion','Needs real boundaries'],
+    paras:[
+      "A Two's energy is genuinely porous, in a real, felt sense, not a metaphor. You pick up on the emotional and energetic state of people around you more readily than most patterns do, which is a real gift in close relationships and a real cost in crowded or tense environments.",
+      "The depletion here rarely announces itself loudly. It tends to show up as a quiet, cumulative heaviness that's hard to trace to any one cause, since it's often not your own energy running low, it's other people's energy you've been carrying without realizing it.",
+      "What genuinely helps: a real, deliberate practice of noticing what's actually yours versus what you've absorbed from someone else, and consciously setting down what isn't yours to carry."
+    ],
+    synthesis:{tension:"The tension is between genuine sensitivity, a real strength, and the lack of a clear boundary around it, which turns the same sensitivity into a source of chronic depletion.",invitation:"The gift does not need to be dulled. It needs a boundary it currently does not have."}
+  },
+  3:{
+    phrase:'Energy that needs <em>expression</em>',
+    tags:['Flows through creativity','Blocked when unexpressed','Needs a real outlet'],
+    paras:[
+      "A Three's energy is built to move through expression, quite literally. When you're actively creating, speaking, or sharing something, the energy circulates well. When that outlet is missing for an extended stretch, the same energy doesn't simply go quiet, it tends to turn into a specific kind of restlessness or low mood that can be hard to connect back to the actual cause.",
+      "This is not about needing to be constantly performing or producing. It's specifically about having a real outlet, even a small, private one, where something gets expressed rather than held.",
+      "What genuinely helps: treating creative or expressive practice as a real physical need, not an optional hobby to get to eventually. For this pattern specifically, it functions closer to a physical requirement than a preference."
+    ],
+    synthesis:{tension:"The tension is between energy that wants to move through expression and a life that sometimes has no real space carved out for it.",invitation:"Build the outlet in deliberately, on purpose, rather than waiting for free time to produce it by accident."}
+  },
+  4:{
+    phrase:'Energy that needs <em>real structure</em>',
+    tags:['Responds well to routine','Struggles under disorder','Needs consistency to recover'],
+    paras:[
+      "A Four's energy is genuinely stabilized by routine, and this is a real physiological pattern, not just a preference. Consistent sleep, consistent meals, consistent physical activity at roughly the same time each day tend to produce noticeably more available energy than the exact same amount of sleep or activity at unpredictable times.",
+      "What actually depletes a Four fastest is not overwork specifically, it's disorder: constant last-minute changes, unpredictable schedules, a life that never settles into any real rhythm. That kind of instability costs a Four more energy than genuinely hard, but predictable, work.",
+      "What genuinely helps: protecting a real, consistent structure even when it feels rigid to others. For this pattern, structure is not a limitation on energy, it's the actual foundation of it."
+    ],
+    synthesis:{tension:"The tension is between a world that often prizes flexibility and a body that genuinely runs better on real consistency.",invitation:"Protect the structure deliberately, it is not a preference to apologize for, it is where this pattern's real energy actually comes from."}
+  },
+  5:{
+    phrase:'Energy that needs <em>movement</em>',
+    tags:['Needs real variety','Sluggish when static','Prone to nervous system overstimulation'],
+    paras:[
+      "A Five's energy genuinely stagnates under too much sameness. Long stretches of routine, the same environment day after day, tend to produce a real, physical sluggishness in this pattern that more static patterns simply don't experience the same way.",
+      "The counterintuitive part: too much stimulation in the other direction, constant input, constant novelty with no real pause, produces a different kind of depletion, a wired, overstimulated exhaustion that doesn't resolve with rest the way ordinary tiredness does.",
+      "What genuinely helps: real variety within a loose structure, not chaos, and not rigid sameness either. Regular changes of scene, activity, or routine, but with enough consistency that the nervous system isn't in constant overdrive."
+    ],
+    synthesis:{tension:"The tension is between too little stimulation, which stagnates this pattern, and too much, which overloads it. Neither extreme genuinely serves this energy.",invitation:"Look for real variety inside a loose, sustainable rhythm, not novelty without any structure at all."}
+  },
+  6:{
+    phrase:'Energy that <em>gives outward</em>',
+    tags:['Readily gives to others','Prone to depletion from over-responsibility','Needs real replenishment'],
+    paras:[
+      "A Six's energy flows outward toward others' needs with real ease, this is a genuine strength, not a weakness to correct. The real risk is that the giving becomes automatic and constant, with no equivalent, deliberate practice of receiving or replenishing.",
+      "The depletion here often gets misread as simply being tired, when the real cause is more specific: energy has been flowing consistently outward for an extended period with very little coming back in. This produces a particular kind of fatigue that rest alone doesn't fully resolve, since the underlying imbalance, giving without receiving, is still in place.",
+      "What genuinely helps: treating receiving as a real, active practice, not a passive thing that happens if you're lucky. For this pattern specifically, deliberately asking for and accepting care is what actually restores the balance."
+    ],
+    synthesis:{tension:"The tension is between a genuine gift for care and a system that hasn't built in an equivalent capacity to receive it back.",invitation:"Make receiving as deliberate a practice as giving already is, this pattern's energy depends on both directions actually flowing."}
+  },
+  7:{
+    phrase:'Energy that needs <em>real solitude</em>',
+    tags:['Recharges through genuine quiet','Drains fast in constant stimulation','Prone to nervous system fatigue'],
+    paras:[
+      "A Seven's energy genuinely depletes faster in constant social or sensory stimulation than most patterns do. This isn't shyness or introversion as a preference, it's a real, measurable difference in how quickly this specific pattern's energy runs low in a busy, demanding environment.",
+      "What actually restores this pattern is not simply sleep, it's real solitude: unstructured time with no demands, no input, no one requiring anything. A Seven who gets plenty of sleep but zero genuine solitude often still reports feeling drained, since the actual recovery mechanism this pattern needs was never engaged.",
+      "What genuinely helps: protecting real, regular blocks of solitude as seriously as you'd protect sleep itself, not treating it as indulgent or optional."
+    ],
+    synthesis:{tension:"The tension is between a demanding, constantly stimulating world and a nervous system that specifically needs real quiet to actually recover.",invitation:"Solitude is not a luxury for this pattern, it is the actual recovery mechanism. Protect it accordingly."}
+  },
+  8:{
+    phrase:'Energy with <em>real capacity, real limits</em>',
+    tags:['Strong natural stamina','Prone to pushing past real limits','Needs genuine rest, not just less work'],
+    paras:[
+      "An Eight's energy genuinely runs deep, real, substantial stamina that outpaces most other patterns under sustained demand. The risk this creates is a specific one: because the capacity is real, an Eight can push well past the point where rest was actually needed, since the body kept delivering output long after it should have signaled to stop.",
+      "This tends to produce a pattern of ignoring depletion signals until they become impossible to ignore, tension, sleep disruption, a body that finally forces the issue rather than being listened to earlier. The stamina is real, but it isn't infinite, and this pattern is specifically prone to acting as though it is.",
+      "What genuinely helps: scheduling real rest before it's needed, not waiting for the body to demand it. For an Eight, rest has to be deliberately built in, since the natural capacity will otherwise keep overriding the signal to stop."
+    ],
+    synthesis:{tension:"The tension is between genuinely high capacity and a body's real limits, which this pattern is specifically prone to overriding rather than respecting.",invitation:"Build real rest in on purpose, ahead of time, rather than waiting for the body to force the issue."}
+  },
+  9:{
+    phrase:'Energy that <em>gives to the whole</em>',
+    tags:['Expansive, outward-facing energy','Prone to compassion fatigue','Needs real personal restoration'],
+    paras:[
+      "A Nine's energy naturally extends outward, toward causes, communities, and people well beyond the immediate circle. This is a genuine strength, real generosity of energy, but it comes with a real risk: giving to something this large and ongoing can continue indefinitely with no natural stopping point, unless one is deliberately built in.",
+      "The depletion here often looks like compassion fatigue specifically, a real, recognized pattern where caring itself starts to feel heavy rather than energizing, not because the caring stopped being genuine, but because it was never balanced with real personal restoration.",
+      "What genuinely helps: treating personal restoration as seriously and deliberately as the outward giving. For a Nine, this usually means real, protected time that has nothing to do with any cause or any one else's need."
+    ],
+    synthesis:{tension:"The tension is between genuinely expansive, generous energy and a giving that has no built-in edge, unless a real one is deliberately created.",invitation:"Build a real, protected stopping point into the giving, not because the cause matters less, but because the capacity to keep giving depends on it."}
+  },
+  11:{
+    phrase:'A <em>highly attuned</em> nervous system',
+    tags:['Extremely sensitive to environment','Needs significant recovery time','Prone to overwhelm in dense settings'],
+    paras:[
+      "An 11's nervous system is genuinely more attuned than most patterns, picking up on subtle signals, emotional undercurrents, and environmental intensity that others simply don't register the same way. This is a real, functional heightened sensitivity, not a metaphor, and it comes with a real cost in dense, demanding environments.",
+      "The recovery time this pattern genuinely needs after intense exposure, crowds, conflict, emotionally heavy situations, tends to be longer than most people assume is reasonable, which often leads an 11 to push through without it, then face a harder, more disruptive depletion later.",
+      "What genuinely helps: treating recovery time after intensity as a real, non-negotiable need, not something to push past because it seems excessive. This pattern's sensitivity is a genuine asset when it has room to actually recover."
+    ],
+    synthesis:{tension:"The tension is between a genuinely valuable sensitivity and a world that rarely builds in the recovery time this specific pattern actually needs.",invitation:"Give the recovery time its full length, not the shortened version that seems more reasonable to everyone else."}
+  },
+  22:{
+    phrase:'Energy built for <em>sustained output</em>',
+    tags:['Real capacity for large-scale effort','Prone to ignoring depletion until crisis','Needs real structural rest'],
+    paras:[
+      "A 22's energy is genuinely built for large, sustained undertakings, real capacity most patterns don't have for the long, demanding work of building something significant over time. The real risk is precisely because that capacity is genuine, a 22 can sustain output for so long that depletion signals get overridden entirely, sometimes for years, until the body forces a real reckoning.",
+      "This pattern is specifically prone to treating rest as something to schedule once the big undertaking is finished, rather than something built into the undertaking itself. Given how long a 22's projects genuinely take, that approach means real rest keeps getting deferred indefinitely.",
+      "What genuinely helps: structural rest, built into the actual plan for the work, not an afterthought once it's done. For this pattern, rest needs the same deliberate architecture as the ambitious work itself."
+    ],
+    synthesis:{tension:"The tension is between genuinely enormous capacity and a body that still has real limits, which this pattern is specifically prone to postponing acknowledgment of.",invitation:"Design real rest into the structure of the work itself, not as a reward for finishing it."}
+  },
+  33:{
+    phrase:'Energy that <em>carries what isn\'t yours</em>',
+    tags:['Absorbs others\' emotional weight','Needs deliberate release practices','Prone to carrying unearned burden'],
+    paras:[
+      "A 33's energy is genuinely oriented toward healing and holding space for others at real depth, and this capacity comes with a specific, real risk: taking on emotional or energetic weight that was never actually yours to carry in the first place.",
+      "This pattern often doesn't recognize the depletion as depletion, it can feel more like a vague heaviness or sadness that seems to have no clear source, since the actual source is frequently someone else's pain that got absorbed rather than witnessed.",
+      "What genuinely helps: a real, deliberate release practice, something physical or ritual that consciously sets down what was picked up during the day. Without this, a 33's natural gift for holding space has no way to actually empty out again."
+    ],
+    synthesis:{tension:"The tension is between a genuine gift for holding others' pain and a system with no built-in way to release what it has absorbed.",invitation:"Build a real, deliberate release practice, this gift needs a way to empty out, or it fills up with what was never yours to keep."}
+  }
+};
+
+// ── UPSELL DECISION ────────────────────────────────────────
+// Only 3 real health/body/energy products exist in the catalog, so every
+// branch shows all 3, reordered so the genuinely best fit for that
+// specific Life Path pattern leads. Grouped by which real tool the
+// reading's own content actually points toward: structural/physical
+// patterns toward body constitution, sensitivity/energy-flow patterns
+// toward the chakra blueprint, stamina/draining patterns toward vitality.
+var TOOL_META={
+  'body-constitution-reading':{name:'Your Body, Built Different, Not Broken',price:'$34',desc:'Why generic health advice was never going to work for your particular body'},
+  'chakra-blueprint-reading':{name:"Where Your Energy Is Blocked, Where It's Open",price:'$34',desc:'Which of your energy centers are open, and which are quietly blocked'},
+  'vitality-code':{name:'The Vitality Code',price:'$29',desc:"Your natural energy pattern, and what's actually been draining it"}
+};
+var LP_TOOL_MAP={
+  1:'vitality-code', 2:'chakra-blueprint-reading', 3:'vitality-code',
+  4:'body-constitution-reading', 5:'vitality-code', 6:'vitality-code',
+  7:'chakra-blueprint-reading', 8:'body-constitution-reading', 9:'chakra-blueprint-reading',
+  11:'chakra-blueprint-reading', 22:'body-constitution-reading', 33:'chakra-blueprint-reading'
+};
+var currentLp=null,currentName='',currentDob='';
+
+function buildToolURL(toolId){
+  var p=new URLSearchParams();
+  if(currentName)p.set('name',currentName);
+  if(currentDob)p.set('dob',currentDob);
+  p.set('lp',currentLp);p.set('src','freetool');
+  return 'https://app.kayalsoulpath.com/tool/'+toolId+'?'+p.toString();
+}
+function openUpsellModal(e){
+  if(e)e.preventDefault();
+  var primaryId=LP_TOOL_MAP[currentLp]||'vitality-code';
+  var order=[primaryId].concat(Object.keys(TOOL_META).filter(function(id){return id!==primaryId;}));
+  document.getElementById('um-options').innerHTML=order.map(function(id,i){
+    var meta=TOOL_META[id];
+    var isRec=(i===0);
+    return '<a class="um-option'+(isRec?' recommended':'')+'" href="'+buildToolURL(id)+'" target="_blank" rel="noopener">'+
+      '<div class="um-opt-body">'+
+        (isRec?'<span class="um-opt-tag">Best fit</span><br>':'')+
+        '<div class="um-opt-name">'+meta.name+'</div>'+
+        '<div class="um-opt-desc">'+meta.desc+'</div>'+
+      '</div>'+
+      '<div class="um-opt-price">'+meta.price+'</div>'+
+    '</a>';
+  }).join('');
+  document.getElementById('um-backdrop').classList.add('show');
+  return false;
+}
+function closeUpsellModal(){document.getElementById('um-backdrop').classList.remove('show');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeUpsellModal();});
+
+function tensionLead(syn){
+  var s=(syn&&syn.tension)?syn.tension.split('.')[0].trim():'';
+  return s?s+'.':'';
+}
+var REC_BRIDGE={
+  'body-constitution-reading':'Your Body, Built Different, Not Broken traces this exact pattern through your actual physical constitution, not generic advice built for a different body.',
+  'chakra-blueprint-reading':"Where Your Energy Is Blocked, Where It's Open names precisely which of your energy centers are carrying this, and which are already flowing freely.",
+  'vitality-code':"The Vitality Code traces this exact pattern back to what's actually been draining it, and the specific path back to your natural peak."
+};
+
+var fullReadingText='';
+var isSpeaking=false,speechChunks=[],chunkIndex=0,currentUtterance=null,speechKeepAlive=null;
+
+function calculate(){
+  var dob=document.getElementById("inp-dob").value;
+  var name=document.getElementById("inp-name").value.trim();
+  if(!dob){document.getElementById("inp-dob").focus();return;}
+
+  var btn=document.getElementById("calc-btn");
+  btn.classList.add("loading");
+  setTimeout(function(){
+    btn.classList.remove("loading");
+    var lp=dtLP(dob);
+    var data=PATTERNS[lp]||PATTERNS[1];
+    var fn=name?name.split(" ")[0]:"";
+    currentLp=lp;currentName=fn;currentDob=dob;
+
+    document.getElementById("p-eyebrow").textContent=(fn?fn+"'s":"Your")+" Body & Energy Pattern";
+    document.getElementById("p-phrase").innerHTML=data.phrase;
+    document.getElementById("p-tags").innerHTML=data.tags.map(function(t){return"<span class='pattern-tag'>"+t+"</span>";}).join("");
+
+    var html="";
+    html+="<div class='reading-block'><div class='r-label'>How Your Energy Actually Works</div>";
+    data.paras.forEach(function(p){html+="<p class='r-para'>"+p+"</p>";});
+    html+="</div>";
+    html+="<div class='r-syn'><div class='r-label'>What This Reading Is Saying, Taken As A Whole</div>";
+    html+="<p class='r-tension'>"+data.synthesis.tension+"</p>";
+    html+="<p class='r-invite'>"+data.synthesis.invitation+"</p>";
+    html+="</div>";
+    document.getElementById("reading-content").innerHTML=html;
+
+    var toolId=LP_TOOL_MAP[lp]||'vitality-code';
+    var meta=TOOL_META[toolId];
+    var lead=tensionLead(data.synthesis);
+    var bridge=REC_BRIDGE[toolId];
+    document.getElementById("li-eyebrow").textContent="If this reading has been useful";
+    document.getElementById("li-title").textContent=(fn?fn+", this":"This")+" pattern has a real reading built specifically for it.";
+    document.getElementById("li-desc").textContent=(lead&&bridge)?(lead+" "+bridge):meta.desc;
+    document.getElementById("li-btn-label").textContent="Explore "+meta.name;
+    document.getElementById("lifeos-link").href=buildToolURL(toolId);
+
+    var readEl=document.createElement("div");readEl.innerHTML=html;
+    fullReadingText=(readEl.textContent+" "+(lead&&bridge?lead+" "+bridge:meta.desc)).replace(/\s+/g," ").trim();
+    window._shareText="I discovered my real body and energy pattern at KAYAL SoulPath Institute: "+data.tags.join(", ")+". Try yours free.";
+
+    document.getElementById("hero-section").style.display="none";
+    document.getElementById("calc-section").style.display="none";
+    var rs=document.getElementById("result-section");
+    rs.style.display="block";
+    setTimeout(function(){rs.classList.add("show");},50);
+    setTimeout(function(){rs.scrollIntoView({behavior:"smooth",block:"start"});},300);
+  },700);
+}
+
+function startNewReading(){
+  document.getElementById("inp-dob").value="";
+  document.getElementById("inp-name").value="";
+  document.getElementById("result-section").style.display="none";
+  document.getElementById("result-section").classList.remove("show");
+  document.getElementById("hero-section").style.display="flex";
+  document.getElementById("calc-section").style.display="block";
+  document.getElementById("calc-section").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+// ── VOICE ──────────────────────────────────────────────────
+function getBestVoice(){
+  var voices=window.speechSynthesis.getVoices();if(!voices.length)return null;
+  var pref=["Google UK English Female","Microsoft Libby Online (Natural) - English (United Kingdom)","Karen","Moira","Samantha","Victoria","Google US English"];
+  for(var i=0;i<pref.length;i++){var v=voices.find(function(v){return v.name===pref[i];});if(v)return v;}
+  var tagged=voices.find(function(v){return v.lang.startsWith("en")&&/natural|neural|enhanced|premium/i.test(v.name);});
+  if(tagged)return tagged;
+  var ef=voices.find(function(v){return v.lang.startsWith("en")&&v.name.toLowerCase().includes("female");});
+  return ef||voices.find(function(v){return v.lang.startsWith("en");})||voices[0];
+}
+function stopSpeechKeepAlive(){if(speechKeepAlive){clearInterval(speechKeepAlive);speechKeepAlive=null;}}
+function toggleSpeech(){
+  if(!("speechSynthesis" in window)){showToast("Voice not supported in this browser.");return;}
+  var btn=document.getElementById("listen-btn"),lbl=document.getElementById("listen-lbl");
+  if(isSpeaking){window.speechSynthesis.cancel();stopSpeechKeepAlive();isSpeaking=false;speechChunks=[];chunkIndex=0;btn.classList.remove("is-active");lbl.textContent="Listen to Reading";return;}
+  if(!fullReadingText)return;
+  window.speechSynthesis.cancel();
+  var raw=fullReadingText.split(/(?<=[.!?])\s+(?=[A-Z])/);
+  speechChunks=[];
+  for(var i=0;i<raw.length;i+=2){var c=raw.slice(i,i+2).join(" ").replace(/\s+/g," ").trim();if(c)speechChunks.push(c);}
+  chunkIndex=0;
+  function next(){
+    if(chunkIndex>=speechChunks.length){isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove("is-active");lbl.textContent="Listen to Reading";return;}
+    var chunk=speechChunks[chunkIndex];
+    var u=new SpeechSynthesisUtterance(chunk);
+    currentUtterance=u;
+    u.rate=0.80+Math.random()*0.05;u.pitch=1.02+Math.random()*0.07;var v=getBestVoice();if(v)u.voice=v;
+    u.onend=function(){chunkIndex++;var pause=/[?]$/.test(chunk)?520:(340+Math.random()*140);setTimeout(next,pause);};
+    u.onerror=function(){isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove("is-active");lbl.textContent="Listen to Reading";};
+    window.speechSynthesis.speak(u);
+  }
+  if(window.speechSynthesis.getVoices().length)next();
+  else window.speechSynthesis.onvoiceschanged=function(){next();};
+  isSpeaking=true;btn.classList.add("is-active");lbl.textContent="Pause";
+}
+
+// ── SHARE ──────────────────────────────────────────────────
+function toggleShare(e){e.stopPropagation();document.getElementById("share-dd").classList.toggle("show");}
+document.addEventListener("click",function(){var d=document.getElementById("share-dd");if(d)d.classList.remove("show");});
+function showToast(msg){var t=document.getElementById("toast-msg");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2400);}
+function doShare(m){
+  document.getElementById("share-dd").classList.remove("show");
+  var url="https://kayalsoulpath.com/pages/tool-body-energy.html";
+  var text=window._shareText||"Discover your real body and energy pattern at KAYAL SoulPath Institute.";
+  if(m==="copy"){navigator.clipboard&&navigator.clipboard.writeText(text+"\n"+url);showToast("Copied.");return;}
+  var enc=encodeURIComponent,urls={twitter:"https://twitter.com/intent/tweet?text="+enc(text)+"&url="+enc(url),whatsapp:"https://wa.me/?text="+enc(text+" "+url)};
+  if(urls[m])window.open(urls[m],"_blank","noopener");
+}
+
+document.getElementById("inp-dob").addEventListener("keydown",function(e){if(e.key==="Enter")calculate();});
+document.getElementById("inp-name").addEventListener("keydown",function(e){if(e.key==="Enter")calculate();});
+</script>
+</body>
+</html>

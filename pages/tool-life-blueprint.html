@@ -183,7 +183,7 @@ a{color:inherit;text-decoration:none}
         .new-reading-link{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(181,98,42,.55);margin-bottom:20px;text-decoration:none;transition:color .2s}
         .new-reading-link:hover{color:var(--terra)}
 
-        /* Reading bridge card — compact */
+        /* Reading bridge card, compact */
         .lifeos-invite{max-width:540px;margin:0 auto;padding:26px 28px;background:linear-gradient(135deg,rgba(201,158,44,.14),rgba(181,98,42,.08)),rgba(26,18,8,.97);border:1px solid rgba(201,158,44,.22);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
         .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(201,158,44,.14),transparent 70%);pointer-events:none}
         .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(181,98,42,.16),transparent 70%);pointer-events:none}
@@ -628,8 +628,8 @@ function doShare(m){document.getElementById("share-dd").classList.remove("show")
 // Only 2 relevant life-path products fit this reading, so both branches show
 // both, just reordered so the best fit leads.
 var TOOL_META={
-  'master-number-reading':{name:'The Master Number Reading',price:'$47',desc:'Built specifically for 11, 22, and 33 Life Paths'},
-  'life-path-deep-dive':{name:'The Life Path Deep Dive',price:'$57',desc:'Your Life Path number decoded in full, not the generic version'}
+  'master-number-reading':{name:"Why Your Life Feels Heavier Than Everyone Else's",price:'$44',desc:'Built specifically for 11, 22, and 33 Life Paths'},
+  'life-path-deep-dive':{name:'Your Core Life Pattern, Fully Explained',price:'$49',desc:'Your Life Path number decoded in full, not the generic version'}
 };
 var UPSELL_MAP={
   master:{
@@ -637,7 +637,7 @@ var UPSELL_MAP={
     secondary:['life-path-deep-dive'],
     eyebrow:'This is not a standard Life Path',
     titleTpl:function(fn,lp){return (fn?fn+"'s":'A')+' Life Path '+lp+' carries a specific kind of weight.';},
-    desc:'The Master Number Reading is built specifically for 11, 22, and 33 Life Paths — the full weight of what you carry, decoded completely.',
+    desc:"Why Your Life Feels Heavier Than Everyone Else's is built specifically for 11, 22, and 33 Life Paths, the full weight of what you carry, decoded completely.",
     ctaLabel:'See Our Recommended Reading',
     modalTitle:'Two readings fit what your Life Path just showed.'
   },
@@ -646,7 +646,7 @@ var UPSELL_MAP={
     secondary:['master-number-reading'],
     eyebrow:'If this reading has touched something real',
     titleTpl:function(fn,lp){return (fn?fn+"'s":'Your')+' Life Path '+lp+' has layers this reading has not yet reached.';},
-    desc:'The Life Path Deep Dive decodes your number in full, not the generic version, going into every dimension this teaser only opened the door to.',
+    desc:'Your Core Life Pattern, Fully Explained decodes your number in full, not the generic version, going into every dimension this teaser only opened the door to.',
     ctaLabel:'See Our Recommended Reading',
     modalTitle:'Two readings fit what your Life Path just showed.'
   }
@@ -654,17 +654,17 @@ var UPSELL_MAP={
 
 var currentLp=null,currentUp=null;
 
-// First sentence of a Life Path synthesis tension paragraph — used to build
+// First sentence of a Life Path synthesis tension paragraph, used to build
 // a per-number invite description instead of a static per-bucket one
 function tensionLead(syn){
   var s=(syn&&syn.tension)?syn.tension.split(".")[0].trim():"";
   return s?s+".":"";
 }
-// What each recommended reading specifically resolves — combined with
+// What each recommended reading specifically resolves, combined with
 // tensionLead() this gives all 11 Life Path numbers their own specific desc
 var REC_BRIDGE={
-  "master-number-reading":"The Master Number Reading is built specifically for this weight, decoding what an 11, 22, or 33 actually carries and asks of you.",
-  "life-path-deep-dive":"The Life Path Deep Dive traces this exact tension through every dimension this teaser only opened the door to."
+  "master-number-reading":"Why Your Life Feels Heavier Than Everyone Else\'s is built specifically for this weight, decoding what an 11, 22, or 33 actually carries and asks of you.",
+  "life-path-deep-dive":"Your Core Life Pattern, Fully Explained traces this exact tension through every dimension this teaser only opened the door to."
 };
 
 function buildToolURL(toolId){
@@ -758,7 +758,7 @@ function calculate(){
     document.getElementById("li-desc").textContent=inviteDesc;
     document.getElementById("li-btn-label").textContent=up.ctaLabel;
 
-    // Speech — include the invite title too, so listening reaches the
+    // Speech, include the invite title too, so listening reaches the
     // actual invitation instead of stopping at synthesis. Skip repeating
     // the lead sentence in audio since it was just spoken as part of the
     // synthesis paragraph.
@@ -766,7 +766,7 @@ function calculate(){
     fullReadingText=(readEl.textContent+" "+up.titleTpl(fn,lp)+" "+(bridge||up.desc)).replace(/\s+/g," ").trim();
     window._shareText="I discovered what my birth date encodes at KAYAL SoulPath Institute. Qualities: "+data.tags.join(", ")+". Try yours free.";
 
-    // Show result — hide the hero and input step so it reads as a clean next screen
+    // Show result, hide the hero and input step so it reads as a clean next screen
     document.getElementById("hero-section").style.display="none";
     document.getElementById("input-heading").style.display="none";
     document.getElementById("calc-header").style.display="none";

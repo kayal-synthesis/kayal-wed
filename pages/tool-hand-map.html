@@ -218,7 +218,7 @@ input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidde
 .share-toast-msg.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* LifeOS invite */
-/* Reading bridge card — compact */
+/* Reading bridge card, compact */
 .lifeos-invite{max-width:540px;margin:0 auto;padding:26px 28px;background:linear-gradient(135deg,rgba(106,170,100,.20),rgba(200,168,74,.08)),rgba(10,12,8,.92);border:1px solid rgba(200,168,74,.22);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(200,168,74,.14),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(106,170,100,.16),transparent 70%);pointer-events:none}
@@ -920,10 +920,10 @@ function getAge(dob){var p=dob.split('-').map(Number),today=new Date(),age=today
 // Only 4 palm-image products exist in the registry, so every branch shows
 // all 4, just reordered so the best fit leads.
 var TOOL_META={
-  'purpose-activation-reading':{name:'The Purpose Activation Reading',price:'$47',desc:'Not just what your purpose is, but how to actually live it'},
-  'past-life-reading':{name:'The Past Life Reading',price:'$57',desc:'What you carried in from before, and how it shapes this lifetime'},
-  'spiritual-gifts-reading':{name:'The Spiritual Gifts Reading',price:'$47',desc:'The specific spiritual capacities you arrived with'},
-  'vitality-code':{name:'The Vitality Code',price:'$47',desc:'Why your energy is where it is, and the path to your natural peak'}
+  'purpose-activation-reading':{name:'Living Your Purpose, Not Just Knowing It',price:'$34',desc:'Not just what your purpose is, but how to actually live it'},
+  'past-life-reading':{name:'What Your Soul Carried In',price:'$49',desc:'What you carried in from before, and how it shapes this lifetime'},
+  'spiritual-gifts-reading':{name:'The Spiritual Gifts You Arrived With',price:'$29',desc:'The specific spiritual capacities you arrived with'},
+  'vitality-code':{name:'The Vitality Code',price:'$29',desc:'Why your energy is where it is, and the path to your natural peak'}
 };
 var UPSELL_MAP={
   harmony:{
@@ -931,7 +931,7 @@ var UPSELL_MAP={
     secondary:['spiritual-gifts-reading','vitality-code','past-life-reading'],
     eyebrow:'Your nature and your life already agree',
     titleTpl:function(fn){return (fn?fn+"'s":'Your')+' hands confirm the same nature, twice.';},
-    desc:'The Purpose Activation Reading shows you exactly how to live what your hands already agree on, starting now.',
+    desc:'Living Your Purpose, Not Just Knowing It shows you exactly how to live what your hands already agree on, starting now.',
     ctaLabel:'See My Recommended Reading',
     modalTitle:function(){return 'Four readings fit what your hands just confirmed.';}
   },
@@ -940,7 +940,7 @@ var UPSELL_MAP={
     secondary:['spiritual-gifts-reading','vitality-code','purpose-activation-reading'],
     eyebrow:'What you carried in is shaping this lifetime',
     titleTpl:function(fn,domData,pasData){return (fn?fn+"'s":'Your')+' '+pasData.n+' and '+domData.n+' are not the same story.';},
-    desc:'The Past Life Reading traces what you carried in before this lifetime began, and how it is still shaping the life you are actively building.',
+    desc:'What Your Soul Carried In traces what you carried in before this lifetime began, and how it is still shaping the life you are actively building.',
     ctaLabel:'See My Recommended Reading',
     modalTitle:function(){return 'Four readings fit what your two palms just showed.';}
   }
@@ -948,18 +948,18 @@ var UPSELL_MAP={
 
 var currentUp=null,currentDomType=null,currentPasType=null,currentName='',currentDob='';
 
-// First sentence of the synthesis tension text — used to build a
+// First sentence of the synthesis tension text, used to build a
 // per-pairing invite description instead of a static per-bucket one
 function tensionLead(tensionText){
   var s=tensionText?tensionText.split('.')[0].trim():'';
   return s?s+'.':'';
 }
-// What each recommended reading specifically resolves — combined with
+// What each recommended reading specifically resolves, combined with
 // tensionLead() this covers all 4 same-type + 12 mismatch pairings without
 // hand-writing 16 separate desc paragraphs
 var REC_BRIDGE={
-  'purpose-activation-reading':'The Purpose Activation Reading shows you exactly how to act on what both hands already agree is true.',
-  'past-life-reading':'The Past Life Reading traces this exact gap back to what you carried in before this lifetime, and how it is still shaping what you are living now.'
+  'purpose-activation-reading':'Living Your Purpose, Not Just Knowing It shows you exactly how to act on what both hands already agree is true.',
+  'past-life-reading':'What Your Soul Carried In traces this exact gap back to what you carried in before this lifetime, and how it is still shaping what you are living now.'
 };
 
 function buildPalmToolURL(toolId){
@@ -1216,7 +1216,7 @@ function buildReading(){
 
     document.getElementById('reading-content').innerHTML=html;
 
-  // Populate invite — desc built from THIS reading's own synthesis tension
+  // Populate invite, desc built from THIS reading's own synthesis tension
   var lead=tensionLead(synthesisTension);
   var bridge=REC_BRIDGE[up.toolId];
   document.getElementById('li-eyebrow').textContent=up.eyebrow;
@@ -1224,14 +1224,14 @@ function buildReading(){
   document.getElementById('li-desc').textContent=(lead&&bridge)?(lead+' '+bridge):up.desc;
   document.getElementById('li-btn-label').textContent=up.ctaLabel;
 
-  // Speech — include the invite title/bridge too, so listening reaches the
+  // Speech, include the invite title/bridge too, so listening reaches the
   // actual invitation instead of stopping at synthesis. Skip repeating the
   // lead sentence in audio since synthesisTension was just spoken in full.
   var readEl=document.createElement('div');readEl.innerHTML=html;
   fullReadingText=(readEl.textContent+' '+up.titleTpl(fn,domData,pasData)+' '+(bridge||up.desc)).replace(/\s+/g,' ').trim();
   window._shareText=(fn?fn+'\'s':'My')+' both-palms reading: '+domData.t+' (dominant), '+pasData.t+' (passive). Discover your own hand map at KAYAL SoulPath Institute.';
 
-  // Show result — hide the hero and upload/form step so it reads as a clean next screen
+  // Show result, hide the hero and upload/form step so it reads as a clean next screen
   document.getElementById('hero-section').style.display='none';
   document.getElementById('steps-bar').style.display='none';
   document.getElementById('step2-section').style.display='none';

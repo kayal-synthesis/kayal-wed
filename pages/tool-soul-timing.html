@@ -141,7 +141,7 @@ input[type=date].form-input{color-scheme:dark}
 .toast-msg.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* LifeOS invite */
-/* Reading bridge card — compact */
+/* Reading bridge card, compact */
 .lifeos-invite{max-width:540px;margin:0 auto;padding:26px 28px;background:linear-gradient(135deg,rgba(58,170,122,.20),rgba(200,168,74,.07)),rgba(5,15,10,.94);border:1px solid rgba(200,168,74,.22);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(58,170,122,.16),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(200,168,74,.12),transparent 70%);pointer-events:none}
@@ -636,8 +636,8 @@ function doShare(m){
 // nine-year-cycle-reading better than a current-year-only product. Both show,
 // reordered so the better fit leads.
 var TOOL_META={
-  'nine-year-cycle-reading':{name:'The Nine-Year Cycle Reading',price:'$47',desc:'The map of your entire life, past, present, and future'},
-  'personal-year-deep-dive':{name:'The Personal Year Deep Dive',price:'$29',desc:'The full picture of your current Personal Year'}
+  'nine-year-cycle-reading':{name:'The Whole Map of Your Life',price:'$49',desc:'The map of your entire life, past, present, and future'},
+  'personal-year-deep-dive':{name:'This Year, Fully Explained',price:'$34',desc:'The full picture of your current Personal Year'}
 };
 var currentName='',currentDob='',currentPy=null;
 function buildToolURL(toolId){
@@ -737,26 +737,26 @@ function calculate(){
 
     document.getElementById("reading-content").innerHTML=html;
 
-    // Store state for the upsell modal — nine-year-cycle-reading is the better
+    // Store state for the upsell modal, nine-year-cycle-reading is the better
     // fit here since this tool is about the whole cycle map, not just this year
     currentName=fn;currentDob=dob;currentPy=py;
 
-    // Update invite copy — desc built from THIS cycle's own synthesis tension
+    // Update invite copy, desc built from THIS cycle's own synthesis tension
     var tLead=cy.synthesis&&cy.synthesis.tension?cy.synthesis.tension.split(".")[0].trim()+".":"";
     var inviteTitle=(fn?fn+"'s ":"Your ")+"nine-year cycle has a complete map this reading has not yet shown.";
-    var inviteBridge="The Nine-Year Cycle Reading maps your entire cycle, past, present, and future, not just where you stand today.";
+    var inviteBridge="The Whole Map of Your Life covers your entire cycle, past, present, and future, not just where you stand today.";
     document.getElementById("li-eyebrow").textContent="If this reading has landed";
     document.getElementById("li-title").textContent=inviteTitle;
     document.getElementById("li-desc").textContent=tLead?(tLead+" "+inviteBridge):inviteBridge;
 
-    // Speech — include the invite title/bridge too, so listening reaches the
+    // Speech, include the invite title/bridge too, so listening reaches the
     // actual invitation instead of stopping at synthesis. Skip repeating the
     // lead sentence in audio since cy.synthesis.tension was just spoken in full.
     var readEl=document.createElement("div");readEl.innerHTML=html;
     fullReadingText=(readEl.textContent+" "+inviteTitle+" "+inviteBridge).replace(/\s+/g," ").trim();
     window._shareText=(fn?fn+"'s":"My")+" timing window reading: "+cy.tags.join(", ")+". Discover yours free at KAYAL SoulPath Institute.";
 
-    // Show — hide the hero and input step so it reads as a clean next screen
+    // Show, hide the hero and input step so it reads as a clean next screen
     document.getElementById("hero-section").style.display="none";
     document.getElementById("input-section").style.display="none";
     var rs=document.getElementById("result-section");

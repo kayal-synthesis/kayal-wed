@@ -144,7 +144,7 @@ input[type=date].fi{color-scheme:dark}
 .r-para strong{color:#e0a8d0;font-style:normal;font-weight:600}
 .r-pull{font-family:var(--ff-d);font-size:18px;font-weight:300;color:var(--pearl);line-height:1.6;padding:22px 26px;border-left:3px solid var(--blush);background:rgba(107,32,80,.1);border-radius:0 var(--r) var(--r) 0;margin:20px 0}
 
-/* Reading bridge card — compact */
+/* Reading bridge card, compact */
 .lifeos-invite{max-width:540px;margin:0 auto 48px;padding:26px 28px;background:linear-gradient(135deg,rgba(107,32,80,.22),rgba(200,144,42,.08)),rgba(14,11,20,.92);border:1px solid rgba(200,144,42,.22);border-left:3px solid var(--amber);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(200,144,42,.16),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(107,32,80,.18),transparent 70%);pointer-events:none}
@@ -685,16 +685,16 @@ var _d1='',_n1='',_d2='',_n2='',isSpeaking=false,fullText='',speechChunks=[],chu
 // Only 3 relevant love-domain products fit this reading, so every score
 // band shows all 3, just reordered so the best fit leads.
 var TOOL_META = {
-  'twin-flame-verdict':    { name: 'The Twin Flame vs Soulmate Verdict', price: '$37', desc: 'A direct answer to what this connection actually is' },
-  'love-wound-reading':    { name: 'The Love Wound Reading',             price: '$47', desc: 'Traces the friction back to where it began' },
-  'compatibility-decoder': { name: 'The Compatibility Decoder',          price: '$37', desc: 'Every point of alignment and friction between you' }
+  'twin-flame-verdict':    { name: 'Is This Connection As Rare As It Feels', price: '$44', desc: 'A direct answer to what this connection actually is' },
+  'love-wound-reading':    { name: 'The Same Relationship Wound, Different Face',             price: '$34', desc: 'Traces the friction back to where it began' },
+  'compatibility-decoder': { name: 'Where You Align, Where You Collide in Love',          price: '$49', desc: 'Every point of alignment and friction between you' }
 };
 var UPSELL_MAP = {
   'twin-flame-verdict': {
     secondary: ['compatibility-decoder', 'love-wound-reading'],
     eyebrow: 'This kind of resonance is rare',
     titleTpl: function(fn1,fn2){return fn1+' and '+fn2+': this is not the ordinary range.';},
-    desc: 'The Twin Flame vs Soulmate Verdict gives you a direct answer to what this connection actually is, and what it is asking of you.',
+    desc: 'Is This Connection As Rare As It Feels gives you a direct answer to what this connection actually is, and what it is asking of you.',
     ctaLabel: 'See Our Recommended Reading',
     modalTitle: 'Three readings fit what this connection just showed.'
   },
@@ -702,7 +702,7 @@ var UPSELL_MAP = {
     secondary: ['compatibility-decoder', 'twin-flame-verdict'],
     eyebrow: 'The friction you felt has a name',
     titleTpl: function(fn1,fn2){return fn1+' and '+fn2+': what surfaced between you has a root.';},
-    desc: 'The Love Wound Reading traces the tension back to where it began, so the pattern can finally move.',
+    desc: 'The Same Relationship Wound, Different Face traces the tension back to where it began, so the pattern can finally move.',
     ctaLabel: 'See Our Recommended Reading',
     modalTitle: 'Three readings fit what this connection just showed.'
   },
@@ -710,7 +710,7 @@ var UPSELL_MAP = {
     secondary: ['twin-flame-verdict', 'love-wound-reading'],
     eyebrow: 'If this touched something real',
     titleTpl: function(fn1,fn2){return fn1+' and '+fn2+': what you read here is the opening layer.';},
-    desc: 'The complete Compatibility Decoder maps every point of alignment and friction between you, in plain language, delivered as a full report.',
+    desc: 'Where You Align, Where You Collide in Love maps every point of alignment and friction between you, in plain language, delivered as a full report.',
     ctaLabel: 'See Our Recommended Reading',
     modalTitle: 'Three readings fit what this connection just showed.'
   }
@@ -722,19 +722,19 @@ function decideUpsell(score){
   return 'compatibility-decoder';
 }
 
-// First sentence of a synthesis tension paragraph — used to build a
+// First sentence of a synthesis tension paragraph, used to build a
 // per-reading invite description instead of a static per-bucket one
 function tensionLead(syn){
   var s=(syn&&syn.tension)?syn.tension.split('.')[0].trim():'';
   return s?s+'.':'';
 }
-// What each recommended reading specifically resolves — combined with
+// What each recommended reading specifically resolves, combined with
 // tensionLead() this gives every score band + every elemental pairing
 // its own specific desc without hand-writing a paragraph per combination
 var REC_BRIDGE={
-  'twin-flame-verdict':'The Twin Flame vs Soulmate Verdict names exactly what this rare resonance actually is, and what it is asking of both of you.',
-  'love-wound-reading':'The Love Wound Reading traces this exact friction back to where it began, so the pattern can finally move instead of repeating.',
-  'compatibility-decoder':'The Compatibility Decoder maps this tension alongside every other point of alignment and friction between you, in full.'
+  'twin-flame-verdict':'Is This Connection As Rare As It Feels names exactly what this rare resonance actually is, and what it is asking of both of you.',
+  'love-wound-reading':'The Same Relationship Wound, Different Face traces this exact friction back to where it began, so the pattern can finally move instead of repeating.',
+  'compatibility-decoder':'Where You Align, Where You Collide in Love maps this tension alongside every other point of alignment and friction between you, in full.'
 };
 
 function buildToolURL(toolId){
@@ -879,7 +879,7 @@ function calculate(){
 
     document.getElementById('reading-content').innerHTML=html;
 
-    // Populate invite — desc now built from THIS reading's own synthesis
+    // Populate invite, desc now built from THIS reading's own synthesis
     // tension, not a static per-bucket template
     var lead=tensionLead(syn);
     var bridge=REC_BRIDGE[window._upsellId];
@@ -888,7 +888,7 @@ function calculate(){
     document.getElementById('li-desc').textContent     = (lead&&bridge)?(lead+' '+bridge):up.desc;
     document.getElementById('li-btn-label').textContent= up.ctaLabel;
 
-    // Speech — include the synthesis and invite text too, so listening
+    // Speech, include the synthesis and invite text too, so listening
     // through actually reaches the closing insight and the invitation
     // instead of silently stopping right before both
     fullText=fn1+' and '+fn2+'. '+score+'% connection resonance. '+elComp.type+'. '+elComp.feel+' ';
@@ -899,7 +899,7 @@ function calculate(){
     window._shareTitle=fn1+' and '+fn2+': '+score+'% Connection Resonance ('+elComp.type+')';
     window._shareText='I discovered the soul-level dynamic between '+fn1+' and '+fn2+': '+score+'% resonance. '+elComp.feel+' Try your own reading at KAYAL SoulPath Institute.';
 
-    // Show result — hide the hero and input step so it reads as a clean next screen
+    // Show result, hide the hero and input step so it reads as a clean next screen
     document.getElementById('hero-section').style.display='none';
     document.getElementById('input-section').style.display='none';
     var res=document.getElementById('result');

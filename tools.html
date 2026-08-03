@@ -13,12 +13,12 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free Soul Blueprint Tools | KAYAL SoulPath Institute</title>
-<meta name="description" content="8 free Soul Blueprint Science tools: Life Blueprint, Compatibility Blueprint, Soul Timing Window, Face Energy Reader, Hand Map Reader and more.">
+<meta name="description" content="10 free Soul Blueprint Science tools: Life Blueprint, Compatibility Blueprint, Environment Blueprint, Vitality Blueprint, Face Energy Reader, Hand Map Reader and more.">
 <link rel="stylesheet" href="css/global.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 /* ══════════════════════════════════════════════════════════
-   TOOLS PAGE — self-contained styles
+   TOOLS PAGE, self-contained styles
    Uses only confirmed tokens from css/global.css, plus its
    own locally-defined additions (e.g. --k-gold, which does
    not exist as a shared token and should not be assumed).
@@ -172,7 +172,7 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
 <div class="page-hero">
   <div class="container">
     <div class="eyebrow">Free Tools &middot; Soul Blueprint Science</div>
-    <h1 class="page-hero-title">Eight tools.<br><em>Four pillars.</em></h1>
+    <h1 class="page-hero-title">Ten tools.<br><em>Four pillars.</em></h1>
     <p class="page-hero-sub">Free to explore, in any order, for as long as you like. What you do with what you find is entirely your choice.</p>
   </div>
 </div>
@@ -189,10 +189,11 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         <button class="filter-chip" data-filter="stillness">Stillness</button>
       </div>
       <div class="tools-progress">
-        <span>Explored <strong id="cnum">0</strong> of 8</span>
+        <span>Explored <strong id="cnum">0</strong> of 10</span>
         <div class="progress-dots">
           <div class="progress-dot" id="pd1"></div><div class="progress-dot" id="pd2"></div><div class="progress-dot" id="pd3"></div><div class="progress-dot" id="pd4"></div>
           <div class="progress-dot" id="pd5"></div><div class="progress-dot" id="pd6"></div><div class="progress-dot" id="pd7"></div><div class="progress-dot" id="pd8"></div>
+          <div class="progress-dot" id="pd9"></div><div class="progress-dot" id="pd10"></div>
         </div>
       </div>
     </div>
@@ -359,6 +360,46 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         </div>
       </div>
 
+      <!-- Environment Blueprint -->
+      <div class="tool-card tc-environment" data-pillar="numerology" data-tool="9" onclick="goTool(9,'pages/tool-environment-pattern.html')">
+        <div class="tc-head">
+          <div class="tc-icon-wrap">🧭</div>
+          <div class="tc-titles">
+            <div class="tc-pillar">The First Pillar</div>
+            <div class="tc-name">Environment Blueprint</div>
+          </div>
+        </div>
+        <p class="tc-hook">"Some places quietly work against you. Others were built for exactly who you are."</p>
+        <div class="tc-body">
+          <p class="tc-desc">Discover the kind of place, pace, and energy your birth pattern actually needs, and whether your current environment is genuinely working with you or against you.</p>
+          <div class="tc-tags"><span class="tc-tag">Environment fit</span><span class="tc-tag">Pace &amp; scale</span><span class="tc-tag">Place patterns</span></div>
+        </div>
+        <div class="tc-foot">
+          <div class="tc-meta"><i class="fas fa-bolt"></i> 2 min</div>
+          <a href="pages/tool-environment-pattern.html" class="tc-cta" onclick="event.stopPropagation()"><i class="fas fa-arrow-right"></i> Begin</a>
+        </div>
+      </div>
+
+      <!-- Vitality Blueprint -->
+      <div class="tool-card tc-vitality" data-pillar="numerology" data-tool="10" onclick="goTool(10,'pages/tool-body-energy.html')">
+        <div class="tc-head">
+          <div class="tc-icon-wrap">⚡</div>
+          <div class="tc-titles">
+            <div class="tc-pillar">The First Pillar</div>
+            <div class="tc-name">Vitality Blueprint</div>
+          </div>
+        </div>
+        <p class="tc-hook">"Your energy has a real pattern. Most people have never actually learned it."</p>
+        <div class="tc-body">
+          <p class="tc-desc">Discover how your energy actually works: what genuinely sustains it, what quietly drains it, and where it tends to get stuck.</p>
+          <div class="tc-tags"><span class="tc-tag">Energy pattern</span><span class="tc-tag">What drains you</span><span class="tc-tag">Real recovery</span></div>
+        </div>
+        <div class="tc-foot">
+          <div class="tc-meta"><i class="fas fa-bolt"></i> 2 min</div>
+          <a href="pages/tool-body-energy.html" class="tc-cta" onclick="event.stopPropagation()"><i class="fas fa-arrow-right"></i> Begin</a>
+        </div>
+      </div>
+
     </div>
 
     <!-- Closing band: LifeOS + Affiliate -->
@@ -441,7 +482,7 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
 <script src="js/global.js"></script>
 <script>
 // ══════════════════════════════════════════════════════════
-// KAYAL Free Tools — self-contained page script
+// KAYAL Free Tools, self-contained page script
 // Handles: filter chips, tool-explored tracking, LifeOS personalisation.
 // ══════════════════════════════════════════════════════════
 
@@ -476,7 +517,7 @@ function goTool(n,url){
 })();
 
 // ── PERSONALISE THE CLOSING BAND BASED ON EXPLORED TOOLS ────
-var TOOL_NAMES={1:'Life Blueprint',2:'Name Vibration',3:'Universal Day',4:'Compatibility Blueprint',5:'Soul Timing Window',6:'Face Energy Reader',7:'Hand Map Reader',8:'Sacred Timer'};
+var TOOL_NAMES={1:'Life Blueprint',2:'Name Vibration',3:'Universal Day',4:'Compatibility Blueprint',5:'Soul Timing Window',6:'Face Energy Reader',7:'Hand Map Reader',8:'Sacred Timer',9:'Environment Blueprint',10:'Vitality Blueprint'};
 function personalizeClosing(){
   if(explored.size===0)return; // keep the default copy already in the HTML
   var names=Array.from(explored).sort(function(a,b){return a-b;}).map(function(n){return TOOL_NAMES[n];});

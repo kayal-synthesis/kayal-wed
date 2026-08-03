@@ -144,7 +144,7 @@ input[type=date].form-input{color-scheme:dark}
 .reading-section{margin-top:60px;padding-top:48px;border-top:1px solid rgba(200,160,48,.06)}
 
 /* LIFEOS INVITE */
-/* Reading bridge card — compact */
+/* Reading bridge card, compact */
 .lifeos-invite{max-width:540px;margin:40px auto 0;padding:26px 28px;background:linear-gradient(135deg,rgba(200,160,48,.14),rgba(212,120,32,.06)),rgba(5,5,7,.96);border:1px solid rgba(200,160,48,.22);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(200,160,48,.12),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(212,120,32,.10),transparent 70%);pointer-events:none}
@@ -716,7 +716,7 @@ function buildPostReading(fn){
   var dob=state.dob;
 
   if(!dob){
-    // No DOB — show gentle static reading
+    // No DOB, show gentle static reading
     document.getElementById("post-title").innerHTML="You returned. That is the whole of it.";
     document.getElementById("post-reading-content").innerHTML=
       "<div class='r-block'><div class='r-label'>What Just Happened</div>"+
@@ -725,14 +725,14 @@ function buildPostReading(fn){
       "</div>";
     document.getElementById("li-eyebrow").textContent="If this practice is becoming something real";
     document.getElementById("li-title").textContent="Your current year has a specific direction worth naming.";
-    document.getElementById("li-desc").textContent="Add your date of birth next time and the Personal Year Deep Dive will show you exactly what this year is asking of your practice.";
-    document.getElementById("li-btn-label").textContent="Explore the Personal Year Deep Dive";
+    document.getElementById("li-desc").textContent="Add your date of birth next time and This Year, Fully Explained will show you exactly what this year is asking of your practice.";
+    document.getElementById("li-btn-label").textContent="Explore This Year, Fully Explained";
     var pNoDob=new URLSearchParams();
     if(fn)pNoDob.set("name",fn);
     pNoDob.set("src","freetool");
     document.getElementById("lifeos-link").href="https://app.kayalsoulpath.com/tool/personal-year-deep-dive?"+pNoDob.toString();
   } else {
-    // Has DOB — generate cycle-specific reading
+    // Has DOB, generate cycle-specific reading
     var py=personalYear(dob);
     var cr=CYCLE_READINGS[py]||CYCLE_READINGS[1];
 
@@ -752,15 +752,15 @@ function buildPostReading(fn){
 
     document.getElementById("post-reading-content").innerHTML=html;
 
-    // Update LifeOS link and invite copy — routes to the tool that matches Personal Year directly
+    // Update LifeOS link and invite copy, routes to the tool that matches Personal Year directly
     var p=new URLSearchParams();
     if(fn)p.set("name",fn);p.set("dob",dob);p.set("cy",py);p.set("src","freetool");
     document.getElementById("lifeos-link").href="https://app.kayalsoulpath.com/tool/personal-year-deep-dive?"+p.toString();
     document.getElementById("li-eyebrow").textContent="If this practice is becoming something real";
     document.getElementById("li-title").textContent=(fn?fn+", your":"Your")+" Personal Year "+py+" has layers this session only opened.";
     var tLead=cr.synthesis&&cr.synthesis.tension?cr.synthesis.tension.split(".")[0].trim()+".":"";
-    document.getElementById("li-desc").textContent=tLead?(tLead+" The Personal Year Deep Dive gives you the full picture of this cycle: what it is asking, and what it is offering."):"The Personal Year Deep Dive gives you the full picture of the cycle you are currently moving through: what it is asking, and what it is offering.";
-    document.getElementById("li-btn-label").textContent="Get the Personal Year Deep Dive";
+    document.getElementById("li-desc").textContent=tLead?(tLead+" This Year, Fully Explained gives you the full picture of this cycle: what it is asking, and what it is offering."):"This Year, Fully Explained gives you the full picture of the cycle you are currently moving through: what it is asking, and what it is offering.";
+    document.getElementById("li-btn-label").textContent="Get This Year, Fully Explained";
   }
 
   pr.style.display="block";

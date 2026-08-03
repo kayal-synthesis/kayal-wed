@@ -38,7 +38,7 @@ a{color:inherit;text-decoration:none}
 @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:.9}}
 .hero-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(138,176,240,.75);margin-bottom:24px;position:relative;z-index:1}
 
-/* Clock — the signature */
+/* Clock, the signature */
 .clock-wrap{position:relative;width:220px;height:220px;margin:0 auto 36px;z-index:1}
 .clock-svg{width:100%;height:100%}
 .clock-hand-h{transform-origin:110px 110px;animation:rot-h 12s linear infinite}
@@ -133,7 +133,7 @@ input[type=date].form-input{color-scheme:dark}
 .toast-msg.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* LifeOS invite */
-/* Reading bridge card — compact */
+/* Reading bridge card, compact */
 .lifeos-invite{max-width:540px;margin:0 auto;padding:26px 28px;background:linear-gradient(135deg,rgba(42,82,192,.22),rgba(200,168,48,.06)),rgba(6,8,16,.94);border:1px solid rgba(200,168,48,.22);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(42,82,192,.16),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(200,168,48,.10),transparent 70%);pointer-events:none}
@@ -275,7 +275,7 @@ input[type=date].form-input{color-scheme:dark}
       <div class="li-title" id="li-title">Every day has a month-by-month and year-by-year context.</div>
       <p class="li-desc" id="li-desc">What you have seen here is the quality of a single date.</p>
       <div class="li-btns">
-        <a href="https://app.kayalsoulpath.com/tool/daily-personal-oracle" id="lifeos-link" class="li-btn-p" target="_blank" rel="noopener"><i class="fas fa-compass"></i> <span id="li-btn-label">Get the Daily Personal Oracle</span></a>
+        <a href="https://app.kayalsoulpath.com/tool/daily-personal-oracle" id="lifeos-link" class="li-btn-p" target="_blank" rel="noopener"><i class="fas fa-compass"></i> <span id="li-btn-label">Read What Today Is Asking of You</span></a>
         <a href="../pages/enrol/apply.html" class="li-btn-s">Study at the Institute</a>
       </div>
       <div class="li-foot">Already a student? <a href="../pages/student/login.html">Sign in to your portal</a></div>
@@ -542,28 +542,28 @@ function calculate(){
     if(fn)p.set("name",fn);if(dob)p.set("dob",dob);p.set("date",ds);p.set("src","freetool");
     document.getElementById("lifeos-link").href="https://app.kayalsoulpath.com/tool/daily-personal-oracle?"+p.toString();
 
-    // Update invite — desc built from THIS day's own synthesis tension
+    // Update invite, desc built from THIS day's own synthesis tension
     var tLead=syn&&syn.tension?syn.tension.split(".")[0].trim()+".":"";
     var inviteTitle,inviteBridge;
     document.getElementById("li-eyebrow").textContent="If this reading has been useful";
     if(dob){
       inviteTitle=(fn?fn+", your":"Your")+" personal day quality could arrive like this every morning.";
-      inviteBridge="The Daily Personal Oracle delivers this exact kind of reading, calibrated to your birth date, every single morning.";
+      inviteBridge="What Today Is Asking of You delivers this exact kind of reading, calibrated to your birth date, every single morning.";
     } else {
       inviteTitle="This was the quality of the date alone, not calibrated to you.";
-      inviteBridge="Add your birth date and the Daily Personal Oracle will read every day specifically through the lens of how you move through the world, delivered every morning.";
+      inviteBridge="Add your birth date, and What Today Is Asking of You will read every day specifically through the lens of how you move through the world, delivered every morning.";
     }
     document.getElementById("li-title").textContent=inviteTitle;
     document.getElementById("li-desc").textContent=tLead?(tLead+" "+inviteBridge):inviteBridge;
 
-    // Speech — include the invite title/bridge too, so listening reaches the
+    // Speech, include the invite title/bridge too, so listening reaches the
     // actual invitation instead of stopping at synthesis. Skip repeating the
     // lead sentence in audio since syn.tension was just spoken in full.
     var readEl=document.createElement("div");readEl.innerHTML=html;
     fullReadingText=(readEl.textContent+" "+inviteTitle+" "+inviteBridge).replace(/\s+/g," ").trim();
     window._shareText="I read the energy of "+dateStr+" at KAYAL SoulPath Institute: "+data.n+". Try any date free.";
 
-    // Show — hide the hero and input step so it reads as a clean next screen
+    // Show, hide the hero and input step so it reads as a clean next screen
     document.getElementById("hero-section").style.display="none";
     document.getElementById("input-section").style.display="none";
     var rs=document.getElementById("result-section");

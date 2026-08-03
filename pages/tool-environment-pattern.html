@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environment Blueprint | KAYAL SoulPath Institute</title>
+<meta name="description" content="Your birth date reveals more than a personality, it reveals the kind of place, pace, and energy you actually need around you. Discover it free.">
+<meta property="og:title" content="Environment Blueprint | KAYAL SoulPath Institute">
+<meta property="og:description" content="Your birth date reveals the kind of place, pace, and energy you actually need around you. A free reading from KAYAL SoulPath Institute.">
+<meta property="og:url" content="https://kayalsoulpath.com/pages/tool-environment-pattern.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KAYAL SoulPath Institute">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Environment Blueprint | KAYAL SoulPath Institute">
+<meta name="twitter:description" content="Your birth date reveals the kind of place, pace, and energy you actually need around you. A free reading from KAYAL SoulPath Institute.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#070d12;--deep:#0d1720;--slate:#16283a;--steel:#1e3a52;
+  --azure:#2d6b8a;--sky:#4a94b8;--sand:#c8a878;--gold:#d4b050;
+  --mist:#e0eef4;--linen:#f4f8fa;--stone:#7a94a0;
+  --r:8px;--r-lg:16px;
+  --ff-d:'Georgia','Times New Roman',serif;
+  --ff-h:'Georgia',serif;
+  --ff-b:system-ui,-apple-system,sans-serif;
+}
+body{background:var(--ink);color:var(--mist);font-family:var(--ff-b);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(7,13,18,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(74,148,184,.12);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;flex-direction:column;gap:1px}
+.nav-brand-name{font-family:var(--ff-d);font-size:16px;font-weight:400;color:var(--mist);letter-spacing:.06em;text-transform:uppercase}
+.nav-brand-sub{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(224,238,244,.35)}
+.nav-back{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:rgba(74,148,184,.65);border:1px solid rgba(74,148,184,.22);border-radius:4px;padding:7px 14px;transition:all .2s}
+.nav-back:hover{color:var(--sky);border-color:rgba(74,148,184,.5)}
+.nav-cta{padding:8px 18px;background:var(--azure);color:var(--linen);border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.04em;transition:background .2s;border:none}
+.nav-cta:hover{background:var(--sky)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 25%,rgba(45,107,138,.32),transparent 58%),var(--ink)}
+.map-lines{position:absolute;inset:0;pointer-events:none;opacity:.1}
+.map-line{position:absolute;height:1px;background:linear-gradient(90deg,transparent,var(--sky),transparent);animation:drift 8s ease-in-out infinite}
+@keyframes drift{0%,100%{opacity:.2}50%{opacity:.6}}
+
+.compass-wrap{position:relative;width:200px;height:200px;margin:0 auto 36px;z-index:1}
+.compass-svg{width:100%;height:100%;animation:c-rot 60s linear infinite}
+@keyframes c-rot{to{transform:rotate(360deg)}}
+.compass-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.compass-glyph{font-size:32px}
+
+.hero-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sky);margin-bottom:24px;position:relative;z-index:1}
+.hero-title{font-family:var(--ff-d);font-size:clamp(26px,5vw,48px);font-weight:300;color:var(--mist);line-height:1.1;margin-bottom:16px;position:relative;z-index:1}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(74,148,184,.68);line-height:1.8;max-width:480px;margin:0 auto 36px;position:relative;z-index:1}
+.hero-cta{padding:14px 32px;background:linear-gradient(135deg,var(--azure),var(--sky));color:var(--linen);border:none;border-radius:var(--r);font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:10px;position:relative;z-index:1;text-transform:uppercase}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(45,107,138,.4)}
+
+/* MAIN */
+.main{max-width:860px;margin:0 auto;padding:80px 24px}
+.s-label{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--sky);margin-bottom:10px}
+.s-title{font-family:var(--ff-d);font-size:clamp(22px,3vw,32px);font-weight:300;color:var(--mist);line-height:1.2;margin-bottom:10px}
+.s-title em{font-style:italic;color:var(--gold)}
+.s-sub{font-family:var(--ff-h);font-size:14px;font-style:italic;color:rgba(224,238,244,.6);line-height:1.75;max-width:560px;margin-bottom:32px}
+
+/* Form */
+.form-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:12px;margin-bottom:20px}
+.form-group{display:flex;flex-direction:column;gap:7px}
+.form-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(224,238,244,.55)}
+.form-input{padding:13px 16px;background:rgba(22,40,58,.5);border:1.5px solid rgba(74,148,184,.22);border-radius:var(--r);font-family:var(--ff-b);font-size:15px;color:var(--mist);outline:none;transition:border-color .2s}
+.form-input:focus{border-color:var(--sky)}
+.form-input::placeholder{color:var(--stone)}
+input[type=date].form-input{color-scheme:dark}
+.calc-btn{width:100%;padding:15px 24px;background:linear-gradient(135deg,var(--azure),var(--sky));color:var(--linen);border:none;border-radius:var(--r);font-family:var(--ff-b);font-size:14px;font-weight:600;letter-spacing:.05em;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:4px}
+.calc-btn:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(45,107,138,.35)}
+.calc-btn .cspin{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.calc-btn.loading .cspin{display:block}
+.calc-btn.loading span{opacity:.6}
+
+/* RESULT */
+#result-section{display:none;margin-top:48px}
+#result-section.show{display:block;animation:fadeUp .5s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+.pattern-header{padding:44px 36px;border-radius:var(--r-lg);text-align:center;position:relative;overflow:hidden;margin-bottom:28px;background:linear-gradient(160deg,rgba(22,40,58,.9),rgba(7,13,18,.98));border:1px solid rgba(74,148,184,.22)}
+.pattern-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(45,107,138,.14),transparent 60%)}
+.pattern-eyebrow{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(74,148,184,.6);margin-bottom:10px;position:relative;z-index:1}
+.pattern-phrase{font-family:var(--ff-d);font-size:clamp(22px,4vw,36px);font-weight:300;color:var(--mist);line-height:1.25;margin-bottom:16px;position:relative;z-index:1}
+.pattern-phrase em{font-style:italic;color:var(--gold)}
+.pattern-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;position:relative;z-index:1}
+.pattern-tag{padding:4px 13px;border-radius:20px;font-size:11.5px;background:rgba(45,107,138,.18);border:1px solid rgba(74,148,184,.32);color:var(--sky)}
+
+.reading-block{margin-bottom:26px}
+.r-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.r-label::after{content:'';flex:1;height:1px;background:rgba(74,148,184,.22)}
+.r-para{font-family:var(--ff-h);font-size:15.5px;font-style:italic;color:rgba(224,238,244,.90);line-height:1.95;margin-bottom:14px;text-align:justify}
+.r-para:last-child{margin-bottom:0}
+.r-syn{border:1px solid rgba(74,148,184,.24);border-radius:var(--r-lg);padding:26px 28px;background:rgba(22,40,58,.32);margin:24px 0}
+.r-syn .r-label{color:var(--gold)}
+.r-syn .r-label::after{background:rgba(212,176,80,.2)}
+.r-tension{font-family:var(--ff-h);font-size:16px;font-style:italic;color:rgba(224,238,244,.90);line-height:1.9;margin-bottom:14px;text-align:justify}
+.r-invite{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(212,176,80,.9);line-height:1.85;text-align:justify}
+
+/* Action bar */
+.action-bar{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;padding:16px 20px;background:rgba(22,40,58,.35);border:1px solid rgba(74,148,184,.18);border-radius:var(--r)}
+.act-btn{padding:9px 16px;border-radius:var(--r);font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;background:transparent;color:rgba(224,238,244,.7);border:1px solid rgba(74,148,184,.25)}
+.act-btn:hover{border-color:var(--sky);color:var(--sky)}
+.act-btn.is-active{background:rgba(45,107,138,.25);color:var(--sky);border-color:var(--sky)}
+.share-wrap{position:relative}
+.share-dd{position:absolute;top:calc(100% + 8px);left:0;background:var(--slate);border:1px solid rgba(74,148,184,.25);border-radius:var(--r);padding:6px;display:none;flex-direction:column;gap:2px;min-width:150px;z-index:10}
+.share-dd.show{display:flex}
+.share-opt{padding:8px 12px;font-size:12.5px;color:rgba(224,238,244,.75);border-radius:4px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.share-opt:hover{background:rgba(74,148,184,.15);color:var(--mist)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--slate);color:var(--mist);padding:10px 20px;border-radius:20px;font-size:12.5px;border:1px solid rgba(74,148,184,.3);opacity:0;pointer-events:none;transition:all .3s;z-index:300}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Invite card */
+.invite-card{margin-top:36px;padding:30px 32px;border-radius:var(--r-lg);background:linear-gradient(160deg,rgba(45,107,138,.16),rgba(7,13,18,.6));border:1px solid rgba(212,176,80,.28)}
+.li-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.li-title{font-family:var(--ff-d);font-size:20px;font-weight:300;color:var(--mist);line-height:1.35;margin-bottom:10px}
+.li-desc{font-family:var(--ff-h);font-size:13.5px;font-style:italic;color:rgba(224,238,244,.68);line-height:1.75;margin-bottom:18px}
+.li-btn-p{padding:12px 24px;background:linear-gradient(135deg,var(--gold),#b8963c);color:var(--ink);border:none;border-radius:var(--r);font-size:13px;font-weight:700;letter-spacing:.03em;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.li-btn-p:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,176,80,.3)}
+
+.restart-row{text-align:center;margin-top:32px}
+.restart-btn{font-size:12.5px;color:rgba(224,238,244,.5);border:1px solid rgba(74,148,184,.2);border-radius:var(--r);padding:9px 20px;cursor:pointer;transition:all .2s;background:transparent}
+.restart-btn:hover{color:var(--mist);border-color:rgba(74,148,184,.45)}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:640px){
+  .form-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-brand">
+    <div class="nav-brand-name">KAYAL</div>
+    <div class="nav-brand-sub">SoulPath Institute</div>
+  </a>
+  <div style="display:flex;align-items:center;gap:12px">
+    <a href="../tools.html" class="nav-back"><i class="fas fa-chevron-left" style="font-size:10px"></i> All Tools</a>
+    <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="nav-cta">Open LifeOS</a>
+  </div>
+</nav>
+
+<section class="hero" id="hero-section">
+  <div class="map-lines" id="map-lines"></div>
+  <div class="hero-eyebrow">Free Reading &middot; Soul Blueprint Science</div>
+  <div class="compass-wrap">
+    <svg class="compass-svg" viewBox="0 0 200 200" fill="none">
+      <circle cx="100" cy="100" r="92" stroke="rgba(74,148,184,0.18)" stroke-width="1"/>
+      <circle cx="100" cy="100" r="70" stroke="rgba(74,148,184,0.12)" stroke-width="1" stroke-dasharray="2 6"/>
+      <line x1="100" y1="8" x2="100" y2="28" stroke="rgba(212,176,80,0.5)" stroke-width="1.5"/>
+      <line x1="100" y1="172" x2="100" y2="192" stroke="rgba(74,148,184,0.3)" stroke-width="1.5"/>
+      <line x1="8" y1="100" x2="28" y2="100" stroke="rgba(74,148,184,0.3)" stroke-width="1.5"/>
+      <line x1="172" y1="100" x2="192" y2="100" stroke="rgba(74,148,184,0.3)" stroke-width="1.5"/>
+    </svg>
+    <div class="compass-center"><span class="compass-glyph">🧭</span></div>
+  </div>
+  <h1 class="hero-title">Some places will <em>never</em> fit you.<br>Others were built for you.</h1>
+  <p class="hero-sub">Your birth date encodes more than a personality. It encodes the pace, the scale, and the kind of environment you actually need around you to feel like yourself.</p>
+  <button class="hero-cta" onclick="document.getElementById('calc-section').scrollIntoView({behavior:'smooth'})"><i class="fas fa-compass"></i> Find Your Pattern</button>
+</section>
+
+<div class="main">
+  <section id="calc-section">
+    <div class="s-label">Step One</div>
+    <h2 class="s-title">What kind of place are you <em>actually</em> built for?</h2>
+    <p class="s-sub">Enter your birth date. Your name is optional, used only to personalise the reading.</p>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label">Your Name (Optional)</label>
+        <input type="text" class="form-input" id="inp-name" placeholder="First name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date of Birth</label>
+        <input type="date" class="form-input" id="inp-dob">
+      </div>
+    </div>
+    <button class="calc-btn" id="calc-btn" onclick="calculate()">
+      <span id="btn-txt">Reveal Your Pattern</span>
+      <div class="cspin" id="btn-spin"></div>
+    </button>
+  </section>
+
+  <section id="result-section">
+    <div class="pattern-header">
+      <div class="pattern-eyebrow" id="p-eyebrow">Your Environment Pattern</div>
+      <div class="pattern-phrase" id="p-phrase"></div>
+      <div class="pattern-tags" id="p-tags"></div>
+    </div>
+
+    <div class="action-bar">
+      <button class="act-btn" id="listen-btn" onclick="toggleSpeech()"><i class="fas fa-volume-up"></i> <span id="listen-lbl">Listen to Reading</span></button>
+      <div class="share-wrap">
+        <button class="act-btn" onclick="toggleShare(event)"><i class="fas fa-share-nodes"></i> Share</button>
+        <div class="share-dd" id="share-dd">
+          <div class="share-opt" onclick="doShare('copy')"><i class="fas fa-link"></i> Copy link</div>
+          <div class="share-opt" onclick="doShare('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</div>
+          <div class="share-opt" onclick="doShare('twitter')"><i class="fab fa-x-twitter"></i> X</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="reading-content"></div>
+
+    <div class="invite-card">
+      <div class="li-eyebrow" id="li-eyebrow">If this reading has been useful</div>
+      <div class="li-title" id="li-title">This is one thread. Your full portrait has many more.</div>
+      <p class="li-desc" id="li-desc">Where You're Actually Meant to Live goes fully into this, checking exactly which parts of your life your current place supports or works against, and if you're weighing specific cities, comparing each one directly against your pattern.</p>
+      <a href="#" id="lifeos-link" class="li-btn-p" target="_blank" rel="noopener"><i class="fas fa-compass"></i> Explore Where You're Actually Meant to Live</a>
+    </div>
+
+    <div class="restart-row">
+      <button class="restart-btn" onclick="startNewReading()">Try a different date</button>
+    </div>
+  </section>
+</div>
+
+<div class="toast" id="toast-msg"></div>
+
+<script>
+// ── CORE NUMEROLOGY (identical to the reduction logic used across the
+// rest of the free-tool set, reused verbatim rather than reimplemented,
+// so results stay consistent with Life Blueprint and every other tool
+// that also reduces a birth date to a Life Path number) ──
+function rd(n){if(n===11||n===22||n===33)return n;if(n<10)return n;return rd(String(n).split("").reduce(function(s,d){return s+parseInt(d);},0));}
+function dtLP(dob){var p=dob.split("-").map(Number),y=p[0],m=p[1],d=p[2];return rd(String(y).split("").concat(String(m).padStart(2,"0").split(""),String(d).padStart(2,"0").split("")).reduce(function(s,c){return s+parseInt(c);},0));}
+
+// ── READINGS ──────────────────────────────────────────────
+// This is deliberately NOT an astrocartography reading, real planetary-
+// line calculation requires proper ephemeris data this simple client-
+// side tool does not have. This is an honest, numerology-grounded
+// environment-fit reading: what pace, scale, and kind of place suits
+// this Life Path, not literal coordinates.
+var PATTERNS={
+  1:{
+    phrase:'A place built for <em>starting things</em>',
+    tags:['Fast-growth cities','Room to lead','Momentum over comfort'],
+    paras:[
+      "A One doesn't thrive in a place that's already finished. You need somewhere still being built, a city on the way up, an industry still forming, a neighbourhood not yet decided what it is. Established, settled places tend to make a One feel like a guest in someone else's finished house.",
+      "What actually matters is not the specific city. It's whether the place lets you originate something rather than slot into an existing structure. A One in a rigid, hierarchy-first environment spends years waiting for permission that was never going to come.",
+      "The clearest sign you're in the wrong place: you feel capable but contained, like the ceiling is administrative, not personal."
+    ],
+    synthesis:{tension:"The tension is between stability and origination. A settled place offers comfort, but comfort is not what a One's pattern is built to run on.",invitation:"Look for where things are still being decided, not where they've already been decided for you."}
+  },
+  2:{
+    phrase:'A place built for <em>real closeness</em>',
+    tags:['Tight-knit community','Walkable, human scale','Partnership over solo hustle'],
+    paras:[
+      "A Two's pattern is not built for anonymous scale. Massive cities where you can live for years without knowing a neighbour's name tend to quietly starve a Two, even when everything else about the place looks right on paper.",
+      "What you actually need is proximity: a scale of place where relationships form without enormous effort, where the same faces recur, where community is structural, not something you have to manufacture from scratch every time you move.",
+      "The clearest sign you're in the wrong place: you have plenty of acquaintances and almost no one who actually knows you."
+    ],
+    synthesis:{tension:"The tension is between opportunity and intimacy. The biggest, most opportunity-dense places are rarely the ones where a Two actually feels held.",invitation:"Choose the smaller, closer place before you choose the bigger, busier one."}
+  },
+  3:{
+    phrase:'A place built for <em>being seen</em>',
+    tags:['Creative, cultural energy','An actual audience','Visibility, not obscurity'],
+    paras:[
+      "A Three's expression needs somewhere to land. A place with no creative or cultural pulse, however peaceful, tends to leave a Three's actual gift with nowhere to go, quietly turning it inward until it curdles into restlessness.",
+      "This does not have to mean a major cultural capital specifically. It means a place with a genuine audience: people who notice, respond, and give the expression somewhere real to travel to. Isolation is the actual danger, not any specific size of city.",
+      "The clearest sign you're in the wrong place: you keep creating for a drawer, not for anyone."
+    ],
+    synthesis:{tension:"The tension is between privacy and visibility. A Three who over-corrects toward a quiet, private life often ends up quietly unwell in a way that's hard to name.",invitation:"Choose a place with real cultural circulation, even if it costs you some peace and quiet."}
+  },
+  4:{
+    phrase:'A place built to <em>last</em>',
+    tags:['Established institutions','Slow, real infrastructure','Predictability over chaos'],
+    paras:[
+      "A Four's pattern compounds through time in one place. Somewhere with real churn, constant relocation, boom-and-bust unpredictability, tends to reset a Four's actual foundation-building work over and over, which is expensive in a way that's easy to underestimate.",
+      "What you actually need is a place with real institutional depth: schools, infrastructure, and community structures that have already proven they last. A Four thrives on a foundation someone else has already stress-tested.",
+      "The clearest sign you're in the wrong place: you keep having to start over from zero, in a place that never lets anything actually accumulate."
+    ],
+    synthesis:{tension:"The tension is between excitement and durability. The most exciting, fast-moving places are rarely the ones where a Four's actual gift compounds.",invitation:"Choose the place that will still be standing, structurally, in twenty years."}
+  },
+  5:{
+    phrase:'A place built for <em>movement</em>',
+    tags:['Real travel access','Variety, not routine','Freedom over roots'],
+    paras:[
+      "A Five's pattern does not do well permanently anchored. A place that is genuinely hard to leave, geographically or financially, tends to turn a Five's natural appetite for variety into a low-grade, chronic restlessness that gets mistaken for dissatisfaction with the place itself.",
+      "What actually matters is access: real transport links, a genuine gateway feel, somewhere leaving is easy rather than a whole production. The specific city matters less than whether it functions as a hub, not a dead end.",
+      "The clearest sign you're in the wrong place: you feel trapped by geography itself, independent of how objectively nice the place is."
+    ],
+    synthesis:{tension:"The tension is between roots and range. A place that asks a Five to fully settle is rarely a place a Five actually stays happy.",invitation:"Choose the place that makes leaving easy, not the place that makes leaving hard."}
+  },
+  6:{
+    phrase:'A place built around <em>each other</em>',
+    tags:['Family-centered','Real service infrastructure','Belonging over independence'],
+    paras:[
+      "A Six's pattern is oriented around care, and care needs somewhere to actually go. A place with weak community infrastructure, or one that isolates people from each other by design, tends to leave a Six's real gift underused and privately resentful about it.",
+      "What actually matters is whether the place is genuinely built around its people: real schools, real neighbourly structures, a place where showing up for others is normal rather than unusual. A Six in a place of strangers tends to over-function for whoever is nearest, at real personal cost.",
+      "The clearest sign you're in the wrong place: you feel responsible for people who don't actually reciprocate the closeness."
+    ],
+    synthesis:{tension:"The tension is between independence and belonging. A place that prizes self-sufficiency above all else rarely lets a Six's real gift find its footing.",invitation:"Choose the place where being needed, and needing others, is normal, not exceptional."}
+  },
+  7:{
+    phrase:'A place built for <em>real quiet</em>',
+    tags:['Nature-adjacent','Genuine solitude','Depth over noise'],
+    paras:[
+      "A Seven's pattern needs real quiet to function, not the absence of people specifically, but the absence of constant, low-grade demand. A place that never actually stops, ambient noise, ambient obligation, tends to leave a Seven perpetually depleted in a way that's hard to trace back to the place itself.",
+      "What actually matters is access to genuine stillness: nature nearby, real solitude available without a production, a pace that allows for depth rather than constant surface-level contact. The specific location matters less than whether real quiet is actually accessible there.",
+      "The clearest sign you're in the wrong place: you feel foggy and depleted in a way that improves dramatically the moment you're somewhere quiet."
+    ],
+    synthesis:{tension:"The tension is between stimulation and depth. The most exciting, dense, high-contact places are rarely where a Seven's actual gift develops.",invitation:"Choose the place that lets you disappear for a while, on purpose, without it being strange."}
+  },
+  8:{
+    phrase:'A place built for <em>real stakes</em>',
+    tags:['Major economic centers','Genuine ambition','Scale over comfort'],
+    paras:[
+      "An Eight's pattern needs somewhere the stakes are real. A place with a low ceiling, economically or professionally, tends to leave an Eight's actual capacity underused, which shows up less as contentment and more as a quiet, persistent frustration.",
+      "What actually matters is genuine economic or professional density: real opportunity, real competition, a place where ambition is normal rather than suspicious. An Eight in a place that discourages visible achievement spends real energy just managing other people's discomfort with them.",
+      "The clearest sign you're in the wrong place: you keep shrinking yourself to fit in, and it is costing you real momentum."
+    ],
+    synthesis:{tension:"The tension is between belonging and building. A place that prizes fitting in over standing out rarely lets an Eight's actual gift operate at scale.",invitation:"Choose the place where ambition is normal, not something you have to apologise for."}
+  },
+  9:{
+    phrase:'A place built for the <em>whole world</em>',
+    tags:['Internationally connected','Real diversity','Cause over comfort'],
+    paras:[
+      "A Nine's pattern reaches past any one neighbourhood. A place that is genuinely homogeneous, geographically or culturally isolated, tends to leave a Nine feeling quietly cut off from something they can't fully name, even when the immediate surroundings are perfectly pleasant.",
+      "What actually matters is real connection outward: international ties, genuine diversity, some link to causes or communities larger than the immediate area. A Nine tends to root faster in a place with real global texture than in one that's simply comfortable.",
+      "The clearest sign you're in the wrong place: comfort is present, but a specific kind of restlessness is too, the sense that something bigger is happening elsewhere."
+    ],
+    synthesis:{tension:"The tension is between local comfort and global reach. The coziest, most self-contained places are rarely where a Nine's actual gift feels fully used.",invitation:"Choose the place with real doors to the wider world, even if it costs some local coziness."}
+  },
+  11:{
+    phrase:'A place that holds both <em>solitude and a platform</em>',
+    tags:['Spiritually significant','Room for real solitude','Access to a real audience'],
+    paras:[
+      "An 11's pattern needs two things that rarely coexist easily: genuine solitude to actually access what they perceive, and a real platform to transmit it once they have. A place with only one of these tends to leave the gift half-used, either overstimulated and unable to hear themselves, or clear-sighted with nowhere to actually say it.",
+      "What actually matters is finding somewhere that offers real retreat, nature, quiet, genuine stillness, within reach of somewhere the insight can actually travel. This is rarely one single neighbourhood; it's often a considered relationship between a quiet home base and real access to a wider audience.",
+      "The clearest sign you're in the wrong place: the insight is there, clearly, but it has nowhere real to go."
+    ],
+    synthesis:{tension:"The tension is between the retreat the gift requires and the platform the gift is for. Choosing only one half tends to leave an 11 half-realised.",invitation:"Build a life with both a quiet base and real reach, rather than picking one and abandoning the other."}
+  },
+  22:{
+    phrase:'A place built for <em>something lasting</em>',
+    tags:['Real infrastructure access','Room to build at scale','Legacy over convenience'],
+    paras:[
+      "A 22's pattern is built for large-scale, structural work, and that kind of work needs real resources nearby: capital, institutions, people capable of building alongside them. A place too small or too disconnected leaves a 22's actual capacity stuck at a scale far below what it's built for.",
+      "What actually matters is access, not necessarily living in the biggest place, but being genuinely reachable from real infrastructure, real capital, and real institutional partners. A 22 isolated from these tends to spend their capacity on things far smaller than what they were built to do.",
+      "The clearest sign you're in the wrong place: the vision is large, but everything available locally is small."
+    ],
+    synthesis:{tension:"The tension is between a peaceful, modest life and the scale this pattern is actually built for. Choosing peace over access tends to leave real capacity unused.",invitation:"Choose proximity to real resources, even if it costs some simplicity."}
+  },
+  33:{
+    phrase:'A place with <em>real need</em>',
+    tags:['Genuine community need','Healing or education-rich','Service over status'],
+    paras:[
+      "A 33's pattern is oriented around healing and teaching at a depth most patterns aren't built to sustain, and that kind of gift needs somewhere it's actually needed. A wealthy, already well-served place tends to leave a 33's real capacity underused, however comfortable it is to live in.",
+      "What actually matters is genuine need: a community, institution, or population that could actually benefit from real depth of care. A 33 in a place with no real need nearby tends to feel a persistent sense of being wasted, even while objectively comfortable.",
+      "The clearest sign you're in the wrong place: comfort is high, but the sense of actually mattering to anyone specific is low."
+    ],
+    synthesis:{tension:"The tension is between personal comfort and being genuinely needed. The most comfortable places are rarely the ones where a 33's real gift is actually used.",invitation:"Choose the place where your depth of care would actually be felt, not just the place that's easiest to live in."}
+  }
+};
+
+var fullReadingText='';
+var isSpeaking=false,speechChunks=[],chunkIndex=0,currentUtterance=null,speechKeepAlive=null;
+
+function calculate(){
+  var dob=document.getElementById("inp-dob").value;
+  var name=document.getElementById("inp-name").value.trim();
+  if(!dob){document.getElementById("inp-dob").focus();return;}
+
+  var btn=document.getElementById("calc-btn");
+  btn.classList.add("loading");
+  setTimeout(function(){
+    btn.classList.remove("loading");
+    var lp=dtLP(dob);
+    var data=PATTERNS[lp]||PATTERNS[1];
+    var fn=name?name.split(" ")[0]:"";
+
+    document.getElementById("p-eyebrow").textContent=(fn?fn+"'s":"Your")+" Environment Pattern";
+    document.getElementById("p-phrase").innerHTML=data.phrase;
+    document.getElementById("p-tags").innerHTML=data.tags.map(function(t){return"<span class='pattern-tag'>"+t+"</span>";}).join("");
+
+    var html="";
+    html+="<div class='reading-block'><div class='r-label'>What Your Pattern Actually Needs</div>";
+    data.paras.forEach(function(p){html+="<p class='r-para'>"+p+"</p>";});
+    html+="</div>";
+    html+="<div class='r-syn'><div class='r-label'>What This Reading Is Saying, Taken As A Whole</div>";
+    html+="<p class='r-tension'>"+data.synthesis.tension+"</p>";
+    html+="<p class='r-invite'>"+data.synthesis.invitation+"</p>";
+    html+="</div>";
+    document.getElementById("reading-content").innerHTML=html;
+
+    // Upsell now points at the real, dedicated relocation-power-map tool,
+    // built specifically to answer what this free reading only teases,
+    // this was a placeholder pointing at the flagship Complete Portrait
+    // until that dedicated tool existed.
+    var p=new URLSearchParams();
+    if(fn)p.set("name",fn);p.set("dob",dob);p.set("lp",lp);p.set("src","freetool");
+    document.getElementById("lifeos-link").href="https://app.kayalsoulpath.com/tool/relocation-power-map?"+p.toString();
+
+    var readEl=document.createElement("div");readEl.innerHTML=html;
+    fullReadingText=(readEl.textContent+" This is one thread. Where You're Actually Meant to Live goes fully into this, checking exactly which parts of your life your current place supports or works against.").replace(/\s+/g," ").trim();
+    window._shareText="I discovered the kind of place I'm actually built for at KAYAL SoulPath Institute: "+data.tags.join(", ")+". Try yours free.";
+
+    document.getElementById("hero-section").style.display="none";
+    document.getElementById("calc-section").style.display="none";
+    var rs=document.getElementById("result-section");
+    rs.style.display="block";
+    setTimeout(function(){rs.classList.add("show");},50);
+    setTimeout(function(){rs.scrollIntoView({behavior:"smooth",block:"start"});},300);
+  },700);
+}
+
+function startNewReading(){
+  document.getElementById("inp-dob").value="";
+  document.getElementById("inp-name").value="";
+  document.getElementById("result-section").style.display="none";
+  document.getElementById("result-section").classList.remove("show");
+  document.getElementById("hero-section").style.display="flex";
+  document.getElementById("calc-section").style.display="block";
+  document.getElementById("calc-section").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+// ── VOICE ──────────────────────────────────────────────────
+function getBestVoice(){
+  var voices=window.speechSynthesis.getVoices();if(!voices.length)return null;
+  var pref=["Google UK English Female","Microsoft Libby Online (Natural) - English (United Kingdom)","Karen","Moira","Samantha","Victoria","Google US English"];
+  for(var i=0;i<pref.length;i++){var v=voices.find(function(v){return v.name===pref[i];});if(v)return v;}
+  var tagged=voices.find(function(v){return v.lang.startsWith("en")&&/natural|neural|enhanced|premium/i.test(v.name);});
+  if(tagged)return tagged;
+  var ef=voices.find(function(v){return v.lang.startsWith("en")&&v.name.toLowerCase().includes("female");});
+  return ef||voices.find(function(v){return v.lang.startsWith("en");})||voices[0];
+}
+function stopSpeechKeepAlive(){if(speechKeepAlive){clearInterval(speechKeepAlive);speechKeepAlive=null;}}
+function toggleSpeech(){
+  if(!("speechSynthesis" in window)){showToast("Voice not supported in this browser.");return;}
+  var btn=document.getElementById("listen-btn"),lbl=document.getElementById("listen-lbl");
+  if(isSpeaking){window.speechSynthesis.cancel();stopSpeechKeepAlive();isSpeaking=false;speechChunks=[];chunkIndex=0;btn.classList.remove("is-active");lbl.textContent="Listen to Reading";return;}
+  if(!fullReadingText)return;
+  window.speechSynthesis.cancel();
+  var raw=fullReadingText.split(/(?<=[.!?])\s+(?=[A-Z])/);
+  speechChunks=[];
+  for(var i=0;i<raw.length;i+=2){var c=raw.slice(i,i+2).join(" ").replace(/\s+/g," ").trim();if(c)speechChunks.push(c);}
+  chunkIndex=0;
+  function next(){
+    if(chunkIndex>=speechChunks.length){isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove("is-active");lbl.textContent="Listen to Reading";return;}
+    var chunk=speechChunks[chunkIndex];
+    var u=new SpeechSynthesisUtterance(chunk);
+    currentUtterance=u;
+    u.rate=0.80+Math.random()*0.05;u.pitch=1.02+Math.random()*0.07;var v=getBestVoice();if(v)u.voice=v;
+    u.onend=function(){chunkIndex++;var pause=/[?]$/.test(chunk)?520:(340+Math.random()*140);setTimeout(next,pause);};
+    u.onerror=function(){isSpeaking=false;stopSpeechKeepAlive();btn.classList.remove("is-active");lbl.textContent="Listen to Reading";};
+    window.speechSynthesis.speak(u);
+  }
+  if(window.speechSynthesis.getVoices().length)next();
+  else window.speechSynthesis.onvoiceschanged=function(){next();};
+  isSpeaking=true;btn.classList.add("is-active");lbl.textContent="Pause";
+}
+
+// ── SHARE ──────────────────────────────────────────────────
+function toggleShare(e){e.stopPropagation();document.getElementById("share-dd").classList.toggle("show");}
+document.addEventListener("click",function(){var d=document.getElementById("share-dd");if(d)d.classList.remove("show");});
+function showToast(msg){var t=document.getElementById("toast-msg");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2400);}
+function doShare(m){
+  document.getElementById("share-dd").classList.remove("show");
+  var url="https://kayalsoulpath.com/pages/tool-environment-pattern.html";
+  var text=window._shareText||"Discover the kind of place you're actually built for at KAYAL SoulPath Institute.";
+  if(m==="copy"){navigator.clipboard&&navigator.clipboard.writeText(text+"\n"+url);showToast("Copied.");return;}
+  var enc=encodeURIComponent,urls={twitter:"https://twitter.com/intent/tweet?text="+enc(text)+"&url="+enc(url),whatsapp:"https://wa.me/?text="+enc(text+" "+url)};
+  if(urls[m])window.open(urls[m],"_blank","noopener");
+}
+
+document.getElementById("inp-dob").addEventListener("keydown",function(e){if(e.key==="Enter")calculate();});
+document.getElementById("inp-name").addEventListener("keydown",function(e){if(e.key==="Enter")calculate();});
+
+// Ambient map lines
+(function(){
+  var mp=document.getElementById("map-lines"),h="";
+  for(var i=0;i<6;i++){
+    var top=10+i*15,width=30+Math.random()*40,left=Math.random()*40;
+    h+="<div class='map-line' style='top:"+top+"%;left:"+left+"%;width:"+width+"%;animation-delay:"+(i*0.7)+"s'></div>";
+  }
+  mp.innerHTML=h;
+})();
+</script>
+</body>
+</html>

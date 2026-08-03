@@ -181,7 +181,7 @@ input[type=date].form-input{color-scheme:dark}
 .share-toast-msg{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(16,13,26,.97);border:1px solid rgba(124,79,208,.35);color:var(--cream);padding:11px 22px;border-radius:24px;font-size:12.5px;z-index:300;opacity:0;pointer-events:none;transition:all .3s}
 .share-toast-msg.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* Reading bridge card — compact */
+/* Reading bridge card, compact */
 .lifeos-invite{max-width:540px;margin:0 auto;padding:26px 28px;background:linear-gradient(135deg,rgba(124,79,208,.22),rgba(212,168,67,.08)),rgba(13,10,20,.92);border:1px solid rgba(212,168,67,.22);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(212,168,67,.16),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(124,79,208,.18),transparent 70%);pointer-events:none}
@@ -906,7 +906,7 @@ function getBestVoice(){
     if(v)return v;
   }
   // Generic catch-all: any English voice explicitly labelled Natural/Neural/
-  // Enhanced/Premium — catches modern OS voices not on the named list above
+  // Enhanced/Premium, catches modern OS voices not on the named list above
   var tagged=voices.find(function(v){return v.lang.startsWith('en')&&/natural|neural|enhanced|premium/i.test(v.name);});
   if(tagged)return tagged;
   // Fallback: any English female
@@ -1005,9 +1005,9 @@ var currentElement=null,currentName='',currentDob='';
 // Only 3 face-image products exist in the registry, so every element
 // shows all 3, just reordered so the best fit leads.
 var TOOL_META = {
-  'second-half-reading':  { name: 'The Second Half Reading',  price: '$37', desc: 'Which decades ahead carry your fullest expression' },
-  'leadership-signature': { name: 'The Leadership Signature', price: '$47', desc: 'The authority your face projects, and how to own it' },
-  'money-wound-reading':  { name: 'The Money Wound Reading',  price: '$47', desc: 'The belief your face confirms that is costing you money' }
+  'second-half-reading':  { name: 'Your Strongest Career Decades Ahead',  price: '$49', desc: 'Which decades ahead carry your fullest expression' },
+  'leadership-signature': { name: 'Your Leadership Signature', price: '$44', desc: 'The authority your face projects, and how to own it' },
+  'money-wound-reading':  { name: "The Belief That's Costing You Money",  price: '$34', desc: 'The belief your face confirms that is costing you money' }
 };
 var UPSELL_MAP = {
   wood: {
@@ -1015,7 +1015,7 @@ var UPSELL_MAP = {
     secondary: ['leadership-signature', 'money-wound-reading'],
     eyebrow: 'Your growth has a direction worth naming',
     titleTpl: function(fn){return (fn?fn+"'s":'Your')+' Wood face is built for what comes next.';},
-    desc: 'The Second Half Reading shows exactly which decades ahead carry your fullest expression, and when your forward momentum finally pays off.',
+    desc: 'Your Strongest Career Decades Ahead shows exactly which decades ahead carry your fullest expression, and when your forward momentum finally pays off.',
     ctaLabel: 'See My Recommended Reading',
     modalTitle: 'Three readings fit what your Wood face just showed.'
   },
@@ -1024,7 +1024,7 @@ var UPSELL_MAP = {
     secondary: ['second-half-reading', 'money-wound-reading'],
     eyebrow: 'What you project is not an accident',
     titleTpl: function(fn){return (fn?fn+"'s":'Your')+' Fire face carries a specific kind of authority.';},
-    desc: 'The Leadership Signature names exactly what your face projects to others, and shows you how to own it fully instead of giving it away.',
+    desc: 'Your Leadership Signature names exactly what your face projects to others, and shows you how to own it fully instead of giving it away.',
     ctaLabel: 'See My Recommended Reading',
     modalTitle: 'Three readings fit what your Fire face just showed.'
   },
@@ -1033,7 +1033,7 @@ var UPSELL_MAP = {
     secondary: ['second-half-reading', 'leadership-signature'],
     eyebrow: 'Reliability has a cost worth naming',
     titleTpl: function(fn){return (fn?fn+"'s":'Your')+' Earth face carries a belief about money worth examining.';},
-    desc: 'The Money Wound Reading names the specific belief your face confirms, the one quietly shaping what you think you are allowed to earn.',
+    desc: "The Belief That's Costing You Money names the specific belief your face confirms, the one quietly shaping what you think you are allowed to earn.",
     ctaLabel: 'See My Recommended Reading',
     modalTitle: 'Three readings fit what your Earth face just showed.'
   },
@@ -1042,7 +1042,7 @@ var UPSELL_MAP = {
     secondary: ['money-wound-reading', 'second-half-reading'],
     eyebrow: 'Your standard is not the problem',
     titleTpl: function(fn){return (fn?fn+"'s":'Your')+' Metal face carries a specific kind of authority.';},
-    desc: 'The Leadership Signature shows you how to turn your discernment into ownership, instead of quiet frustration with a world that keeps not measuring up.',
+    desc: 'Your Leadership Signature shows you how to turn your discernment into ownership, instead of quiet frustration with a world that keeps not measuring up.',
     ctaLabel: 'See My Recommended Reading',
     modalTitle: 'Three readings fit what your Metal face just showed.'
   },
@@ -1051,25 +1051,25 @@ var UPSELL_MAP = {
     secondary: ['second-half-reading', 'leadership-signature'],
     eyebrow: 'What you carry has a cost worth naming',
     titleTpl: function(fn){return (fn?fn+"'s":'Your')+' Water face carries a belief about money worth examining.';},
-    desc: 'The Money Wound Reading names the specific belief your face confirms, the one quietly shaping what you think your depth is worth.',
+    desc: "The Belief That's Costing You Money names the specific belief your face confirms, the one quietly shaping what you think your depth is worth.",
     ctaLabel: 'See My Recommended Reading',
     modalTitle: 'Three readings fit what your Water face just showed.'
   }
 };
 
-// First sentence of a face-synthesis tension paragraph — used to build a
+// First sentence of a face-synthesis tension paragraph, used to build a
 // per-element invite description instead of a static per-element template
 function tensionLead(syn){
   var s=(syn&&syn.tension)?syn.tension.split('.')[0].trim():'';
   return s?s+'.':'';
 }
-// What each recommended reading specifically resolves — combined with
+// What each recommended reading specifically resolves, combined with
 // tensionLead() this gives all 5 elements their own specific desc without
 // hand-writing 5 separate paragraphs
 var REC_BRIDGE={
-  'second-half-reading':'The Second Half Reading shows exactly which decades ahead carry your fullest expression, once this pattern has somewhere real to go.',
-  'leadership-signature':'The Leadership Signature names precisely what to do with this, instead of carrying it quietly or giving it away.',
-  'money-wound-reading':'The Money Wound Reading traces this exact pattern back to the specific belief that is shaping what you think you are allowed to have.'
+  'second-half-reading':'Your Strongest Career Decades Ahead shows exactly which decades ahead carry your fullest expression, once this pattern has somewhere real to go.',
+  'leadership-signature':'Your Leadership Signature names precisely what to do with this, instead of carrying it quietly or giving it away.',
+  'money-wound-reading':"The Belief That's Costing You Money traces this exact pattern back to the specific belief that is shaping what you think you are allowed to have."
 };
 
 function buildToolURL(toolId){
@@ -1215,7 +1215,7 @@ function buildResult(metrics){
 
       document.getElementById('reading-content').innerHTML=html;
 
-  // Update invite block — desc now built from THIS element's own
+  // Update invite block, desc now built from THIS element's own
   // synthesis tension, not a static per-element template
   var up=UPSELL_MAP[el.primary];
   currentUp=up;
@@ -1238,7 +1238,7 @@ function buildResult(metrics){
   var pdfBtn=document.getElementById('lifeos-pdf-btn');
   if(pdfBtn)pdfBtn.href=buildURL();
 
-  // Show result — hide the hero and upload/form step so it reads as a clean next screen
+  // Show result, hide the hero and upload/form step so it reads as a clean next screen
   document.getElementById('hero-section').style.display='none';
   document.getElementById('upload-section').style.display='none';
   var rs=document.getElementById('result-section');

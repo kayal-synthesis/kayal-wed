@@ -144,7 +144,7 @@ input[type=date].form-input{color-scheme:dark}
 .toast-msg.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* LifeOS invite */
-/* Reading bridge card — compact */
+/* Reading bridge card, compact */
 .lifeos-invite{max-width:540px;margin:0 auto;padding:26px 28px;background:linear-gradient(135deg,rgba(107,63,160,.24),rgba(200,160,48,.08)),rgba(8,6,15,.94);border:1px solid rgba(107,63,160,.28);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(107,63,160,.16),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(200,160,48,.10),transparent 70%);pointer-events:none}
@@ -541,7 +541,7 @@ function getBestVoice(){
   var pref=["Microsoft Libby Online (Natural) - English (United Kingdom)","Microsoft Sonia Online (Natural) - English (United Kingdom)","Microsoft Aria Online (Natural) - English (United States)","Google UK English Female","Karen","Moira","Samantha","Victoria","Google US English"];
   for(var i=0;i<pref.length;i++){var v=voices.find(function(v){return v.name===pref[i];});if(v)return v;}
   // Generic catch-all: any English voice explicitly labelled Natural/Neural/
-  // Enhanced/Premium — modern OS voices carry these labels and are a real
+  // Enhanced/Premium, modern OS voices carry these labels and are a real
   // step up from legacy robotic voices, even if not on the named list above
   var tagged=voices.find(function(v){return v.lang.startsWith("en")&&/natural|neural|enhanced|premium/i.test(v.name);});
   if(tagged)return tagged;
@@ -565,14 +565,14 @@ function toggleSpeech(){
     var u=new SpeechSynthesisUtterance(chunk);
     currentUtterance=u;
     // Small natural variance per chunk instead of perfectly identical
-    // rate/pitch every time — real speech drifts slightly line to line
+    // rate/pitch every time, real speech drifts slightly line to line
     u.rate=0.80+Math.random()*0.05;
     u.pitch=1.02+Math.random()*0.07;
     var v=getBestVoice();if(v)u.voice=v;
     u.onend=function(){
       chunkIndex++;
       // Slightly longer breath-pause after a question or the end of a
-      // thought, shorter mid-flow — approximates natural reading rhythm
+      // thought, shorter mid-flow, approximates natural reading rhythm
       var endedChunk=chunk;
       var pause=/[?]$/.test(endedChunk)?520:(340+Math.random()*140);
       setTimeout(next,pause);
@@ -637,8 +637,8 @@ function animateHeroName(nameRaw,vals){
 // Only 2 relevant name-based products fit this reading, so both branches show
 // both, just reordered so the best fit leads.
 var TOOL_META={
-  'expression-number-reading':{name:'The Expression Number Reading',price:'$29',desc:'The natural talents encoded in your full birth name'},
-  'soul-urge-reading':{name:'The Soul Urge Reading',price:'$29',desc:'What your heart actually wants underneath everything else'}
+  'expression-number-reading':{name:'What Your Name Already Told You',price:'$29',desc:'The natural talents encoded in your full birth name'},
+  'soul-urge-reading':{name:"What You're Really After in Life",price:'$34',desc:'What your heart actually wants underneath everything else'}
 };
 var UPSELL_MAP={
   aligned:{
@@ -646,7 +646,7 @@ var UPSELL_MAP={
     secondary:['soul-urge-reading'],
     eyebrow:'What you want and how you are seen already agree',
     titleTpl:function(fn1){return (fn1?fn1+", this":'This')+' name has one unified signature, not two competing ones.';},
-    desc:'The Expression Number Reading shows you the natural talents encoded in your full birth name, built on a foundation that is already aligned.',
+    desc:'What Your Name Already Told You shows you the natural talents encoded in your full birth name, built on a foundation that is already aligned.',
     ctaLabel:'See Our Recommended Reading',
     modalTitle:'Two readings fit what your name just showed.'
   },
@@ -655,13 +655,13 @@ var UPSELL_MAP={
     secondary:['expression-number-reading'],
     eyebrow:'What you want and how you are seen do not fully match',
     titleTpl:function(fn1){return (fn1?fn1+", this":'This')+' name wants something different from what the world reads in it.';},
-    desc:'The Soul Urge Reading names exactly what your heart actually wants underneath the character the world encounters.',
+    desc:"What You're Really After in Life names exactly what your heart actually wants underneath the character the world encounters.",
     ctaLabel:'See Our Recommended Reading',
     modalTitle:'Two readings fit what your name just showed.'
   }
 };
 
-// First sentence of a synthesis tension paragraph — every entry in SYNTHESIS
+// First sentence of a synthesis tension paragraph, every entry in SYNTHESIS
 // is written as "The central tension...is between X and Y." so splitting on
 // the first period reliably isolates a short, self-contained lead line.
 function tensionLead(syn){
@@ -669,12 +669,12 @@ function tensionLead(syn){
   return s?s+'.':'';
 }
 
-// What each recommended reading specifically resolves — reused across all
+// What each recommended reading specifically resolves, reused across all
 // 12 numbers so the desc stays specific per-number (via tensionLead) without
 // needing 24 hand-written paragraphs.
 var REC_BRIDGE={
-  'expression-number-reading':'The Expression Number Reading traces this exact pattern through your full birth name and shows precisely where it is meant to be built.',
-  'soul-urge-reading':'The Soul Urge Reading names precisely what sits beneath that tension — the part of this name a free reading can only point toward.'
+  'expression-number-reading':'What Your Name Already Told You traces this exact pattern through your full birth name and shows precisely where it is meant to be built.',
+  'soul-urge-reading':"What You're Really After in Life names precisely what sits beneath that tension, the part of this name a free reading can only point toward."
 };
 
 var currentName='',currentFname='',currentDob='',currentUp=null;
@@ -819,7 +819,7 @@ function calculate(){
     var up=isAligned?UPSELL_MAP.aligned:UPSELL_MAP.gap;
     currentUp=up;currentName=nameRaw;currentFname=fname;currentDob=dob;
 
-    // Update invite copy — desc is now built from THIS reading's own
+    // Update invite copy, desc is now built from THIS reading's own
     // synthesis tension, not a generic aligned/gap template
     var lead=tensionLead(syn);
     var bridge=REC_BRIDGE[up.toolId];
@@ -828,7 +828,7 @@ function calculate(){
     document.getElementById("li-desc").textContent=(lead&&bridge)?(lead+" "+bridge):up.desc;
     document.getElementById("li-btn-label").textContent=up.ctaLabel;
 
-    // Speech text — include the invite copy too, so listening all the way
+    // Speech text, include the invite copy too, so listening all the way
     // through actually reaches the invitation instead of stopping short
     var readEl=document.createElement("div");readEl.innerHTML=html;
     var readingSpeech=readEl.textContent.replace(/\s+/g," ").trim();
@@ -837,7 +837,7 @@ function calculate(){
     fullReadingText=(readingSpeech+" "+inviteSpeech).replace(/\s+/g," ").trim();
     window._shareText="I discovered the vibration encoded in my name at KAYAL SoulPath Institute: "+data.t.join(", ")+". Try yours free.";
 
-    // Show — hide the hero and input step so it reads as a clean next screen
+    // Show, hide the hero and input step so it reads as a clean next screen
     document.getElementById("hero-section").style.display="none";
     document.getElementById("input-section").style.display="none";
     var rs=document.getElementById("result-section");
