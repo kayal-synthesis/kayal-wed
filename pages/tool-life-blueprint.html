@@ -96,6 +96,17 @@ a{color:inherit;text-decoration:none}
 @media(max-width:480px){
   #calc-body{padding:24px 20px !important}
   #form-row{grid-template-columns:1fr !important;gap:14px !important}
+  /* Edge-to-edge reading card on narrow phones. The card previously
+     stacked the section's 24px side padding with the result panel's
+     own 36px padding, roughly 120px lost combined, plus a visible
+     border/radius/shadow that read as a narrow box floating in a
+     margin rather than the page itself. This breaks the card out to
+     the full viewport width and drops the "card" chrome specifically
+     at this width, while leaving the card untouched on tablet/desktop. */
+  #calculator.section{padding-left:0 !important;padding-right:0 !important}
+  #reading-card{max-width:100% !important;border-left:none !important;border-right:none !important;border-radius:0 !important;box-shadow:none !important}
+  #calc-header{padding-left:20px !important;padding-right:20px !important}
+  #result-panel{padding-left:20px !important;padding-right:20px !important}
 }
 </style>
 </head>
@@ -138,7 +149,7 @@ a{color:inherit;text-decoration:none}
       <h2 class="stitle" style="margin-bottom:8px">Enter your birth date<br><em>to begin.</em></h2>
       <p class="slead" style="margin:0 auto">Your date of birth is the only required field. Adding your birth name unlocks additional layers.</p>
     </div>
-    <div style="background:var(--white);border:1px solid var(--cream);border-radius:var(--r-lg);overflow:hidden;max-width:720px;margin:0 auto;box-shadow:0 4px 32px rgba(26,18,8,.06)" class="reveal">
+    <div id="reading-card" style="background:var(--white);border:1px solid var(--cream);border-radius:var(--r-lg);overflow:hidden;max-width:720px;margin:0 auto;box-shadow:0 4px 32px rgba(26,18,8,.06)" class="reveal">
       <div id="calc-header" style="padding:32px 36px 24px;border-bottom:1px solid var(--cream);background:linear-gradient(135deg,var(--parchment),var(--white))">
         <div style="font-size:32px;margin-bottom:10px">🔢</div>
         <div style="font-family:var(--ff-d);font-size:24px;font-weight:300;color:var(--ink);margin-bottom:6px">Life Blueprint Reading</div>
