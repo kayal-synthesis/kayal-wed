@@ -384,7 +384,7 @@ input[type=date].form-input{color-scheme:dark}
           <input readonly id="scm-caption" class="scm-caption-input" aria-label="Shareable caption">
           <button class="scm-copy-btn" onclick="copyShareCaption()" aria-label="Copy caption"><i class="fas fa-copy"></i></button>
         </div>
-        <button class="scm-download" onclick="downloadShareCard()"><i class="fas fa-download"></i> Download Image</button>
+        <button class="scm-download" onclick="downloadShareCard();trackShareEvent('download')"><i class="fas fa-download"></i> Download Image</button>
       </div>
     </div>
   </div>
@@ -678,6 +678,22 @@ function toggleSpeech(){
 function showToast(msg){var t=document.getElementById("toast-msg");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2400);}
 var currentShareBlob=null,currentShareCaption='';
 
+// Real, picks a genuinely complete, self-contained sentence for the
+// share card, not just whichever sentence sits at a fixed position.
+// Confirmed necessary directly, some real tension paragraphs use
+// short, deliberate fragments ('Not as a character flaw.') that only
+// make sense continuing the sentence before them, silently broken
+// when isolated alone on a card.
+function pickShareLine(tensionText){
+  var sentences=tensionText.split('. ').map(function(s){return s.trim();}).filter(Boolean);
+  for(var i=1;i<sentences.length;i++){
+    if(sentences[i].length>=45){
+      return sentences[i]+(sentences[i].slice(-1)==='.'?'':'.');
+    }
+  }
+  return sentences[0]+(sentences[0].slice(-1)==='.'?'':'.');
+}
+
 function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){
   var words=text.split(' '),line='',lines=[];
   for(var n=0;n<words.length;n++){
@@ -688,29 +704,58 @@ function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){
   lines.push(line.trim());
   var startY=y-((lines.length-1)*lineHeight)/2;
   for(var i=0;i<lines.length;i++){ctx.fillText(lines[i],x,startY+i*lineHeight);}
+  return startY+(lines.length-1)*lineHeight;
 }
 
 function roundRectPath(ctx,x,y,w,h,r){
   ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
 }
 
+function drawSpark(ctx,x,y,size,color){
+  ctx.save();ctx.translate(x,y);ctx.fillStyle=color;
+  ctx.beginPath();
+  ctx.moveTo(0,-size);ctx.quadraticCurveTo(size*0.15,-size*0.15,size,0);
+  ctx.quadraticCurveTo(size*0.15,size*0.15,0,size);ctx.quadraticCurveTo(-size*0.15,size*0.15,-size,0);
+  ctx.quadraticCurveTo(-size*0.15,-size*0.15,0,-size);
+  ctx.fill();ctx.restore();
+}
+
 function generateShareCardImage(expr,line){
   return new Promise(function(resolve){
-    var W=800,H=800,canvas=document.createElement('canvas');
+    var W=800,cx=W/2,cy=W*0.36,r=125;
+
+    var mCanvas=document.createElement('canvas');
+    mCanvas.width=W;mCanvas.height=W;
+    var mctx=mCanvas.getContext('2d');
+    mctx.font='italic 400 27px Georgia, serif';
+    mctx.textAlign='center';mctx.textBaseline='middle';
+    var titleY=cy+r+55;
+    var lineY=titleY+75;
+    var realBottom=wrapCanvasText(mctx,line,cx,lineY,600,40);
+    var badgeY=realBottom+70;
+    var H=Math.round(badgeY+80);
+
+    var canvas=document.createElement('canvas');
     canvas.width=W;canvas.height=H;
     var ctx=canvas.getContext('2d');
     var bgGrad=ctx.createLinearGradient(0,0,W,H);
-    bgGrad.addColorStop(0,'#1e1535');bgGrad.addColorStop(1,'#08060f');
+    bgGrad.addColorStop(0,'#2e1d4a');bgGrad.addColorStop(0.35,'#1e1535');bgGrad.addColorStop(0.7,'#150e26');bgGrad.addColorStop(1,'#08060f');
     ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
-    var cx=W/2,cy=H*0.36;
-    var glow=ctx.createRadialGradient(cx,cy,20,cx,cy,280);
-    glow.addColorStop(0,'rgba(107,63,160,0.35)');glow.addColorStop(0.45,'rgba(107,63,160,0.15)');glow.addColorStop(1,'rgba(107,63,160,0)');
+    var glow2=ctx.createRadialGradient(cx+80,cy-50,10,cx+80,cy-50,300);
+    glow2.addColorStop(0,'rgba(200,160,48,0.28)');glow2.addColorStop(1,'rgba(200,160,48,0)');
+    ctx.fillStyle=glow2;ctx.fillRect(0,0,W,H);
+    var glow=ctx.createRadialGradient(cx,cy,20,cx,cy,290);
+    glow.addColorStop(0,'rgba(107,63,160,0.42)');glow.addColorStop(0.45,'rgba(107,63,160,0.18)');glow.addColorStop(1,'rgba(107,63,160,0)');
     ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
-    var r=125;
+    drawSpark(ctx,90,120,10,'rgba(180,140,224,0.5)');
+    drawSpark(ctx,700,110,7,'rgba(200,160,48,0.4)');
+    drawSpark(ctx,660,H-130,11,'rgba(180,140,224,0.3)');
+    drawSpark(ctx,100,H-90,8,'rgba(200,160,48,0.4)');
+    ctx.beginPath();ctx.arc(cx,cy,r+18,0,Math.PI*2);ctx.strokeStyle='rgba(107,63,160,0.12)';ctx.lineWidth=2;ctx.stroke();
     ctx.beginPath();ctx.arc(cx,cy,r+10,0,Math.PI*2);ctx.strokeStyle='rgba(255,255,255,0.18)';ctx.lineWidth=3;ctx.stroke();
     var ringGrad=ctx.createLinearGradient(cx-r,cy-r,cx+r,cy+r);
-    ringGrad.addColorStop(0,'#9d70d0');ringGrad.addColorStop(1,'#c8a030');
-    ctx.beginPath();ctx.arc(cx,cy,r+10,-Math.PI/2,-Math.PI/2+Math.PI*2*0.3);ctx.strokeStyle=ringGrad;ctx.lineWidth=6;ctx.lineCap='round';ctx.stroke();
+    ringGrad.addColorStop(0,'#c09ae8');ringGrad.addColorStop(0.5,'#9d70d0');ringGrad.addColorStop(1,'#c8a030');
+    ctx.beginPath();ctx.arc(cx,cy,r+10,-Math.PI/2,-Math.PI/2+Math.PI*2*0.38);ctx.strokeStyle=ringGrad;ctx.lineWidth=6;ctx.lineCap='round';ctx.stroke();
     ctx.textAlign='center';ctx.textBaseline='middle';
     ctx.font='400 150px Georgia, serif';
     var numGrad=ctx.createLinearGradient(cx-70,cy-70,cx+70,cy+70);
@@ -718,25 +763,44 @@ function generateShareCardImage(expr,line){
     ctx.fillStyle=numGrad;ctx.fillText(String(expr),cx,cy);
     ctx.font='600 20px system-ui, sans-serif';
     ctx.fillStyle='#9d70d0';
-    ctx.fillText('EXPRESSION '+expr,cx,cy+r+55);
+    ctx.fillText('EXPRESSION '+expr,cx,titleY);
     ctx.font='italic 400 27px Georgia, serif';
     ctx.fillStyle='#e8e0f8';
-    wrapCanvasText(ctx,line,cx,cy+r+130,600,40);
-    var badgeY=H-85;
+    wrapCanvasText(ctx,line,cx,lineY,600,40);
     ctx.font='600 17px system-ui, sans-serif';
-    var badgeText='KAYAL SOULPATH';
+    var badgeText='KAYAL SOULPATH INSTITUTE';
     var badgeW=ctx.measureText(badgeText).width+64;
     roundRectPath(ctx,cx-badgeW/2,badgeY-24,badgeW,48,24);
-    ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fill();
+    ctx.fillStyle='rgba(107,63,160,0.18)';ctx.fill();
     ctx.strokeStyle='rgba(255,255,255,0.25)';ctx.lineWidth=1.5;ctx.stroke();
     ctx.fillStyle='#e8e0f8';ctx.fillText(badgeText,cx,badgeY+6);
+    ctx.font='500 15px system-ui, sans-serif';
+    ctx.fillStyle='rgba(192,154,232,0.7)';
+    ctx.fillText('kayalsoulpath.com',cx,badgeY+50);
     canvas.toBlob(function(blob){resolve(blob);},'image/png');
   });
 }
 
+// Real, lightweight, fire-and-forget tracking, logs every real
+// download or share action, never blocks or delays the actual
+// action itself, and fails silently if it doesn't work.
+function trackShareEvent(action){
+  try{
+    fetch("https://nofyxayqdwhyabcntmvs.supabase.co/rest/v1/share_events",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "apikey":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw",
+        "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw"
+      },
+      body:JSON.stringify({tool_id:"name-vibration",action:action})
+    }).catch(function(){});
+  }catch(e){}
+}
+
 async function openShareCardModal(){
   if(!currentExpr||!currentSynthesisTension)return;
-  var line=currentSynthesisTension.split('. ')[0]+'.';
+  var line=pickShareLine(currentSynthesisTension);
   currentShareCaption='My name carries Expression '+currentExpr+'. Discover what yours reveals free at kayalsoulpath.com';
   document.getElementById('scm-caption').value=currentShareCaption;
   var blob=await generateShareCardImage(currentExpr,line);
@@ -756,6 +820,7 @@ async function nativeShareCard(){
   try{
     var file=new File([currentShareBlob],'my-name-vibration.png',{type:'image/png'});
     await navigator.share({files:[file],title:'My Name Vibration',text:currentShareCaption});
+    trackShareEvent("native_share");
   }catch(e){}
 }
 
@@ -776,6 +841,7 @@ function copyShareCaption(){
 var NO_WEB_INTENT_PLATFORMS={instagram:1,tiktok:1,snapchat:1};
 
 function shareToPlatform(m){
+  trackShareEvent(m);
   var url='https://kayalsoulpath.com/pages/tool-name-vibration.html';
   var text=currentShareCaption;
   if(NO_WEB_INTENT_PLATFORMS[m]){

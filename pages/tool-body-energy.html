@@ -310,7 +310,7 @@ input[type=date].form-input{color-scheme:dark}
       <input readonly id="scm-caption" class="scm-caption-input" aria-label="Shareable caption">
       <button class="scm-copy-btn" onclick="copyShareCaption()" aria-label="Copy caption"><i class="fas fa-copy"></i></button>
     </div>
-    <button class="scm-download" onclick="downloadShareCard()"><i class="fas fa-download"></i> Download Image</button>
+    <button class="scm-download" onclick="downloadShareCard();trackShareEvent('download')"><i class="fas fa-download"></i> Download Image</button>
     <div class="scm-close" onclick="closeShareCardModal()">Close</div>
   </div>
 </div>
@@ -621,56 +621,104 @@ function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){
   lines.push(line.trim());
   var startY=y-((lines.length-1)*lineHeight)/2;
   for(var i=0;i<lines.length;i++){ctx.fillText(lines[i],x,startY+i*lineHeight);}
+  return startY+(lines.length-1)*lineHeight;
 }
 
 function roundRectPath(ctx,x,y,w,h,r){
   ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
 }
 
+function drawSpark(ctx,x,y,size,color){
+  ctx.save();ctx.translate(x,y);ctx.fillStyle=color;
+  ctx.beginPath();
+  ctx.moveTo(0,-size);ctx.quadraticCurveTo(size*0.15,-size*0.15,size,0);
+  ctx.quadraticCurveTo(size*0.15,size*0.15,0,size);ctx.quadraticCurveTo(-size*0.15,size*0.15,-size,0);
+  ctx.quadraticCurveTo(-size*0.15,-size*0.15,0,-size);
+  ctx.fill();ctx.restore();
+}
+
 function generateShareCardImage(phraseText,line){
   return new Promise(function(resolve){
-    var W=800,H=800,canvas=document.createElement('canvas');
+    var W=800,cx=W/2,cy=W*0.36,r=110;
+
+    var mCanvas=document.createElement('canvas');
+    mCanvas.width=W;mCanvas.height=W;
+    var mctx=mCanvas.getContext('2d');
+    mctx.font='italic 400 27px Georgia, serif';
+    mctx.textAlign='center';mctx.textBaseline='middle';
+    var titleY=cy+r+55;
+    var lineY=titleY+75;
+    var realBottom=wrapCanvasText(mctx,line,cx,lineY,600,40);
+    var badgeY=realBottom+70;
+    var H=Math.round(badgeY+80);
+
+    var canvas=document.createElement('canvas');
     canvas.width=W;canvas.height=H;
     var ctx=canvas.getContext('2d');
     var bgGrad=ctx.createLinearGradient(0,0,W,H);
-    bgGrad.addColorStop(0,'#2a1810');bgGrad.addColorStop(1,'#0c0a08');
+    bgGrad.addColorStop(0,'#3a1a10');bgGrad.addColorStop(0.35,'#2a1810');bgGrad.addColorStop(0.7,'#241008');bgGrad.addColorStop(1,'#0c0a08');
     ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
-    var cx=W/2,cy=H*0.36;
-    var glow=ctx.createRadialGradient(cx,cy,20,cx,cy,280);
-    glow.addColorStop(0,'rgba(200,100,42,0.32)');glow.addColorStop(0.45,'rgba(200,100,42,0.14)');glow.addColorStop(1,'rgba(200,100,42,0)');
+    var glow2=ctx.createRadialGradient(cx+80,cy-50,10,cx+80,cy-50,300);
+    glow2.addColorStop(0,'rgba(212,148,58,0.32)');glow2.addColorStop(1,'rgba(212,148,58,0)');
+    ctx.fillStyle=glow2;ctx.fillRect(0,0,W,H);
+    var glow=ctx.createRadialGradient(cx,cy,20,cx,cy,290);
+    glow.addColorStop(0,'rgba(200,100,42,0.38)');glow.addColorStop(0.45,'rgba(200,100,42,0.16)');glow.addColorStop(1,'rgba(200,100,42,0)');
     ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
-    var r=110;
+    drawSpark(ctx,90,120,10,'rgba(232,180,110,0.5)');
+    drawSpark(ctx,700,110,7,'rgba(212,148,58,0.4)');
+    drawSpark(ctx,660,H-130,11,'rgba(232,140,80,0.3)');
+    drawSpark(ctx,100,H-90,8,'rgba(232,180,110,0.4)');
+    ctx.beginPath();ctx.arc(cx,cy,r+18,0,Math.PI*2);ctx.strokeStyle='rgba(212,148,58,0.12)';ctx.lineWidth=2;ctx.stroke();
     ctx.beginPath();ctx.arc(cx,cy,r+10,0,Math.PI*2);ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=3;ctx.stroke();
     var ringGrad=ctx.createLinearGradient(cx-r,cy-r,cx+r,cy+r);
-    ringGrad.addColorStop(0,'#d4943a');ringGrad.addColorStop(1,'#c8642a');
-    ctx.beginPath();ctx.arc(cx,cy,r+10,-Math.PI/2,-Math.PI/2+Math.PI*2*0.3);ctx.strokeStyle=ringGrad;ctx.lineWidth=6;ctx.lineCap='round';ctx.stroke();
+    ringGrad.addColorStop(0,'#eab568');ringGrad.addColorStop(0.5,'#d4943a');ringGrad.addColorStop(1,'#b0492a');
+    ctx.beginPath();ctx.arc(cx,cy,r+10,-Math.PI/2,-Math.PI/2+Math.PI*2*0.38);ctx.strokeStyle=ringGrad;ctx.lineWidth=6;ctx.lineCap='round';ctx.stroke();
     ctx.textAlign='center';ctx.textBaseline='middle';
     ctx.font='italic 400 42px Georgia, serif';
     ctx.fillStyle='#f0e4d0';
     wrapCanvasText(ctx,phraseText,cx,cy,340,50);
     ctx.font='600 20px system-ui, sans-serif';
-    ctx.fillStyle='#d4943a';
-    ctx.fillText('VITALITY BLUEPRINT',cx,cy+r+55);
+    ctx.fillStyle='#eab568';
+    ctx.fillText('VITALITY BLUEPRINT',cx,titleY);
     ctx.font='italic 400 27px Georgia, serif';
     ctx.fillStyle='#f0ece0';
-    wrapCanvasText(ctx,line,cx,cy+r+130,600,40);
-    var badgeY=H-85;
+    wrapCanvasText(ctx,line,cx,lineY,600,40);
     ctx.font='600 17px system-ui, sans-serif';
-    var badgeText='KAYAL SOULPATH';
+    var badgeText='KAYAL SOULPATH INSTITUTE';
     var badgeW=ctx.measureText(badgeText).width+64;
     roundRectPath(ctx,cx-badgeW/2,badgeY-24,badgeW,48,24);
-    ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fill();
+    ctx.fillStyle='rgba(212,148,58,0.15)';ctx.fill();
     ctx.strokeStyle='rgba(255,255,255,0.25)';ctx.lineWidth=1.5;ctx.stroke();
     ctx.fillStyle='#f0ece0';ctx.fillText(badgeText,cx,badgeY+6);
+    ctx.font='500 15px system-ui, sans-serif';
+    ctx.fillStyle='rgba(234,181,104,0.7)';
+    ctx.fillText('kayalsoulpath.com',cx,badgeY+50);
     canvas.toBlob(function(blob){resolve(blob);},'image/png');
   });
+}
+
+// Real, lightweight, fire-and-forget tracking, logs every real
+// download or share action, never blocks or delays the actual
+// action itself, and fails silently if it doesn't work.
+function trackShareEvent(action){
+  try{
+    fetch("https://nofyxayqdwhyabcntmvs.supabase.co/rest/v1/share_events",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "apikey":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw",
+        "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw"
+      },
+      body:JSON.stringify({tool_id:"body-energy",action:action})
+    }).catch(function(){});
+  }catch(e){}
 }
 
 async function openShareCardModal(){
   if(!currentLp)return;
   var data=PATTERNS[currentLp]||PATTERNS[1];
   var plainPhrase=data.phrase.replace(/<[^>]*>/g,'');
-  var line=data.synthesis.tension.split('. ')[0]+'.';
+  var line=data.synthesis.invitation;
   currentShareCaption='My vitality pattern: '+plainPhrase+'. Discover yours free at kayalsoulpath.com';
   document.getElementById('scm-caption').value=currentShareCaption;
   var blob=await generateShareCardImage(plainPhrase,line);
@@ -690,6 +738,7 @@ async function nativeShareCard(){
   try{
     var file=new File([currentShareBlob],'my-vitality-pattern.png',{type:'image/png'});
     await navigator.share({files:[file],title:'My Vitality Blueprint',text:currentShareCaption});
+    trackShareEvent("native_share");
   }catch(e){}
 }
 
@@ -710,6 +759,7 @@ function copyShareCaption(){
 var NO_WEB_INTENT_PLATFORMS={instagram:1,tiktok:1,snapchat:1};
 
 function shareToPlatform(m){
+  trackShareEvent(m);
   var url='https://kayalsoulpath.com/pages/tool-body-energy.html';
   var text=currentShareCaption;
   if(NO_WEB_INTENT_PLATFORMS[m]){

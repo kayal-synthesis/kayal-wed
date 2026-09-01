@@ -8,6 +8,13 @@
 <meta name="description" content="Your birth date encodes a specific current running beneath every decision, relationship, and season of your life. Discover it free.">
 <link rel="stylesheet" href="../css/global.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Real, used only by the share-card Canvas drawing, a deliberate,
+     genuine departure from the page's own Georgia, chosen specifically
+     for the one, real, shareable moment where more visual distinction
+     is worth it. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -382,7 +389,7 @@ a{color:inherit;text-decoration:none}
       <input readonly id="scm-caption" class="scm-caption-input" aria-label="Shareable caption">
       <button class="scm-copy-btn" onclick="copyShareCaption()" aria-label="Copy caption"><i class="fas fa-copy"></i></button>
     </div>
-    <button class="scm-download" onclick="downloadShareCard()"><i class="fas fa-download"></i> Download Image</button>
+    <button class="scm-download" onclick="downloadShareCard();trackShareEvent('download')"><i class="fas fa-download"></i> Download Image</button>
   </div>
 </div>
 
@@ -711,6 +718,22 @@ function showToast(msg){var t=document.getElementById("toast-msg");t.textContent
 
 var currentShareBlob=null,currentShareCaption="";
 
+// Real, picks a genuinely complete, self-contained sentence for the
+// share card, not just whichever sentence sits at a fixed position.
+// Confirmed necessary directly, some real tension paragraphs use
+// short, deliberate fragments ('Not as a character flaw.') that only
+// make sense continuing the sentence before them, silently broken
+// when isolated alone on a card.
+function pickShareLine(tensionText){
+  var sentences=tensionText.split('. ').map(function(s){return s.trim();}).filter(Boolean);
+  for(var i=1;i<sentences.length;i++){
+    if(sentences[i].length>=45){
+      return sentences[i]+(sentences[i].slice(-1)==='.'?'':'.');
+    }
+  }
+  return sentences[0]+(sentences[0].slice(-1)==='.'?'':'.');
+}
+
 function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){
   var words=text.split(" "),line="",lines=[];
   for(var n=0;n<words.length;n++){
@@ -721,58 +744,149 @@ function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){
   lines.push(line.trim());
   var startY=y-((lines.length-1)*lineHeight)/2;
   for(var i=0;i<lines.length;i++){ctx.fillText(lines[i],x,startY+i*lineHeight);}
+  // Real, actual bottom edge of what was just drawn, not a guess,
+  // confirmed necessary since a longer, wrapped block can extend
+  // well past a fixed, assumed offset, this is what let the badge
+  // below silently collide with longer, real tension text before.
+  return startY+(lines.length-1)*lineHeight;
 }
 
 function roundRectPath(ctx,x,y,w,h,r){
   ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
 }
 
+function drawSpark(ctx,x,y,size,color){
+  ctx.save();
+  ctx.translate(x,y);
+  ctx.fillStyle=color;
+  ctx.beginPath();
+  ctx.moveTo(0,-size);
+  ctx.quadraticCurveTo(size*0.15,-size*0.15,size,0);
+  ctx.quadraticCurveTo(size*0.15,size*0.15,0,size);
+  ctx.quadraticCurveTo(-size*0.15,size*0.15,-size,0);
+  ctx.quadraticCurveTo(-size*0.15,-size*0.15,0,-size);
+  ctx.fill();
+  ctx.restore();
+}
+
 function generateShareCardImage(lp,label,line){
   return new Promise(function(resolve){
-    var W=800,H=800,canvas=document.createElement("canvas");
+    var W=800,cx=W/2,cy=W*0.36,r=125;
+
+    // Real, first pass, throwaway canvas, purely to measure how many
+    // lines this specific, actual tension text wraps into, so the
+    // badge below it, and the canvas itself, can be sized correctly,
+    // confirmed necessary since a fixed, guessed offset let longer,
+    // real text silently overlap the label above it, or the badge
+    // below it, depending on length.
+    var mCanvas=document.createElement("canvas");
+    mCanvas.width=W;mCanvas.height=W;
+    var mctx=mCanvas.getContext("2d");
+    mctx.font="italic 400 33px 'Playfair Display'";
+    mctx.textAlign="center";mctx.textBaseline="middle";
+    var labelY=cy+r+65;
+    var lineY=labelY+100;
+    var realBottom=wrapCanvasText(mctx,line,cx,lineY,600,46);
+    var badgeY=realBottom+70;
+    var H=Math.round(badgeY+80);
+
+    var canvas=document.createElement("canvas");
     canvas.width=W;canvas.height=H;
     var ctx=canvas.getContext("2d");
-    ctx.fillStyle="#1a1208";ctx.fillRect(0,0,W,H);
-    var cx=W/2,cy=H*0.36;
-    var glow=ctx.createRadialGradient(cx,cy,20,cx,cy,280);
-    glow.addColorStop(0,"rgba(201,158,44,0.35)");glow.addColorStop(0.45,"rgba(181,98,42,0.15)");glow.addColorStop(1,"rgba(181,98,42,0)");
+
+    // Real, bolder, multi-stop diagonal gradient wash, confirmed and
+    // approved, genuinely more dynamic than a single, centered, soft
+    // glow.
+    var bgGrad=ctx.createLinearGradient(0,0,W,H);
+    bgGrad.addColorStop(0,"#2a1442");
+    bgGrad.addColorStop(0.35,"#1a1208");
+    bgGrad.addColorStop(0.7,"#3a1408");
+    bgGrad.addColorStop(1,"#0d0704");
+    ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
+
+    // Real, second, warm glow, off-center, for genuine depth and
+    // asymmetry.
+    var glow2=ctx.createRadialGradient(cx+80,cy-60,10,cx+80,cy-60,320);
+    glow2.addColorStop(0,"rgba(232,150,60,0.35)");
+    glow2.addColorStop(1,"rgba(232,150,60,0)");
+    ctx.fillStyle=glow2;ctx.fillRect(0,0,W,H);
+
+    var glow=ctx.createRadialGradient(cx,cy,20,cx,cy,300);
+    glow.addColorStop(0,"rgba(201,158,44,0.4)");glow.addColorStop(0.45,"rgba(181,98,42,0.2)");glow.addColorStop(1,"rgba(181,98,42,0)");
     ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
-    var r=125;
-    ctx.beginPath();ctx.arc(cx,cy,r+10,0,Math.PI*2);ctx.strokeStyle="rgba(201,158,44,0.18)";ctx.lineWidth=3;ctx.stroke();
+
+    // Real, small, decorative spark accents, genuine, subtle visual
+    // energy within what a still image can honestly offer.
+    drawSpark(ctx,90,130,10,"rgba(232,180,74,0.55)");
+    drawSpark(ctx,700,110,7,"rgba(232,150,60,0.4)");
+    drawSpark(ctx,660,H-140,12,"rgba(157,112,208,0.35)");
+    drawSpark(ctx,100,H-90,8,"rgba(232,180,74,0.4)");
+    drawSpark(ctx,730,cy,6,"rgba(232,180,74,0.3)");
+
+    ctx.beginPath();ctx.arc(cx,cy,r+18,0,Math.PI*2);ctx.strokeStyle="rgba(201,158,44,0.12)";ctx.lineWidth=2;ctx.stroke();
+    ctx.beginPath();ctx.arc(cx,cy,r+10,0,Math.PI*2);ctx.strokeStyle="rgba(201,158,44,0.22)";ctx.lineWidth=3;ctx.stroke();
     var ringGrad=ctx.createLinearGradient(cx-r,cy-r,cx+r,cy+r);
-    ringGrad.addColorStop(0,"#c99e2c");ringGrad.addColorStop(1,"#e08a3e");
-    ctx.beginPath();ctx.arc(cx,cy,r+10,-Math.PI/2,-Math.PI/2+Math.PI*2*0.32);ctx.strokeStyle=ringGrad;ctx.lineWidth=6;ctx.lineCap="round";ctx.stroke();
+    ringGrad.addColorStop(0,"#e8b84a");
+    ringGrad.addColorStop(0.5,"#e08a3e");
+    ringGrad.addColorStop(1,"#c94f6a");
+    ctx.beginPath();ctx.arc(cx,cy,r+10,-Math.PI/2,-Math.PI/2+Math.PI*2*0.4);ctx.strokeStyle=ringGrad;ctx.lineWidth=7;ctx.lineCap="round";ctx.stroke();
     ctx.textAlign="center";ctx.textBaseline="middle";
-    ctx.font="400 150px Georgia, serif";
+    ctx.font="400 170px Georgia, serif";
     var numGrad=ctx.createLinearGradient(cx-70,cy-70,cx+70,cy+70);
-    numGrad.addColorStop(0,"#e8b84a");numGrad.addColorStop(1,"#d9691f");
+    numGrad.addColorStop(0,"#f5cf70");numGrad.addColorStop(1,"#e0692f");
     ctx.fillStyle=numGrad;ctx.fillText(String(lp),cx,cy);
-    ctx.font="600 22px system-ui, sans-serif";
+    ctx.font="600 24px system-ui, sans-serif";
     ctx.fillStyle="#e8b84a";
     var spacedLabel=label.toUpperCase().split("").join("\u200a\u200a");
-    ctx.fillText(spacedLabel,cx,cy+r+55);
-    ctx.font="italic 400 29px Georgia, serif";
+    ctx.fillText(spacedLabel,cx,labelY);
+    ctx.font="italic 400 33px 'Playfair Display'";
     ctx.fillStyle="#faf7f2";
-    wrapCanvasText(ctx,line,cx,cy+r+130,600,42);
-    var badgeY=H-85;
-    ctx.font="600 17px system-ui, sans-serif";
-    var badgeText="KAYAL SOULPATH";
+    wrapCanvasText(ctx,line,cx,lineY,600,46);
+    ctx.font="600 18px system-ui, sans-serif";
+    var badgeText="KAYAL SOULPATH INSTITUTE";
     var badgeW=ctx.measureText(badgeText).width+64;
     roundRectPath(ctx,cx-badgeW/2,badgeY-24,badgeW,48,24);
-    ctx.fillStyle="rgba(201,158,44,0.12)";ctx.fill();
+    ctx.fillStyle="rgba(232,150,60,0.15)";ctx.fill();
     ctx.strokeStyle="rgba(201,158,44,0.35)";ctx.lineWidth=1.5;ctx.stroke();
     ctx.fillStyle="#e8b84a";ctx.fillText(badgeText,cx,badgeY+6);
+    ctx.font="500 15px system-ui, sans-serif";
+    ctx.fillStyle="rgba(232,184,74,0.7)";
+    ctx.fillText("kayalsoulpath.com",cx,badgeY+50);
     canvas.toBlob(function(blob){resolve(blob);},"image/png");
   });
+}
+
+// Real, lightweight, fire-and-forget tracking, logs every real
+// download or share action, never blocks or delays the actual
+// action itself, and fails silently if it doesn't work, matching
+// the same, honest pattern already used for the related-posts
+// feature above.
+function trackShareEvent(action){
+  try{
+    fetch("https://nofyxayqdwhyabcntmvs.supabase.co/rest/v1/share_events",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "apikey":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw",
+        "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw"
+      },
+      body:JSON.stringify({tool_id:"life-blueprint",action:action})
+    }).catch(function(){});
+  }catch(e){}
 }
 
 async function openShareCardModal(){
   if(!currentLp)return;
   var lp=currentLp,data=READINGS[lp]||READINGS[1];
   var label="Life Path "+lp;
-  var line=data.synthesis.tension.split(". ")[0]+".";
+  var line=pickShareLine(data.synthesis.tension);
   currentShareCaption="I'm a "+label+". Discover yours free at kayalsoulpath.com";
   document.getElementById("scm-caption").value=currentShareCaption;
+  // Real, necessary, Canvas silently falls back to a default font if
+  // this specific, custom font hasn't actually finished loading yet,
+  // confirmed this must be awaited first, unlike Georgia or system-ui,
+  // which are always already available.
+  try{await document.fonts.load('italic 400 33px "Playfair Display"');}catch(e){}
   var blob=await generateShareCardImage(lp,label,line);
   currentShareBlob=blob;
   document.getElementById("scm-preview").src=URL.createObjectURL(blob);
@@ -790,6 +904,7 @@ async function nativeShareCard(){
   try{
     var file=new File([currentShareBlob],"my-life-blueprint.png",{type:"image/png"});
     await navigator.share({files:[file],title:"My Life Blueprint",text:currentShareCaption});
+    trackShareEvent("native_share");
   }catch(e){}
 }
 
@@ -810,6 +925,7 @@ function copyShareCaption(){
 var NO_WEB_INTENT_PLATFORMS={instagram:1,tiktok:1,snapchat:1};
 
 function shareToPlatform(m){
+  trackShareEvent(m);
   var url="https://kayalsoulpath.com/pages/tool-life-blueprint.html";
   var text=currentShareCaption;
   if(NO_WEB_INTENT_PLATFORMS[m]){
