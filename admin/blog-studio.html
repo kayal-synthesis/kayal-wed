@@ -333,6 +333,23 @@ body{font-family:var(--ff-sans);font-size:14px;background:var(--linen);color:var
       </div>
     </div>
 
+    <!-- Reference a specific tool, optional, real, searchable across all 123 -->
+    <div class="panel-sec">
+      <div class="plabel">Reference a Tool <span style="font-weight:400;color:var(--stone);font-size:11px">(optional)</span></div>
+      <div class="fgroup" style="position:relative">
+        <input type="text" class="finput" id="tool-ref-search" placeholder="Search 123 tools, free and paid, to reference in this post…" autocomplete="off">
+        <div id="tool-ref-results" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:20;background:var(--white);border:1px solid var(--cream);border-radius:6px;box-shadow:var(--shadow-lg,0 8px 24px rgba(0,0,0,.12));max-height:280px;overflow-y:auto;margin-top:4px"></div>
+      </div>
+      <div id="tool-ref-selected" style="display:none;align-items:center;gap:10px;padding:10px 14px;background:var(--parchment);border:1px solid var(--cream);border-radius:6px;margin-top:8px">
+        <div style="flex:1;min-width:0">
+          <div id="tool-ref-selected-name" style="font-size:12.5px;font-weight:600;color:var(--bark)"></div>
+          <div id="tool-ref-selected-meta" style="font-size:11px;color:var(--stone)"></div>
+        </div>
+        <button onclick="clearToolRef()" style="background:none;border:none;color:var(--stone);cursor:pointer;font-size:13px;padding:4px"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="fhint">Picking a tool tells DeepSeek to write with it genuinely in mind, and adds a real, working link to it at the end of the post.</div>
+    </div>
+
     <!-- Step 2: Angle + Headlines -->
     <div class="panel-sec">
       <div class="plabel">Step 2 — Your Angle <span class="plabel-badge">2</span></div>
@@ -636,15 +653,24 @@ body{font-family:var(--ff-sans);font-size:14px;background:var(--linen);color:var
     </div>
 
     <div class="settings-section">
-      <div class="settings-sec-title">API Keys (pre-filled — no action needed)</div>
-      <div class="fgroup">
-        <label class="flabel">Unsplash Access Key</label>
-        <input type="password" class="finput" id="unsplash-key" value="KHTt7W9szWZGYJRHWokZMtu1nszaVN9T0FsdjPe6HXs">
+      <div class="settings-sec-title">Unsplash and YouTube, via the real, protected proxy</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--parchment);border:1px solid var(--cream);border-radius:6px;margin-bottom:6px">
+        <div style="flex:1">
+          <div style="font-size:12px;font-weight:600;color:var(--bark);margin-bottom:2px">kayal-proxy.vercel.app/api/unsplash</div>
+          <div style="font-size:11px;color:var(--stone)">Featured image search</div>
+        </div>
       </div>
-      <div class="fgroup">
-        <label class="flabel">YouTube Data API Key</label>
-        <input type="password" class="finput" id="youtube-key" value="AIzaSyCyx2MAesnefXW4iSzC8zSMgllq6pdq4d4">
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--parchment);border:1px solid var(--cream);border-radius:6px;margin-bottom:14px">
+        <div style="flex:1">
+          <div style="font-size:12px;font-weight:600;color:var(--bark);margin-bottom:2px">kayal-proxy.vercel.app/api/youtube</div>
+          <div style="font-size:11px;color:var(--stone)">Related video search</div>
+        </div>
       </div>
+      <div class="fhint">Both real, actual keys now live only on the proxy itself, never in this file. Nothing to configure here.</div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-sec-title">GNews</div>
       <div class="fgroup">
         <label class="flabel">GNews API Key <span style="color:var(--stone);font-weight:400">(optional)</span></label>
         <input type="password" class="finput" id="gnews-key" placeholder="Free at gnews.io — used for live topics">
@@ -824,6 +850,145 @@ let spFilter       = 'all';
 let spOffset       = 0;
 let spArticleFilter = null;
 
+// ── ALL 123 REAL TOOLS, 10 free + 113 paid, extracted directly
+// and programmatically from tools.html and tool_registry.py, the
+// two, real, authoritative sources, never hand-typed. ──────────
+var ALL_TOOLS=[
+  {id:'tool-life-blueprint',name:'Life Blueprint',type:'free',domain:'free',url:'../tool-life-blueprint.html'},
+  {id:'tool-name-vibration',name:'Name Vibration',type:'free',domain:'free',url:'../tool-name-vibration.html'},
+  {id:'tool-compatibility',name:'Compatibility Blueprint',type:'free',domain:'free',url:'../tool-compatibility.html'},
+  {id:'tool-universal-day',name:'Universal Day',type:'free',domain:'free',url:'../tool-universal-day.html'},
+  {id:'tool-soul-timing',name:'Soul Timing Window',type:'free',domain:'free',url:'../tool-soul-timing.html'},
+  {id:'tool-face-reader',name:'Face Energy Reader',type:'free',domain:'free',url:'../tool-face-reader.html'},
+  {id:'tool-hand-map',name:'Hand Map Reader',type:'free',domain:'free',url:'../tool-hand-map.html'},
+  {id:'tool-meditation-timer',name:'Sacred Timer',type:'free',domain:'free',url:'../tool-meditation-timer.html'},
+  {id:'tool-environment-pattern',name:'Environment Blueprint',type:'free',domain:'free',url:'../tool-environment-pattern.html'},
+  {id:'tool-body-energy',name:'Vitality Blueprint',type:'free',domain:'free',url:'../tool-body-energy.html'},
+  {id:'soulmate-arrival-window',name:'When Your Soulmate Arrives',type:'paid',domain:'love',price:29.0,tagline:'The window when your person actually arrives, not just when you hope they will',url:'https://app.kayalsoulpath.com/tool/soulmate-arrival-window'},
+  {id:'love-wound-reading',name:'The Same Relationship Wound, Different Face',type:'paid',domain:'love',price:34.0,tagline:'The relationship pattern you keep living out with a different person each time',url:'https://app.kayalsoulpath.com/tool/love-wound-reading'},
+  {id:'karmic-love-debt',name:'The Karmic Debt Love Left You',type:'paid',domain:'love',price:34.0,tagline:'The pattern you brought into this life before you ever fell in love the first time',url:'https://app.kayalsoulpath.com/tool/karmic-love-debt'},
+  {id:'twin-flame-verdict',name:'Is This Connection As Rare As It Feels',type:'paid',domain:'love',price:44.0,tagline:'A direct answer to which one this actually is',url:'https://app.kayalsoulpath.com/tool/twin-flame-verdict'},
+  {id:'compatibility-decoder',name:'Where You Align, Where You Collide in Love',type:'paid',domain:'love',price:49.0,tagline:'A full compatibility reading between the two of you, not a percentage score',url:'https://app.kayalsoulpath.com/tool/compatibility-decoder'},
+  {id:'attachment-pattern-reading',name:'Your Attachment Style in Love',type:'paid',domain:'love',price:34.0,tagline:'Why closeness feels the specific way it does for you',url:'https://app.kayalsoulpath.com/tool/attachment-pattern-reading'},
+  {id:'love-timing-forecast',name:'What\'s Coming in Love This Year',type:'paid',domain:'love',price:29.0,tagline:'Your next twelve months in love, mapped in advance',url:'https://app.kayalsoulpath.com/tool/love-timing-forecast'},
+  {id:'relationship-health-scan',name:'Where This Relationship Actually Stands',type:'paid',domain:'love',price:44.0,tagline:'An honest read on where this relationship actually stands right now',url:'https://app.kayalsoulpath.com/tool/relationship-health-scan'},
+  {id:'divorce-or-stay-reading',name:'Should You Stay in This Marriage',type:'paid',domain:'love',price:49.0,tagline:'A direct reading built to answer one question clearly',url:'https://app.kayalsoulpath.com/tool/divorce-or-stay-reading'},
+  {id:'self-love-blueprint',name:'The Love You Owe Yourself First',type:'paid',domain:'love',price:29.0,tagline:'What self-love actually requires from you, specifically',url:'https://app.kayalsoulpath.com/tool/self-love-blueprint'},
+  {id:'ex-return-oracle',name:'Will Your Ex Come Back',type:'paid',domain:'love',price:34.0,tagline:'A private, honest read on whether this specific reconciliation is likely',url:'https://app.kayalsoulpath.com/tool/ex-return-oracle'},
+  {id:'love-language-blueprint',name:'The Love You Give, The Love You Need',type:'paid',domain:'love',price:29.0,tagline:'How you actually give love, versus how you need to receive it',url:'https://app.kayalsoulpath.com/tool/love-language-blueprint'},
+  {id:'numerology-compatibility-check',name:'Do Your Numbers Actually Match',type:'paid',domain:'love',price:34.0,tagline:'A lighter, numbers-based compatibility check, a simpler first step before the deeper reading',url:'https://app.kayalsoulpath.com/tool/numerology-compatibility-check'},
+  {id:'wealth-blueprint-reading',name:'The Way Money Moves Through You',type:'paid',domain:'wealth',price:34.0,tagline:'The way money was always going to move through you, once you stop fighting the pattern',url:'https://app.kayalsoulpath.com/tool/wealth-blueprint-reading'},
+  {id:'income-ceiling-breaker',name:'The Income Ceiling, Broken',type:'paid',domain:'wealth',price:34.0,tagline:'The specific, repeating reason your income keeps capping at the same number',url:'https://app.kayalsoulpath.com/tool/income-ceiling-breaker'},
+  {id:'calling-decoder',name:'The Work You Were Built to Do',type:'paid',domain:'wealth',price:34.0,tagline:'The work you were actually built for, not the version a career quiz gives you',url:'https://app.kayalsoulpath.com/tool/calling-decoder'},
+  {id:'money-wound-reading',name:'The Belief That\'s Costing You Money',type:'paid',domain:'wealth',price:34.0,tagline:'The exact belief about money that has been running your decisions without your permission',url:'https://app.kayalsoulpath.com/tool/money-wound-reading'},
+  {id:'salary-negotiation-oracle',name:'Ask for More Money',type:'paid',domain:'wealth',price:29.0,tagline:'The best window to ask, and how to time the ask itself',url:'https://app.kayalsoulpath.com/tool/salary-negotiation-oracle'},
+  {id:'wealth-timing-forecast',name:'Your Next 24 Months of Money',type:'paid',domain:'wealth',price:29.0,tagline:'Your finances, mapped two years ahead',url:'https://app.kayalsoulpath.com/tool/wealth-timing-forecast'},
+  {id:'side-hustle-blueprint',name:'The Income Stream Waiting to Be Built',type:'paid',domain:'wealth',price:29.0,tagline:'The specific income stream built for your actual strengths',url:'https://app.kayalsoulpath.com/tool/side-hustle-blueprint'},
+  {id:'investment-timing-oracle',name:'When to Take the Financial Risk',type:'paid',domain:'wealth',price:29.0,tagline:'The real window for a financial risk, not general encouragement to take one',url:'https://app.kayalsoulpath.com/tool/investment-timing-oracle'},
+  {id:'career-pivot-reading',name:'Should You Pivot Careers',type:'paid',domain:'wealth',price:44.0,tagline:'A direct read on whether now is the moment to change direction',url:'https://app.kayalsoulpath.com/tool/career-pivot-reading'},
+  {id:'leadership-signature',name:'Your Leadership Signature',type:'paid',domain:'wealth',price:44.0,tagline:'How authority and leadership actually move through you, and where it is being held back',url:'https://app.kayalsoulpath.com/tool/leadership-signature'},
+  {id:'founder-type-reading',name:'The Business Shaped Like You',type:'paid',domain:'wealth',price:49.0,tagline:'The specific kind of business built for your actual nature, not a one-size-fits-all quiz',url:'https://app.kayalsoulpath.com/tool/founder-type-reading'},
+  {id:'second-half-reading',name:'Your Strongest Career Decades Ahead',type:'paid',domain:'wealth',price:49.0,tagline:'Mapping the second half of your working life, where your strongest years are still ahead',url:'https://app.kayalsoulpath.com/tool/second-half-reading'},
+  {id:'body-constitution-reading',name:'Your Body, Built Different, Not Broken',type:'paid',domain:'wellness',price:34.0,tagline:'Why generic health advice was never going to work for your particular body',url:'https://app.kayalsoulpath.com/tool/body-constitution-reading'},
+  {id:'shadow-work-reading',name:'The Parts of Yourself You\'ve Been Avoiding',type:'paid',domain:'wellness',price:44.0,tagline:'The specific pattern you keep circling in shadow work, named clearly',url:'https://app.kayalsoulpath.com/tool/shadow-work-reading'},
+  {id:'ancestral-wound-reading',name:'The Family Pattern You Inherited',type:'paid',domain:'wellness',price:44.0,tagline:'The inherited family pattern still quietly shaping your life',url:'https://app.kayalsoulpath.com/tool/ancestral-wound-reading'},
+  {id:'spiritual-gifts-reading',name:'The Spiritual Gifts You Arrived With',type:'paid',domain:'wellness',price:29.0,tagline:'The specific gifts you were born with, and how to actually use them',url:'https://app.kayalsoulpath.com/tool/spiritual-gifts-reading'},
+  {id:'past-life-reading',name:'What Your Soul Carried In',type:'paid',domain:'wellness',price:49.0,tagline:'What you carried into this life, and how it\'s shaping the one you\'re living now',url:'https://app.kayalsoulpath.com/tool/past-life-reading'},
+  {id:'chakra-blueprint-reading',name:'Where Your Energy Is Blocked, Where It\'s Open',type:'paid',domain:'wellness',price:34.0,tagline:'Which of your energy centers are open, and which are quietly blocked',url:'https://app.kayalsoulpath.com/tool/chakra-blueprint-reading'},
+  {id:'dark-night-navigator',name:'Getting Through Your Hardest Spiritual Season',type:'paid',domain:'wellness',price:49.0,tagline:'A guided reading built specifically for a genuine dark night of the soul',url:'https://app.kayalsoulpath.com/tool/dark-night-navigator'},
+  {id:'intuition-activation-reading',name:'Learning to Trust Your Intuition',type:'paid',domain:'wellness',price:29.0,tagline:'Where your intuition has already been right, and why you\'ve doubted it anyway',url:'https://app.kayalsoulpath.com/tool/intuition-activation-reading'},
+  {id:'vitality-code',name:'The Vitality Code',type:'paid',domain:'wellness',price:29.0,tagline:'Your natural energy pattern, and what\'s actually been draining it',url:'https://app.kayalsoulpath.com/tool/vitality-code'},
+  {id:'abundance-frequency-audit',name:'Do You Actually Feel Like You Have Enough',type:'paid',domain:'wellness',price:34.0,tagline:'Your actual relationship with enough, and where scarcity thinking took root',url:'https://app.kayalsoulpath.com/tool/abundance-frequency-audit'},
+  {id:'sleep-and-dreams-reading',name:'What Your Dreams Are Telling You',type:'paid',domain:'wellness',price:29.0,tagline:'What your recurring dreams are actually pointing to',url:'https://app.kayalsoulpath.com/tool/sleep-and-dreams-reading'},
+  {id:'purpose-activation-reading',name:'Living Your Purpose, Not Just Knowing It',type:'paid',domain:'wellness',price:34.0,tagline:'The gap between knowing your purpose and actually living it day to day',url:'https://app.kayalsoulpath.com/tool/purpose-activation-reading'},
+  {id:'spirit-attachment-reading',name:'The Energetic Ties You Didn\'t Choose',type:'paid',domain:'wellness',price:34.0,tagline:'The energetic connections you\'re still carrying, and what they\'re actually here for',url:'https://app.kayalsoulpath.com/tool/spirit-attachment-reading'},
+  {id:'unresolved-vow-reading',name:'The Promise You Made in Another Life',type:'paid',domain:'wellness',price:34.0,tagline:'The vow you\'re still unconsciously keeping, and what renegotiating it actually looks like',url:'https://app.kayalsoulpath.com/tool/unresolved-vow-reading'},
+  {id:'life-path-deep-dive',name:'Your Core Life Pattern, Fully Explained',type:'paid',domain:'life-path',price:49.0,tagline:'The complete reading of your core pattern, going deeper than any single paragraph could',url:'https://app.kayalsoulpath.com/tool/life-path-deep-dive'},
+  {id:'soul-contract-reading',name:'The Agreement Your Soul Made Before You Were Born',type:'paid',domain:'life-path',price:44.0,tagline:'What you came into this life carrying, and what it\'s actually asking of you',url:'https://app.kayalsoulpath.com/tool/soul-contract-reading'},
+  {id:'pinnacle-reading',name:'The Chapter of Your Life You\'re Actually In',type:'paid',domain:'life-path',price:44.0,tagline:'The exact life chapter you\'re in right now, and what it\'s specifically asking for',url:'https://app.kayalsoulpath.com/tool/pinnacle-reading'},
+  {id:'nine-year-cycle-reading',name:'The Whole Map of Your Life',type:'paid',domain:'life-path',price:49.0,tagline:'A complete map of your nine-year cycle, past and present, in one reading',url:'https://app.kayalsoulpath.com/tool/nine-year-cycle-reading'},
+  {id:'karmic-lessons-reading',name:'The Life Lessons That Keep Returning',type:'paid',domain:'life-path',price:34.0,tagline:'The specific lesson your life keeps returning you to, until it is actually learned',url:'https://app.kayalsoulpath.com/tool/karmic-lessons-reading'},
+  {id:'north-node-reading',name:'The Direction Your Life Is Pulling You',type:'paid',domain:'life-path',price:34.0,tagline:'The direction your life is quietly pulling you toward, whether you\'ve noticed or not',url:'https://app.kayalsoulpath.com/tool/north-node-reading'},
+  {id:'personal-year-deep-dive',name:'This Year, Fully Explained',type:'paid',domain:'life-path',price:34.0,tagline:'A complete reading of your current chapter, explaining exactly what this year is for',url:'https://app.kayalsoulpath.com/tool/personal-year-deep-dive'},
+  {id:'master-number-reading',name:'Why Your Life Feels Heavier Than Everyone Else\'s',type:'paid',domain:'life-path',price:44.0,tagline:'A reading built specifically for the rare weight of carrying an 11, 22, or 33',url:'https://app.kayalsoulpath.com/tool/master-number-reading'},
+  {id:'expression-number-reading',name:'What Your Name Already Told You',type:'paid',domain:'life-path',price:29.0,tagline:'What your name has been telling the world about you since the day it was given',url:'https://app.kayalsoulpath.com/tool/expression-number-reading'},
+  {id:'soul-urge-reading',name:'What You\'re Really After in Life',type:'paid',domain:'life-path',price:34.0,tagline:'What you actually want beneath what you\'ve told yourself you want',url:'https://app.kayalsoulpath.com/tool/soul-urge-reading'},
+  {id:'missing-numbers-reading',name:'The Numbers You\'re Missing',type:'paid',domain:'life-path',price:29.0,tagline:'The numbers absent from your name and birth date, and what their absence means',url:'https://app.kayalsoulpath.com/tool/missing-numbers-reading'},
+  {id:'name-vibration-reading',name:'Does Your Name Work For You',type:'paid',domain:'life-path',price:29.0,tagline:'Whether your current name supports or works against you, numerically',url:'https://app.kayalsoulpath.com/tool/name-vibration-reading'},
+  {id:'birth-time-rectification',name:'The Missing Hour',type:'paid',domain:'life-path',price:39.0,tagline:'For anyone who doesn\'t know their exact birth time, working backward to find it',url:'https://app.kayalsoulpath.com/tool/birth-time-rectification'},
+  {id:'legacy-reading',name:'What You\'ll Actually Be Remembered For',type:'paid',domain:'life-path',price:44.0,tagline:'What your numbers actually indicate about the legacy you\'re building, whether or not you\'ve noticed it forming',url:'https://app.kayalsoulpath.com/tool/legacy-reading'},
+  {id:'the-life-scribe',name:'The Life Scribe',type:'paid',domain:'sacred-script',price:29.0,tagline:'An ongoing dialogue that holds your complete life pattern in permanent context',url:'https://app.kayalsoulpath.com/tool/the-life-scribe'},
+  {id:'love-scribe',name:'The Love Scribe',type:'paid',domain:'sacred-script',price:24.0,tagline:'An ongoing dialogue focused on your relationships, holding full context across every conversation',url:'https://app.kayalsoulpath.com/tool/love-scribe'},
+  {id:'wealth-scribe',name:'The Wealth Scribe',type:'paid',domain:'sacred-script',price:24.0,tagline:'An ongoing dialogue for financial decisions, calibrated to your complete pattern',url:'https://app.kayalsoulpath.com/tool/wealth-scribe'},
+  {id:'spiritual-scribe',name:'The Spiritual Scribe',type:'paid',domain:'sacred-script',price:24.0,tagline:'An ongoing dialogue for spiritual questions, holding your full synthesis in permanent context',url:'https://app.kayalsoulpath.com/tool/spiritual-scribe'},
+  {id:'health-scribe',name:'The Health Scribe',type:'paid',domain:'sacred-script',price:24.0,tagline:'An ongoing dialogue for wellness questions, calibrated to your complete constitution',url:'https://app.kayalsoulpath.com/tool/health-scribe'},
+  {id:'purpose-scribe',name:'The Purpose Scribe',type:'paid',domain:'sacred-script',price:24.0,tagline:'An ongoing dialogue for questions of purpose and direction, holding full context every session',url:'https://app.kayalsoulpath.com/tool/purpose-scribe'},
+  {id:'relationship-scribe',name:'The Relationship Scribe',type:'paid',domain:'sacred-script',price:24.0,tagline:'An ongoing dialogue focused on navigating one specific relationship, in full context',url:'https://app.kayalsoulpath.com/tool/relationship-scribe'},
+  {id:'grief-scribe',name:'The Grief Scribe',type:'paid',domain:'sacred-script',price:24.0,tagline:'A dedicated dialogue for navigating grief, holding context across every conversation',url:'https://app.kayalsoulpath.com/tool/grief-scribe'},
+  {id:'parenting-scribe',name:'The Parenting Scribe',type:'paid',domain:'sacred-script',price:24.0,tagline:'An ongoing dialogue for parenting questions, calibrated to your complete pattern',url:'https://app.kayalsoulpath.com/tool/parenting-scribe'},
+  {id:'business-scribe',name:'The Business Scribe',type:'paid',domain:'sacred-script',price:24.0,tagline:'An ongoing dialogue for business decisions, holding your company\'s full pattern in permanent context',url:'https://app.kayalsoulpath.com/tool/business-scribe'},
+  {id:'daily-personal-oracle',name:'What Today Is Asking of You',type:'paid',domain:'time-keeper',price:19.0,tagline:'Wake every morning knowing what the day is actually asking of you',url:'https://app.kayalsoulpath.com/tool/daily-personal-oracle'},
+  {id:'monthly-cycle-navigator',name:'Your Month, Mapped Before It Starts',type:'paid',domain:'time-keeper',price:29.0,tagline:'The complete map of your month, delivered before it begins',url:'https://app.kayalsoulpath.com/tool/monthly-cycle-navigator'},
+  {id:'quarterly-destiny-pulse',name:'Your Next Ninety Days, Mapped',type:'paid',domain:'time-keeper',price:37.0,tagline:'Ninety days mapped: the themes, windows, and pivots of the season ahead',url:'https://app.kayalsoulpath.com/tool/quarterly-destiny-pulse'},
+  {id:'annual-arc-keeper',name:'Your Whole Year, Mapped Before It Starts',type:'paid',domain:'time-keeper',price:47.0,tagline:'The complete year, every peak, every valley, every pivot, mapped before January',url:'https://app.kayalsoulpath.com/tool/annual-arc-keeper'},
+  {id:'nine-year-arc-compass',name:'The Next Nine Years of Your Life',type:'paid',domain:'time-keeper',price:57.0,tagline:'Nine years mapped, the arc understood, the preparation made',url:'https://app.kayalsoulpath.com/tool/nine-year-arc-compass'},
+  {id:'oracle-voice-session',name:'The Oracle Voice Session',type:'paid',domain:'voice',price:29.0,tagline:'A live spoken conversation with an oracle that already knows your complete pattern',url:'https://app.kayalsoulpath.com/tool/oracle-voice-session'},
+  {id:'oracle-deep-dive-session',name:'The Oracle Deep Dive Session',type:'paid',domain:'voice',price:44.0,tagline:'An extended spoken session for questions that need more time and depth than a standard call',url:'https://app.kayalsoulpath.com/tool/oracle-deep-dive-session'},
+  {id:'love-oracle-session',name:'The Love Oracle Session',type:'paid',domain:'voice',price:24.0,tagline:'A live spoken reading focused on your love life, calibrated to your complete pattern',url:'https://app.kayalsoulpath.com/tool/love-oracle-session'},
+  {id:'wealth-oracle-session',name:'The Wealth Oracle Session',type:'paid',domain:'voice',price:24.0,tagline:'A live spoken reading focused on your finances, calibrated to your complete pattern',url:'https://app.kayalsoulpath.com/tool/wealth-oracle-session'},
+  {id:'purpose-oracle-session',name:'The Purpose Oracle Session',type:'paid',domain:'voice',price:24.0,tagline:'A live spoken reading focused on purpose and direction, calibrated to your complete pattern',url:'https://app.kayalsoulpath.com/tool/purpose-oracle-session'},
+  {id:'daily-voice-briefing',name:'The Daily Voice Briefing',type:'paid',domain:'voice',price:19.0,tagline:'A short daily spoken briefing on what today is asking of you',url:'https://app.kayalsoulpath.com/tool/daily-voice-briefing'},
+  {id:'relationship-oracle-session',name:'The Relationship Oracle Session',type:'paid',domain:'voice',price:24.0,tagline:'A live spoken reading focused on one specific relationship',url:'https://app.kayalsoulpath.com/tool/relationship-oracle-session'},
+  {id:'spiritual-oracle-session',name:'The Spiritual Oracle Session',type:'paid',domain:'voice',price:24.0,tagline:'A live spoken reading focused on spiritual questions, calibrated to your complete pattern',url:'https://app.kayalsoulpath.com/tool/spiritual-oracle-session'},
+  {id:'crisis-oracle-session',name:'The Crisis Oracle Session',type:'paid',domain:'voice',price:34.0,tagline:'A live spoken session built for a genuinely difficult moment, grounded and specific',url:'https://app.kayalsoulpath.com/tool/crisis-oracle-session'},
+  {id:'oracle-voice-unlimited',name:'Oracle Voice Unlimited',type:'paid',domain:'voice',price:79.0,tagline:'Unlimited spoken sessions with your oracle, any question, any time',url:'https://app.kayalsoulpath.com/tool/oracle-voice-unlimited'},
+  {id:'complete-love-synthesis',name:'The Complete Read on How You Love',type:'paid',domain:'oracle-temple',price:79.0,tagline:'The complete synthesis of your love life across every discipline, not a single-angle reading',url:'https://app.kayalsoulpath.com/tool/complete-love-synthesis'},
+  {id:'soulmate-compatibility-verdict',name:'Two Names, One Compatibility Verdict',type:'paid',domain:'oracle-temple',price:69.0,tagline:'A direct verdict on soulmate compatibility, built from both of your complete details',url:'https://app.kayalsoulpath.com/tool/soulmate-compatibility-verdict'},
+  {id:'professional-compatibility-scan',name:'Before You Sign With a Business Partner',type:'paid',domain:'oracle-temple',price:69.0,tagline:'A compatibility reading built specifically for business partners, not romantic ones',url:'https://app.kayalsoulpath.com/tool/professional-compatibility-scan'},
+  {id:'family-destiny-synthesis',name:'What Your Family Actually Passed Down',type:'paid',domain:'oracle-temple',price:69.0,tagline:'A full synthesis of what your family line actually passed down to you, named clearly',url:'https://app.kayalsoulpath.com/tool/family-destiny-synthesis'},
+  {id:'child-blueprint',name:'Who This Child Is Becoming',type:'paid',domain:'oracle-temple',price:59.0,tagline:'A reading built for a child, showing who they are becoming rather than who they should be',url:'https://app.kayalsoulpath.com/tool/child-blueprint'},
+  {id:'parent-child-relationship-mirror',name:'The Parent-Child Conflict That Isn\'t About Either of You',type:'paid',domain:'oracle-temple',price:59.0,tagline:'A reading of a parent-child dynamic, showing what is actually driving the friction',url:'https://app.kayalsoulpath.com/tool/parent-child-relationship-mirror'},
+  {id:'fertility-soul-synthesis',name:'When You\'re Both Ready to Have a Child',type:'paid',domain:'oracle-temple',price:69.0,tagline:'A reading of the timing question around conception, built from both partners\' details',url:'https://app.kayalsoulpath.com/tool/fertility-soul-synthesis'},
+  {id:'synastry-health-cross-impact',name:'How This Relationship Affects Your Health',type:'paid',domain:'oracle-temple',price:59.0,tagline:'A synastry reading of how this specific relationship is actually affecting your physical and emotional health',url:'https://app.kayalsoulpath.com/tool/synastry-health-cross-impact'},
+  {id:'marriage-longevity-score',name:'How Long This Is Actually Built to Last',type:'paid',domain:'oracle-temple',price:69.0,tagline:'A direct, weighted assessment of how long this relationship is actually built to last',url:'https://app.kayalsoulpath.com/tool/marriage-longevity-score'},
+  {id:'complete-union-blueprint',name:'What the Two of You Become Together',type:'paid',domain:'oracle-temple',price:99.0,tagline:'A full two-person synthesis of what this specific pairing becomes together, beyond either person alone',url:'https://app.kayalsoulpath.com/tool/complete-union-blueprint'},
+  {id:'complete-wealth-synthesis',name:'Everything Your Money Is Trying to Tell You',type:'paid',domain:'oracle-temple',price:79.0,tagline:'The complete synthesis of your financial pattern, across every discipline at once',url:'https://app.kayalsoulpath.com/tool/complete-wealth-synthesis'},
+  {id:'business-destiny-synthesis',name:'Your Business, Fully Mapped',type:'paid',domain:'oracle-temple',price:79.0,tagline:'A full synthesis of your business, its trajectory, and what it is actually built to become',url:'https://app.kayalsoulpath.com/tool/business-destiny-synthesis'},
+  {id:'wealth-timing-oracle',name:'The Five-Year Money Forecast',type:'paid',domain:'oracle-temple',price:59.0,tagline:'A five-year financial forecast, built for long-range decisions rather than the next few months',url:'https://app.kayalsoulpath.com/tool/wealth-timing-oracle'},
+  {id:'personal-brand-frequency',name:'The Brand You\'re Already Becoming',type:'paid',domain:'oracle-temple',price:59.0,tagline:'A reading of the personal brand you\'re already building, whether or not you\'ve noticed it forming',url:'https://app.kayalsoulpath.com/tool/personal-brand-frequency'},
+  {id:'complete-health-synthesis',name:'The Full Read on Your Body',type:'paid',domain:'oracle-temple',price:79.0,tagline:'A full synthesis of your physical constitution across every relevant discipline, in one reading',url:'https://app.kayalsoulpath.com/tool/complete-health-synthesis'},
+  {id:'complete-spiritual-synthesis',name:'The Spiritual Layer Beneath the Surface',type:'paid',domain:'oracle-temple',price:79.0,tagline:'A full spiritual synthesis, going beneath the surface of any single-discipline reading',url:'https://app.kayalsoulpath.com/tool/complete-spiritual-synthesis'},
+  {id:'complete-purpose-synthesis',name:'The Whole Reason You\'re Alive',type:'paid',domain:'oracle-temple',price:79.0,tagline:'A full synthesis of your life\'s purpose, built from every relevant discipline at once',url:'https://app.kayalsoulpath.com/tool/complete-purpose-synthesis'},
+  {id:'pattern-breaker',name:'The Karmic Pattern You Keep Living',type:'paid',domain:'oracle-temple',price:69.0,tagline:'A reading that names the specific pattern you keep living out, and what actually breaks it',url:'https://app.kayalsoulpath.com/tool/pattern-breaker'},
+  {id:'creative-genius-synthesis',name:'The Genius You Haven\'t Used Yet',type:'paid',domain:'oracle-temple',price:59.0,tagline:'A reading of the specific creative capacity you haven\'t fully used yet, and why',url:'https://app.kayalsoulpath.com/tool/creative-genius-synthesis'},
+  {id:'complete-remedy-plan',name:'The Complete Remedy Plan',type:'paid',domain:'oracle-temple',price:99.0,tagline:'A complete, personalized plan of practical remedies across every area of your life at once',url:'https://app.kayalsoulpath.com/tool/complete-remedy-plan'},
+  {id:'complete-life-portrait',name:'The Complete Portrait of Who You Are',type:'paid',domain:'oracle-temple',price:99.0,tagline:'The single most comprehensive reading in the catalog, synthesizing everything into one complete portrait',url:'https://app.kayalsoulpath.com/tool/complete-life-portrait'},
+  {id:'complete-face-reading',name:'Everything Your Face Has Been Saying',type:'paid',domain:'oracle-temple',price:69.0,tagline:'A complete face reading covering every relevant feature in one deep synthesis, not nine separate ones',url:'https://app.kayalsoulpath.com/tool/complete-face-reading'},
+  {id:'life-line-reading',name:'What Your Palm Reveals About Your Vitality',type:'paid',domain:'oracle-temple',price:49.0,tagline:'A reading of your life line specifically, covering vitality and physical constitution',url:'https://app.kayalsoulpath.com/tool/life-line-reading'},
+  {id:'heart-line-love-map',name:'What Your Palm Reveals About How You Love',type:'paid',domain:'oracle-temple',price:54.0,tagline:'Your capacity for love, confirmed across two independent physical markers',url:'https://app.kayalsoulpath.com/tool/heart-line-love-map'},
+  {id:'head-line-mind-map',name:'What Your Palm Reveals About How You Think',type:'paid',domain:'oracle-temple',price:49.0,tagline:'A reading of your head line, covering how you think and process',url:'https://app.kayalsoulpath.com/tool/head-line-mind-map'},
+  {id:'fate-line-mission-reading',name:'What Your Palm Reveals About Your Direction in Life',type:'paid',domain:'oracle-temple',price:54.0,tagline:'Your direction and ambition, confirmed across two independent physical markers',url:'https://app.kayalsoulpath.com/tool/fate-line-mission-reading'},
+  {id:'marriage-line-reading',name:'What Your Palm Reveals About Lasting Partnership',type:'paid',domain:'oracle-temple',price:49.0,tagline:'A reading of your marriage line specifically, covering partnership and commitment',url:'https://app.kayalsoulpath.com/tool/marriage-line-reading'},
+  {id:'thumb-willpower-reading',name:'The Thumb Willpower Reading',type:'paid',domain:'oracle-temple',price:49.0,tagline:'A reading of your thumb, covering willpower and follow-through',url:'https://app.kayalsoulpath.com/tool/thumb-willpower-reading'},
+  {id:'children-line-reading',name:'What Your Palm Reveals About Children',type:'paid',domain:'oracle-temple',price:49.0,tagline:'What your palm indicates about children, timing, and family, read directly from your hand',url:'https://app.kayalsoulpath.com/tool/children-line-reading'},
+  {id:'dual-hand-comparison',name:'Who You Were Born As vs. Who You\'re Becoming',type:'paid',domain:'oracle-temple',price:69.0,tagline:'Your non-dominant hand shows who you were born as. Your dominant hand shows who you\'ve become.',url:'https://app.kayalsoulpath.com/tool/dual-hand-comparison'},
+  {id:'palm-trust-pattern-reading',name:'Where Trust Tends to Break in Your Relationships',type:'paid',domain:'oracle-temple',price:49.0,tagline:'A palm-based reading of where trust has tended to break down in your relationships, and why',url:'https://app.kayalsoulpath.com/tool/palm-trust-pattern-reading'},
+  {id:'annual-destiny-forecast',name:'The Annual Destiny Forecast',type:'paid',domain:'oracle-temple',price:69.0,tagline:'A complete annual forecast synthesized across every relevant discipline',url:'https://app.kayalsoulpath.com/tool/annual-destiny-forecast'},
+  {id:'relocation-power-map',name:'Where You\'re Actually Meant to Live',type:'paid',domain:'oracle-temple',price:59.0,tagline:'A reading of where you\'re actually built to live, based on your complete details',url:'https://app.kayalsoulpath.com/tool/relocation-power-map'},
+  {id:'birthday-blueprint',name:'The Day You Were Born, Decoded',type:'paid',domain:'oracle-temple',price:59.0,tagline:'A complete reading of what your exact birth date encodes, decoded in full',url:'https://app.kayalsoulpath.com/tool/birthday-blueprint'},
+  {id:'decision-window',name:'The Right Time to Decide',type:'paid',domain:'oracle-temple',price:59.0,tagline:'A reading built for a specific decision, showing the real window for making it well',url:'https://app.kayalsoulpath.com/tool/decision-window'},
+];
+
+// Real, dedicated labels for the tool registry's own, actual domains,
+// deliberately separate from CATEGORY_LABELS above, which belongs to
+// a different, real taxonomy, the blog's own post categories. Reusing
+// that one here was wrong, only 2 of 8 real domains actually overlap.
+const TOOL_DOMAIN_LABELS = {
+  'life-path':'Life Path','love':'Love','oracle-temple':'Oracle Temple',
+  'sacred-script':'Sacred Script','time-keeper':'Time Keeper','voice':'Voice',
+  'wealth':'Wealth','wellness':'Wellness'
+};
+
 const GEN_STEPS = [
   'Researching trusted sources…','Checking academic references…',
   'Crafting your angle…','Writing the introduction…',
@@ -965,8 +1130,6 @@ const DISCIPLINE_SOURCES = {
 // ── LOAD KEYS FROM LOCALSTORAGE ──────────────────────────────
 function getKeys() {
   return {
-    unsplash: localStorage.getItem('ks_unsplash_key') || '',
-    youtube: localStorage.getItem('ks_youtube_key') || '',
     gnews: localStorage.getItem('ks_gnews_key') || '',
     deepseek: localStorage.getItem('ks_deepseek_key') || '',
     meta: localStorage.getItem('ks_meta_token') || '',
@@ -1003,7 +1166,6 @@ function loadSettings() {
   fill('meta-token','ks_meta_token'); fill('fb-page-id','ks_fb_page_id');
   fill('ig-account-id','ks_ig_id'); fill('gnews-key','ks_gnews_key');
   fill('deepseek-key','ks_deepseek_key');
-  fill('unsplash-key','ks_unsplash_key'); fill('youtube-key','ks_youtube_key');
 }
 
 function saveSettings() {
@@ -1012,7 +1174,6 @@ function saveSettings() {
   save('meta-token','ks_meta_token'); save('fb-page-id','ks_fb_page_id');
   save('ig-account-id','ks_ig_id'); save('gnews-key','ks_gnews_key');
   save('deepseek-key','ks_deepseek_key');
-  save('unsplash-key','ks_unsplash_key'); save('youtube-key','ks_youtube_key');
   SUPABASE_URL = document.getElementById('sb-url')?.value.trim() || SUPABASE_URL;
   SUPABASE_KEY = document.getElementById('sb-key')?.value.trim() || SUPABASE_KEY;
   initSupabase();
@@ -1201,6 +1362,68 @@ function showState(s) {
 showState('empty');
 
 // ── GENERATE ──────────────────────────────────────────────────
+// ── TOOL REFERENCE SELECTOR, real, searches all 123 tools ───────
+var selectedToolRef = null;
+
+document.getElementById('tool-ref-search').addEventListener('input', function(e){
+  var q = e.target.value.trim().toLowerCase();
+  var resultsEl = document.getElementById('tool-ref-results');
+  if(!q){ resultsEl.style.display='none'; resultsEl.innerHTML=''; return; }
+
+  var matches = ALL_TOOLS.filter(function(t){
+    return t.name.toLowerCase().indexOf(q) !== -1;
+  }).slice(0, 12);
+
+  if(!matches.length){
+    resultsEl.innerHTML = '<div style="padding:12px 14px;font-size:12px;color:var(--stone)">No tools match that search.</div>';
+    resultsEl.style.display = 'block';
+    return;
+  }
+
+  resultsEl.innerHTML = matches.map(function(t){
+    var meta = t.type === 'free' ? 'Free tool' : ('$' + t.price + ', ' + (TOOL_DOMAIN_LABELS[t.domain] || t.domain));
+    return '<div class="tool-ref-opt" data-id="' + t.id + '" style="padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--cream);font-size:12.5px" onmouseover="this.style.background=\'var(--parchment)\'" onmouseout="this.style.background=\'none\'">' +
+      '<div style="font-weight:600;color:var(--bark)">' + t.name + '</div>' +
+      '<div style="font-size:11px;color:var(--stone)">' + meta + '</div>' +
+      '</div>';
+  }).join('');
+  resultsEl.style.display = 'block';
+
+  resultsEl.querySelectorAll('.tool-ref-opt').forEach(function(el){
+    el.addEventListener('click', function(){
+      selectToolRef(el.dataset.id);
+    });
+  });
+});
+
+function selectToolRef(id){
+  var tool = ALL_TOOLS.find(function(t){ return t.id === id; });
+  if(!tool) return;
+  selectedToolRef = tool;
+  document.getElementById('tool-ref-search').value = '';
+  document.getElementById('tool-ref-results').style.display = 'none';
+  document.getElementById('tool-ref-results').innerHTML = '';
+  document.getElementById('tool-ref-selected-name').textContent = tool.name;
+  document.getElementById('tool-ref-selected-meta').textContent = tool.type === 'free'
+    ? 'Free tool, will be linked at the end of the post'
+    : ('$' + tool.price + ' reading, will be linked at the end of the post');
+  document.getElementById('tool-ref-selected').style.display = 'flex';
+}
+
+function clearToolRef(){
+  selectedToolRef = null;
+  document.getElementById('tool-ref-selected').style.display = 'none';
+}
+
+// Real, close the results list when clicking anywhere else on the page
+document.addEventListener('click', function(e){
+  var wrap = document.getElementById('tool-ref-search');
+  var results = document.getElementById('tool-ref-results');
+  if(e.target !== wrap && !results.contains(e.target)){
+    results.style.display = 'none';
+  }
+});
+
 document.getElementById('generate-btn').addEventListener('click', generate);
 document.getElementById('regen-btn').addEventListener('click', generate);
 
@@ -1239,15 +1462,20 @@ RULES:
 4. Refer to disciplines as "the First Pillar", "the Second Pillar" etc — never name them directly
 5. Mention KAYAL courses and LifeOS app naturally within the text
 6. End with a genuine non-pushy call to explore KAYAL
+7. Vary sentence length and rhythm. Avoid stacking clauses with commas, especially the pattern "not X, but Y" and joining two complete sentences with ", and". Prefer shorter, more direct sentences over long, parallel-clause constructions. This specific pattern is the most common, recognisable tell of AI-generated writing, and KAYAL's voice must read as genuinely human, not smoothed into that rhythm
 NEVER use: numerology, astrology, palmistry, physiognomy, horoscope, zodiac, birth chart, natal chart, karma, cosmic, soulmate, awakening, Mian Xiang, Vedic, tarot as discipline names
 OUTPUT: Valid HTML only. Start with <h1>. Use <h2> for 2-4 sections, <p> for paragraphs. After body: <div id="post-sources"><a href="#" class="source-link">Source — description</a></div>. NO DOCTYPE/html/head/body tags.`;
+
+  const toolRefInstruction = selectedToolRef
+    ? `\nReference tool: this post should be written with "${selectedToolRef.name}" genuinely in mind${selectedToolRef.type==='paid' ? (', a $'+selectedToolRef.price+' reading, ' + selectedToolRef.tagline) : ' (a free tool)'}. Write naturally toward it, but do not insert any link, button, or explicit call-to-action yourself, that is added separately, after your draft.`
+    : '';
 
   const USR=`Write a blog post for KAYAL SoulPath Institute Insights.
 Topic context: "${topic}"
 My angle: "${angle}"
 Audience: ${audMap[audience]}
 Category: ${catLabel}
-Length: ${wt[length]}
+Length: ${wt[length]}${toolRefInstruction}
 Start with <h1>.`;
 
   try {
@@ -1312,11 +1540,9 @@ Start with <h1>.`;
       btn.disabled=false; btn.innerHTML='<i class="fas fa-pen-nib"></i> Generate Draft';
       document.getElementById('sdot').className='sdot ready';
       document.getElementById('stext').textContent='Draft ready — edit, then save or publish';
-      const unsplashKey = keys.unsplash || localStorage.getItem('ks_unsplash_key') || '';
-      await fetchImages(topic, unsplashKey);
+      await fetchImages(topic);
       if(document.getElementById('auto-social')?.checked!==false) generateSocial();
-      const youtubeKey = keys.youtube || localStorage.getItem('ks_youtube_key') || '';
-      setTimeout(()=>searchYouTube(topic, youtubeKey),600);
+      setTimeout(()=>searchYouTube(topic),600);
     },300);
 
   } catch(err) {
@@ -1335,6 +1561,21 @@ function renderDraft(html, topic, angle, category, audience, length, loadedPost)
   let body=html.replace(/<h1[^>]*>[\s\S]*?<\/h1>/i,'');
   const sm=body.match(/<div id="post-sources">([\s\S]*?)<\/div>/i);
   body=body.replace(/<div id="post-sources">[\s\S]*?<\/div>/i,'');
+
+  // Real, guaranteed tool-reference link, appended directly, not left
+  // to the model to insert correctly on its own.
+  // Real, only append on a genuinely fresh generation, never when
+  // reopening an already-saved draft, loadedPost being present means
+  // this body already came from the database as-is, and may already
+  // have its own, real tool-link baked in from when it was first
+  // written, appending again here would silently duplicate it.
+  if(selectedToolRef && !loadedPost){
+    const t = selectedToolRef;
+    const ctaText = t.type === 'free'
+      ? `If this resonates, ${t.name} is a free tool that puts it directly in your own hands.`
+      : `If this resonates, ${t.name} goes further, ${t.tagline}.`;
+    body += `<p><a href="${t.url}"${t.type==='paid'?' target="_blank" rel="noopener"':''}>${ctaText} Explore it here →</a></p>`;
+  }
 
   document.getElementById('draft-title').innerHTML=title;
   document.getElementById('draft-body').innerHTML=body;
@@ -1377,12 +1618,11 @@ function renderDraft(html, topic, angle, category, audience, length, loadedPost)
   });
 }
 
-// ── IMAGES (Unsplash) ─────────────────────────────────────────
-async function fetchImages(query, key, append=false) {
-  if(!key) return;
+// ── IMAGES (Unsplash, via the real, proxied route) ──────────────
+async function fetchImages(query, append=false) {
   currentQuery=query;
   try {
-    const r=await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=6&page=${imgPage}&orientation=landscape`,{headers:{'Authorization':'Client-ID '+key}});
+    const r=await fetch(`https://kayal-proxy.vercel.app/api/unsplash?query=${encodeURIComponent(query)}&page=${imgPage}`);
     if(!r.ok) return;
     const d=await r.json();
     const grid=document.getElementById('img-grid');
@@ -1415,18 +1655,17 @@ function selectImage(el) {
 
 document.getElementById('more-imgs-btn').addEventListener('click',()=>{
   imgPage++;
-  const keys = getKeys();
-  fetchImages(currentQuery||getTopic()||'spirituality', keys.unsplash || localStorage.getItem('ks_unsplash_key') || '', true);
+  fetchImages(currentQuery||getTopic()||'spirituality', true);
 });
 
-// ── YOUTUBE ────────────────────────────────────────────────────
-async function searchYouTube(query, key) {
-  if(!key||!query) return;
+// ── YOUTUBE (via the real, proxied route) ────────────────────────
+async function searchYouTube(query) {
+  if(!query) return;
   const grid=document.getElementById('yt-grid');
   grid.innerHTML='<div style="font-size:12px;color:var(--stone);padding:8px"><i class="fas fa-spinner fa-spin"></i> Searching YouTube…</div>';
   document.getElementById('yt-picker').style.display='block';
   try {
-    const r=await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query+' spiritual wisdom soul')}&maxResults=5&type=video&videoEmbeddable=true&key=${key}`);
+    const r=await fetch(`https://kayal-proxy.vercel.app/api/youtube?query=${encodeURIComponent(query+' spiritual wisdom soul')}`);
     if(!r.ok) throw new Error('YouTube error '+r.status);
     const data=await r.json();
     const items=data.items||[];
@@ -1459,8 +1698,7 @@ function removeVideo() {
 }
 
 document.getElementById('yt-search-btn')?.addEventListener('click',()=>{
-  const keys = getKeys();
-  searchYouTube(getTopic()||'ancient wisdom spiritual', keys.youtube || localStorage.getItem('ks_youtube_key') || '');
+  searchYouTube(getTopic()||'ancient wisdom spiritual');
 });
 
 // ── SOCIAL CONTENT GENERATOR ─────────────────────────────────

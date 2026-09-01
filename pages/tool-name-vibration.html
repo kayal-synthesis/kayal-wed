@@ -56,7 +56,7 @@ a{color:inherit;text-decoration:none}
 
 /* MAIN */
 .main{max-width:860px;margin:0 auto;padding:80px 24px}
-.s-label{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--lilac);margin-bottom:10px}
+.s-label{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--lilac);margin-bottom:10px}
 .s-title{font-family:var(--ff-d);font-size:clamp(22px,3vw,32px);font-weight:300;color:var(--pearl);line-height:1.2;margin-bottom:10px}
 .s-title em{font-style:italic;color:var(--lilac)}
 .s-sub{font-family:var(--ff-h);font-size:14px;font-style:italic;color:rgba(232,224,248,.62);line-height:1.75;max-width:560px;margin-bottom:32px}
@@ -116,7 +116,7 @@ input[type=date].form-input{color-scheme:dark}
 
 /* Reading */
 .reading-block{margin-bottom:26px}
-.r-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--lilac);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.r-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--lilac);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .r-label::after{content:'';flex:1;height:1px;background:rgba(107,63,160,.2)}
 .r-para{font-family:var(--ff-h);font-size:15.5px;font-style:italic;color:rgba(232,224,248,.90);line-height:1.95;margin-bottom:14px;text-align:justify}
 .r-para:last-child{margin-bottom:0}
@@ -128,6 +128,19 @@ input[type=date].form-input{color-scheme:dark}
 .r-tension{font-family:var(--ff-h);font-size:16px;font-style:italic;color:rgba(232,224,248,.88);line-height:1.9;margin-bottom:14px;text-align:justify}
 .r-invite{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(200,160,48,.88);line-height:1.85;text-align:justify}
 
+/* Real, new white reading card, wraps just the actual reading text,
+   the name reveal and action bar both stay dark and branded,
+   matching the same, proven approach used on all six previous
+   tools. */
+.reading-light-wrap{background:#fff;border-radius:var(--r-lg);padding:36px 32px;margin-bottom:28px;box-shadow:0 4px 32px rgba(8,6,15,.25)}
+.reading-light-wrap .r-label{color:#5a3a8a}
+.reading-light-wrap .r-para{color:#241a38}
+.reading-light-wrap .r-pull{color:#241a38;background:rgba(107,63,160,.06)}
+.reading-light-wrap .r-syn{background:rgba(200,160,48,.06);border-color:rgba(200,160,48,.24)}
+.reading-light-wrap .r-tension{color:#241a38}
+.reading-light-wrap .r-invite{color:#8a6a1a}
+@media(max-width:480px){.reading-light-wrap{padding:28px 20px}}
+
 /* Action bar */
 .new-reading-link{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(157,112,208,.5);margin-bottom:24px;transition:color .2s}
 .new-reading-link:hover{color:var(--pearl)}
@@ -136,11 +149,34 @@ input[type=date].form-input{color-scheme:dark}
 .act-btn:hover{background:rgba(107,63,160,.18);border-color:var(--amethyst);transform:translateY(-1px)}
 .act-btn.is-active{background:rgba(107,63,160,.22);border-color:var(--amethyst)}
 .share-menu{position:relative;display:inline-block}
-.share-dd{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:rgba(8,6,15,.97);border:1px solid rgba(107,63,160,.28);border-radius:12px;padding:8px;display:none;flex-direction:column;gap:2px;min-width:186px;z-index:50;box-shadow:0 12px 32px rgba(0,0,0,.5)}
-.share-dd.show{display:flex}
-.share-opt{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:12.5px;color:rgba(232,224,248,.85);cursor:pointer;transition:background .15s;background:none;border:none;text-align:left;width:100%}
-.share-opt:hover{background:rgba(107,63,160,.15)}
-.share-opt i{width:14px;text-align:center;color:var(--lilac)}
+
+/* Real, new share-card modal, an actual, generated image, not a
+   mockup, matching this tool's own violet, lilac, and gold identity. */
+.scm-backdrop{position:fixed;inset:0;background:rgba(8,6,15,.8);backdrop-filter:blur(6px);z-index:500;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s ease}
+.scm-backdrop.show{display:flex;opacity:1}
+.scm-modal{background:linear-gradient(160deg,rgba(30,21,53,.98),rgba(8,6,15,.99));border:1px solid rgba(107,63,160,.35);width:100%;max-width:440px;border-radius:20px 20px 0 0;padding:8px 22px 26px;position:relative;transform:translateY(24px);transition:transform .3s ease;max-height:90vh;overflow-y:auto}
+.scm-backdrop.show .scm-modal{transform:translateY(0)}
+.scm-handle{width:36px;height:4px;background:rgba(232,224,248,.25);border-radius:2px;margin:10px auto 18px}
+.scm-close{position:absolute;top:16px;right:18px;background:none;border:none;color:rgba(232,224,248,.5);font-size:16px;cursor:pointer;padding:6px;line-height:1}
+.scm-close:hover{color:var(--pearl)}
+.scm-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.scm-preview-wrap{margin:14px 0 18px;border-radius:14px;overflow:hidden;background:#08060f}
+.scm-preview{width:100%;display:block}
+.scm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.scm-plat{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 4px;background:rgba(255,255,255,.03);border:1px solid rgba(107,63,160,.22);border-radius:10px;color:rgba(232,224,248,.75);cursor:pointer;transition:all .2s;font-family:var(--ff-b)}
+.scm-plat:hover{border-color:rgba(107,63,160,.5);background:rgba(107,63,160,.1)}
+.scm-plat i{font-size:18px;color:var(--gold)}
+.scm-plat span{font-size:10px}
+.scm-caption-row{display:flex;gap:8px;margin-bottom:14px}
+.scm-caption-input{flex:1;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(107,63,160,.28);border-radius:8px;color:rgba(232,224,248,.75);font-size:12px;font-family:var(--ff-b)}
+.scm-copy-btn{padding:0 16px;background:rgba(107,63,160,.18);border:1px solid rgba(107,63,160,.45);border-radius:8px;color:var(--lilac);cursor:pointer}
+.scm-native-btn{width:100%;padding:12px;background:var(--amethyst);color:#fff;border:none;border-radius:8px;font-family:var(--ff-b);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px}
+.scm-download{width:100%;padding:13px;background:linear-gradient(135deg,var(--purple),var(--amethyst));color:#fff;border:none;border-radius:8px;font-family:var(--ff-b);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+@media(min-width:640px){
+  .scm-backdrop{align-items:center}
+  .scm-modal{border-radius:20px}
+  .scm-handle{display:none}
+}
 .toast-msg{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(8,6,15,.97);border:1px solid rgba(107,63,160,.3);color:var(--pearl);padding:11px 22px;border-radius:24px;font-size:12.5px;z-index:300;opacity:0;pointer-events:none;transition:all .3s}
 .toast-msg.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
@@ -292,17 +328,14 @@ input[type=date].form-input{color-scheme:dark}
         <i class="fas fa-volume-up"></i><span id="listen-lbl">Listen to Your Reading</span>
       </button>
       <div class="share-menu">
-        <button class="act-btn" onclick="toggleShare(event)"><i class="fas fa-share-nodes"></i> Share</button>
-        <div class="share-dd" id="share-dd">
-          <button class="share-opt" onclick="doShare('copy')"><i class="fas fa-link"></i> Copy Link</button>
-          <button class="share-opt" onclick="doShare('twitter')"><i class="fab fa-x-twitter"></i> Share on X</button>
-          <button class="share-opt" onclick="doShare('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-        </div>
+        <button class="act-btn" onclick="openShareCardModal()"><i class="fas fa-share-nodes"></i> Share</button>
       </div>
     </div>
 
     <!-- Reading -->
-    <div id="reading-content"></div>
+    <div class="reading-light-wrap">
+      <div id="reading-content"></div>
+    </div>
 
     <!-- LifeOS invite -->
     <div class="lifeos-invite">
@@ -325,8 +358,63 @@ input[type=date].form-input{color-scheme:dark}
         <div class="um-options" id="um-options"></div>
       </div>
     </div>
+
+    <div class="scm-backdrop" id="scm-backdrop" onclick="if(event.target===this)closeShareCardModal()">
+      <div class="scm-modal">
+        <div class="scm-handle"></div>
+        <button class="scm-close" onclick="closeShareCardModal()"><i class="fas fa-times"></i></button>
+        <div class="scm-eyebrow">Your Name Vibration Card</div>
+        <div class="scm-preview-wrap">
+          <img id="scm-preview" class="scm-preview" alt="Your real, generated Name Vibration share card" />
+        </div>
+        <div id="scm-native-share" style="display:none">
+          <button class="scm-native-btn" onclick="nativeShareCard()"><i class="fas fa-share-nodes"></i> Share</button>
+        </div>
+        <div id="scm-platform-grid" class="scm-grid">
+          <button class="scm-plat" onclick="shareToPlatform('instagram')"><i class="fab fa-instagram"></i><span>Instagram</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('tiktok')"><i class="fab fa-tiktok"></i><span>TikTok</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('snapchat')"><i class="fab fa-snapchat"></i><span>Snapchat</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('x')"><i class="fab fa-x-twitter"></i><span>X</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('whatsapp')"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('facebook')"><i class="fab fa-facebook"></i><span>Facebook</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('pinterest')"><i class="fab fa-pinterest"></i><span>Pinterest</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('telegram')"><i class="fab fa-telegram"></i><span>Telegram</span></button>
+        </div>
+        <div class="scm-caption-row">
+          <input readonly id="scm-caption" class="scm-caption-input" aria-label="Shareable caption">
+          <button class="scm-copy-btn" onclick="copyShareCaption()" aria-label="Copy caption"><i class="fas fa-copy"></i></button>
+        </div>
+        <button class="scm-download" onclick="downloadShareCard()"><i class="fas fa-download"></i> Download Image</button>
+      </div>
+    </div>
   </div>
 </main>
+
+<section style="background:var(--deep);border-top:1px solid rgba(107,63,160,.15);padding:72px 24px">
+  <div class="main" style="padding:0">
+    <div class="s-label">Explore More</div>
+    <h2 class="s-title">More layers<br><em>await.</em></h2>
+    <p class="s-sub">Each free tool reveals a different dimension of your blueprint. Together they form a complete picture.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px">
+      <a href="tool-life-blueprint.html" style="padding:22px 20px;background:rgba(107,63,160,.08);border:1px solid rgba(107,63,160,.24);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--amethyst)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(107,63,160,.24)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">🔢</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--pearl);margin-bottom:6px">Life Blueprint</div>
+        <div style="font-size:12px;color:rgba(232,224,248,.6);line-height:1.55">The specific current your birth date encodes, named in plain language.</div>
+      </a>
+      <a href="tool-compatibility.html" style="padding:22px 20px;background:rgba(107,63,160,.08);border:1px solid rgba(107,63,160,.24);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--amethyst)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(107,63,160,.24)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">💞</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--pearl);margin-bottom:6px">Compatibility Blueprint</div>
+        <div style="font-size:12px;color:rgba(232,224,248,.6);line-height:1.55">The soul-level dynamic between any two people, revealed from birth dates.</div>
+      </a>
+      <a href="tool-face-reader.html" style="padding:22px 20px;background:rgba(107,63,160,.08);border:1px solid rgba(107,63,160,.24);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--amethyst)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(107,63,160,.24)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">👁</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--pearl);margin-bottom:6px">Face Energy Reader</div>
+        <div style="font-size:12px;color:rgba(232,224,248,.6);line-height:1.55">Upload your photo to discover the elemental type encoded in your facial structure.</div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:28px"><a href="../tools.html" style="font-size:13px;color:var(--lilac);font-family:var(--ff-h);font-style:italic">View all free tools</a></div>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="footer-inner">
@@ -586,17 +674,123 @@ function toggleSpeech(){
   isSpeaking=true;btn.classList.add("is-active");lbl.textContent="Pause";
 }
 
-// ── SHARE ─────────────────────────────────────────────────
-function toggleShare(e){e.stopPropagation();document.getElementById("share-dd").classList.toggle("show");}
-document.addEventListener("click",function(){var d=document.getElementById("share-dd");if(d)d.classList.remove("show");});
+// ── SHARE CARD, real, generated image, this tool's own palette ───
 function showToast(msg){var t=document.getElementById("toast-msg");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2400);}
-function doShare(m){
-  document.getElementById("share-dd").classList.remove("show");
-  var url="https://kayalsoulpath.com/pages/tool-name-vibration.html";
-  var text=window._shareText||"Discover the vibration encoded in your name at KAYAL SoulPath Institute.";
-  if(m==="copy"){navigator.clipboard&&navigator.clipboard.writeText(text+"\n"+url);showToast("Copied.");return;}
-  var enc=encodeURIComponent,urls={twitter:"https://twitter.com/intent/tweet?text="+enc(text)+"&url="+enc(url),whatsapp:"https://wa.me/?text="+enc(text+" "+url)};
-  if(urls[m])window.open(urls[m],"_blank","noopener");
+var currentShareBlob=null,currentShareCaption='';
+
+function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){
+  var words=text.split(' '),line='',lines=[];
+  for(var n=0;n<words.length;n++){
+    var testLine=line+words[n]+' ';
+    if(ctx.measureText(testLine).width>maxWidth&&n>0){lines.push(line.trim());line=words[n]+' ';}
+    else{line=testLine;}
+  }
+  lines.push(line.trim());
+  var startY=y-((lines.length-1)*lineHeight)/2;
+  for(var i=0;i<lines.length;i++){ctx.fillText(lines[i],x,startY+i*lineHeight);}
+}
+
+function roundRectPath(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
+}
+
+function generateShareCardImage(expr,line){
+  return new Promise(function(resolve){
+    var W=800,H=800,canvas=document.createElement('canvas');
+    canvas.width=W;canvas.height=H;
+    var ctx=canvas.getContext('2d');
+    var bgGrad=ctx.createLinearGradient(0,0,W,H);
+    bgGrad.addColorStop(0,'#1e1535');bgGrad.addColorStop(1,'#08060f');
+    ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
+    var cx=W/2,cy=H*0.36;
+    var glow=ctx.createRadialGradient(cx,cy,20,cx,cy,280);
+    glow.addColorStop(0,'rgba(107,63,160,0.35)');glow.addColorStop(0.45,'rgba(107,63,160,0.15)');glow.addColorStop(1,'rgba(107,63,160,0)');
+    ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
+    var r=125;
+    ctx.beginPath();ctx.arc(cx,cy,r+10,0,Math.PI*2);ctx.strokeStyle='rgba(255,255,255,0.18)';ctx.lineWidth=3;ctx.stroke();
+    var ringGrad=ctx.createLinearGradient(cx-r,cy-r,cx+r,cy+r);
+    ringGrad.addColorStop(0,'#9d70d0');ringGrad.addColorStop(1,'#c8a030');
+    ctx.beginPath();ctx.arc(cx,cy,r+10,-Math.PI/2,-Math.PI/2+Math.PI*2*0.3);ctx.strokeStyle=ringGrad;ctx.lineWidth=6;ctx.lineCap='round';ctx.stroke();
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.font='400 150px Georgia, serif';
+    var numGrad=ctx.createLinearGradient(cx-70,cy-70,cx+70,cy+70);
+    numGrad.addColorStop(0,'#c8a8f0');numGrad.addColorStop(1,'#c8a030');
+    ctx.fillStyle=numGrad;ctx.fillText(String(expr),cx,cy);
+    ctx.font='600 20px system-ui, sans-serif';
+    ctx.fillStyle='#9d70d0';
+    ctx.fillText('EXPRESSION '+expr,cx,cy+r+55);
+    ctx.font='italic 400 27px Georgia, serif';
+    ctx.fillStyle='#e8e0f8';
+    wrapCanvasText(ctx,line,cx,cy+r+130,600,40);
+    var badgeY=H-85;
+    ctx.font='600 17px system-ui, sans-serif';
+    var badgeText='KAYAL SOULPATH';
+    var badgeW=ctx.measureText(badgeText).width+64;
+    roundRectPath(ctx,cx-badgeW/2,badgeY-24,badgeW,48,24);
+    ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.25)';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle='#e8e0f8';ctx.fillText(badgeText,cx,badgeY+6);
+    canvas.toBlob(function(blob){resolve(blob);},'image/png');
+  });
+}
+
+async function openShareCardModal(){
+  if(!currentExpr||!currentSynthesisTension)return;
+  var line=currentSynthesisTension.split('. ')[0]+'.';
+  currentShareCaption='My name carries Expression '+currentExpr+'. Discover what yours reveals free at kayalsoulpath.com';
+  document.getElementById('scm-caption').value=currentShareCaption;
+  var blob=await generateShareCardImage(currentExpr,line);
+  currentShareBlob=blob;
+  document.getElementById('scm-preview').src=URL.createObjectURL(blob);
+  var nativeShareAvailable=false;
+  try{nativeShareAvailable=!!(navigator.canShare&&navigator.canShare({files:[new File([blob],'name.png',{type:'image/png'})]}));}catch(e){}
+  document.getElementById('scm-native-share').style.display=nativeShareAvailable?'block':'none';
+  document.getElementById('scm-platform-grid').style.display=nativeShareAvailable?'none':'grid';
+  document.getElementById('scm-backdrop').classList.add('show');
+}
+
+function closeShareCardModal(){document.getElementById('scm-backdrop').classList.remove('show');}
+
+async function nativeShareCard(){
+  if(!currentShareBlob)return;
+  try{
+    var file=new File([currentShareBlob],'my-name-vibration.png',{type:'image/png'});
+    await navigator.share({files:[file],title:'My Name Vibration',text:currentShareCaption});
+  }catch(e){}
+}
+
+function downloadShareCard(){
+  if(!currentShareBlob)return;
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(currentShareBlob);
+  a.download='my-name-vibration.png';
+  a.click();
+}
+
+function copyShareCaption(){
+  var url='https://kayalsoulpath.com/pages/tool-name-vibration.html';
+  navigator.clipboard&&navigator.clipboard.writeText(currentShareCaption+'\n\n'+url);
+  showToast('Caption copied.');
+}
+
+var NO_WEB_INTENT_PLATFORMS={instagram:1,tiktok:1,snapchat:1};
+
+function shareToPlatform(m){
+  var url='https://kayalsoulpath.com/pages/tool-name-vibration.html';
+  var text=currentShareCaption;
+  if(NO_WEB_INTENT_PLATFORMS[m]){
+    downloadShareCard();
+    showToast('Image saved. Upload it to '+m.charAt(0).toUpperCase()+m.slice(1)+'.');
+    return;
+  }
+  var enc=encodeURIComponent,urls={
+    x:'https://twitter.com/intent/tweet?text='+enc(text)+'&url='+enc(url),
+    whatsapp:'https://wa.me/?text='+enc(text+' '+url),
+    facebook:'https://www.facebook.com/sharer/sharer.php?u='+enc(url)+'&quote='+enc(text),
+    telegram:'https://t.me/share/url?url='+enc(url)+'&text='+enc(text),
+    pinterest:'https://pinterest.com/pin/create/button/?url='+enc(url)+'&description='+enc(text)
+  };
+  if(urls[m])window.open(urls[m],'_blank','noopener');
 }
 
 // ── HERO LETTER FIELD ─────────────────────────────────────
@@ -678,7 +872,7 @@ var REC_BRIDGE={
   'soul-urge-reading':"What You're Really After in Life names precisely what sits beneath that tension, the part of this name a free reading can only point toward."
 };
 
-var currentName='',currentFname='',currentDob='',currentUp=null;
+var currentName='',currentFname='',currentDob='',currentUp=null,currentExpr=null,currentSynthesisTension=null;
 
 function buildToolURL(toolId){
   var p=new URLSearchParams();
@@ -792,6 +986,18 @@ function calculate(){
     var np=fn1?fn1+", ":"";
     var nameRef="The name "+nameRaw+" carries";
     var html="";
+    // Synthesis, computed here, before the regular sections are
+    // built, so it can be shown first, the real hook most likely to
+    // make someone keep reading or convert, previously built last,
+    // after every regular section, where anyone who lost interest
+    // partway through would never actually reach it.
+    var syn=SYNTHESIS[res.expr]||SYNTHESIS[1];
+    currentExpr=res.expr;currentSynthesisTension=syn.tension;
+    html+="<div class='r-syn'><div class='r-label'>What This Reading Is Saying, Taken As A Whole</div>";
+    html+="<p class='r-tension'>"+syn.tension+"</p>";
+    html+="<p class='r-invite'>"+syn.invitation+"</p>";
+    html+="</div>";
+
     html+="<div class='reading-block'><div class='r-label'>The Signature of This Name</div>";
     html+="<p class='r-para'>"+nameRef+" the following signature. "+data.core+"</p>";
     html+="</div>";
@@ -805,13 +1011,6 @@ function calculate(){
       html+="<p class='r-para'>"+data.reads[3]+"</p>";
       html+="</div>";
     }
-
-    // Synthesis
-    var syn=SYNTHESIS[res.expr]||SYNTHESIS[1];
-    html+="<div class='r-syn'><div class='r-label'>What This Reading Is Saying, Taken As A Whole</div>";
-    html+="<p class='r-tension'>"+syn.tension+"</p>";
-    html+="<p class='r-invite'>"+syn.invitation+"</p>";
-    html+="</div>";
 
     document.getElementById("reading-content").innerHTML=html;
 

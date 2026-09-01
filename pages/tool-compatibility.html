@@ -73,7 +73,7 @@ img{display:block;max-width:100%}
 .main{max-width:820px;margin:0 auto;padding:80px 24px 100px}
 
 /* Section labels */
-.sec-label{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#c070a8;margin-bottom:8px}
+.sec-label{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#c070a8;margin-bottom:8px}
 .sec-title{font-family:var(--ff-d);font-size:clamp(22px,3vw,32px);font-weight:300;color:var(--pearl);line-height:1.2;margin-bottom:10px}
 .sec-title em{font-style:italic;color:var(--petal)}
 .sec-sub{font-family:var(--ff-h);font-size:14px;font-style:italic;color:rgba(244,232,240,.58);line-height:1.8;margin-bottom:30px}
@@ -126,18 +126,41 @@ input[type=date].fi{color-scheme:dark}
 .act-btn:hover{background:rgba(107,32,80,.2);border-color:var(--blush);transform:translateY(-1px)}
 .act-btn.active{background:rgba(107,32,80,.25);border-color:var(--blush)}
 .share-wrap{position:relative}
-.share-dd{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:rgba(14,11,20,.98);border:1px solid rgba(107,32,80,.3);border-radius:12px;padding:8px;display:none;flex-direction:column;gap:2px;min-width:186px;z-index:50;box-shadow:0 14px 40px rgba(0,0,0,.5)}
-.share-dd.open{display:flex}
-.share-opt{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:12.5px;color:rgba(244,232,240,.8);cursor:pointer;transition:background .15s;background:none;border:none;text-align:left;width:100%}
-.share-opt:hover{background:rgba(107,32,80,.2)}
-.share-opt i{width:14px;color:var(--petal);text-align:center}
+
+/* Real, new share-card modal, an actual, generated image, not a
+   mockup, matching this tool's own petal and amber identity. */
+.scm-backdrop{position:fixed;inset:0;background:rgba(14,11,20,.8);backdrop-filter:blur(6px);z-index:500;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s ease}
+.scm-backdrop.show{display:flex;opacity:1}
+.scm-modal{background:linear-gradient(160deg,rgba(45,20,40,.98),rgba(14,11,20,.99));border:1px solid rgba(107,32,80,.35);width:100%;max-width:440px;border-radius:20px 20px 0 0;padding:8px 22px 26px;position:relative;transform:translateY(24px);transition:transform .3s ease;max-height:90vh;overflow-y:auto}
+.scm-backdrop.show .scm-modal{transform:translateY(0)}
+.scm-handle{width:36px;height:4px;background:rgba(244,232,240,.25);border-radius:2px;margin:10px auto 18px}
+.scm-close{position:absolute;top:16px;right:18px;background:none;border:none;color:rgba(244,232,240,.5);font-size:16px;cursor:pointer;padding:6px;line-height:1}
+.scm-close:hover{color:var(--pearl)}
+.scm-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:8px}
+.scm-preview-wrap{margin:14px 0 18px;border-radius:14px;overflow:hidden;background:#0e0b14}
+.scm-preview{width:100%;display:block}
+.scm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.scm-plat{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 4px;background:rgba(255,255,255,.03);border:1px solid rgba(107,32,80,.22);border-radius:10px;color:rgba(244,232,240,.75);cursor:pointer;transition:all .2s;font-family:var(--ff-b)}
+.scm-plat:hover{border-color:rgba(107,32,80,.5);background:rgba(107,32,80,.1)}
+.scm-plat i{font-size:18px;color:var(--amber)}
+.scm-plat span{font-size:10px}
+.scm-caption-row{display:flex;gap:8px;margin-bottom:14px}
+.scm-caption-input{flex:1;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(107,32,80,.28);border-radius:8px;color:rgba(244,232,240,.75);font-size:12px;font-family:var(--ff-b)}
+.scm-copy-btn{padding:0 16px;background:rgba(107,32,80,.18);border:1px solid rgba(107,32,80,.45);border-radius:8px;color:var(--petal);cursor:pointer}
+.scm-native-btn{width:100%;padding:12px;background:var(--blush);color:#fff;border:none;border-radius:8px;font-family:var(--ff-b);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px}
+.scm-download{width:100%;padding:13px;background:linear-gradient(135deg,var(--wine),var(--blush));color:#fff;border:none;border-radius:8px;font-family:var(--ff-b);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+@media(min-width:640px){
+  .scm-backdrop{align-items:center}
+  .scm-modal{border-radius:20px}
+  .scm-handle{display:none}
+}
 .toast-msg{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(18px);background:rgba(14,11,20,.97);border:1px solid rgba(107,32,80,.4);color:var(--pearl);padding:11px 22px;border-radius:24px;font-size:12.5px;z-index:300;opacity:0;pointer-events:none;transition:all .3s}
 .toast-msg.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* Reading */
 .reading-wrap{margin-bottom:32px}
 .r-section{padding:32px 36px;background:rgba(22,13,32,.6);border:1px solid rgba(107,32,80,.18);border-radius:var(--r-lg);margin-bottom:16px;backdrop-filter:blur(6px)}
-.r-eyebrow{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--petal);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.r-eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--petal);margin-bottom:14px;display:flex;align-items:center;gap:10px}
 .r-eyebrow::after{content:'';flex:1;height:1px;background:rgba(107,32,80,.18)}
 .r-title{font-family:var(--ff-h);font-size:18px;color:#f4e8f0;margin-bottom:16px;font-weight:400;font-style:italic;letter-spacing:.01em}
 .r-para{font-family:var(--ff-h);font-size:15.5px;font-style:italic;color:rgba(244,232,240,.92);line-height:1.95;margin-bottom:16px;text-align:justify}
@@ -151,6 +174,19 @@ input[type=date].fi{color-scheme:dark}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(107,32,80,.18),transparent 70%);pointer-events:none}
 .li-badge{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);background:rgba(200,144,42,.12);border:1px solid rgba(200,144,42,.4);border-radius:20px;padding:7px 15px;margin-bottom:14px;position:relative;z-index:1}
 .li-badge i{font-size:9px}
+
+/* Real, new white reading card, wraps just the actual reading text,
+   the score hero, energy row, and action bar above it all stay dark
+   and branded, matching the same, proven approach already used on
+   the other four tools. Each individual r-section here carries its
+   own, real dark background too, not just the outer wrapper, so
+   that needs its own, real override as well. */
+.reading-light-wrap{background:#fff;border-radius:var(--r-lg);padding:36px 32px;margin-bottom:32px;box-shadow:0 4px 32px rgba(14,11,20,.25)}
+.reading-light-wrap .r-section{background:rgba(107,32,80,.04);border-color:rgba(107,32,80,.14)}
+.reading-light-wrap .r-eyebrow{color:#8a3060}
+.reading-light-wrap .r-title{color:#2e1826}
+.reading-light-wrap .r-para{color:#2e1826}
+@media(max-width:480px){.reading-light-wrap{padding:28px 20px}}
 .li-title{font-family:var(--ff-d);font-size:clamp(19px,2.6vw,23px);font-weight:400;color:var(--pearl);line-height:1.3;margin-bottom:10px;position:relative;z-index:1}
 .li-title em{font-style:italic;color:var(--petal)}
 .li-desc{font-family:var(--ff-h);font-size:13.5px;font-style:italic;color:rgba(220,160,200,.75);line-height:1.65;margin-bottom:20px;position:relative;z-index:1}
@@ -281,16 +317,13 @@ input[type=date].fi{color-scheme:dark}
         <i class="fas fa-volume-up"></i><span id="listen-lbl">Listen</span>
       </button>
       <div class="share-wrap">
-        <button class="act-btn" onclick="toggleShare(event)"><i class="fas fa-share-nodes"></i> Share</button>
-        <div class="share-dd" id="share-dd">
-          <button class="share-opt" onclick="doShare('copy')"><i class="fas fa-link"></i> Copy link</button>
-          <button class="share-opt" onclick="doShare('twitter')"><i class="fab fa-x-twitter"></i> Share on X</button>
-          <button class="share-opt" onclick="doShare('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-        </div>
+        <button class="act-btn" onclick="openShareCardModal()"><i class="fas fa-share-nodes"></i> Share</button>
       </div>
     </div>
 
-    <div class="reading-wrap" id="reading-content"></div>
+    <div class="reading-light-wrap">
+      <div class="reading-wrap" id="reading-content"></div>
+    </div>
 
     <div class="lifeos-invite" id="lifeos-invite">
       <div class="li-badge"><i class="fas fa-sparkles"></i><span id="li-eyebrow">If this touched something real</span></div>
@@ -314,8 +347,63 @@ input[type=date].fi{color-scheme:dark}
         <div class="um-options" id="um-options"></div>
       </div>
     </div>
+
+    <div class="scm-backdrop" id="scm-backdrop" onclick="if(event.target===this)closeShareCardModal()">
+      <div class="scm-modal">
+        <div class="scm-handle"></div>
+        <button class="scm-close" onclick="closeShareCardModal()"><i class="fas fa-times"></i></button>
+        <div class="scm-eyebrow">Your Compatibility Card</div>
+        <div class="scm-preview-wrap">
+          <img id="scm-preview" class="scm-preview" alt="Your real, generated Compatibility Blueprint share card" />
+        </div>
+        <div id="scm-native-share" style="display:none">
+          <button class="scm-native-btn" onclick="nativeShareCard()"><i class="fas fa-share-nodes"></i> Share</button>
+        </div>
+        <div id="scm-platform-grid" class="scm-grid">
+          <button class="scm-plat" onclick="shareToPlatform('instagram')"><i class="fab fa-instagram"></i><span>Instagram</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('tiktok')"><i class="fab fa-tiktok"></i><span>TikTok</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('snapchat')"><i class="fab fa-snapchat"></i><span>Snapchat</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('x')"><i class="fab fa-x-twitter"></i><span>X</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('whatsapp')"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('facebook')"><i class="fab fa-facebook"></i><span>Facebook</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('pinterest')"><i class="fab fa-pinterest"></i><span>Pinterest</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('telegram')"><i class="fab fa-telegram"></i><span>Telegram</span></button>
+        </div>
+        <div class="scm-caption-row">
+          <input readonly id="scm-caption" class="scm-caption-input" aria-label="Shareable caption">
+          <button class="scm-copy-btn" onclick="copyShareCaption()" aria-label="Copy caption"><i class="fas fa-copy"></i></button>
+        </div>
+        <button class="scm-download" onclick="downloadShareCard()"><i class="fas fa-download"></i> Download Image</button>
+      </div>
+    </div>
   </div>
 </main>
+
+<section style="background:var(--deep);border-top:1px solid rgba(107,32,80,.15);padding:72px 24px">
+  <div class="main" style="padding:0">
+    <div class="sec-label">Explore More</div>
+    <h2 class="sec-title">More layers<br><em>await.</em></h2>
+    <p class="sec-sub">Each free tool reveals a different dimension of your blueprint. Together they form a complete picture.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px">
+      <a href="tool-life-blueprint.html" style="padding:22px 20px;background:rgba(107,32,80,.1);border:1px solid rgba(107,32,80,.24);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--blush)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(107,32,80,.24)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">🔢</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--pearl);margin-bottom:6px">Life Blueprint</div>
+        <div style="font-size:12px;color:rgba(244,232,240,.6);line-height:1.55">The specific current your birth date encodes, named in plain language.</div>
+      </a>
+      <a href="tool-face-reader.html" style="padding:22px 20px;background:rgba(107,32,80,.1);border:1px solid rgba(107,32,80,.24);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--blush)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(107,32,80,.24)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">👁</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--pearl);margin-bottom:6px">Face Energy Reader</div>
+        <div style="font-size:12px;color:rgba(244,232,240,.6);line-height:1.55">Upload your photo to discover the elemental type encoded in your facial structure.</div>
+      </a>
+      <a href="tool-hand-map.html" style="padding:22px 20px;background:rgba(107,32,80,.1);border:1px solid rgba(107,32,80,.24);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--blush)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(107,32,80,.24)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">🤚</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--pearl);margin-bottom:6px">Hand Map Reader</div>
+        <div style="font-size:12px;color:rgba(244,232,240,.6);line-height:1.55">Upload both palms. The comparison between your two hands reveals what neither shows alone.</div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:28px"><a href="../tools.html" style="font-size:13px;color:var(--petal);font-family:var(--ff-h);font-style:italic">View all free tools</a></div>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="footer-inner">
@@ -333,6 +421,11 @@ input[type=date].fi{color-scheme:dark}
 <div class="toast-msg" id="toast"></div>
 
 <script>
+// Real, new global state, needed for the share-card feature, this
+// file had no existing pattern for holding the current reading's
+// values across functions.
+var currentScore=null,currentName1='',currentName2='',currentSign1=null,currentSign2=null,currentSynthesisTension=null;
+
 // ── ASTRONOMICAL HELPERS ───────────────────────────────────
 function getSign(month, day){
   var signs=[
@@ -831,6 +924,13 @@ function calculate(){
     var elComp=getElCompat(s1.el,s2.el);
     var score=calcScore(s1.el,s2.el,ms1,ms2,vs1,vs2,lp1,lp2);
 
+    // Real synthesis, computed here, before the regular sections are
+    // built, so it can be shown first, the real hook most likely to
+    // make someone keep reading or convert, previously built last,
+    // after every regular section, where anyone who lost interest
+    // partway through would never actually reach it.
+    var syn=getSynthesis(s1.el,s2.el,s1.n,s2.n,fn1,fn2,ms1,ms2);
+
     window._upsellId = decideUpsell(score);
     var up = UPSELL_MAP[window._upsellId];
 
@@ -851,6 +951,11 @@ function calculate(){
       '<text x="160" y="'+(cym-2)+'" font-family="Georgia,serif" font-size="20" font-weight="300" fill="rgba(224,176,64,.95)" text-anchor="middle">'+score+'%</text>'+
       '<text x="160" y="'+(cym+12)+'" font-size="6.5" fill="rgba(200,144,42,.4)" text-anchor="middle" letter-spacing="1.5">RESONANCE</text>';
 
+    // Real, new global state, this file had no existing pattern for
+    // this, needed so the real share-card function, defined later,
+    // can access the actual, current reading's real values.
+    currentScore=score;currentName1=fn1;currentName2=fn2;currentSign1=s1;currentSign2=s2;currentSynthesisTension=syn.tension;
+
     document.getElementById('sc-num').textContent=score+'%';
     document.getElementById('sc-name').textContent=elComp.type;
     document.getElementById('sc-tags').innerHTML=[s1.el,s2.el,s1.n+' + '+s2.n].map(function(t){return'<span class="sc-tag">'+t+'</span>';}).join('');
@@ -863,20 +968,19 @@ function calculate(){
     // Build sections
     var secs=buildReading(s1,s2,fn1,fn2,s1.el,s2.el,ms1,ms2,vs1,vs2,lp1,lp2,py1,py2,cy,elComp);
     var html='';
+
+    html+='<div class="r-section" style="border:1px solid rgba(200,144,42,.28);border-radius:var(--r-lg);padding:28px 30px;background:rgba(200,144,42,.06)">';
+    html+='<div class="r-eyebrow" style="color:var(--amber)">What This Reading Is Saying, Taken As A Whole</div>';
+    html+='<p class="r-para" style="font-size:16px">'+syn.tension+'</p>';
+    html+='<p class="r-para" style="font-size:15px;color:rgba(200,144,42,.85);font-style:italic">'+syn.invitation+'</p>';
+    html+='</div>';
+
     secs.forEach(function(sec){
       html+='<div class="r-section"><div class="r-eyebrow">'+sec.eyebrow+'</div>';
       if(sec.title)html+='<div class="r-title">'+sec.title+'</div>';
       sec.paras.forEach(function(p){html+='<p class="r-para">'+p+'</p>';});
       html+='</div>';
     });
-
-    // Synthesis section
-    var syn=getSynthesis(s1.el,s2.el,s1.n,s2.n,fn1,fn2,ms1,ms2);
-    html+='<div class="r-section" style="border:1px solid rgba(200,144,42,.28);border-radius:var(--r-lg);padding:28px 30px;background:rgba(22,13,32,.5)">';
-    html+='<div class="r-eyebrow" style="color:var(--amber)">What This Reading Is Saying, Taken As A Whole</div>';
-    html+='<p class="r-para" style="font-size:16px">'+syn.tension+'</p>';
-    html+='<p class="r-para" style="font-size:15px;color:rgba(224,176,64,.88);font-style:italic">'+syn.invitation+'</p>';
-    html+='</div>';
 
     document.getElementById('reading-content').innerHTML=html;
 
@@ -965,19 +1069,130 @@ function toggleSpeech(){
   isSpeaking=true;btn.classList.add('active');lbl.textContent='Pause';
 }
 
-// ── SHARE ──────────────────────────────────────────────────
-function toggleShare(e){e.stopPropagation();document.getElementById('share-dd').classList.toggle('open');}
-document.addEventListener('click',function(){var d=document.getElementById('share-dd');if(d)d.classList.remove('open');});
-function doShare(m){
-  document.getElementById('share-dd').classList.remove('open');
+// ── SHARE CARD, real, generated image, this tool's own palette ───
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2400);}
+var currentShareBlob=null,currentShareCaption='';
+
+function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){
+  var words=text.split(' '),line='',lines=[];
+  for(var n=0;n<words.length;n++){
+    var testLine=line+words[n]+' ';
+    if(ctx.measureText(testLine).width>maxWidth&&n>0){lines.push(line.trim());line=words[n]+' ';}
+    else{line=testLine;}
+  }
+  lines.push(line.trim());
+  var startY=y-((lines.length-1)*lineHeight)/2;
+  for(var i=0;i<lines.length;i++){ctx.fillText(lines[i],x,startY+i*lineHeight);}
+}
+
+function roundRectPath(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
+}
+
+function generateShareCardImage(score,sign1,sign2,name1,name2,line){
+  return new Promise(function(resolve){
+    var W=800,H=800,canvas=document.createElement('canvas');
+    canvas.width=W;canvas.height=H;
+    var ctx=canvas.getContext('2d');
+    var bgGrad=ctx.createLinearGradient(0,0,W,H);
+    bgGrad.addColorStop(0,'#1e1028');bgGrad.addColorStop(1,'#0e0b14');
+    ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
+    var glow=ctx.createRadialGradient(W/2,H*0.32,20,W/2,H*0.32,300);
+    glow.addColorStop(0,'rgba(200,144,42,0.28)');glow.addColorStop(0.45,'rgba(107,32,80,0.16)');glow.addColorStop(1,'rgba(107,32,80,0)');
+    ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    // Two, real, overlapping circles, matching the same, established
+    // Venn motif already used on the page itself, petal for person
+    // one, amber for person two, the two, real colors already in use.
+    var cx1=W/2-90,cx2=W/2+90,cy=H*0.32,r=95;
+    ctx.beginPath();ctx.arc(cx1,cy,r,0,Math.PI*2);ctx.fillStyle='rgba(192,96,160,0.14)';ctx.fill();ctx.strokeStyle='rgba(192,96,160,0.5)';ctx.lineWidth=2;ctx.stroke();
+    ctx.beginPath();ctx.arc(cx2,cy,r,0,Math.PI*2);ctx.fillStyle='rgba(200,144,42,0.1)';ctx.fill();ctx.strokeStyle='rgba(200,144,42,0.45)';ctx.lineWidth=2;ctx.stroke();
+    ctx.font='400 42px Georgia, serif';
+    ctx.fillStyle='rgba(192,96,160,0.9)';ctx.fillText(sign1.s,cx1,cy-8);
+    ctx.fillStyle='rgba(200,144,42,0.9)';ctx.fillText(sign2.s,cx2,cy-8);
+    ctx.font='600 15px system-ui, sans-serif';
+    ctx.fillStyle='rgba(240,232,240,0.7)';ctx.fillText(name1,cx1,cy+40);
+    ctx.fillText(name2,cx2,cy+40);
+    ctx.font='400 44px Georgia, serif';
+    ctx.fillStyle='#e0b040';
+    ctx.fillText(score+'%',W/2,cy+130);
+    ctx.font='600 15px system-ui, sans-serif';
+    ctx.fillStyle='rgba(200,144,42,0.75)';
+    ctx.fillText('R E S O N A N C E',W/2,cy+165);
+    ctx.font='italic 400 27px Georgia, serif';
+    ctx.fillStyle='#f4e8f0';
+    wrapCanvasText(ctx,line,W/2,cy+250,620,40);
+    var badgeY=H-85;
+    ctx.font='600 17px system-ui, sans-serif';
+    var badgeText='KAYAL SOULPATH';
+    var badgeW=ctx.measureText(badgeText).width+64;
+    roundRectPath(ctx,W/2-badgeW/2,badgeY-24,badgeW,48,24);
+    ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.25)';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle='#f4e8f0';ctx.fillText(badgeText,W/2,badgeY+6);
+    canvas.toBlob(function(blob){resolve(blob);},'image/png');
+  });
+}
+
+async function openShareCardModal(){
+  if(currentScore===null||!currentSynthesisTension)return;
+  var line=currentSynthesisTension.split('. ')[0]+'.';
+  currentShareCaption=currentName1+' + '+currentName2+': '+currentScore+'% resonance. Discover yours free at kayalsoulpath.com';
+  document.getElementById('scm-caption').value=currentShareCaption;
+  var blob=await generateShareCardImage(currentScore,currentSign1,currentSign2,currentName1,currentName2,line);
+  currentShareBlob=blob;
+  document.getElementById('scm-preview').src=URL.createObjectURL(blob);
+  var nativeShareAvailable=false;
+  try{nativeShareAvailable=!!(navigator.canShare&&navigator.canShare({files:[new File([blob],'compat.png',{type:'image/png'})]}));}catch(e){}
+  document.getElementById('scm-native-share').style.display=nativeShareAvailable?'block':'none';
+  document.getElementById('scm-platform-grid').style.display=nativeShareAvailable?'none':'grid';
+  document.getElementById('scm-backdrop').classList.add('show');
+}
+
+function closeShareCardModal(){document.getElementById('scm-backdrop').classList.remove('show');}
+
+async function nativeShareCard(){
+  if(!currentShareBlob)return;
+  try{
+    var file=new File([currentShareBlob],'my-compatibility.png',{type:'image/png'});
+    await navigator.share({files:[file],title:'My Compatibility Reading',text:currentShareCaption});
+  }catch(e){}
+}
+
+function downloadShareCard(){
+  if(!currentShareBlob)return;
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(currentShareBlob);
+  a.download='my-compatibility.png';
+  a.click();
+}
+
+function copyShareCaption(){
   var url='https://kayalsoulpath.com/pages/tool-compatibility.html';
-  var text=window._shareText||'Discover your soul-level connection at KAYAL SoulPath Institute.';
-  if(m==='copy'){navigator.clipboard&&navigator.clipboard.writeText(text+'\n'+url);showToast('Copied to clipboard.');return;}
-  var enc=encodeURIComponent;
-  var urls={twitter:'https://twitter.com/intent/tweet?text='+enc(text)+'&url='+enc(url),whatsapp:'https://wa.me/?text='+enc(text+' '+url)};
+  navigator.clipboard&&navigator.clipboard.writeText(currentShareCaption+'\n\n'+url);
+  showToast('Caption copied.');
+}
+
+var NO_WEB_INTENT_PLATFORMS={instagram:1,tiktok:1,snapchat:1};
+
+function shareToPlatform(m){
+  var url='https://kayalsoulpath.com/pages/tool-compatibility.html';
+  var text=currentShareCaption;
+  if(NO_WEB_INTENT_PLATFORMS[m]){
+    downloadShareCard();
+    showToast('Image saved. Upload it to '+m.charAt(0).toUpperCase()+m.slice(1)+'.');
+    return;
+  }
+  var enc=encodeURIComponent,urls={
+    x:'https://twitter.com/intent/tweet?text='+enc(text)+'&url='+enc(url),
+    whatsapp:'https://wa.me/?text='+enc(text+' '+url),
+    facebook:'https://www.facebook.com/sharer/sharer.php?u='+enc(url)+'&quote='+enc(text),
+    telegram:'https://t.me/share/url?url='+enc(url)+'&text='+enc(text),
+    pinterest:'https://pinterest.com/pin/create/button/?url='+enc(url)+'&description='+enc(text)
+  };
   if(urls[m])window.open(urls[m],'_blank','noopener');
 }
-function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2400);}
+
 </script>
 </body>
 </html>

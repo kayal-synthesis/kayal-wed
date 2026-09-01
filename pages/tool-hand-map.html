@@ -57,7 +57,7 @@ a{color:inherit;text-decoration:none}
 
 /* MAIN */
 .main{max-width:900px;margin:0 auto;padding:80px 24px}
-.section-label{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#8aca84;margin-bottom:10px}
+.section-label{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#8aca84;margin-bottom:10px}
 .section-title{font-family:var(--ff-display);font-size:clamp(22px,3vw,34px);font-weight:300;color:var(--parchment);line-height:1.2;margin-bottom:10px}
 .section-title em{font-style:italic;color:var(--gold)}
 .section-sub{font-family:var(--ff-heading);font-size:14px;font-style:italic;color:rgba(240,236,224,.68);line-height:1.75;max-width:600px;margin-bottom:32px}
@@ -195,7 +195,7 @@ input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidde
 
 /* Reading */
 .reading-block{margin-bottom:28px}
-.reading-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#8aca84;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.reading-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8aca84;margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .reading-label::after{content:'';flex:1;height:1px;background:rgba(106,170,100,.22)}
 .reading-para{font-family:var(--ff-heading);font-size:15px;font-style:italic;color:rgba(240,236,224,.90);line-height:1.9;margin-bottom:14px;text-align:justify}
 .reading-para strong{color:var(--gold);font-style:normal}
@@ -204,17 +204,55 @@ input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidde
 .r-block-accent .reading-label{color:var(--gold)}
 .r-block-accent .reading-label::after{background:rgba(200,168,74,.2)}
 
+/* Real, new white reading card, wraps just the actual reading text,
+   the dramatic hand reveal above it and the upsell invite below it
+   both stay dark and branded, matching the same, proven approach
+   already used on the other two tools. */
+.reading-light-wrap{background:#fff;border-radius:var(--r-lg);padding:36px 32px;margin-bottom:40px;box-shadow:0 4px 32px rgba(10,12,8,.25)}
+.reading-light-wrap .reading-label{color:var(--sage)}
+.reading-light-wrap .reading-label::after{background:rgba(106,170,100,.2)}
+.reading-light-wrap .reading-para{color:#3a3428}
+.reading-light-wrap .reading-para strong{color:#8a6a1a}
+.reading-light-wrap .reading-pull{color:#2d2a1a;background:rgba(106,170,100,.08)}
+.reading-light-wrap .r-block-accent{background:rgba(200,168,74,.08);border-color:rgba(200,168,74,.25)}
+.reading-light-wrap .r-block-accent .reading-label{color:#8a6a1a}
+.reading-light-wrap .r-block-accent .reading-label::after{background:rgba(200,168,74,.25)}
+@media(max-width:480px){.reading-light-wrap{padding:28px 20px}}
+
 /* Action bar */
 .action-bar{display:flex;gap:10px;justify-content:center;margin:0 0 32px;flex-wrap:wrap}
 .action-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:20px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid rgba(106,170,100,.32);background:rgba(26,45,24,.5);color:rgba(160,220,150,.9)}
 .action-btn:hover{background:rgba(106,170,100,.18);border-color:var(--fern);transform:translateY(-1px)}
 .action-btn.is-active{background:rgba(106,170,100,.25);border-color:var(--fern)}
 .share-menu{position:relative}
-.share-dropdown{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:rgba(10,12,8,.97);border:1px solid rgba(106,170,100,.3);border-radius:12px;padding:8px;display:none;flex-direction:column;gap:2px;min-width:186px;z-index:50;box-shadow:0 12px 32px rgba(0,0,0,.5)}
-.share-dropdown.show{display:flex}
-.share-opt{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:12.5px;color:rgba(240,236,224,.85);cursor:pointer;transition:background .15s;background:none;border:none;text-align:left;width:100%}
-.share-opt:hover{background:rgba(106,170,100,.15)}
-.share-opt i{width:14px;text-align:center;color:rgba(160,220,150,.9)}
+
+/* Real, new share-card modal, an actual, generated image, not a
+   mockup, matching this tool's own forest green and gold identity. */
+.scm-backdrop{position:fixed;inset:0;background:rgba(10,12,8,.8);backdrop-filter:blur(6px);z-index:500;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s ease}
+.scm-backdrop.show{display:flex;opacity:1}
+.scm-modal{background:linear-gradient(160deg,rgba(26,45,24,.98),rgba(10,12,8,.99));border:1px solid rgba(106,170,100,.35);width:100%;max-width:440px;border-radius:20px 20px 0 0;padding:8px 22px 26px;position:relative;transform:translateY(24px);transition:transform .3s ease;max-height:90vh;overflow-y:auto}
+.scm-backdrop.show .scm-modal{transform:translateY(0)}
+.scm-handle{width:36px;height:4px;background:rgba(240,236,224,.25);border-radius:2px;margin:10px auto 18px}
+.scm-close{position:absolute;top:16px;right:18px;background:none;border:none;color:rgba(240,236,224,.5);font-size:16px;cursor:pointer;padding:6px;line-height:1}
+.scm-close:hover{color:var(--parchment)}
+.scm-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.scm-preview-wrap{margin:14px 0 18px;border-radius:14px;overflow:hidden;background:#0a0c08}
+.scm-preview{width:100%;display:block}
+.scm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.scm-plat{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 4px;background:rgba(255,255,255,.03);border:1px solid rgba(106,170,100,.2);border-radius:10px;color:rgba(240,236,224,.75);cursor:pointer;transition:all .2s;font-family:var(--ff-body)}
+.scm-plat:hover{border-color:rgba(106,170,100,.45);background:rgba(106,170,100,.08)}
+.scm-plat i{font-size:18px;color:var(--gold)}
+.scm-plat span{font-size:10px}
+.scm-caption-row{display:flex;gap:8px;margin-bottom:14px}
+.scm-caption-input{flex:1;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(106,170,100,.25);border-radius:8px;color:rgba(240,236,224,.75);font-size:12px;font-family:var(--ff-body)}
+.scm-copy-btn{padding:0 16px;background:rgba(106,170,100,.15);border:1px solid rgba(106,170,100,.4);border-radius:8px;color:var(--fern);cursor:pointer}
+.scm-native-btn{width:100%;padding:12px;background:var(--sage);color:var(--parchment);border:none;border-radius:8px;font-family:var(--ff-body);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px}
+.scm-download{width:100%;padding:13px;background:linear-gradient(135deg,var(--moss),var(--sage));color:var(--parchment);border:none;border-radius:8px;font-family:var(--ff-body);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+@media(min-width:640px){
+  .scm-backdrop{align-items:center}
+  .scm-modal{border-radius:20px}
+  .scm-handle{display:none}
+}
 .share-toast-msg{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(10,12,8,.97);border:1px solid rgba(106,170,100,.35);color:var(--parchment);padding:11px 22px;border-radius:24px;font-size:12.5px;z-index:300;opacity:0;pointer-events:none;transition:all .3s}
 .share-toast-msg.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
@@ -518,16 +556,13 @@ input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidde
         <i class="fas fa-volume-up"></i><span id="listen-lbl">Listen to Reading</span>
       </button>
       <div class="share-menu">
-        <button class="action-btn" onclick="toggleShare(event)"><i class="fas fa-share-nodes"></i> Share</button>
-        <div class="share-dropdown" id="share-dd">
-          <button class="share-opt" onclick="shareVia('copy')"><i class="fas fa-link"></i> Copy Link</button>
-          <button class="share-opt" onclick="shareVia('twitter')"><i class="fab fa-x-twitter"></i> Share on X</button>
-          <button class="share-opt" onclick="shareVia('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-        </div>
+        <button class="action-btn" onclick="openShareCardModal()"><i class="fas fa-share-nodes"></i> Share</button>
       </div>
     </div>
 
-    <div id="reading-content"></div>
+    <div class="reading-light-wrap">
+      <div id="reading-content"></div>
+    </div>
 
     <div class="lifeos-invite">
       <div class="li-badge"><i class="fas fa-sparkles"></i><span id="li-eyebrow">If this reading has shown you something real</span></div>
@@ -551,8 +586,63 @@ input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidde
         <div class="um-options" id="um-options"></div>
       </div>
     </div>
+
+    <div class="scm-backdrop" id="scm-backdrop" onclick="if(event.target===this)closeShareCardModal()">
+      <div class="scm-modal">
+        <div class="scm-handle"></div>
+        <button class="scm-close" onclick="closeShareCardModal()"><i class="fas fa-times"></i></button>
+        <div class="scm-eyebrow">Your Hand Map Card</div>
+        <div class="scm-preview-wrap">
+          <img id="scm-preview" class="scm-preview" alt="Your real, generated Hand Map Reader share card" />
+        </div>
+        <div id="scm-native-share" style="display:none">
+          <button class="scm-native-btn" onclick="nativeShareCard()"><i class="fas fa-share-nodes"></i> Share</button>
+        </div>
+        <div id="scm-platform-grid" class="scm-grid">
+          <button class="scm-plat" onclick="shareToPlatform('instagram')"><i class="fab fa-instagram"></i><span>Instagram</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('tiktok')"><i class="fab fa-tiktok"></i><span>TikTok</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('snapchat')"><i class="fab fa-snapchat"></i><span>Snapchat</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('x')"><i class="fab fa-x-twitter"></i><span>X</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('whatsapp')"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('facebook')"><i class="fab fa-facebook"></i><span>Facebook</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('pinterest')"><i class="fab fa-pinterest"></i><span>Pinterest</span></button>
+          <button class="scm-plat" onclick="shareToPlatform('telegram')"><i class="fab fa-telegram"></i><span>Telegram</span></button>
+        </div>
+        <div class="scm-caption-row">
+          <input readonly id="scm-caption" class="scm-caption-input" aria-label="Shareable caption">
+          <button class="scm-copy-btn" onclick="copyShareCaption()" aria-label="Copy caption"><i class="fas fa-copy"></i></button>
+        </div>
+        <button class="scm-download" onclick="downloadShareCard()"><i class="fas fa-download"></i> Download Image</button>
+      </div>
+    </div>
   </div>
 </main>
+
+<section style="background:var(--deep);border-top:1px solid rgba(106,170,100,.15);padding:72px 24px">
+  <div class="main" style="padding:0">
+    <div class="section-label">Explore More</div>
+    <h2 class="section-title">More layers<br><em>await.</em></h2>
+    <p class="section-sub">Each free tool reveals a different dimension of your blueprint. Together they form a complete picture.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px">
+      <a href="tool-life-blueprint.html" style="padding:22px 20px;background:rgba(26,45,24,.35);border:1px solid rgba(106,170,100,.22);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--fern)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(106,170,100,.22)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">🔢</div>
+        <div style="font-family:var(--ff-heading);font-size:14px;color:var(--parchment);margin-bottom:6px">Life Blueprint</div>
+        <div style="font-size:12px;color:rgba(240,236,224,.6);line-height:1.55">The specific current your birth date encodes, named in plain language.</div>
+      </a>
+      <a href="tool-compatibility.html" style="padding:22px 20px;background:rgba(26,45,24,.35);border:1px solid rgba(106,170,100,.22);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--fern)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(106,170,100,.22)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">💞</div>
+        <div style="font-family:var(--ff-heading);font-size:14px;color:var(--parchment);margin-bottom:6px">Compatibility Blueprint</div>
+        <div style="font-size:12px;color:rgba(240,236,224,.6);line-height:1.55">The soul-level dynamic between any two people, revealed from birth dates.</div>
+      </a>
+      <a href="tool-face-reader.html" style="padding:22px 20px;background:rgba(26,45,24,.35);border:1px solid rgba(106,170,100,.22);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--fern)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(106,170,100,.22)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">👁</div>
+        <div style="font-family:var(--ff-heading);font-size:14px;color:var(--parchment);margin-bottom:6px">Face Energy Reader</div>
+        <div style="font-size:12px;color:rgba(240,236,224,.6);line-height:1.55">Upload your photo to discover the elemental type encoded in your facial structure.</div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:28px"><a href="../tools.html" style="font-size:13px;color:var(--fern);font-family:var(--ff-heading);font-style:italic">View all free tools</a></div>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="footer-inner">
@@ -947,7 +1037,7 @@ var UPSELL_MAP={
   }
 };
 
-var currentUp=null,currentDomType=null,currentPasType=null,currentName='',currentDob='';
+var currentUp=null,currentDomType=null,currentPasType=null,currentName='',currentDob='',currentSynthesisTension=null;
 
 // First sentence of the synthesis tension text, used to build a
 // per-pairing invite description instead of a static per-bucket one
@@ -1104,6 +1194,66 @@ function buildReading(){
 
   // Reading content
   var np=fn?fn+', ':'';
+  var sameType=domType===pasType;
+  var pairingKey=pasType+'-'+domType;
+  var pairingText=!sameType?(PAIRING_DEPTH[pairingKey]||('your passive '+pasHand+' palm carries the '+pasData.n+' blueprint you were born with, while your dominant '+domHand+' palm has developed a '+domData.n+' nature through the life you have actively lived. Neither is more authentic than the other. Both are you.')):null;
+
+  // SYNTHESIS: what it all means, computed here, before the html
+  // string starts building, so it can be shown first, right after
+  // any borderline-reading note, the real hook most likely to make
+  // someone keep reading or convert, previously built last, after
+  // every regular section, where anyone who lost interest partway
+  // through would never actually reach it.
+  var synthesisTension, synthesisInvitation;
+  if(sameType){
+    var tensionMap={
+      earth:"The consistent challenge for someone whose both hands carry the Earth signature is the moment when reliability becomes invisible, including to yourself. You carry what you carry with such consistency that it stops registering as a choice. The question this reading places before you is not whether you are capable of more. It's whether the structures you have built around yourself are still genuinely serving you, or have simply become familiar.",
+      air:"The consistent challenge for someone whose both hands carry the Air signature is the gap between the fluency of your communication and the depth of your actual felt experience. You can articulate things you have not yet fully metabolised. That's both a gift and a subtle form of distance from your own life. The question this reading places before you is whether the ideas you live in are as well-populated with genuine feeling as they are with genuine thought.",
+      water:"The consistent challenge for someone whose both hands carry the Water signature is the question of ground: where you end and the world begins. The depth you carry is real. It is yours. But it requires a container that the Water nature does not always naturally provide for itself. The question this reading places before you is not whether you feel too much. It's whether you have built the conditions that allow what you feel to become something, rather than simply something you carry.",
+      fire:"The consistent challenge for someone whose both hands carry the Fire signature is the list of things begun and not finished. Not as a character flaw. As a pattern worth examining honestly. The question this reading places before you is not whether you can initiate. It's whether the things you have most powerfully initiated have received the same quality of sustained attention you brought to their beginning."
+    };
+    var invMap={
+      earth:"What this reading is pointing toward: the next phase of your life is less about building more, and more about allowing what you have already built to be seen, used, and inhabited by others rather than simply maintained by you alone.",
+      air:"What this reading is pointing toward: the conversation or the work that requires you to go deeper into one thing rather than wider across many. Your range is real. What it is asking to produce next is something with genuine weight.",
+      water:"What this reading is pointing toward: the relationship, the creative work, or the internal practice that gives your depth a form. What you carry needs somewhere to land.",
+      fire:"What this reading is pointing toward: the one thing you will still be doing in five years. Not the most exciting thing available right now. The thing with the deepest roots."
+    };
+    synthesisTension=tensionMap[domType]||"";
+    synthesisInvitation=invMap[domType]||"";
+  } else {
+    var mismatchTensions={
+      "earth-air":"The central tension this pairing produces is between what you know intellectually and what you need physically and materially. The Air dominant hand generates ideas, connections, and conversations at a pace that the Earth passive foundation cannot always sustain. The specific friction this produces is a quality of mental aliveness alongside a body and material life that sometimes feel like they belong to a different person.",
+      "earth-water":"The central tension this pairing produces is between what you hold on the inside and what is visible on the outside. The Water dominant hand feels an enormous amount. The Earth passive foundation has given it a composed, reliable exterior. The gap between inner experience and outward presentation can become, over time, a form of loneliness that is difficult to name because the outer life looks so stable.",
+      "earth-fire":"The central tension this pairing produces is the one between your speed and your knowing. Your Fire dominant hand moves fast. Your Earth passive foundation knows, quietly, whether what you are moving toward has real ground underneath it. The specific challenge is learning to pause long enough to hear the Earth hand's assessment before the Fire hand has already committed.",
+      "air-earth":"The central tension this pairing produces is between how much you understand and how little of it you typically show. The Earth dominant hand presents you as practical and grounded. The Air passive foundation is running a considerably more sophisticated analysis beneath that surface than most people around you realise. The cost of the gap is being consistently underestimated.",
+      "air-water":"The central tension this pairing produces is between what you can say and what you actually feel. You have developed a dominant language for the world, but the Water passive foundation sends you information through channels that do not always translate easily into that language. The specific friction is knowing things you cannot quite articulate and articulating things you have not quite finished feeling.",
+      "air-fire":"The central tension this pairing produces is between the range of what you can see and the speed at which the Fire dominant hand wants to move toward it. Your Air passive foundation can hold multiple possibilities simultaneously. Your dominant hand wants to commit to one and drive. The gap between those two speeds is where most of your internal friction lives.",
+      "water-earth":"The central tension this pairing produces is between the depth you carry internally and the practical, reliable face you present to the world. The Earth dominant hand has built something real and functional. The Water passive foundation underneath it feels everything the Earth hand is being asked to manage, and it feels it at a depth the outer presentation does not reveal. The cost of this gap tends to show up in the body before it shows up anywhere else.",
+      "water-air":"The central tension this pairing produces is between what you feel and what you can say about it. The Water passive foundation sends you information through feeling and intuition. The Air dominant hand has learned to translate that information into language and ideas. The friction is that the translation is never quite complete. The language is always slightly less than the feeling, and you know it.",
+      "water-fire":"The central tension this pairing produces is the gap between the cost of your output and what others perceive that cost to be. From the outside, your Fire dominant energy looks self-sustaining. The Water passive foundation underneath it absorbs the full emotional weight of everything that energy generates, and that absorption is invisible to almost everyone, including, sometimes, yourself.",
+      "fire-earth":"The central tension this pairing produces is between the pace at which you want to move and the pace at which the things you are building actually need to move. The Fire passive foundation still has its urgency, its appetite for momentum and beginnings. The Earth dominant hand has learned that the lasting things require a different pace. The friction is real. It is productive. What it is asking for is the willingness to let both be true simultaneously.",
+      "fire-air":"The central tension this pairing produces is between the passion driving your thinking and the expectation that intellectual engagement should be cooler and more detached than yours actually is. You bring a quality of genuine investment to ideas that pure Air hands do not always understand. The mismatch between that investment and environments that treat thinking as merely academic is one of the consistent sources of friction in your intellectual life.",
+      "fire-water":"The central tension this pairing produces is the one between the courage your Fire foundation gave you and the depth your Water dominant nature is drawing you toward. The Fire hand is not afraid to go in. The Water hand knows how far down it goes. Together they produce someone capable of genuine depth work without the paralysis that pure Water hands sometimes experience, and genuine courage without the shallowness that pure Fire hands sometimes produce."
+    };
+    var mismatchInvitations={
+      "earth-air":"What this reading is pointing toward: finding the specific form of intellectual or communicative work that also builds something tangible. The gap between your thinking and your making is where the most significant work is available.",
+      "earth-water":"What this reading is pointing toward: the relationship or practice that does not require you to manage the gap between inner and outer, where you can simply be as complex as you actually are without it needing translation.",
+      "earth-fire":"What this reading is pointing toward: the project or the direction where your Fire energy and your Earth judgment are pointing at the same thing at the same time. When they agree, you are nearly unstoppable.",
+      "air-earth":"What this reading is pointing toward: allowing the full extent of your intellectual range to become visible in at least one domain of your life, rather than operating below the level of what you actually understand.",
+      "air-water":"What this reading is pointing toward: the creative or relational work that does not require the translation to be complete before you begin. The space where feeling and language can develop alongside each other rather than sequentially.",
+      "air-fire":"What this reading is pointing toward: the commitment that your Air foundation has already evaluated and found genuinely sound. Not the most exciting possibility. The one your deeper intelligence has already endorsed.",
+      "water-earth":"What this reading is pointing toward: creating genuine space for the inner life to surface, not as a performance of depth but as a regular, unhurried, private practice of returning to what you actually feel beneath what you are managing.",
+      "water-air":"What this reading is pointing toward: trusting the incomplete articulation. What you sense before you can say it is often more accurate than what you can say fully. The work is learning to act on the feeling before the language has caught up.",
+      "water-fire":"What this reading is pointing toward: building the recovery infrastructure that matches the scale of your output. The inner life that sustains your Fire expression needs conditions to replenish that are as deliberate as the expression itself.",
+      "fire-earth":"What this reading is pointing toward: identifying the one thing you are currently building that the Earth hand confirms is genuinely worth the sustained effort. Everything else is optional.",
+      "fire-air":"What this reading is pointing toward: the intellectual or creative work that is allowed to carry your full investment without needing to appear detached. The work where the passion is the point.",
+      "fire-water":"What this reading is pointing toward: the domain where your courage and your depth are working together rather than in sequence. Not courage first and depth later. Both at once."
+    };
+    synthesisTension=mismatchTensions[pairingKey]||"The central tension in this pairing is the lived experience of carrying two distinct natures, one that was written into you at birth and one that experience has built. The friction between them is not a problem to solve. It is the engine of most of what you have produced.";
+    synthesisInvitation=mismatchInvitations[pairingKey]||"What this reading is pointing toward: the specific territory where both hands can contribute what the other cannot, and where the gap between them becomes generative rather than draining.";
+  }
+  currentSynthesisTension=synthesisTension;
+
   var html='';
   if(domConf.isBorderline||pasConf.isBorderline){
     var whichPalm=domConf.isBorderline&&pasConf.isBorderline?'both palms measured':(domConf.isBorderline?'your dominant palm measured':'your passive palm measured');
@@ -1111,9 +1261,12 @@ function buildReading(){
     html+='<div class="reading-label" style="color:var(--gold)">A Note On This Reading</div>';
     html+='<p class="reading-para" style="font-size:14px">'+cap(whichPalm)+' close to the boundary between two hand types. The reading below reflects the strongest signal, but a flatter, fully open photo with fingers together, filling the frame, would sharpen this specific measurement if you retake it.</p></div>';
   }
-  var sameType=domType===pasType;
-  var pairingKey=pasType+'-'+domType;
-  var pairingText=!sameType?(PAIRING_DEPTH[pairingKey]||('your passive '+pasHand+' palm carries the '+pasData.n+' blueprint you were born with, while your dominant '+domHand+' palm has developed a '+domData.n+' nature through the life you have actively lived. Neither is more authentic than the other. Both are you.')):null;
+
+  html+='<div class="reading-block" style="border:1px solid rgba(106,170,100,.28);border-radius:var(--r-lg);padding:28px 30px;background:rgba(106,170,100,.06)">';
+  html+='<div class="reading-label" style="color:var(--gold)">What This Reading Is Saying, Taken As A Whole</div>';
+  html+='<p class="reading-para" style="font-size:16px">'+synthesisTension+'</p>';
+  html+='<p class="reading-para" style="font-size:15px;color:rgba(200,168,74,.85);font-style:italic">'+synthesisInvitation+'</p>';
+  html+='</div>';
 
   // SECTION 1 : Who both palms reveal you to be
   html+='<div class="reading-block"><div class="reading-label">Who Both Palms Say You Are</div>';
@@ -1146,7 +1299,7 @@ function buildReading(){
   html+='<div class="reading-block"><div class="reading-label">Relationships</div>';
   html+='<p class="reading-para">'+domData.rel;
   if(!sameType){
-    html+=' The '+pasData.n+' nature in your passive hand means that beneath the relational pattern your dominant hand has developed, there is a different and older set of needs: '+pasData.rel.toLowerCase()+' The tension between what you show in relationships and what you actually need from them is specific to this combination, and naming it tends to matter.';
+    html+=' The '+pasData.n+' nature in your passive hand means that beneath the relational pattern your dominant hand has developed, there is a different and older set of needs: '+pasData.rel.toLowerCase()+' The tension between what you show in relationships and what you actually need from them is specific to this combination. Naming it tends to matter.';
   }
   html+='</p></div>';
 
@@ -1154,66 +1307,9 @@ function buildReading(){
   html+='<div class="reading-block"><div class="reading-label">The Central Challenge</div>';
   html+='<p class="reading-para">'+domData.wound;
   if(!sameType){
-    html+=' For someone carrying the '+pasData.n+' foundation beneath a '+domData.n+' expression, this challenge tends to run deeper than it does for either type alone: the dominant hand\'s work is being done from a starting point that the dominant type does not usually begin from, and the friction this produces is real and specific and worth understanding on its own terms.';
+    html+=' For someone carrying the '+pasData.n+' foundation beneath a '+domData.n+' expression, this challenge tends to run deeper than it does for either type alone. The dominant hand\'s work is being done from a starting point that the dominant type does not usually begin from. The friction this produces is real, specific, and worth understanding on its own terms.';
   }
   html+='</p></div>';
-
-  // SECTION 6 : SYNTHESIS: what it all means, the central tension, the forward invitation
-  // Build synthesis based on same-type vs pairing
-  var synthesisTension, synthesisInvitation;
-  if(sameType){
-    var tensionMap={
-      earth:"The consistent challenge for someone whose both hands carry the Earth signature is the moment when reliability becomes invisible, including to yourself. You carry what you carry with such consistency that it stops registering as a choice. The question this reading places before you is not whether you are capable of more but whether the structures you have built around yourself are still genuinely serving you or have simply become familiar.",
-      air:"The consistent challenge for someone whose both hands carry the Air signature is the gap between the fluency of your communication and the depth of your actual felt experience. You can articulate things you have not yet fully metabolised, which is both a gift and a subtle form of distance from your own life. The question this reading places before you is whether the ideas you live in are as well-populated with genuine feeling as they are with genuine thought.",
-      water:"The consistent challenge for someone whose both hands carry the Water signature is the question of ground: where you end and the world begins. The depth you carry is real and it is yours, but it requires a container that the Water nature does not always naturally provide for itself. The question this reading places before you is not whether you feel too much but whether you have built the conditions that allow what you feel to become something rather than simply something you carry.",
-      fire:"The consistent challenge for someone whose both hands carry the Fire signature is the list of things begun and not finished: not as a character flaw but as a pattern worth examining honestly. The question this reading places before you is not whether you can initiate but whether the things you have most powerfully initiated have received the same quality of sustained attention you brought to their beginning."
-    };
-    var invMap={
-      earth:"What this reading is pointing toward: the next phase of your life is less about building more and more about allowing what you have already built to be seen, used, and inhabited by others rather than simply maintained by you alone.",
-      air:"What this reading is pointing toward: the conversation or the work that requires you to go deeper into one thing rather than wider across many. Your range is real. What it is asking to produce next is something with genuine weight.",
-      water:"What this reading is pointing toward: the relationship, the creative work, or the internal practice that gives your depth a form. What you carry needs somewhere to land.",
-      fire:"What this reading is pointing toward: the one thing you will still be doing in five years. Not the most exciting thing available right now. The thing with the deepest roots."
-    };
-    synthesisTension=tensionMap[domType]||"";
-    synthesisInvitation=invMap[domType]||"";
-  } else {
-    var mismatchTensions={
-      "earth-air":"The central tension this pairing produces is between what you know intellectually and what you need physically and materially. The Air dominant hand generates ideas, connections, and conversations at a pace that the Earth passive foundation cannot always sustain. The specific friction this produces is a quality of mental aliveness alongside a body and material life that sometimes feel like they belong to a different person.",
-      "earth-water":"The central tension this pairing produces is between what you hold on the inside and what is visible on the outside. The Water dominant hand feels an enormous amount. The Earth passive foundation has given it a composed, reliable exterior. The gap between inner experience and outward presentation can become, over time, a form of loneliness that is difficult to name because the outer life looks so stable.",
-      "earth-fire":"The central tension this pairing produces is the one between your speed and your knowing. Your Fire dominant hand moves fast. Your Earth passive foundation knows, quietly, whether what you are moving toward has real ground underneath it. The specific challenge is learning to pause long enough to hear the Earth hand's assessment before the Fire hand has already committed.",
-      "air-earth":"The central tension this pairing produces is between how much you understand and how little of it you typically show. The Earth dominant hand presents you as practical and grounded. The Air passive foundation is running a considerably more sophisticated analysis beneath that surface than most people around you realise. The cost of the gap is being consistently underestimated.",
-      "air-water":"The central tension this pairing produces is between what you can say and what you actually feel. You have developed a dominant language for the world, but the Water passive foundation sends you information through channels that do not always translate easily into that language. The specific friction is knowing things you cannot quite articulate and articulating things you have not quite finished feeling.",
-      "air-fire":"The central tension this pairing produces is between the range of what you can see and the speed at which the Fire dominant hand wants to move toward it. Your Air passive foundation can hold multiple possibilities simultaneously. Your dominant hand wants to commit to one and drive. The gap between those two speeds is where most of your internal friction lives.",
-      "water-earth":"The central tension this pairing produces is between the depth you carry internally and the practical, reliable face you present to the world. The Earth dominant hand has built something real and functional. The Water passive foundation underneath it feels everything the Earth hand is being asked to manage, and it feels it at a depth the outer presentation does not reveal. The cost of this gap tends to show up in the body before it shows up anywhere else.",
-      "water-air":"The central tension this pairing produces is between what you feel and what you can say about it. The Water passive foundation sends you information through feeling and intuition. The Air dominant hand has learned to translate that information into language and ideas. The friction is that the translation is never quite complete: the language is always slightly less than the feeling, and you know it.",
-      "water-fire":"The central tension this pairing produces is the gap between the cost of your output and what others perceive that cost to be. From the outside, your Fire dominant energy looks self-sustaining. The Water passive foundation underneath it absorbs the full emotional weight of everything that energy generates, and that absorption is invisible to almost everyone, including, sometimes, yourself.",
-      "fire-earth":"The central tension this pairing produces is between the pace at which you want to move and the pace at which the things you are building actually need to move. The Fire passive foundation still has its urgency, its appetite for momentum and beginnings. The Earth dominant hand has learned that the lasting things require a different pace. The friction is real and it is productive: what it is asking for is the willingness to let both be true simultaneously.",
-      "fire-air":"The central tension this pairing produces is between the passion driving your thinking and the expectation that intellectual engagement should be cooler and more detached than yours actually is. You bring a quality of genuine investment to ideas that pure Air hands do not always understand, and the mismatch between that investment and environments that treat thinking as merely academic is one of the consistent sources of friction in your intellectual life.",
-      "fire-water":"The central tension this pairing produces is the one between the courage your Fire foundation gave you and the depth your Water dominant nature is drawing you toward. The Fire hand is not afraid to go in. The Water hand knows how far down it goes. Together they produce someone capable of genuine depth work without the paralysis that pure Water hands sometimes experience, and genuine courage without the shallowness that pure Fire hands sometimes produce."
-    };
-    var mismatchInvitations={
-      "earth-air":"What this reading is pointing toward: finding the specific form of intellectual or communicative work that also builds something tangible. The gap between your thinking and your making is where the most significant work is available.",
-      "earth-water":"What this reading is pointing toward: the relationship or practice that does not require you to manage the gap between inner and outer, where you can simply be as complex as you actually are without it needing translation.",
-      "earth-fire":"What this reading is pointing toward: the project or the direction where your Fire energy and your Earth judgment are pointing at the same thing at the same time. When they agree, you are nearly unstoppable.",
-      "air-earth":"What this reading is pointing toward: allowing the full extent of your intellectual range to become visible in at least one domain of your life, rather than operating below the level of what you actually understand.",
-      "air-water":"What this reading is pointing toward: the creative or relational work that does not require the translation to be complete before you begin. The space where feeling and language can develop alongside each other rather than sequentially.",
-      "air-fire":"What this reading is pointing toward: the commitment that your Air foundation has already evaluated and found genuinely sound. Not the most exciting possibility, but the one your deeper intelligence has already endorsed.",
-      "water-earth":"What this reading is pointing toward: creating genuine space for the inner life to surface, not as a performance of depth but as a regular, unhurried, private practice of returning to what you actually feel beneath what you are managing.",
-      "water-air":"What this reading is pointing toward: trusting the incomplete articulation. What you sense before you can say it is often more accurate than what you can say fully. The work is learning to act on the feeling before the language has caught up.",
-      "water-fire":"What this reading is pointing toward: building the recovery infrastructure that matches the scale of your output. The inner life that sustains your Fire expression needs conditions to replenish that are as deliberate as the expression itself.",
-      "fire-earth":"What this reading is pointing toward: identifying the one thing you are currently building that the Earth hand confirms is genuinely worth the sustained effort. Everything else is optional.",
-      "fire-air":"What this reading is pointing toward: the intellectual or creative work that is allowed to carry your full investment without needing to appear detached. The work where the passion is the point.",
-      "fire-water":"What this reading is pointing toward: the domain where your courage and your depth are working together rather than in sequence. Not courage first and depth later. Both at once."
-    };
-    synthesisTension=mismatchTensions[pairingKey]||"The central tension in this pairing is the lived experience of carrying two distinct natures: one that was written into you at birth and one that experience has built. The friction between them is not a problem to solve. It is the engine of most of what you have produced.";
-    synthesisInvitation=mismatchInvitations[pairingKey]||"What this reading is pointing toward: the specific territory where both hands can contribute what the other cannot, and where the gap between them becomes generative rather than draining.";
-  }
-
-  html+='<div class="reading-block" style="border:1px solid rgba(106,170,100,.28);border-radius:var(--r-lg);padding:28px 30px;background:rgba(17,26,14,.5)">';
-  html+='<div class="reading-label" style="color:var(--gold)">What This Reading Is Saying, Taken As A Whole</div>';
-  html+='<p class="reading-para" style="font-size:16px">'+synthesisTension+'</p>';
-  html+='<p class="reading-para" style="font-size:15px;color:rgba(200,168,74,.85);font-style:italic">'+synthesisInvitation+'</p>';
-  html+='</div>';
 
     document.getElementById('reading-content').innerHTML=html;
 
@@ -1282,16 +1378,127 @@ function toggleSpeech(){
   isSpeaking=true;btn.classList.add('is-active');lbl.textContent='Pause';
 }
 
-// ── SHARE ──────────────────────────────────────────────────
-function toggleShare(e){e.stopPropagation();document.getElementById('share-dd').classList.toggle('show');}
-document.addEventListener('click',function(){var d=document.getElementById('share-dd');if(d)d.classList.remove('show');});
+// ── SHARE CARD, real, generated image, per hand pairing ──────────
 function showToast(msg){var t=document.getElementById('toast-msg');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2400);}
-function shareVia(m){
-  document.getElementById('share-dd').classList.remove('show');
+var currentShareBlob=null,currentShareCaption='';
+
+function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){
+  var words=text.split(' '),line='',lines=[];
+  for(var n=0;n<words.length;n++){
+    var testLine=line+words[n]+' ';
+    if(ctx.measureText(testLine).width>maxWidth&&n>0){lines.push(line.trim());line=words[n]+' ';}
+    else{line=testLine;}
+  }
+  lines.push(line.trim());
+  var startY=y-((lines.length-1)*lineHeight)/2;
+  for(var i=0;i<lines.length;i++){ctx.fillText(lines[i],x,startY+i*lineHeight);}
+}
+
+function roundRectPath(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
+}
+
+function generateShareCardImage(domData,pasData,sameType,line){
+  return new Promise(function(resolve){
+    var W=800,H=800,canvas=document.createElement('canvas');
+    canvas.width=W;canvas.height=H;
+    var ctx=canvas.getContext('2d');
+    var bgGrad=ctx.createLinearGradient(0,0,W,H);
+    bgGrad.addColorStop(0,domData.gf);bgGrad.addColorStop(1,domData.gt);
+    ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
+    var cx=W/2,cy=H*0.33;
+    var glow=ctx.createRadialGradient(cx,cy,20,cx,cy,260);
+    glow.addColorStop(0,domData.c+'55');glow.addColorStop(0.45,domData.c+'22');glow.addColorStop(1,domData.c+'00');
+    ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
+    var r=110;
+    ctx.beginPath();ctx.arc(cx,cy,r+10,0,Math.PI*2);ctx.strokeStyle='rgba(255,255,255,0.18)';ctx.lineWidth=3;ctx.stroke();
+    ctx.beginPath();ctx.arc(cx,cy,r+10,-Math.PI/2,-Math.PI/2+Math.PI*2*0.32);ctx.strokeStyle=domData.cl;ctx.lineWidth=6;ctx.lineCap='round';ctx.stroke();
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.font='400 56px Georgia, serif';
+    ctx.fillStyle=domData.cl;
+    ctx.fillText(domData.n,cx,cy);
+    ctx.font='600 18px system-ui, sans-serif';
+    ctx.fillStyle='#e8e0d0';
+    var spacedTitle=domData.t.toUpperCase().split('').join('\u200a\u200a');
+    ctx.fillText(spacedTitle,cx,cy+r+45);
+    if(!sameType){
+      ctx.font='italic 400 19px Georgia, serif';
+      ctx.fillStyle='rgba(240,236,224,0.7)';
+      ctx.fillText('Passive hand carries '+pasData.n,cx,cy+r+85);
+    }
+    ctx.font='italic 400 27px Georgia, serif';
+    ctx.fillStyle='#f0ece0';
+    wrapCanvasText(ctx,line,cx,cy+r+(sameType?150:175),600,40);
+    var badgeY=H-85;
+    ctx.font='600 17px system-ui, sans-serif';
+    var badgeText='KAYAL SOULPATH';
+    var badgeW=ctx.measureText(badgeText).width+64;
+    roundRectPath(ctx,cx-badgeW/2,badgeY-24,badgeW,48,24);
+    ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.25)';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle='#f0ece0';ctx.fillText(badgeText,cx,badgeY+6);
+    canvas.toBlob(function(blob){resolve(blob);},'image/png');
+  });
+}
+
+async function openShareCardModal(){
+  if(!currentDomType||!currentSynthesisTension)return;
+  var domData=HT[currentDomType],pasData=HT[currentPasType];
+  var sameType=currentDomType===currentPasType;
+  var line=currentSynthesisTension.split('. ')[0]+'.';
+  currentShareCaption='My hand map: '+domData.n+(sameType?'':' (dominant), '+pasData.n+' (passive)')+'. Discover yours free at kayalsoulpath.com';
+  document.getElementById('scm-caption').value=currentShareCaption;
+  var blob=await generateShareCardImage(domData,pasData,sameType,line);
+  currentShareBlob=blob;
+  document.getElementById('scm-preview').src=URL.createObjectURL(blob);
+  var nativeShareAvailable=false;
+  try{nativeShareAvailable=!!(navigator.canShare&&navigator.canShare({files:[new File([blob],'handmap.png',{type:'image/png'})]}));}catch(e){}
+  document.getElementById('scm-native-share').style.display=nativeShareAvailable?'block':'none';
+  document.getElementById('scm-platform-grid').style.display=nativeShareAvailable?'none':'grid';
+  document.getElementById('scm-backdrop').classList.add('show');
+}
+
+function closeShareCardModal(){document.getElementById('scm-backdrop').classList.remove('show');}
+
+async function nativeShareCard(){
+  if(!currentShareBlob)return;
+  try{
+    var file=new File([currentShareBlob],'my-hand-map.png',{type:'image/png'});
+    await navigator.share({files:[file],title:'My Hand Map Reading',text:currentShareCaption});
+  }catch(e){}
+}
+
+function downloadShareCard(){
+  if(!currentShareBlob)return;
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(currentShareBlob);
+  a.download='my-hand-map.png';
+  a.click();
+}
+
+function copyShareCaption(){
   var url='https://kayalsoulpath.com/pages/tool-hand-map.html';
-  var text=window._shareText||'Discover your hand map at KAYAL SoulPath Institute.';
-  if(m==='copy'){navigator.clipboard&&navigator.clipboard.writeText(text+'\n'+url);showToast('Copied.');return;}
-  var enc=encodeURIComponent,urls={twitter:'https://twitter.com/intent/tweet?text='+enc(text)+'&url='+enc(url),whatsapp:'https://wa.me/?text='+enc(text+' '+url)};
+  navigator.clipboard&&navigator.clipboard.writeText(currentShareCaption+'\n\n'+url);
+  showToast('Caption copied.');
+}
+
+var NO_WEB_INTENT_PLATFORMS={instagram:1,tiktok:1,snapchat:1};
+
+function shareToPlatform(m){
+  var url='https://kayalsoulpath.com/pages/tool-hand-map.html';
+  var text=currentShareCaption;
+  if(NO_WEB_INTENT_PLATFORMS[m]){
+    downloadShareCard();
+    showToast('Image saved. Upload it to '+m.charAt(0).toUpperCase()+m.slice(1)+'.');
+    return;
+  }
+  var enc=encodeURIComponent,urls={
+    x:'https://twitter.com/intent/tweet?text='+enc(text)+'&url='+enc(url),
+    whatsapp:'https://wa.me/?text='+enc(text+' '+url),
+    facebook:'https://www.facebook.com/sharer/sharer.php?u='+enc(url)+'&quote='+enc(text),
+    telegram:'https://t.me/share/url?url='+enc(url)+'&text='+enc(text),
+    pinterest:'https://pinterest.com/pin/create/button/?url='+enc(url)+'&description='+enc(text)
+  };
   if(urls[m])window.open(urls[m],'_blank','noopener');
 }
 </script>

@@ -60,7 +60,7 @@ a{color:inherit;text-decoration:none}
 
 /* MAIN */
 .main{max-width:860px;margin:0 auto;padding:80px 24px}
-.s-label{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--sky);margin-bottom:10px}
+.s-label{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--sky);margin-bottom:10px}
 .s-title{font-family:var(--ff-d);font-size:clamp(22px,3vw,32px);font-weight:300;color:var(--mist);line-height:1.2;margin-bottom:10px}
 .s-title em{font-style:italic;color:var(--gold)}
 .s-sub{font-family:var(--ff-h);font-size:14px;font-style:italic;color:rgba(224,238,244,.6);line-height:1.75;max-width:560px;margin-bottom:32px}
@@ -94,7 +94,7 @@ input[type=date].form-input{color-scheme:dark}
 .pattern-tag{padding:4px 13px;border-radius:20px;font-size:11.5px;background:rgba(45,107,138,.18);border:1px solid rgba(74,148,184,.32);color:var(--sky)}
 
 .reading-block{margin-bottom:26px}
-.r-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.r-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .r-label::after{content:'';flex:1;height:1px;background:rgba(74,148,184,.22)}
 .r-para{font-family:var(--ff-h);font-size:15.5px;font-style:italic;color:rgba(224,238,244,.90);line-height:1.95;margin-bottom:14px;text-align:justify}
 .r-para:last-child{margin-bottom:0}
@@ -104,16 +104,44 @@ input[type=date].form-input{color-scheme:dark}
 .r-tension{font-family:var(--ff-h);font-size:16px;font-style:italic;color:rgba(224,238,244,.90);line-height:1.9;margin-bottom:14px;text-align:justify}
 .r-invite{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(212,176,80,.9);line-height:1.85;text-align:justify}
 
+/* Real, new white reading card, wraps just the actual reading text,
+   the pattern header and action bar both stay dark and branded,
+   matching the same, proven approach used on all five previous
+   tools. */
+.reading-light-wrap{background:#fff;border-radius:var(--r-lg);padding:36px 32px;margin-bottom:28px;box-shadow:0 4px 32px rgba(7,13,18,.25)}
+.reading-light-wrap .r-label{color:#2d6b8a}
+.reading-light-wrap .r-para{color:#1e2a30}
+.reading-light-wrap .r-syn{background:rgba(74,148,184,.06);border-color:rgba(74,148,184,.22)}
+.reading-light-wrap .r-tension{color:#1e2a30}
+.reading-light-wrap .r-invite{color:#8a6a1a}
+@media(max-width:480px){.reading-light-wrap{padding:28px 20px}}
+
 /* Action bar */
 .action-bar{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;padding:16px 20px;background:rgba(22,40,58,.35);border:1px solid rgba(74,148,184,.18);border-radius:var(--r)}
 .act-btn{padding:9px 16px;border-radius:var(--r);font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;background:transparent;color:rgba(224,238,244,.7);border:1px solid rgba(74,148,184,.25)}
 .act-btn:hover{border-color:var(--sky);color:var(--sky)}
 .act-btn.is-active{background:rgba(45,107,138,.25);color:var(--sky);border-color:var(--sky)}
 .share-wrap{position:relative}
-.share-dd{position:absolute;top:calc(100% + 8px);left:0;background:var(--slate);border:1px solid rgba(74,148,184,.25);border-radius:var(--r);padding:6px;display:none;flex-direction:column;gap:2px;min-width:150px;z-index:10}
-.share-dd.show{display:flex}
-.share-opt{padding:8px 12px;font-size:12.5px;color:rgba(224,238,244,.75);border-radius:4px;cursor:pointer;display:flex;align-items:center;gap:8px}
-.share-opt:hover{background:rgba(74,148,184,.15);color:var(--mist)}
+
+/* Real, new share-card modal, an actual, generated image, not a
+   mockup, matching this tool's own sky and gold identity. */
+.scm-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:500;padding:20px}
+.scm-backdrop.show{display:flex}
+.scm-modal{background:var(--deep);border:1px solid rgba(74,148,184,.28);border-radius:var(--r-lg);padding:24px;max-width:420px;width:100%;max-height:88vh;overflow-y:auto}
+.scm-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.scm-preview-wrap{border-radius:var(--r);overflow:hidden;background:var(--ink);margin-bottom:16px}
+.scm-preview{width:100%;display:block}
+.scm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.scm-plat{display:flex;flex-direction:column;align-items:center;gap:6px;padding:11px 4px;background:rgba(255,255,255,.03);border:1px solid rgba(74,148,184,.2);border-radius:8px;color:rgba(224,238,244,.75);cursor:pointer;transition:all .2s;font-family:var(--ff-b)}
+.scm-plat:hover{border-color:var(--sky);background:rgba(74,148,184,.08)}
+.scm-plat i{font-size:17px;color:var(--gold)}
+.scm-plat span{font-size:10px}
+.scm-caption-row{display:flex;gap:8px;margin-bottom:12px}
+.scm-caption-input{flex:1;padding:10px 13px;background:rgba(255,255,255,.04);border:1px solid rgba(74,148,184,.25);border-radius:8px;color:rgba(224,238,244,.75);font-size:12px;font-family:var(--ff-b)}
+.scm-copy-btn{padding:0 15px;background:rgba(74,148,184,.15);border:1px solid rgba(74,148,184,.4);border-radius:8px;color:var(--sky);cursor:pointer}
+.scm-native-btn{width:100%;padding:12px;background:var(--azure);color:var(--mist);border:none;border-radius:8px;font-family:var(--ff-b);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px}
+.scm-download{width:100%;padding:13px;background:linear-gradient(135deg,var(--azure),var(--sky));color:var(--mist);border:none;border-radius:8px;font-family:var(--ff-b);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.scm-close{text-align:center;font-size:12px;color:rgba(224,238,244,.4);cursor:pointer;margin-top:12px}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--slate);color:var(--mist);padding:10px 20px;border-radius:20px;font-size:12.5px;border:1px solid rgba(74,148,184,.3);opacity:0;pointer-events:none;transition:all .3s;z-index:300}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
@@ -201,16 +229,13 @@ input[type=date].form-input{color-scheme:dark}
     <div class="action-bar">
       <button class="act-btn" id="listen-btn" onclick="toggleSpeech()"><i class="fas fa-volume-up"></i> <span id="listen-lbl">Listen to Reading</span></button>
       <div class="share-wrap">
-        <button class="act-btn" onclick="toggleShare(event)"><i class="fas fa-share-nodes"></i> Share</button>
-        <div class="share-dd" id="share-dd">
-          <div class="share-opt" onclick="doShare('copy')"><i class="fas fa-link"></i> Copy link</div>
-          <div class="share-opt" onclick="doShare('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</div>
-          <div class="share-opt" onclick="doShare('twitter')"><i class="fab fa-x-twitter"></i> X</div>
-        </div>
+        <button class="act-btn" onclick="openShareCardModal()"><i class="fas fa-share-nodes"></i> Share</button>
       </div>
     </div>
 
-    <div id="reading-content"></div>
+    <div class="reading-light-wrap">
+      <div id="reading-content"></div>
+    </div>
 
     <div class="invite-card">
       <div class="li-eyebrow" id="li-eyebrow">If this reading has been useful</div>
@@ -225,9 +250,68 @@ input[type=date].form-input{color-scheme:dark}
   </section>
 </div>
 
+<section style="background:var(--deep);border-top:1px solid rgba(74,148,184,.15);padding:72px 24px">
+  <div class="main" style="padding:0">
+    <div class="s-label">Explore More</div>
+    <h2 class="s-title">More layers<br><em>await.</em></h2>
+    <p class="s-sub">Each free tool reveals a different dimension of your blueprint. Together they form a complete picture.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px">
+      <a href="tool-life-blueprint.html" style="padding:22px 20px;background:rgba(22,40,58,.4);border:1px solid rgba(74,148,184,.22);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--sky)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(74,148,184,.22)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">🔢</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--mist);margin-bottom:6px">Life Blueprint</div>
+        <div style="font-size:12px;color:rgba(224,238,244,.6);line-height:1.55">The specific current your birth date encodes, named in plain language.</div>
+      </a>
+      <a href="tool-compatibility.html" style="padding:22px 20px;background:rgba(22,40,58,.4);border:1px solid rgba(74,148,184,.22);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--sky)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(74,148,184,.22)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">💞</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--mist);margin-bottom:6px">Compatibility Blueprint</div>
+        <div style="font-size:12px;color:rgba(224,238,244,.6);line-height:1.55">The soul-level dynamic between any two people, revealed from birth dates.</div>
+      </a>
+      <a href="tool-hand-map.html" style="padding:22px 20px;background:rgba(22,40,58,.4);border:1px solid rgba(74,148,184,.22);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--sky)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(74,148,184,.22)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">🤚</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--mist);margin-bottom:6px">Hand Map Reader</div>
+        <div style="font-size:12px;color:rgba(224,238,244,.6);line-height:1.55">Upload both palms. The comparison between your two hands reveals what neither shows alone.</div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:28px"><a href="../tools.html" style="font-size:13px;color:var(--sky);font-family:var(--ff-h);font-style:italic">View all free tools</a></div>
+  </div>
+</section>
+
+<div class="scm-backdrop" id="scm-backdrop" onclick="if(event.target===this)closeShareCardModal()">
+  <div class="scm-modal">
+    <div class="scm-eyebrow">Your Environment Card</div>
+    <div class="scm-preview-wrap">
+      <img id="scm-preview" class="scm-preview" alt="Your real, generated Environment Pattern share card" />
+    </div>
+    <div id="scm-native-share" style="display:none">
+      <button class="scm-native-btn" onclick="nativeShareCard()"><i class="fas fa-share-nodes"></i> Share</button>
+    </div>
+    <div id="scm-platform-grid" class="scm-grid">
+      <button class="scm-plat" onclick="shareToPlatform('instagram')"><i class="fab fa-instagram"></i><span>Instagram</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('tiktok')"><i class="fab fa-tiktok"></i><span>TikTok</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('snapchat')"><i class="fab fa-snapchat"></i><span>Snapchat</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('x')"><i class="fab fa-x-twitter"></i><span>X</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('whatsapp')"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('facebook')"><i class="fab fa-facebook"></i><span>Facebook</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('pinterest')"><i class="fab fa-pinterest"></i><span>Pinterest</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('telegram')"><i class="fab fa-telegram"></i><span>Telegram</span></button>
+    </div>
+    <div class="scm-caption-row">
+      <input readonly id="scm-caption" class="scm-caption-input" aria-label="Shareable caption">
+      <button class="scm-copy-btn" onclick="copyShareCaption()" aria-label="Copy caption"><i class="fas fa-copy"></i></button>
+    </div>
+    <button class="scm-download" onclick="downloadShareCard()"><i class="fas fa-download"></i> Download Image</button>
+    <div class="scm-close" onclick="closeShareCardModal()">Close</div>
+  </div>
+</div>
+
 <div class="toast" id="toast-msg"></div>
 
 <script>
+// Real, new global state, needed for the share-card feature, this
+// file had no existing pattern for holding the current reading's
+// values across functions.
+var currentLp=null,currentName='';
+
 // ── CORE NUMEROLOGY (identical to the reduction logic used across the
 // rest of the free-tool set, reused verbatim rather than reimplemented,
 // so results stay consistent with Life Blueprint and every other tool
@@ -379,18 +463,19 @@ function calculate(){
     var lp=dtLP(dob);
     var data=PATTERNS[lp]||PATTERNS[1];
     var fn=name?name.split(" ")[0]:"";
+    currentLp=lp;currentName=fn;
 
     document.getElementById("p-eyebrow").textContent=(fn?fn+"'s":"Your")+" Environment Pattern";
     document.getElementById("p-phrase").innerHTML=data.phrase;
     document.getElementById("p-tags").innerHTML=data.tags.map(function(t){return"<span class='pattern-tag'>"+t+"</span>";}).join("");
 
     var html="";
-    html+="<div class='reading-block'><div class='r-label'>What Your Pattern Actually Needs</div>";
-    data.paras.forEach(function(p){html+="<p class='r-para'>"+p+"</p>";});
-    html+="</div>";
     html+="<div class='r-syn'><div class='r-label'>What This Reading Is Saying, Taken As A Whole</div>";
     html+="<p class='r-tension'>"+data.synthesis.tension+"</p>";
     html+="<p class='r-invite'>"+data.synthesis.invitation+"</p>";
+    html+="</div>";
+    html+="<div class='reading-block'><div class='r-label'>What Your Pattern Actually Needs</div>";
+    data.paras.forEach(function(p){html+="<p class='r-para'>"+p+"</p>";});
     html+="</div>";
     document.getElementById("reading-content").innerHTML=html;
 
@@ -461,18 +546,126 @@ function toggleSpeech(){
   isSpeaking=true;btn.classList.add("is-active");lbl.textContent="Pause";
 }
 
-// ── SHARE ──────────────────────────────────────────────────
-function toggleShare(e){e.stopPropagation();document.getElementById("share-dd").classList.toggle("show");}
-document.addEventListener("click",function(){var d=document.getElementById("share-dd");if(d)d.classList.remove("show");});
+// ── SHARE CARD, real, generated image, this tool's own palette ───
 function showToast(msg){var t=document.getElementById("toast-msg");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2400);}
-function doShare(m){
-  document.getElementById("share-dd").classList.remove("show");
-  var url="https://kayalsoulpath.com/pages/tool-environment-pattern.html";
-  var text=window._shareText||"Discover the kind of place you're actually built for at KAYAL SoulPath Institute.";
-  if(m==="copy"){navigator.clipboard&&navigator.clipboard.writeText(text+"\n"+url);showToast("Copied.");return;}
-  var enc=encodeURIComponent,urls={twitter:"https://twitter.com/intent/tweet?text="+enc(text)+"&url="+enc(url),whatsapp:"https://wa.me/?text="+enc(text+" "+url)};
-  if(urls[m])window.open(urls[m],"_blank","noopener");
+var currentShareBlob=null,currentShareCaption='';
+
+function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){
+  var words=text.split(' '),line='',lines=[];
+  for(var n=0;n<words.length;n++){
+    var testLine=line+words[n]+' ';
+    if(ctx.measureText(testLine).width>maxWidth&&n>0){lines.push(line.trim());line=words[n]+' ';}
+    else{line=testLine;}
+  }
+  lines.push(line.trim());
+  var startY=y-((lines.length-1)*lineHeight)/2;
+  for(var i=0;i<lines.length;i++){ctx.fillText(lines[i],x,startY+i*lineHeight);}
 }
+
+function roundRectPath(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
+}
+
+function generateShareCardImage(phraseText,line){
+  return new Promise(function(resolve){
+    var W=800,H=800,canvas=document.createElement('canvas');
+    canvas.width=W;canvas.height=H;
+    var ctx=canvas.getContext('2d');
+    var bgGrad=ctx.createLinearGradient(0,0,W,H);
+    bgGrad.addColorStop(0,'#16283a');bgGrad.addColorStop(1,'#070d12');
+    ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
+    var cx=W/2,cy=H*0.36;
+    var glow=ctx.createRadialGradient(cx,cy,20,cx,cy,280);
+    glow.addColorStop(0,'rgba(74,148,184,0.32)');glow.addColorStop(0.45,'rgba(74,148,184,0.14)');glow.addColorStop(1,'rgba(74,148,184,0)');
+    ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
+    var r=110;
+    ctx.beginPath();ctx.arc(cx,cy,r+10,0,Math.PI*2);ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=3;ctx.stroke();
+    var ringGrad=ctx.createLinearGradient(cx-r,cy-r,cx+r,cy+r);
+    ringGrad.addColorStop(0,'#4a94b8');ringGrad.addColorStop(1,'#d4b050');
+    ctx.beginPath();ctx.arc(cx,cy,r+10,-Math.PI/2,-Math.PI/2+Math.PI*2*0.3);ctx.strokeStyle=ringGrad;ctx.lineWidth=6;ctx.lineCap='round';ctx.stroke();
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.font='italic 400 40px Georgia, serif';
+    ctx.fillStyle='#e0eef4';
+    wrapCanvasText(ctx,phraseText,cx,cy,340,48);
+    ctx.font='600 20px system-ui, sans-serif';
+    ctx.fillStyle='#4a94b8';
+    ctx.fillText('ENVIRONMENT PATTERN',cx,cy+r+55);
+    ctx.font='italic 400 27px Georgia, serif';
+    ctx.fillStyle='#e0eef4';
+    wrapCanvasText(ctx,line,cx,cy+r+130,600,40);
+    var badgeY=H-85;
+    ctx.font='600 17px system-ui, sans-serif';
+    var badgeText='KAYAL SOULPATH';
+    var badgeW=ctx.measureText(badgeText).width+64;
+    roundRectPath(ctx,cx-badgeW/2,badgeY-24,badgeW,48,24);
+    ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.25)';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle='#e0eef4';ctx.fillText(badgeText,cx,badgeY+6);
+    canvas.toBlob(function(blob){resolve(blob);},'image/png');
+  });
+}
+
+async function openShareCardModal(){
+  if(!currentLp)return;
+  var data=PATTERNS[currentLp]||PATTERNS[1];
+  var plainPhrase=data.phrase.replace(/<[^>]*>/g,'');
+  var line=data.synthesis.tension.split('. ')[0]+'.';
+  currentShareCaption='My environment pattern: '+plainPhrase+'. Discover yours free at kayalsoulpath.com';
+  document.getElementById('scm-caption').value=currentShareCaption;
+  var blob=await generateShareCardImage(plainPhrase,line);
+  currentShareBlob=blob;
+  document.getElementById('scm-preview').src=URL.createObjectURL(blob);
+  var nativeShareAvailable=false;
+  try{nativeShareAvailable=!!(navigator.canShare&&navigator.canShare({files:[new File([blob],'environment.png',{type:'image/png'})]}));}catch(e){}
+  document.getElementById('scm-native-share').style.display=nativeShareAvailable?'block':'none';
+  document.getElementById('scm-platform-grid').style.display=nativeShareAvailable?'none':'grid';
+  document.getElementById('scm-backdrop').classList.add('show');
+}
+
+function closeShareCardModal(){document.getElementById('scm-backdrop').classList.remove('show');}
+
+async function nativeShareCard(){
+  if(!currentShareBlob)return;
+  try{
+    var file=new File([currentShareBlob],'my-environment-pattern.png',{type:'image/png'});
+    await navigator.share({files:[file],title:'My Environment Pattern',text:currentShareCaption});
+  }catch(e){}
+}
+
+function downloadShareCard(){
+  if(!currentShareBlob)return;
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(currentShareBlob);
+  a.download='my-environment-pattern.png';
+  a.click();
+}
+
+function copyShareCaption(){
+  var url='https://kayalsoulpath.com/pages/tool-environment-pattern.html';
+  navigator.clipboard&&navigator.clipboard.writeText(currentShareCaption+'\n\n'+url);
+  showToast('Caption copied.');
+}
+
+var NO_WEB_INTENT_PLATFORMS={instagram:1,tiktok:1,snapchat:1};
+
+function shareToPlatform(m){
+  var url='https://kayalsoulpath.com/pages/tool-environment-pattern.html';
+  var text=currentShareCaption;
+  if(NO_WEB_INTENT_PLATFORMS[m]){
+    downloadShareCard();
+    showToast('Image saved. Upload it to '+m.charAt(0).toUpperCase()+m.slice(1)+'.');
+    return;
+  }
+  var enc=encodeURIComponent,urls={
+    x:'https://twitter.com/intent/tweet?text='+enc(text)+'&url='+enc(url),
+    whatsapp:'https://wa.me/?text='+enc(text+' '+url),
+    facebook:'https://www.facebook.com/sharer/sharer.php?u='+enc(url)+'&quote='+enc(text),
+    telegram:'https://t.me/share/url?url='+enc(url)+'&text='+enc(text),
+    pinterest:'https://pinterest.com/pin/create/button/?url='+enc(url)+'&description='+enc(text)
+  };
+  if(urls[m])window.open(urls[m],'_blank','noopener');
+}
+
 
 document.getElementById("inp-dob").addEventListener("keydown",function(e){if(e.key==="Enter")calculate();});
 document.getElementById("inp-name").addEventListener("keydown",function(e){if(e.key==="Enter")calculate();});

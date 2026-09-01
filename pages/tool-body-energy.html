@@ -56,7 +56,7 @@ a{color:inherit;text-decoration:none}
 
 /* MAIN */
 .main{max-width:860px;margin:0 auto;padding:80px 24px}
-.s-label{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.s-label{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
 .s-title{font-family:var(--ff-d);font-size:clamp(22px,3vw,32px);font-weight:300;color:var(--cream);line-height:1.2;margin-bottom:10px}
 .s-title em{font-style:italic;color:var(--gold)}
 .s-sub{font-family:var(--ff-h);font-size:14px;font-style:italic;color:rgba(240,228,208,.6);line-height:1.75;max-width:560px;margin-bottom:32px}
@@ -90,7 +90,7 @@ input[type=date].form-input{color-scheme:dark}
 .pattern-tag{padding:4px 13px;border-radius:20px;font-size:11.5px;background:rgba(200,100,42,.16);border:1px solid rgba(200,100,42,.32);color:var(--gold)}
 
 .reading-block{margin-bottom:26px}
-.r-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.r-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .r-label::after{content:'';flex:1;height:1px;background:rgba(200,100,42,.24)}
 .r-para{font-family:var(--ff-h);font-size:15.5px;font-style:italic;color:rgba(240,228,208,.9);line-height:1.95;margin-bottom:14px;text-align:justify}
 .r-para:last-child{margin-bottom:0}
@@ -99,16 +99,45 @@ input[type=date].form-input{color-scheme:dark}
 .r-tension{font-family:var(--ff-h);font-size:16px;font-style:italic;color:rgba(240,228,208,.9);line-height:1.9;margin-bottom:14px;text-align:justify}
 .r-invite{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(212,148,58,.9);line-height:1.85;text-align:justify}
 
+/* Real, new white reading card, wraps just the actual reading text,
+   the dramatic pattern header and action bar both stay dark and
+   branded, matching the same, proven approach already used on the
+   other three tools. */
+.reading-light-wrap{background:#fff;border-radius:var(--r-lg);padding:36px 32px;margin-bottom:28px;box-shadow:0 4px 32px rgba(12,10,8,.25)}
+.reading-light-wrap .r-label{color:#a8621f}
+.reading-light-wrap .r-label::after{background:rgba(200,100,42,.2)}
+.reading-light-wrap .r-para{color:#3a2c20}
+.reading-light-wrap .r-syn{background:rgba(200,100,42,.06);border-color:rgba(200,100,42,.22)}
+.reading-light-wrap .r-tension{color:#3a2c20}
+.reading-light-wrap .r-invite{color:#a8621f}
+@media(max-width:480px){.reading-light-wrap{padding:28px 20px}}
+
 /* Action bar */
 .action-bar{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0;padding:16px 20px;background:rgba(42,24,16,.38);border:1px solid rgba(200,100,42,.2);border-radius:var(--r)}
 .act-btn{padding:9px 16px;border-radius:var(--r);font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;background:transparent;color:rgba(240,228,208,.7);border:1px solid rgba(200,100,42,.28)}
 .act-btn:hover{border-color:var(--amber);color:var(--amber)}
 .act-btn.is-active{background:rgba(200,100,42,.26);color:var(--amber);border-color:var(--amber)}
 .share-wrap{position:relative}
-.share-dd{position:absolute;top:calc(100% + 8px);left:0;background:var(--ember);border:1px solid rgba(200,100,42,.28);border-radius:var(--r);padding:6px;display:none;flex-direction:column;gap:2px;min-width:150px;z-index:10}
-.share-dd.show{display:flex}
-.share-opt{padding:8px 12px;font-size:12.5px;color:rgba(240,228,208,.75);border-radius:4px;cursor:pointer;display:flex;align-items:center;gap:8px}
-.share-opt:hover{background:rgba(200,100,42,.18);color:var(--cream)}
+
+/* Real, new share-card modal, an actual, generated image, not a
+   mockup, matching this tool's own ember, rust, and gold identity. */
+.scm-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:500;padding:20px}
+.scm-backdrop.show{display:flex}
+.scm-modal{background:var(--deep);border:1px solid rgba(200,100,42,.28);border-radius:var(--r-lg);padding:24px;max-width:420px;width:100%;max-height:88vh;overflow-y:auto}
+.scm-eyebrow{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.scm-preview-wrap{border-radius:var(--r);overflow:hidden;background:var(--ink);margin-bottom:16px}
+.scm-preview{width:100%;display:block}
+.scm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.scm-plat{display:flex;flex-direction:column;align-items:center;gap:6px;padding:11px 4px;background:rgba(255,255,255,.03);border:1px solid rgba(200,100,42,.2);border-radius:8px;color:rgba(240,228,208,.75);cursor:pointer;transition:all .2s;font-family:var(--ff-b)}
+.scm-plat:hover{border-color:var(--amber);background:rgba(200,100,42,.08)}
+.scm-plat i{font-size:17px;color:var(--gold)}
+.scm-plat span{font-size:10px}
+.scm-caption-row{display:flex;gap:8px;margin-bottom:12px}
+.scm-caption-input{flex:1;padding:10px 13px;background:rgba(255,255,255,.04);border:1px solid rgba(200,100,42,.25);border-radius:8px;color:rgba(240,228,208,.75);font-size:12px;font-family:var(--ff-b)}
+.scm-copy-btn{padding:0 15px;background:rgba(200,100,42,.15);border:1px solid rgba(200,100,42,.4);border-radius:8px;color:var(--amber);cursor:pointer}
+.scm-native-btn{width:100%;padding:12px;background:var(--amber);color:var(--linen);border:none;border-radius:8px;font-family:var(--ff-b);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px}
+.scm-download{width:100%;padding:13px;background:linear-gradient(135deg,var(--rust),var(--amber));color:var(--linen);border:none;border-radius:8px;font-family:var(--ff-b);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.scm-close{text-align:center;font-size:12px;color:rgba(240,228,208,.4);cursor:pointer;margin-top:12px}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ember);color:var(--cream);padding:10px 20px;border-radius:20px;font-size:12.5px;border:1px solid rgba(200,100,42,.32);opacity:0;pointer-events:none;transition:all .3s;z-index:300}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
@@ -202,16 +231,13 @@ input[type=date].form-input{color-scheme:dark}
     <div class="action-bar">
       <button class="act-btn" id="listen-btn" onclick="toggleSpeech()"><i class="fas fa-volume-up"></i> <span id="listen-lbl">Listen to Reading</span></button>
       <div class="share-wrap">
-        <button class="act-btn" onclick="toggleShare(event)"><i class="fas fa-share-nodes"></i> Share</button>
-        <div class="share-dd" id="share-dd">
-          <div class="share-opt" onclick="doShare('copy')"><i class="fas fa-link"></i> Copy link</div>
-          <div class="share-opt" onclick="doShare('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</div>
-          <div class="share-opt" onclick="doShare('twitter')"><i class="fab fa-x-twitter"></i> X</div>
-        </div>
+        <button class="act-btn" onclick="openShareCardModal()"><i class="fas fa-share-nodes"></i> Share</button>
       </div>
     </div>
 
-    <div id="reading-content"></div>
+    <div class="reading-light-wrap">
+      <div id="reading-content"></div>
+    </div>
 
     <div class="invite-card">
       <div class="li-eyebrow" id="li-eyebrow">If this reading has been useful</div>
@@ -227,11 +253,65 @@ input[type=date].form-input{color-scheme:dark}
   </section>
 </div>
 
+<section style="background:var(--deep);border-top:1px solid rgba(200,100,42,.15);padding:72px 24px">
+  <div class="main" style="padding:0">
+    <div class="s-label">Explore More</div>
+    <h2 class="s-title">More layers<br><em>await.</em></h2>
+    <p class="s-sub">Each free tool reveals a different dimension of your blueprint. Together they form a complete picture.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px">
+      <a href="tool-life-blueprint.html" style="padding:22px 20px;background:rgba(42,24,16,.35);border:1px solid rgba(200,100,42,.22);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--amber)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(200,100,42,.22)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">🔢</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--cream);margin-bottom:6px">Life Blueprint</div>
+        <div style="font-size:12px;color:rgba(240,228,208,.6);line-height:1.55">The specific current your birth date encodes, named in plain language.</div>
+      </a>
+      <a href="tool-face-reader.html" style="padding:22px 20px;background:rgba(42,24,16,.35);border:1px solid rgba(200,100,42,.22);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--amber)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(200,100,42,.22)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">👁</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--cream);margin-bottom:6px">Face Energy Reader</div>
+        <div style="font-size:12px;color:rgba(240,228,208,.6);line-height:1.55">Upload your photo to discover the elemental type encoded in your facial structure.</div>
+      </a>
+      <a href="tool-hand-map.html" style="padding:22px 20px;background:rgba(42,24,16,.35);border:1px solid rgba(200,100,42,.22);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--amber)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(200,100,42,.22)';this.style.transform='none'">
+        <div style="font-size:24px;margin-bottom:10px">🤚</div>
+        <div style="font-family:var(--ff-h);font-size:14px;color:var(--cream);margin-bottom:6px">Hand Map Reader</div>
+        <div style="font-size:12px;color:rgba(240,228,208,.6);line-height:1.55">Upload both palms. The comparison between your two hands reveals what neither shows alone.</div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:28px"><a href="../tools.html" style="font-size:13px;color:var(--amber);font-family:var(--ff-h);font-style:italic">View all free tools</a></div>
+  </div>
+</section>
+
 <div class="um-backdrop" id="um-backdrop" onclick="if(event.target===this)closeUpsellModal()">
   <div class="um-modal">
     <div class="um-title" id="um-title">Three readings fit what this pattern just showed.</div>
     <div id="um-options"></div>
     <div class="um-close" onclick="closeUpsellModal()">Close</div>
+  </div>
+</div>
+
+<div class="scm-backdrop" id="scm-backdrop" onclick="if(event.target===this)closeShareCardModal()">
+  <div class="scm-modal">
+    <div class="scm-eyebrow">Your Vitality Card</div>
+    <div class="scm-preview-wrap">
+      <img id="scm-preview" class="scm-preview" alt="Your real, generated Vitality Blueprint share card" />
+    </div>
+    <div id="scm-native-share" style="display:none">
+      <button class="scm-native-btn" onclick="nativeShareCard()"><i class="fas fa-share-nodes"></i> Share</button>
+    </div>
+    <div id="scm-platform-grid" class="scm-grid">
+      <button class="scm-plat" onclick="shareToPlatform('instagram')"><i class="fab fa-instagram"></i><span>Instagram</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('tiktok')"><i class="fab fa-tiktok"></i><span>TikTok</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('snapchat')"><i class="fab fa-snapchat"></i><span>Snapchat</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('x')"><i class="fab fa-x-twitter"></i><span>X</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('whatsapp')"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('facebook')"><i class="fab fa-facebook"></i><span>Facebook</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('pinterest')"><i class="fab fa-pinterest"></i><span>Pinterest</span></button>
+      <button class="scm-plat" onclick="shareToPlatform('telegram')"><i class="fab fa-telegram"></i><span>Telegram</span></button>
+    </div>
+    <div class="scm-caption-row">
+      <input readonly id="scm-caption" class="scm-caption-input" aria-label="Shareable caption">
+      <button class="scm-copy-btn" onclick="copyShareCaption()" aria-label="Copy caption"><i class="fas fa-copy"></i></button>
+    </div>
+    <button class="scm-download" onclick="downloadShareCard()"><i class="fas fa-download"></i> Download Image</button>
+    <div class="scm-close" onclick="closeShareCardModal()">Close</div>
   </div>
 </div>
 
@@ -250,18 +330,18 @@ var PATTERNS={
     phrase:'Energy that <em>burns fast</em>',
     tags:['High initial drive','Prone to burnout','Needs real physical outlets'],
     paras:[
-      "A One's energy moves in strong, immediate bursts. When you're driving toward something, the energy is genuinely abundant, this is not a pattern that runs low easily on its own. What actually depletes a One is pushing through the burst without ever letting it complete, starting the next thing before the current one has genuinely finished.",
-      "The real risk is not laziness, it's the opposite: treating rest as a interruption rather than part of the cycle. A One who never lets a burst fully land tends to accumulate a specific kind of fatigue that doesn't show up as tiredness so much as irritability and shortened patience.",
+      "A One's energy moves in strong, immediate bursts. When you're driving toward something, the energy is genuinely abundant. This is not a pattern that runs low easily on its own. What actually depletes a One is pushing through the burst without ever letting it complete, starting the next thing before the current one has genuinely finished.",
+      "The real risk is not laziness. It's the opposite: treating rest as a interruption rather than part of the cycle. A One who never lets a burst fully land tends to accumulate a specific kind of fatigue that doesn't show up as tiredness so much as irritability and shortened patience.",
       "What genuinely helps: real physical outlets for the drive itself, not passive rest. A One recovers faster through movement that matches the intensity of the drive than through simply stopping."
     ],
-    synthesis:{tension:"The tension is between the drive to start and the discipline to finish. Energy that never completes a cycle never actually replenishes, no matter how much of it there was to begin with.",invitation:"Let bursts finish before starting the next one, that is where the real recovery happens, not in stopping."}
+    synthesis:{tension:"The tension is between the drive to start and the discipline to finish. Energy that never completes a cycle never actually replenishes, no matter how much of it there was to begin with.",invitation:"Let bursts finish before starting the next one. That's where the real recovery happens, not in stopping."}
   },
   2:{
     phrase:'Energy that <em>absorbs</em>',
     tags:['Highly attuned to others','Prone to quiet depletion','Needs real boundaries'],
     paras:[
       "A Two's energy is genuinely porous, in a real, felt sense, not a metaphor. You pick up on the emotional and energetic state of people around you more readily than most patterns do, which is a real gift in close relationships and a real cost in crowded or tense environments.",
-      "The depletion here rarely announces itself loudly. It tends to show up as a quiet, cumulative heaviness that's hard to trace to any one cause, since it's often not your own energy running low, it's other people's energy you've been carrying without realizing it.",
+      "The depletion here rarely announces itself loudly. It tends to show up as a quiet, cumulative heaviness that's hard to trace to any one cause, since it's often not your own energy running low. It's other people's energy you've been carrying without realizing it.",
       "What genuinely helps: a real, deliberate practice of noticing what's actually yours versus what you've absorbed from someone else, and consciously setting down what isn't yours to carry."
     ],
     synthesis:{tension:"The tension is between genuine sensitivity, a real strength, and the lack of a clear boundary around it, which turns the same sensitivity into a source of chronic depletion.",invitation:"The gift does not need to be dulled. It needs a boundary it currently does not have."}
@@ -270,7 +350,7 @@ var PATTERNS={
     phrase:'Energy that needs <em>expression</em>',
     tags:['Flows through creativity','Blocked when unexpressed','Needs a real outlet'],
     paras:[
-      "A Three's energy is built to move through expression, quite literally. When you're actively creating, speaking, or sharing something, the energy circulates well. When that outlet is missing for an extended stretch, the same energy doesn't simply go quiet, it tends to turn into a specific kind of restlessness or low mood that can be hard to connect back to the actual cause.",
+      "A Three's energy is built to move through expression, quite literally. When you're actively creating, speaking, or sharing something, the energy circulates well. When that outlet is missing for an extended stretch, the same energy doesn't simply go quiet. It tends to turn into a specific kind of restlessness or low mood that can be hard to connect back to the actual cause.",
       "This is not about needing to be constantly performing or producing. It's specifically about having a real outlet, even a small, private one, where something gets expressed rather than held.",
       "What genuinely helps: treating creative or expressive practice as a real physical need, not an optional hobby to get to eventually. For this pattern specifically, it functions closer to a physical requirement than a preference."
     ],
@@ -281,10 +361,10 @@ var PATTERNS={
     tags:['Responds well to routine','Struggles under disorder','Needs consistency to recover'],
     paras:[
       "A Four's energy is genuinely stabilized by routine, and this is a real physiological pattern, not just a preference. Consistent sleep, consistent meals, consistent physical activity at roughly the same time each day tend to produce noticeably more available energy than the exact same amount of sleep or activity at unpredictable times.",
-      "What actually depletes a Four fastest is not overwork specifically, it's disorder: constant last-minute changes, unpredictable schedules, a life that never settles into any real rhythm. That kind of instability costs a Four more energy than genuinely hard, but predictable, work.",
-      "What genuinely helps: protecting a real, consistent structure even when it feels rigid to others. For this pattern, structure is not a limitation on energy, it's the actual foundation of it."
+      "What actually depletes a Four fastest is not overwork specifically. It's disorder: constant last-minute changes, unpredictable schedules, a life that never settles into any real rhythm. That kind of instability costs a Four more energy than genuinely hard, but predictable, work.",
+      "What genuinely helps: protecting a real, consistent structure even when it feels rigid to others. For this pattern, structure is not a limitation on energy. It's the actual foundation of it."
     ],
-    synthesis:{tension:"The tension is between a world that often prizes flexibility and a body that genuinely runs better on real consistency.",invitation:"Protect the structure deliberately, it is not a preference to apologize for, it is where this pattern's real energy actually comes from."}
+    synthesis:{tension:"The tension is between a world that often prizes flexibility and a body that genuinely runs better on real consistency.",invitation:"Protect the structure deliberately. It is not a preference to apologize for. It's where this pattern's real energy actually comes from."}
   },
   5:{
     phrase:'Energy that needs <em>movement</em>',
@@ -300,21 +380,21 @@ var PATTERNS={
     phrase:'Energy that <em>gives outward</em>',
     tags:['Readily gives to others','Prone to depletion from over-responsibility','Needs real replenishment'],
     paras:[
-      "A Six's energy flows outward toward others' needs with real ease, this is a genuine strength, not a weakness to correct. The real risk is that the giving becomes automatic and constant, with no equivalent, deliberate practice of receiving or replenishing.",
+      "A Six's energy flows outward toward others' needs with real ease. This is a genuine strength, not a weakness to correct. The real risk is that the giving becomes automatic and constant, with no equivalent, deliberate practice of receiving or replenishing.",
       "The depletion here often gets misread as simply being tired, when the real cause is more specific: energy has been flowing consistently outward for an extended period with very little coming back in. This produces a particular kind of fatigue that rest alone doesn't fully resolve, since the underlying imbalance, giving without receiving, is still in place.",
       "What genuinely helps: treating receiving as a real, active practice, not a passive thing that happens if you're lucky. For this pattern specifically, deliberately asking for and accepting care is what actually restores the balance."
     ],
-    synthesis:{tension:"The tension is between a genuine gift for care and a system that hasn't built in an equivalent capacity to receive it back.",invitation:"Make receiving as deliberate a practice as giving already is, this pattern's energy depends on both directions actually flowing."}
+    synthesis:{tension:"The tension is between a genuine gift for care and a system that hasn't built in an equivalent capacity to receive it back.",invitation:"Make receiving as deliberate a practice as giving already is. This pattern's energy depends on both directions actually flowing."}
   },
   7:{
     phrase:'Energy that needs <em>real solitude</em>',
     tags:['Recharges through genuine quiet','Drains fast in constant stimulation','Prone to nervous system fatigue'],
     paras:[
-      "A Seven's energy genuinely depletes faster in constant social or sensory stimulation than most patterns do. This isn't shyness or introversion as a preference, it's a real, measurable difference in how quickly this specific pattern's energy runs low in a busy, demanding environment.",
-      "What actually restores this pattern is not simply sleep, it's real solitude: unstructured time with no demands, no input, no one requiring anything. A Seven who gets plenty of sleep but zero genuine solitude often still reports feeling drained, since the actual recovery mechanism this pattern needs was never engaged.",
+      "A Seven's energy genuinely depletes faster in constant social or sensory stimulation than most patterns do. This isn't shyness or introversion as a preference. It's a real, measurable difference in how quickly this specific pattern's energy runs low in a busy, demanding environment.",
+      "What actually restores this pattern is not simply sleep. It's real solitude: unstructured time with no demands, no input, no one requiring anything. A Seven who gets plenty of sleep but zero genuine solitude often still reports feeling drained, since the actual recovery mechanism this pattern needs was never engaged.",
       "What genuinely helps: protecting real, regular blocks of solitude as seriously as you'd protect sleep itself, not treating it as indulgent or optional."
     ],
-    synthesis:{tension:"The tension is between a demanding, constantly stimulating world and a nervous system that specifically needs real quiet to actually recover.",invitation:"Solitude is not a luxury for this pattern, it is the actual recovery mechanism. Protect it accordingly."}
+    synthesis:{tension:"The tension is between a demanding, constantly stimulating world and a nervous system that specifically needs real quiet to actually recover.",invitation:"Solitude is not a luxury for this pattern. It's the actual recovery mechanism. Protect it accordingly."}
   },
   8:{
     phrase:'Energy with <em>real capacity, real limits</em>',
@@ -361,7 +441,7 @@ var PATTERNS={
     tags:['Absorbs others\' emotional weight','Needs deliberate release practices','Prone to carrying unearned burden'],
     paras:[
       "A 33's energy is genuinely oriented toward healing and holding space for others at real depth, and this capacity comes with a specific, real risk: taking on emotional or energetic weight that was never actually yours to carry in the first place.",
-      "This pattern often doesn't recognize the depletion as depletion, it can feel more like a vague heaviness or sadness that seems to have no clear source, since the actual source is frequently someone else's pain that got absorbed rather than witnessed.",
+      "This pattern often doesn't recognize the depletion as depletion. It can feel more like a vague heaviness or sadness that seems to have no clear source, since the actual source is frequently someone else's pain that got absorbed rather than witnessed.",
       "What genuinely helps: a real, deliberate release practice, something physical or ritual that consciously sets down what was picked up during the day. Without this, a 33's natural gift for holding space has no way to actually empty out again."
     ],
     synthesis:{tension:"The tension is between a genuine gift for holding others' pain and a system with no built-in way to release what it has absorbed.",invitation:"Build a real, deliberate release practice, this gift needs a way to empty out, or it fills up with what was never yours to keep."}
@@ -449,12 +529,12 @@ function calculate(){
     document.getElementById("p-tags").innerHTML=data.tags.map(function(t){return"<span class='pattern-tag'>"+t+"</span>";}).join("");
 
     var html="";
-    html+="<div class='reading-block'><div class='r-label'>How Your Energy Actually Works</div>";
-    data.paras.forEach(function(p){html+="<p class='r-para'>"+p+"</p>";});
-    html+="</div>";
     html+="<div class='r-syn'><div class='r-label'>What This Reading Is Saying, Taken As A Whole</div>";
     html+="<p class='r-tension'>"+data.synthesis.tension+"</p>";
     html+="<p class='r-invite'>"+data.synthesis.invitation+"</p>";
+    html+="</div>";
+    html+="<div class='reading-block'><div class='r-label'>How Your Energy Actually Works</div>";
+    data.paras.forEach(function(p){html+="<p class='r-para'>"+p+"</p>";});
     html+="</div>";
     document.getElementById("reading-content").innerHTML=html;
 
@@ -527,17 +607,124 @@ function toggleSpeech(){
   isSpeaking=true;btn.classList.add("is-active");lbl.textContent="Pause";
 }
 
-// ── SHARE ──────────────────────────────────────────────────
-function toggleShare(e){e.stopPropagation();document.getElementById("share-dd").classList.toggle("show");}
-document.addEventListener("click",function(){var d=document.getElementById("share-dd");if(d)d.classList.remove("show");});
+// ── SHARE CARD, real, generated image, this tool's own palette ───
 function showToast(msg){var t=document.getElementById("toast-msg");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2400);}
-function doShare(m){
-  document.getElementById("share-dd").classList.remove("show");
-  var url="https://kayalsoulpath.com/pages/tool-body-energy.html";
-  var text=window._shareText||"Discover your real body and energy pattern at KAYAL SoulPath Institute.";
-  if(m==="copy"){navigator.clipboard&&navigator.clipboard.writeText(text+"\n"+url);showToast("Copied.");return;}
-  var enc=encodeURIComponent,urls={twitter:"https://twitter.com/intent/tweet?text="+enc(text)+"&url="+enc(url),whatsapp:"https://wa.me/?text="+enc(text+" "+url)};
-  if(urls[m])window.open(urls[m],"_blank","noopener");
+var currentShareBlob=null,currentShareCaption='';
+
+function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){
+  var words=text.split(' '),line='',lines=[];
+  for(var n=0;n<words.length;n++){
+    var testLine=line+words[n]+' ';
+    if(ctx.measureText(testLine).width>maxWidth&&n>0){lines.push(line.trim());line=words[n]+' ';}
+    else{line=testLine;}
+  }
+  lines.push(line.trim());
+  var startY=y-((lines.length-1)*lineHeight)/2;
+  for(var i=0;i<lines.length;i++){ctx.fillText(lines[i],x,startY+i*lineHeight);}
+}
+
+function roundRectPath(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
+}
+
+function generateShareCardImage(phraseText,line){
+  return new Promise(function(resolve){
+    var W=800,H=800,canvas=document.createElement('canvas');
+    canvas.width=W;canvas.height=H;
+    var ctx=canvas.getContext('2d');
+    var bgGrad=ctx.createLinearGradient(0,0,W,H);
+    bgGrad.addColorStop(0,'#2a1810');bgGrad.addColorStop(1,'#0c0a08');
+    ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
+    var cx=W/2,cy=H*0.36;
+    var glow=ctx.createRadialGradient(cx,cy,20,cx,cy,280);
+    glow.addColorStop(0,'rgba(200,100,42,0.32)');glow.addColorStop(0.45,'rgba(200,100,42,0.14)');glow.addColorStop(1,'rgba(200,100,42,0)');
+    ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
+    var r=110;
+    ctx.beginPath();ctx.arc(cx,cy,r+10,0,Math.PI*2);ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=3;ctx.stroke();
+    var ringGrad=ctx.createLinearGradient(cx-r,cy-r,cx+r,cy+r);
+    ringGrad.addColorStop(0,'#d4943a');ringGrad.addColorStop(1,'#c8642a');
+    ctx.beginPath();ctx.arc(cx,cy,r+10,-Math.PI/2,-Math.PI/2+Math.PI*2*0.3);ctx.strokeStyle=ringGrad;ctx.lineWidth=6;ctx.lineCap='round';ctx.stroke();
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.font='italic 400 42px Georgia, serif';
+    ctx.fillStyle='#f0e4d0';
+    wrapCanvasText(ctx,phraseText,cx,cy,340,50);
+    ctx.font='600 20px system-ui, sans-serif';
+    ctx.fillStyle='#d4943a';
+    ctx.fillText('VITALITY BLUEPRINT',cx,cy+r+55);
+    ctx.font='italic 400 27px Georgia, serif';
+    ctx.fillStyle='#f0ece0';
+    wrapCanvasText(ctx,line,cx,cy+r+130,600,40);
+    var badgeY=H-85;
+    ctx.font='600 17px system-ui, sans-serif';
+    var badgeText='KAYAL SOULPATH';
+    var badgeW=ctx.measureText(badgeText).width+64;
+    roundRectPath(ctx,cx-badgeW/2,badgeY-24,badgeW,48,24);
+    ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.25)';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle='#f0ece0';ctx.fillText(badgeText,cx,badgeY+6);
+    canvas.toBlob(function(blob){resolve(blob);},'image/png');
+  });
+}
+
+async function openShareCardModal(){
+  if(!currentLp)return;
+  var data=PATTERNS[currentLp]||PATTERNS[1];
+  var plainPhrase=data.phrase.replace(/<[^>]*>/g,'');
+  var line=data.synthesis.tension.split('. ')[0]+'.';
+  currentShareCaption='My vitality pattern: '+plainPhrase+'. Discover yours free at kayalsoulpath.com';
+  document.getElementById('scm-caption').value=currentShareCaption;
+  var blob=await generateShareCardImage(plainPhrase,line);
+  currentShareBlob=blob;
+  document.getElementById('scm-preview').src=URL.createObjectURL(blob);
+  var nativeShareAvailable=false;
+  try{nativeShareAvailable=!!(navigator.canShare&&navigator.canShare({files:[new File([blob],'vitality.png',{type:'image/png'})]}));}catch(e){}
+  document.getElementById('scm-native-share').style.display=nativeShareAvailable?'block':'none';
+  document.getElementById('scm-platform-grid').style.display=nativeShareAvailable?'none':'grid';
+  document.getElementById('scm-backdrop').classList.add('show');
+}
+
+function closeShareCardModal(){document.getElementById('scm-backdrop').classList.remove('show');}
+
+async function nativeShareCard(){
+  if(!currentShareBlob)return;
+  try{
+    var file=new File([currentShareBlob],'my-vitality-pattern.png',{type:'image/png'});
+    await navigator.share({files:[file],title:'My Vitality Blueprint',text:currentShareCaption});
+  }catch(e){}
+}
+
+function downloadShareCard(){
+  if(!currentShareBlob)return;
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(currentShareBlob);
+  a.download='my-vitality-pattern.png';
+  a.click();
+}
+
+function copyShareCaption(){
+  var url='https://kayalsoulpath.com/pages/tool-body-energy.html';
+  navigator.clipboard&&navigator.clipboard.writeText(currentShareCaption+'\n\n'+url);
+  showToast('Caption copied.');
+}
+
+var NO_WEB_INTENT_PLATFORMS={instagram:1,tiktok:1,snapchat:1};
+
+function shareToPlatform(m){
+  var url='https://kayalsoulpath.com/pages/tool-body-energy.html';
+  var text=currentShareCaption;
+  if(NO_WEB_INTENT_PLATFORMS[m]){
+    downloadShareCard();
+    showToast('Image saved. Upload it to '+m.charAt(0).toUpperCase()+m.slice(1)+'.');
+    return;
+  }
+  var enc=encodeURIComponent,urls={
+    x:'https://twitter.com/intent/tweet?text='+enc(text)+'&url='+enc(url),
+    whatsapp:'https://wa.me/?text='+enc(text+' '+url),
+    facebook:'https://www.facebook.com/sharer/sharer.php?u='+enc(url)+'&quote='+enc(text),
+    telegram:'https://t.me/share/url?url='+enc(url)+'&text='+enc(text),
+    pinterest:'https://pinterest.com/pin/create/button/?url='+enc(url)+'&description='+enc(text)
+  };
+  if(urls[m])window.open(urls[m],'_blank','noopener');
 }
 
 document.getElementById("inp-dob").addEventListener("keydown",function(e){if(e.key==="Enter")calculate();});

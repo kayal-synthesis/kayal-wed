@@ -104,22 +104,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="insights-filters reveal">
           <button class="insights-filter active" data-filter="all">All</button>
           <button class="insights-filter" data-filter="soul-blueprint">Soul Blueprint</button>
-          <button class="insights-filter" data-filter="mind">Mind Development</button>
-          <button class="insights-filter" data-filter="spirit">Spirit Science</button>
+          <button class="insights-filter" data-filter="numerology">Numerology</button>
+          <button class="insights-filter" data-filter="compatibility">Compatibility</button>
           <button class="insights-filter" data-filter="timing">Timing & Cycles</button>
+          <button class="insights-filter" data-filter="palmistry">Palmistry</button>
+          <button class="insights-filter" data-filter="face-reading">Face Reading</button>
+          <button class="insights-filter" data-filter="wellness">Wellness</button>
+          <button class="insights-filter" data-filter="wealth">Wealth & Purpose</button>
         </div>
 
         <!-- Loading state -->
         <div id="insights-loading" style="text-align:center;padding:60px 0;color:var(--stone)">
           <div style="font-family:var(--ff-heading);font-size:15px;font-style:italic">Loading insights…</div>
-        </div>
-
-        <!-- Related Articles (shown after individual category loads) -->
-        <div id="related-articles-wrap" style="display:none;margin-top:56px">
-          <div class="section-header-row" style="margin-bottom:28px">
-            <h2 class="section-title">You Might Also Like</h2>
-          </div>
-          <div class="insights-grid grid-3" id="related-grid"></div>
         </div>
 
         <!-- Featured article -->
@@ -132,10 +128,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div style="text-align:center;padding:32px 0 0" id="load-more-wrap" class="hidden">
           <button class="btn btn-outline" id="load-more">Load More Insights</button>
         </div>
-
-        <!-- Empty state -->
-        <!-- Related articles — populated dynamically -->
-        <div id="related-articles"></div>
 
         <div id="insights-empty" style="display:none;text-align:center;padding:60px 0;color:var(--stone)">
           <div style="font-size:40px;margin-bottom:12px">📖</div>
@@ -179,9 +171,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="widget-body" style="padding:0">
             <button class="insights-sidebar-cat" data-filter-target="all">All Insights</button>
             <button class="insights-sidebar-cat" data-filter-target="soul-blueprint">Soul Blueprint</button>
-            <button class="insights-sidebar-cat" data-filter-target="mind">Mind Development</button>
-            <button class="insights-sidebar-cat" data-filter-target="spirit">Spirit Science</button>
+            <button class="insights-sidebar-cat" data-filter-target="numerology">Numerology</button>
+            <button class="insights-sidebar-cat" data-filter-target="compatibility">Compatibility</button>
             <button class="insights-sidebar-cat" data-filter-target="timing">Timing & Cycles</button>
+            <button class="insights-sidebar-cat" data-filter-target="palmistry">Palmistry</button>
+            <button class="insights-sidebar-cat" data-filter-target="face-reading">Face Reading</button>
+            <button class="insights-sidebar-cat" data-filter-target="wellness">Wellness</button>
+            <button class="insights-sidebar-cat" data-filter-target="wealth">Wealth & Purpose</button>
           </div>
         </div>
 
@@ -266,12 +262,19 @@ const SUPABASE_URL = 'https://nofyxayqdwhyabcntmvs.supabase.co'
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw'
 const PAGE_SIZE    = 7
 
-// Map Supabase category names to filter slugs and display tags
+// Map Supabase category names to filter slugs and display tags.
+// Real, exact match to Content Studio's own category-sel values,
+// the two were confirmed out of sync, none of the old 4 categories
+// here ever matched any of the 8 real ones actually being saved.
 const CATEGORY_MAP = {
-  'Soul Blueprint':  { filter: 'soul-blueprint', tag: '<span class="tag tag-terra">Soul Blueprint</span>' },
-  'Mind Development':{ filter: 'mind',            tag: '<span class="tag">Mind Development</span>' },
-  'Spirit Science':  { filter: 'spirit',          tag: '<span class="tag">Spirit Science</span>' },
-  'Timing & Cycles': { filter: 'timing',           tag: '<span class="tag">Timing &amp; Cycles</span>' },
+  'soul-blueprint': { filter: 'soul-blueprint', tag: '<span class="tag tag-terra">Soul Blueprint</span>' },
+  'numerology':     { filter: 'numerology',     tag: '<span class="tag">Numerology</span>' },
+  'compatibility':  { filter: 'compatibility',  tag: '<span class="tag">Compatibility</span>' },
+  'timing':         { filter: 'timing',         tag: '<span class="tag">Timing &amp; Cycles</span>' },
+  'palmistry':      { filter: 'palmistry',      tag: '<span class="tag">Palmistry</span>' },
+  'face-reading':   { filter: 'face-reading',   tag: '<span class="tag">Face Reading</span>' },
+  'wellness':       { filter: 'wellness',       tag: '<span class="tag">Wellness</span>' },
+  'wealth':         { filter: 'wealth',         tag: '<span class="tag">Wealth &amp; Purpose</span>' },
 }
 
 function getCategoryTag(category) {
@@ -458,56 +461,6 @@ if (loadMoreBtn) {
 
 // ── Initial load ──────────────────────────────────────────────────
 loadInsights('all', 1)
-
-
-// ── RELATED ARTICLES ──────────────────────────────────────────
-// Renders a "You might also like" section after the main grid
-async function loadRelatedArticles(category, excludeId) {
-  const wrap = document.getElementById('related-articles-wrap');
-  if (!wrap) return;
-
-  try {
-    let url = `${SUPABASE_URL}/rest/v1/blog_posts`;
-    url += `?select=id,title,slug,excerpt,category,image_url,published_at,reading_time`;
-    url += `&status=eq.published`;
-    url += `&category=eq.${encodeURIComponent(category)}`;
-    if (excludeId) url += `&id=neq.${excludeId}`;
-    url += `&order=published_at.desc&limit=3`;
-
-    const res = await fetch(url, {
-      headers: {
-        'apikey': SUPABASE_KEY,
-        'Authorization': 'Bearer ' + SUPABASE_KEY,
-      }
-    });
-
-    const posts = await res.json();
-    if (!posts || posts.length === 0) { wrap.style.display = 'none'; return; }
-
-    wrap.style.display = 'block';
-    document.getElementById('related-grid').innerHTML = posts.map(p => `
-      <a href="pages/insights/${p.slug}.html" class="insights-card reveal" data-category="${getCategoryFilter(p.category)}">
-        <div class="insights-card-img-wrap">
-          <img src="${p.image_url || 'https://images.unsplash.com/photo-1532710093739-9470acff878f?w=500&q=80'}"
-               alt="${p.title}" class="insights-card-img" loading="lazy">
-        </div>
-        <div class="insights-card-body">
-          <div class="insights-card-meta">
-            ${getCategoryTag(p.category)}
-            <span class="insights-date">${formatDate(p.published_at)}</span>
-          </div>
-          <h3 class="insights-card-title">${p.title}</h3>
-          <p class="insights-card-excerpt">${p.excerpt || ''}</p>
-          <span class="insights-read-cta">Read →</span>
-        </div>
-      </a>
-    `).join('');
-
-  } catch(err) {
-    console.warn('Related articles error:', err);
-    wrap.style.display = 'none';
-  }
-}
 
 </script>
 
