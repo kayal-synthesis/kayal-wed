@@ -122,33 +122,6 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Insights -->
-  <url>
-    <loc>https://kayalsoulpath.com/pages/insights/insights.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://kayalsoulpath.com/pages/insights/life-path-relationships.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kayalsoulpath.com/pages/insights/mind-development.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kayalsoulpath.com/pages/insights/spirit-science.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kayalsoulpath.com/pages/insights/timing-window.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
   <!-- Legal -->
   <url>
     <loc>https://kayalsoulpath.com/pages/privacy-policy.html</loc>
