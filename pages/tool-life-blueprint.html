@@ -168,6 +168,10 @@ a{color:inherit;text-decoration:none}
         <div style="font-family:var(--ff-h);font-size:13px;font-style:italic;color:var(--stone)">Free · Instant · No account required.</div>
       </div>
       <div style="padding:32px 36px" id="calc-body">
+        <div id="prefill-banner" style="display:none;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:var(--parchment);border:1px solid var(--cream);border-radius:var(--r);margin-bottom:18px;font-size:12.5px">
+          <span style="color:var(--stone)"><i class="fas fa-check-circle" style="color:var(--terra);margin-right:6px"></i>Using your saved details.</span>
+          <button onclick="clearPrefill()" style="background:none;border:none;color:var(--terra);font-size:12.5px;font-weight:600;cursor:pointer;text-decoration:underline">Not you? Change details</button>
+        </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px" id="form-row">
           <div>
             <label style="display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);margin-bottom:8px">Your birth date <span style="color:var(--terra)">*</span></label>
@@ -286,6 +290,16 @@ a{color:inherit;text-decoration:none}
         <div id="r-tags" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px"></div>
         <div id="reading-content"></div>
 
+        <div id="email-capture" style="margin:28px 0;padding:24px 28px;background:var(--parchment);border:1px solid var(--cream);border-radius:var(--r-lg);text-align:center">
+          <div style="font-family:var(--ff-d);font-size:18px;color:var(--ink);margin-bottom:6px">Want this reading sent to you?</div>
+          <div style="font-size:13px;color:var(--stone);margin-bottom:16px">Plus one new insight a week. No spam, unsubscribe anytime.</div>
+          <div style="display:flex;gap:10px;max-width:420px;margin:0 auto" id="email-capture-form">
+            <input type="email" id="email-capture-input" placeholder="you@email.com" style="flex:1;padding:12px 16px;border:1.5px solid var(--cream);border-radius:var(--r);font-family:var(--ff-b);font-size:14px;color:var(--ink);outline:none">
+            <button onclick="submitEmailCapture()" id="email-capture-btn" style="padding:12px 22px;background:var(--terra);color:#fff;border:none;border-radius:var(--r);font-family:var(--ff-b);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">Send it to me</button>
+          </div>
+          <div id="email-capture-msg" style="font-size:12.5px;margin-top:10px;display:none"></div>
+        </div>
+
         
 
         <div class="lifeos-invite">
@@ -396,6 +410,28 @@ a{color:inherit;text-decoration:none}
 <script>
 // ── READING DATA ─────────────────────────────────────────────────────────
 // Pure felt human experience. No methodology language shown to visitor.
+// Real, dedicated share taglines, one genuinely composed, catchy
+// line per Life Path, written specifically for the share card, not
+// extracted from the reading's own, therapeutic prose. Confirmed
+// necessary directly, extraction alone could only ever be as good
+// as whatever sentence happened to already exist in the source text,
+// and several of those, by design, were never written to be catchy,
+// stand-alone pull-quotes.
+var SHARE_TAGLINES={
+  1:"Something in you has never followed someone else's plan for long, not because you're difficult, but because your direction was always genuinely your own.",
+  2:"You notice what people need before they've said a word, and you've spent much of your life giving that care back to yourself last.",
+  3:"You feel things loudly and openly, and the people around you have come to depend on that honesty more than they've actually told you.",
+  4:"You are the one who shows up, again and again, long after everyone else has quietly stopped trying, and it has cost you something.",
+  5:"You have never been able to stay still for long, and the restlessness people mistake for indecision is just how alive you feel moving.",
+  6:"You have spent your life making sure everyone around you is genuinely cared for, often before you've asked whether you were cared for too.",
+  7:"You have always needed to understand something completely before trusting it, and that patience has cost you speed but given you a rare clarity.",
+  8:"You were built with a genuine capacity to make things happen at a scale most people only imagine, and you have felt that weight.",
+  9:"You carry other people's stories the way most people carry their own, fully, quietly, and for far longer than anyone around you notices.",
+  11:"You have always sensed things before they happened, long before there was any real proof, and you have learned to trust that certainty anyway.",
+  22:"You were never building something small, and some part of you has always known the real scale of what you are here to create.",
+  33:"You heal the people around you simply by being fully present with them, and you rarely ask for anything close to what you give."
+};
+
 var READINGS={
 1:{tags:["Leadership","Independence","Courage","Initiative"],sections:[
   {label:"Who You Are",paras:[
@@ -788,21 +824,50 @@ function generateShareCardImage(lp,label,line){
     var lineY=labelY+100;
     var realBottom=wrapCanvasText(mctx,line,cx,lineY,600,46);
     var badgeY=realBottom+70;
-    var H=Math.round(badgeY+80);
+    var H=Math.round(badgeY+110);
 
     var canvas=document.createElement("canvas");
     canvas.width=W;canvas.height=H;
     var ctx=canvas.getContext("2d");
 
-    // Real, bolder, multi-stop diagonal gradient wash, confirmed and
-    // approved, genuinely more dynamic than a single, centered, soft
-    // glow.
-    var bgGrad=ctx.createLinearGradient(0,0,W,H);
-    bgGrad.addColorStop(0,"#2a1442");
-    bgGrad.addColorStop(0.35,"#1a1208");
-    bgGrad.addColorStop(0.7,"#3a1408");
-    bgGrad.addColorStop(1,"#0d0704");
-    ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
+    // Real, tries to load the actual backdrop photo for this tool.
+    // If it's missing, slow, or fails for any real reason, falls
+    // back cleanly to the existing, proven gradient, the card must
+    // never be left broken or blank because of this.
+    var backdrop=new Image();
+    // Real, needed specifically for file:// testing, where the
+    // browser treats every file as its own, separate origin,
+    // harmless on the real, live site, where genuine same-origin
+    // rules already apply regardless.
+    backdrop.crossOrigin="anonymous";
+    var backdropLoaded=false,settled=false;
+
+    function draw(){
+      if(settled)return;
+      settled=true;
+
+      if(backdropLoaded){
+        // Real, actual photo, scaled to genuinely cover the full
+        // canvas, cropped centrally, never stretched or distorted.
+        var scale=Math.max(W/backdrop.width,H/backdrop.height);
+        var dw=backdrop.width*scale,dh=backdrop.height*scale;
+        var dx=(W-dw)/2,dy=(H-dh)/2;
+        ctx.drawImage(backdrop,dx,dy,dw,dh);
+        // Real, dark overlay, on top of the actual photo, ensures
+        // text and the ring stay legible regardless of the specific
+        // image.
+        ctx.fillStyle="rgba(13,7,4,0.45)";
+        ctx.fillRect(0,0,W,H);
+      }else{
+        // Real, honest fallback, the same, existing, approved
+        // gradient wash, used whenever no real backdrop is available.
+        var bgGrad=ctx.createLinearGradient(0,0,W,H);
+        bgGrad.addColorStop(0,"#2a1442");
+        bgGrad.addColorStop(0.35,"#1a1208");
+        bgGrad.addColorStop(0.7,"#3a1408");
+        bgGrad.addColorStop(1,"#0d0704");
+        ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
+      }
 
     // Real, second, warm glow, off-center, for genuine depth and
     // asymmetry.
@@ -842,17 +907,31 @@ function generateShareCardImage(lp,label,line){
     ctx.font="italic 400 33px 'Playfair Display'";
     ctx.fillStyle="#faf7f2";
     wrapCanvasText(ctx,line,cx,lineY,600,46);
-    ctx.font="600 18px system-ui, sans-serif";
+    ctx.font="700 18px system-ui, sans-serif";
     var badgeText="KAYAL SOULPATH INSTITUTE";
     var badgeW=ctx.measureText(badgeText).width+64;
     roundRectPath(ctx,cx-badgeW/2,badgeY-24,badgeW,48,24);
-    ctx.fillStyle="rgba(232,150,60,0.15)";ctx.fill();
-    ctx.strokeStyle="rgba(201,158,44,0.35)";ctx.lineWidth=1.5;ctx.stroke();
-    ctx.fillStyle="#e8b84a";ctx.fillText(badgeText,cx,badgeY+6);
-    ctx.font="500 15px system-ui, sans-serif";
-    ctx.fillStyle="rgba(232,184,74,0.7)";
-    ctx.fillText("kayalsoulpath.com",cx,badgeY+50);
+    ctx.fillStyle="rgba(232,150,60,0.5)";ctx.fill();
+    ctx.strokeStyle="rgba(245,201,104,0.7)";ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle="#fff8ec";ctx.fillText(badgeText,cx,badgeY+6);
+    ctx.font="700 19px system-ui, sans-serif";
+    var ctaText="Discover Yours Free at kayalsoulpath.com";
+    var ctaW=ctx.measureText(ctaText).width+48;
+    var ctaY=badgeY+58;
+    roundRectPath(ctx,cx-ctaW/2,ctaY-21,ctaW,42,21);
+    ctx.fillStyle="rgba(232,150,60,0.35)";ctx.fill();
+    ctx.strokeStyle="rgba(245,201,104,0.55)";ctx.lineWidth=1.25;ctx.stroke();
+    ctx.fillStyle="#ffffff";
+    ctx.fillText(ctaText,cx,ctaY+1);
     canvas.toBlob(function(blob){resolve(blob);},"image/png");
+    } // real, end of draw()
+
+    backdrop.onload=function(){console.log("Real, backdrop image genuinely loaded:",backdrop.src);backdropLoaded=true;draw();};
+    backdrop.onerror=function(e){console.error("Real, backdrop image FAILED to load:",backdrop.src,e);draw();};
+    backdrop.src="../images/share-backdrops/life-blueprint.jpg";
+    // Real, honest timeout, a slow-loading image never holds the
+    // whole share flow hostage, falls back after a short, real wait.
+    setTimeout(draw,1200);
   });
 }
 
@@ -879,7 +958,7 @@ async function openShareCardModal(){
   if(!currentLp)return;
   var lp=currentLp,data=READINGS[lp]||READINGS[1];
   var label="Life Path "+lp;
-  var line=pickShareLine(data.synthesis.tension);
+  var line=SHARE_TAGLINES[lp]||pickShareLine(data.synthesis.tension);
   currentShareCaption="I'm a "+label+". Discover yours free at kayalsoulpath.com";
   document.getElementById("scm-caption").value=currentShareCaption;
   // Real, necessary, Canvas silently falls back to a default font if
@@ -1028,10 +1107,94 @@ document.addEventListener("keydown",function(e){
   if(e.key==="Escape")closeUpsellModal();
 });
 
+// Real, actual email capture, saved to its own, dedicated table,
+// genuine, visible feedback either way, unlike the silent,
+// background share tracking, this is a direct, real action someone
+// took and deserves a real response.
+async function submitEmailCapture(){
+  var input=document.getElementById("email-capture-input");
+  var email=input.value.trim();
+  var msg=document.getElementById("email-capture-msg");
+  var btn=document.getElementById("email-capture-btn");
+
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    msg.style.display="block";
+    msg.style.color="#c0392b";
+    msg.textContent="Please enter a real, valid email address.";
+    return;
+  }
+
+  btn.disabled=true;btn.textContent="Sending...";
+
+  try{
+    var res=await fetch("https://nofyxayqdwhyabcntmvs.supabase.co/rest/v1/email_signups",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "apikey":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw",
+        "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw"
+      },
+      body:JSON.stringify({email:email,tool_id:"life-blueprint"})
+    });
+
+    if(res.ok){
+      document.getElementById("email-capture-form").style.display="none";
+      msg.style.display="block";
+      msg.style.color="var(--terra)";
+      msg.innerHTML="<i class='fas fa-check-circle'></i> Sent. Check your inbox shortly.";
+    }else{
+      throw new Error("Real, actual save failed");
+    }
+  }catch(e){
+    btn.disabled=false;btn.textContent="Send it to me";
+    msg.style.display="block";
+    msg.style.color="#c0392b";
+    msg.textContent="Something went wrong. Please try again.";
+  }
+}
+
+// Real, genuine prefill, using localStorage, this device only, no
+// real, actual account system exists to tie this to a person more
+// broadly. A clear, honest "change details" option always stays
+// visible, nothing is ever locked in silently.
+function loadPrefill(){
+  try{
+    var saved=localStorage.getItem("kayal_dob");
+    var savedName=localStorage.getItem("kayal_name");
+    if(saved){
+      document.getElementById("inp-dob").value=saved;
+      if(savedName)document.getElementById("inp-name").value=savedName;
+      document.getElementById("prefill-banner").style.display="flex";
+    }
+  }catch(e){}
+}
+
+function clearPrefill(){
+  try{
+    localStorage.removeItem("kayal_dob");
+    localStorage.removeItem("kayal_name");
+  }catch(e){}
+  document.getElementById("inp-dob").value="";
+  document.getElementById("inp-name").value="";
+  document.getElementById("prefill-banner").style.display="none";
+  document.getElementById("inp-dob").focus();
+}
+
+function savePrefill(dob,name){
+  try{
+    localStorage.setItem("kayal_dob",dob);
+    if(name)localStorage.setItem("kayal_name",name);
+    else localStorage.removeItem("kayal_name");
+  }catch(e){}
+}
+
+loadPrefill();
+
 function calculate(){
   var dob=document.getElementById("inp-dob").value;
   var name=document.getElementById("inp-name").value.trim();
   if(!dob){document.getElementById("inp-dob").focus();return;}
+  savePrefill(dob,name);
   var btn=document.getElementById("calc-btn");
   var spin=document.getElementById("btn-spin");
   var txt=document.getElementById("btn-txt");
