@@ -969,7 +969,7 @@ async function openShareCardModal(){
   var lp=currentLp,data=READINGS[lp]||READINGS[1];
   var label="Life Path "+lp;
   var line=SHARE_TAGLINES[lp]||pickShareLine(data.synthesis.tension);
-  currentShareCaption="I'm a "+label+". Discover yours free at kayalsoulpath.com";
+  currentShareCaption=line+" Discover your own Life Path free at kayalsoulpath.com";
   document.getElementById("scm-caption").value=currentShareCaption;
   // Real, necessary, Canvas silently falls back to a default font if
   // this specific, custom font hasn't actually finished loading yet,
