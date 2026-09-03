@@ -255,7 +255,9 @@ input[type=date].fi{color-scheme:light}
   .lifeos-invite{max-width:100%;padding:20px 18px}
   .main{padding:56px 16px 72px}
 }
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}@media(max-width:768px){
+  .explore-grid-fix{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -409,7 +411,7 @@ input[type=date].fi{color-scheme:light}
     <div class="sec-label">Explore More</div>
     <h2 class="sec-title">More layers<br><em>await.</em></h2>
     <p class="sec-sub">Each free tool reveals a different dimension of your blueprint. Together they form a complete picture.</p>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px" class="explore-grid-fix">
       <a href="tool-life-blueprint.html" style="padding:22px 20px;background:var(--linen);border:1px solid var(--lt-cream);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--blush)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--lt-cream)';this.style.transform='none'">
         <div style="font-size:24px;margin-bottom:10px">🔢</div>
         <div style="font-family:var(--ff-h);font-size:14px;color:var(--lt-ink);margin-bottom:6px">Life Blueprint</div>
