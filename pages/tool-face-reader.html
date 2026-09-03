@@ -6,6 +6,16 @@
 <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
 <title>Face Energy Reader: Reveal Your Elemental Nature | KAYAL SoulPath Institute</title>
 <meta name="description" content="Upload your photo for a real facial energy reading. Discover your elemental nature through the ancient science of face reading.">
+<meta property="og:title" content="Face Energy Reader: Reveal Your Elemental Nature">
+<meta property="og:description" content="Upload your photo for a real facial energy reading. Discover your elemental nature through the ancient science of face reading.">
+<meta property="og:url" content="https://kayalsoulpath.com/pages/tool-face-reader.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kayalsoulpath.com/images/share-backdrops/og-example-face-reader.png">
+<meta property="og:site_name" content="KAYAL SoulPath Institute">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Face Energy Reader: Reveal Your Elemental Nature">
+<meta name="twitter:description" content="Upload your photo for a real facial energy reading. Discover your elemental nature through the ancient science of face reading.">
+<meta name="twitter:image" content="https://kayalsoulpath.com/images/share-backdrops/og-example-face-reader.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -16,8 +26,16 @@
   --ff-display:'Georgia','Times New Roman',serif;
   --ff-heading:'Georgia',serif;
   --ff-body:system-ui,-apple-system,sans-serif;
+  /* Real, new, light-background variables, added specifically so
+     the input and reading pages can genuinely match Life Blueprint's
+     own, real rule, light everywhere except hero and footer, while
+     every existing, real accent color above stays completely
+     untouched, this tool's own, distinct identity is preserved, not
+     replaced. */
+  --linen:#faf8ff;--white:#ffffff;--parchment:#f2edfa;--lt-cream:#e5daf5;
+  --lt-stone:#7a6a92;--lt-ink:#1f1530;
 }
-body{background:var(--ink);color:var(--cream);font-family:var(--ff-body);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+body{background:var(--linen);color:var(--lt-ink);font-family:var(--ff-body);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
 a{color:inherit;text-decoration:none}
 
 /* NAV */
@@ -64,21 +82,21 @@ a{color:inherit;text-decoration:none}
 
 /* Upload */
 .upload-section{margin-bottom:60px}
-.section-label{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#c09ae0;margin-bottom:10px}
-.section-title{font-family:var(--ff-display);font-size:clamp(22px,3vw,34px);font-weight:300;color:var(--cream);line-height:1.2;margin-bottom:10px}
-.section-title em{font-style:italic;color:var(--lavender)}
-.section-sub{font-family:var(--ff-heading);font-size:14px;font-style:italic;color:rgba(232,224,248,.68);line-height:1.75;max-width:560px;margin-bottom:36px}
+.section-label{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--purple);margin-bottom:10px}
+.section-title{font-family:var(--ff-display);font-size:clamp(22px,3vw,34px);font-weight:300;color:var(--lt-ink);line-height:1.2;margin-bottom:10px}
+.section-title em{font-style:italic;color:var(--amethyst)}
+.section-sub{font-family:var(--ff-heading);font-size:14px;font-style:italic;color:var(--lt-stone);line-height:1.75;max-width:560px;margin-bottom:36px}
 
-.upload-card{background:rgba(45,31,78,.3);border:1.5px dashed rgba(124,79,208,.35);border-radius:var(--r-lg);padding:48px 36px;text-align:center;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
-.upload-card:hover,.upload-card.drag-over{border-color:var(--amethyst);background:rgba(74,45,138,.2);box-shadow:0 0 40px rgba(124,79,208,.15)}
-.upload-card.has-image{border-style:solid;border-color:rgba(124,79,208,.5);padding:0}
+.upload-card{background:var(--white);border:1.5px dashed var(--lt-cream);border-radius:var(--r-lg);padding:48px 36px;text-align:center;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+.upload-card:hover,.upload-card.drag-over{border-color:var(--amethyst);background:rgba(124,79,208,.04);box-shadow:0 0 40px rgba(124,79,208,.08)}
+.upload-card.has-image{border-style:solid;border-color:rgba(124,79,208,.35);padding:0}
 .upload-icon{font-size:40px;margin-bottom:14px;opacity:.7}
-.upload-title{font-family:var(--ff-heading);font-size:17px;color:var(--cream);margin-bottom:8px}
-.upload-desc{font-size:13px;color:rgba(208,192,240,.72);line-height:1.6;margin-bottom:20px;font-style:italic}
+.upload-title{font-family:var(--ff-heading);font-size:17px;color:var(--lt-ink);margin-bottom:8px}
+.upload-desc{font-size:13px;color:var(--lt-stone);line-height:1.6;margin-bottom:20px;font-style:italic}
 .upload-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .upload-btn-primary{padding:11px 22px;background:var(--amethyst);color:#fff;border:none;border-radius:var(--r);font-size:12px;font-weight:600;letter-spacing:.04em;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
 .upload-btn-primary:hover{background:var(--purple)}
-.upload-btn-ghost{padding:11px 22px;background:transparent;color:rgba(196,176,232,.75);border:1px solid rgba(124,79,208,.3);border-radius:var(--r);font-size:12px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.upload-btn-ghost{padding:11px 22px;background:transparent;color:var(--purple);border:1px solid rgba(124,79,208,.3);border-radius:var(--r);font-size:12px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
 .upload-btn-ghost:hover{border-color:var(--amethyst);color:var(--lavender)}
 .upload-btn-ghost{font-family:inherit}
 
@@ -126,12 +144,12 @@ input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidde
 /* Name / DOB */
 .name-row{display:flex;gap:12px;align-items:flex-end;margin-top:20px;flex-wrap:wrap}
 .name-group{flex:1;min-width:200px}
-.form-label{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(208,192,240,.75);margin-bottom:8px}
-.form-input{width:100%;padding:12px 16px;background:rgba(45,31,78,.4);border:1.5px solid rgba(124,79,208,.25);border-radius:var(--r);font-family:var(--ff-body);font-size:14px;color:var(--cream);outline:none;transition:border-color .2s}
+.form-label{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--lt-stone);margin-bottom:8px}
+.form-input{width:100%;padding:12px 16px;background:var(--white);border:1.5px solid var(--lt-cream);border-radius:var(--r);font-family:var(--ff-body);font-size:14px;color:var(--lt-ink);outline:none;transition:border-color .2s}
 .form-input:focus{border-color:var(--amethyst)}
-.form-input::placeholder{color:var(--stone)}
+.form-input::placeholder{color:var(--lt-stone)}
 .dob-group{flex:1;min-width:180px}
-input[type=date].form-input{color-scheme:dark}
+input[type=date].form-input{color-scheme:light}
 
 /* RESULT */
 #result-section{display:none;margin-top:60px}
@@ -150,10 +168,10 @@ input[type=date].form-input{color-scheme:dark}
 
 /* Measurements */
 .measurements-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:40px}
-.meas-card{background:rgba(45,31,78,.3);border:1px solid rgba(124,79,208,.22);border-radius:var(--r);padding:14px 12px;text-align:center}
-.meas-label{font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(208,192,240,.65);margin-bottom:6px}
-.meas-value{font-family:var(--ff-display);font-size:13px;font-style:italic;color:var(--lavender);line-height:1.3;margin-bottom:4px}
-.meas-desc{font-size:10px;color:rgba(208,192,240,.65);font-style:italic}
+.meas-card{background:var(--white);border:1px solid var(--lt-cream);border-radius:var(--r);padding:14px 12px;text-align:center}
+.meas-label{font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--lt-stone);margin-bottom:6px}
+.meas-value{font-family:var(--ff-display);font-size:13px;font-style:italic;color:var(--purple);line-height:1.3;margin-bottom:4px}
+.meas-desc{font-size:10px;color:var(--lt-stone);font-style:italic}
 
 /* Real, new white reading card, wraps just the actual reading text,
    the dramatic element reveal above it and the upsell invite below
@@ -179,15 +197,15 @@ input[type=date].form-input{color-scheme:dark}
 .reading-para{font-family:var(--ff-heading);font-size:15.5px;font-style:italic;color:rgba(245,240,255,.92);line-height:1.9;margin-bottom:14px;text-align:justify}
 .reading-para strong{color:var(--lavender);font-style:normal}
 .reading-pull{font-family:var(--ff-display);font-size:19px;font-weight:300;color:var(--cream);line-height:1.5;padding:24px 28px;border-left:3px solid var(--amethyst);background:rgba(124,79,208,.08);border-radius:0 var(--r) var(--r) 0;margin:20px 0}
-.r-block-accent{background:rgba(45,31,78,.25);border:1px solid rgba(124,79,208,.18);border-radius:var(--r-lg);padding:24px 28px;margin-bottom:16px}
+.r-block-accent{background:rgba(212,168,67,.08);border:1px solid rgba(212,168,67,.25);border-radius:var(--r-lg);padding:24px 28px;margin-bottom:16px}
 .r-block-accent .reading-block-label{color:#d4a843}
 .r-block-accent .reading-block-label::after{background:rgba(212,168,67,.2)}
 
 /* Action bar */
-.new-reading-link{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(208,192,240,.5);margin-bottom:24px;transition:color .2s}
+.new-reading-link{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--lt-stone);margin-bottom:24px;transition:color .2s}
 .new-reading-link:hover{color:var(--cream)}
 .action-bar{display:flex;gap:10px;justify-content:center;margin:-8px 0 32px;flex-wrap:wrap}
-.action-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:20px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid rgba(124,79,208,.35);background:rgba(45,31,78,.4);color:var(--lavender)}
+.action-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:20px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid rgba(124,79,208,.3);background:var(--white);color:var(--purple)}
 .action-btn:hover{background:rgba(124,79,208,.18);border-color:var(--amethyst);transform:translateY(-1px)}
 .action-btn.is-active{background:rgba(124,79,208,.25);border-color:var(--amethyst)}
 .share-menu{position:relative;display:inline-block}
@@ -270,9 +288,9 @@ input[type=date].form-input{color-scheme:dark}
 .error-card p{font-size:13px;color:rgba(220,160,180,.9);line-height:1.6}
 
 /* Privacy */
-.privacy-note{display:flex;align-items:flex-start;gap:10px;padding:14px 18px;background:rgba(45,31,78,.2);border-radius:var(--r);margin-top:14px}
+.privacy-note{display:flex;align-items:flex-start;gap:10px;padding:14px 18px;background:rgba(124,79,208,.06);border-radius:var(--r);margin-top:14px}
 .privacy-note i{color:var(--amethyst);font-size:14px;margin-top:2px;flex-shrink:0}
-.privacy-note p{font-size:11.5px;color:rgba(208,192,240,.65);line-height:1.6;font-style:italic}
+.privacy-note p{font-size:11.5px;color:var(--lt-stone);line-height:1.6;font-style:italic}
 
 /* Footer */
 .footer{background:rgba(13,10,20,.95);border-top:1px solid rgba(124,79,208,.1);padding:40px 24px 24px;margin-top:80px}
@@ -336,17 +354,23 @@ input[type=date].form-input{color-scheme:dark}
     <h2 class="section-title">Upload your photo<br><em>to reveal your element.</em></h2>
     <p class="section-sub">A clear front-facing photo works best. Your photo is analysed entirely in your browser: it never leaves your device and is never stored.</p>
 
-    <div class="name-row" style="margin-bottom:20px">
-      <div class="name-group">
-        <label class="form-label" for="inp-name">Your first name <span style="color:rgba(196,176,232,.4)">(optional)</span></label>
-        <input type="text" id="inp-name" class="form-input" placeholder="Enter your name">
+    <div style="background:var(--white);border:1px solid var(--lt-cream);border-radius:var(--r-lg);padding:20px 22px;margin-bottom:24px">
+      <div id="prefill-banner" style="display:none;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;background:var(--parchment);border:1px solid var(--lt-cream);border-radius:var(--r);margin-bottom:14px;font-size:12px">
+        <span style="color:var(--lt-stone)"><i class="fas fa-check-circle" style="color:var(--amethyst);margin-right:6px"></i>Using your saved details.</span>
+        <button onclick="clearPrefill()" style="background:none;border:none;color:var(--amethyst);font-size:12px;font-weight:600;cursor:pointer;text-decoration:underline">Not you? Change details</button>
       </div>
-      <div class="dob-group">
-        <label class="form-label" for="inp-dob">Date of birth <span style="color:rgba(196,176,232,.4)">(optional)</span></label>
-        <input type="date" id="inp-dob" class="form-input">
+      <div style="text-align:center;font-size:12px;color:var(--lt-stone);margin-bottom:14px">Your first name (optional) · Date of birth (optional)</div>
+      <div class="name-row">
+        <div class="name-group">
+          <input type="text" id="inp-name" class="form-input" placeholder="Enter your name">
+        </div>
+        <div class="dob-group">
+          <input type="date" id="inp-dob" class="form-input">
+        </div>
       </div>
     </div>
 
+    <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--lt-stone);margin-bottom:14px">Step 2, upload your photo</div>
     <div class="upload-card" id="upload-card">
       <div id="upload-empty">
         <label for="file-input" class="upload-drop-zone" style="cursor:pointer;padding:8px 0 20px;display:block">
@@ -441,6 +465,16 @@ input[type=date].form-input{color-scheme:dark}
       <div id="reading-content"></div>
     </div>
 
+    <div id="email-capture" style="margin:0 0 28px;padding:24px 28px;background:var(--white);border:1px solid var(--lt-cream);border-radius:var(--r-lg);text-align:center">
+      <div style="font-family:var(--ff-display);font-size:18px;color:var(--lt-ink);margin-bottom:6px">Want this reading sent to you?</div>
+      <div style="font-size:13px;color:var(--lt-stone);margin-bottom:16px">Plus one new insight a week. No spam, unsubscribe anytime.</div>
+      <div style="display:flex;gap:10px;max-width:420px;margin:0 auto" id="email-capture-form">
+        <input type="email" id="email-capture-input" placeholder="you@email.com" style="flex:1;padding:12px 16px;border:1.5px solid var(--lt-cream);border-radius:var(--r);font-family:var(--ff-body);font-size:14px;color:var(--lt-ink);outline:none">
+        <button onclick="submitEmailCapture()" id="email-capture-btn" style="padding:12px 22px;background:var(--amethyst);color:#fff;border:none;border-radius:var(--r);font-family:var(--ff-body);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap">Send it to me</button>
+      </div>
+      <div id="email-capture-msg" style="font-size:12.5px;margin-top:10px;display:none"></div>
+    </div>
+
     <div class="lifeos-invite">
       <div class="li-badge"><i class="fas fa-sparkles"></i><span id="li-eyebrow">If this reading has landed</span></div>
       <div class="li-title" id="li-title">Your face has twelve zones. This reading covered six.</div>
@@ -495,26 +529,26 @@ input[type=date].form-input{color-scheme:dark}
   </div>
 </main>
 
-<section style="background:var(--deep);border-top:1px solid rgba(124,79,208,.15);padding:72px 24px">
+<section style="background:var(--parchment);border-top:1px solid var(--lt-cream);padding:72px 24px">
   <div class="main" style="padding:0">
     <div class="section-label">Explore More</div>
     <h2 class="section-title">More layers<br><em>await.</em></h2>
     <p class="section-sub">Each free tool reveals a different dimension of your blueprint. Together they form a complete picture.</p>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px" class="explore-grid-fr">
-      <a href="tool-life-blueprint.html" style="padding:22px 20px;background:rgba(45,31,78,.3);border:1px solid rgba(124,79,208,.22);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--amethyst)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(124,79,208,.22)';this.style.transform='none'">
+      <a href="tool-life-blueprint.html" style="padding:22px 20px;background:var(--white);border:1px solid var(--lt-cream);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--amethyst)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--lt-cream)';this.style.transform='none'">
         <div style="font-size:24px;margin-bottom:10px">🔢</div>
-        <div style="font-family:var(--ff-heading);font-size:14px;color:var(--cream);margin-bottom:6px">Life Blueprint</div>
-        <div style="font-size:12px;color:rgba(208,192,240,.65);line-height:1.55">The specific current your birth date encodes, named in plain language.</div>
+        <div style="font-family:var(--ff-heading);font-size:14px;color:var(--lt-ink);margin-bottom:6px">Life Blueprint</div>
+        <div style="font-size:12px;color:var(--lt-stone);line-height:1.55">The specific current your birth date encodes, named in plain language.</div>
       </a>
-      <a href="tool-compatibility.html" style="padding:22px 20px;background:rgba(45,31,78,.3);border:1px solid rgba(124,79,208,.22);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--amethyst)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(124,79,208,.22)';this.style.transform='none'">
+      <a href="tool-compatibility.html" style="padding:22px 20px;background:var(--white);border:1px solid var(--lt-cream);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--amethyst)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--lt-cream)';this.style.transform='none'">
         <div style="font-size:24px;margin-bottom:10px">💞</div>
-        <div style="font-family:var(--ff-heading);font-size:14px;color:var(--cream);margin-bottom:6px">Compatibility Blueprint</div>
-        <div style="font-size:12px;color:rgba(208,192,240,.65);line-height:1.55">The soul-level dynamic between any two people, revealed from birth dates.</div>
+        <div style="font-family:var(--ff-heading);font-size:14px;color:var(--lt-ink);margin-bottom:6px">Compatibility Blueprint</div>
+        <div style="font-size:12px;color:var(--lt-stone);line-height:1.55">The soul-level dynamic between any two people, revealed from birth dates.</div>
       </a>
-      <a href="tool-hand-map.html" style="padding:22px 20px;background:rgba(45,31,78,.3);border:1px solid rgba(124,79,208,.22);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--amethyst)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(124,79,208,.22)';this.style.transform='none'">
+      <a href="tool-hand-map.html" style="padding:22px 20px;background:var(--white);border:1px solid var(--lt-cream);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--amethyst)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--lt-cream)';this.style.transform='none'">
         <div style="font-size:24px;margin-bottom:10px">🤚</div>
-        <div style="font-family:var(--ff-heading);font-size:14px;color:var(--cream);margin-bottom:6px">Hand Map Reader</div>
-        <div style="font-size:12px;color:rgba(208,192,240,.65);line-height:1.55">Upload both palms. The comparison between your two hands reveals what neither shows alone.</div>
+        <div style="font-family:var(--ff-heading);font-size:14px;color:var(--lt-ink);margin-bottom:6px">Hand Map Reader</div>
+        <div style="font-size:12px;color:var(--lt-stone);line-height:1.55">Upload both palms. The comparison between your two hands reveals what neither shows alone.</div>
       </a>
     </div>
     <div style="text-align:center;margin-top:28px"><a href="../tools.html" style="font-size:13px;color:var(--amethyst);font-family:var(--ff-heading);font-style:italic">View all free tools</a></div>
@@ -541,6 +575,101 @@ input[type=date].form-input{color-scheme:dark}
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/hand-pose-detection@2.0.1/dist/hand-pose-detection.min.js"></script>
 
 <script>
+// Real, actual affiliate attribution, matching the same, established
+// system used across the rest of the site.
+(function(){
+  try{
+    var params=new URLSearchParams(window.location.search);
+    var ref=params.get("ref");
+    if(ref){
+      var expires=new Date();
+      expires.setTime(expires.getTime()+(60*24*60*60*1000));
+      document.cookie="kayal_ref="+encodeURIComponent(ref)+";expires="+expires.toUTCString()+";path=/;domain=.kayalsoulpath.com";
+    }
+  }catch(e){}
+})();
+
+// Real, actual email capture, saved to the same, dedicated table
+// used across every tool tonight.
+async function submitEmailCapture(){
+  var input=document.getElementById("email-capture-input");
+  var email=input.value.trim();
+  var msg=document.getElementById("email-capture-msg");
+  var btn=document.getElementById("email-capture-btn");
+
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    msg.style.display="block";
+    msg.style.color="#c0392b";
+    msg.textContent="Please enter a real, valid email address.";
+    return;
+  }
+
+  btn.disabled=true;btn.textContent="Sending...";
+
+  try{
+    var res=await fetch("https://nofyxayqdwhyabcntmvs.supabase.co/rest/v1/email_signups",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "apikey":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw",
+        "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw"
+      },
+      body:JSON.stringify({email:email,tool_id:"face-reader"})
+    });
+
+    if(res.ok){
+      document.getElementById("email-capture-form").style.display="none";
+      msg.style.display="block";
+      msg.style.color="var(--amethyst)";
+      msg.innerHTML="<i class='fas fa-check-circle'></i> Sent. Check your inbox shortly.";
+    }else{
+      throw new Error("Real, actual save failed");
+    }
+  }catch(e){
+    btn.disabled=false;btn.textContent="Send it to me";
+    msg.style.display="block";
+    msg.style.color="#c0392b";
+    msg.textContent="Something went wrong. Please try again.";
+  }
+}
+
+// Real, genuine prefill, matching the same, proven approach used
+// elsewhere, this device only, a clear, honest way to change details
+// always stays visible.
+function loadPrefill(){
+  try{
+    var saved=localStorage.getItem("kayal_dob");
+    var savedName=localStorage.getItem("kayal_name");
+    if(saved){
+      document.getElementById("inp-dob").value=saved;
+      if(savedName)document.getElementById("inp-name").value=savedName;
+      var b=document.getElementById("prefill-banner");
+      if(b)b.style.display="flex";
+    }
+  }catch(e){}
+}
+
+function clearPrefill(){
+  try{
+    localStorage.removeItem("kayal_dob");
+    localStorage.removeItem("kayal_name");
+  }catch(e){}
+  document.getElementById("inp-dob").value="";
+  document.getElementById("inp-name").value="";
+  var b=document.getElementById("prefill-banner");
+  if(b)b.style.display="none";
+}
+
+function savePrefill(dob,name){
+  try{
+    if(dob)localStorage.setItem("kayal_dob",dob);
+    if(name)localStorage.setItem("kayal_name",name);
+    else localStorage.removeItem("kayal_name");
+  }catch(e){}
+}
+
+loadPrefill();
+
 // ── PARTICLES ──────────────────────────────────────────────
 (function(){
   var c=document.getElementById('particles');
@@ -665,6 +794,9 @@ function dist(a,b){return Math.sqrt(Math.pow(a.x-b.x,2)+Math.pow(a.y-b.y,2));}
 
 function startAnalysis(){
   hideError();
+  var nameVal=document.getElementById('inp-name').value.trim();
+  var dobVal=document.getElementById('inp-dob').value;
+  if(dobVal)savePrefill(dobVal,nameVal);
   var overlay=document.getElementById('analysing-overlay');
   overlay.classList.remove('hidden');
   setStep(1);
@@ -1162,14 +1294,37 @@ function generateShareCardImage(data,line){
     var lineY=titleY+110;
     var realBottom=wrapCanvasText(mctx,line,cx,lineY,600,42);
     var badgeY=realBottom+70;
-    var H=Math.round(badgeY+80);
+    var H=Math.round(badgeY+110);
 
     var canvas=document.createElement('canvas');
     canvas.width=W;canvas.height=H;
     var ctx=canvas.getContext('2d');
-    var bgGrad=ctx.createLinearGradient(0,0,W,H);
-    bgGrad.addColorStop(0,data.gradTo);bgGrad.addColorStop(0.4,data.gradFrom);bgGrad.addColorStop(1,'#08060a');
-    ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
+
+    // Real, loads the actual, specific backdrop matching this exact
+    // element, wood, fire, earth, metal, or water, whichever the
+    // real reading revealed. Honest fallback to the existing,
+    // approved gradient if it's missing, slow, or fails to load.
+    var backdrop=new Image();
+    backdrop.crossOrigin='anonymous';
+    var backdropLoaded=false,settled=false;
+
+    function draw(){
+      if(settled)return;
+      settled=true;
+
+      if(backdropLoaded){
+        var scale=Math.max(W/backdrop.width,H/backdrop.height);
+        var dw=backdrop.width*scale,dh=backdrop.height*scale;
+        var dx=(W-dw)/2,dy=(H-dh)/2;
+        ctx.drawImage(backdrop,dx,dy,dw,dh);
+        ctx.fillStyle='rgba(8,6,10,0.45)';
+        ctx.fillRect(0,0,W,H);
+      }else{
+        var bgGrad=ctx.createLinearGradient(0,0,W,H);
+        bgGrad.addColorStop(0,data.gradTo);bgGrad.addColorStop(0.4,data.gradFrom);bgGrad.addColorStop(1,'#08060a');
+        ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
+      }
+
     var glow2=ctx.createRadialGradient(cx+80,cy-50,10,cx+80,cy-50,300);
     glow2.addColorStop(0,data.colorLight+'50');glow2.addColorStop(1,data.colorLight+'00');
     ctx.fillStyle=glow2;ctx.fillRect(0,0,W,H);
@@ -1196,17 +1351,29 @@ function generateShareCardImage(data,line){
     ctx.font='italic 400 28px Georgia, serif';
     ctx.fillStyle='#f5f0ff';
     wrapCanvasText(ctx,line,cx,lineY,600,42);
-    ctx.font='600 17px system-ui, sans-serif';
+    ctx.font='700 18px system-ui, sans-serif';
     var badgeText='KAYAL SOULPATH INSTITUTE';
     var badgeW=ctx.measureText(badgeText).width+64;
     roundRectPath(ctx,cx-badgeW/2,badgeY-24,badgeW,48,24);
-    ctx.fillStyle=data.color+'25';ctx.fill();
-    ctx.strokeStyle='rgba(255,255,255,0.25)';ctx.lineWidth=1.5;ctx.stroke();
-    ctx.fillStyle='#f5f0ff';ctx.fillText(badgeText,cx,badgeY+6);
-    ctx.font='500 15px system-ui, sans-serif';
-    ctx.fillStyle=data.colorLight+'b0';
-    ctx.fillText('kayalsoulpath.com',cx,badgeY+50);
+    ctx.fillStyle=data.color+'50';ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.4)';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle='#fff8ec';ctx.fillText(badgeText,cx,badgeY+6);
+    ctx.font='700 18px system-ui, sans-serif';
+    var ctaText='Discover What Your Face Says for Free at kayalsoulpath.com';
+    var ctaW=ctx.measureText(ctaText).width+48;
+    var ctaY=badgeY+58;
+    roundRectPath(ctx,cx-ctaW/2,ctaY-21,ctaW,42,21);
+    ctx.fillStyle=data.color+'35';ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.3)';ctx.lineWidth=1.25;ctx.stroke();
+    ctx.fillStyle='#ffffff';
+    ctx.fillText(ctaText,cx,ctaY+1);
     canvas.toBlob(function(blob){resolve(blob);},'image/png');
+    }
+
+    backdrop.onload=function(){backdropLoaded=true;draw();};
+    backdrop.onerror=function(){draw();};
+    backdrop.src='../images/share-backdrops/'+data.name.toLowerCase()+'.jpg';
+    setTimeout(draw,1200);
   });
 }
 
