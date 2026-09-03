@@ -1399,7 +1399,7 @@ async function openShareCardModal(){
   var data=ELEMENTS[currentElement];
   var syn=FACE_SYNTHESIS[currentElement];
   var line=pickShareLine(syn.tension);
-  currentShareCaption='I'+"'"+'m '+data.title+', a '+data.name+' element face. Discover yours free at kayalsoulpath.com';
+  currentShareCaption='I'+"'"+'m '+data.title+', a '+data.name+' element face. Discover your own free.';
   document.getElementById('scm-caption').value=currentShareCaption;
   var blob=await generateShareCardImage(data,line);
   currentShareBlob=blob;

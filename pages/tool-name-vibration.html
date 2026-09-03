@@ -959,7 +959,7 @@ function trackShareEvent(action){
 async function openShareCardModal(){
   if(!currentExpr||!currentSynthesisTension)return;
   var line=pickShareLine(currentSynthesisTension);
-  currentShareCaption='My name carries Expression '+currentExpr+'. Discover what yours reveals free at kayalsoulpath.com';
+  currentShareCaption='My name carries Expression '+currentExpr+'. Discover your own free.';
   document.getElementById('scm-caption').value=currentShareCaption;
   var blob=await generateShareCardImage(currentExpr,line);
   currentShareBlob=blob;

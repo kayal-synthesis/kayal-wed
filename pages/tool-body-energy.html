@@ -861,7 +861,7 @@ async function openShareCardModal(){
   var data=PATTERNS[currentLp]||PATTERNS[1];
   var plainPhrase=data.phrase.replace(/<[^>]*>/g,'');
   var line=data.synthesis.invitation;
-  currentShareCaption='My vitality pattern: '+plainPhrase+'. Discover yours free at kayalsoulpath.com';
+  currentShareCaption='My vitality pattern: '+plainPhrase+'. Discover your own free.';
   document.getElementById('scm-caption').value=currentShareCaption;
   var blob=await generateShareCardImage(plainPhrase,line);
   currentShareBlob=blob;

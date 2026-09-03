@@ -10,12 +10,12 @@
 <meta property="og:description" content="Your birth date encodes a specific current running beneath every decision, relationship, and season of your life. Discover it free.">
 <meta property="og:url" content="https://kayalsoulpath.com/pages/tool-life-blueprint.html">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://kayalsoulpath.com/images/share-backdrops/life-blueprint.jpg">
+<meta property="og:image" content="https://kayalsoulpath.com/images/share-backdrops/og-example-life-blueprint.png">
 <meta property="og:site_name" content="KAYAL SoulPath Institute">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Life Blueprint: Discover What Your Birth Date Encodes">
 <meta name="twitter:description" content="Your birth date encodes a specific current running beneath every decision, relationship, and season of your life. Discover it free.">
-<meta name="twitter:image" content="https://kayalsoulpath.com/images/share-backdrops/life-blueprint.jpg">
+<meta name="twitter:image" content="https://kayalsoulpath.com/images/share-backdrops/og-example-life-blueprint.png">
 <link rel="stylesheet" href="../css/global.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <!-- Real, used only by the share-card Canvas drawing, a deliberate,
@@ -418,6 +418,25 @@ a{color:inherit;text-decoration:none}
 </div>
 
 <script>
+// Real, actual affiliate attribution, this free tool now
+// participates in the same, established referral system used across
+// the rest of the site. If someone arrives via a real affiliate
+// link, the same, actual kayal_ref cookie gets set here too, so a
+// purchase made later, through a completely different, real path,
+// still correctly credits whoever actually sent them. Last-touch,
+// confirmed, a newer, real referral always overwrites an older one.
+(function(){
+  try{
+    var params=new URLSearchParams(window.location.search);
+    var ref=params.get("ref");
+    if(ref){
+      var expires=new Date();
+      expires.setTime(expires.getTime()+(60*24*60*60*1000));
+      document.cookie="kayal_ref="+encodeURIComponent(ref)+";expires="+expires.toUTCString()+";path=/;domain=.kayalsoulpath.com";
+    }
+  }catch(e){}
+})();
+
 // ── READING DATA ─────────────────────────────────────────────────────────
 // Pure felt human experience. No methodology language shown to visitor.
 // Real, dedicated share taglines, one genuinely composed, catchy
@@ -969,7 +988,7 @@ async function openShareCardModal(){
   var lp=currentLp,data=READINGS[lp]||READINGS[1];
   var label="Life Path "+lp;
   var line=SHARE_TAGLINES[lp]||pickShareLine(data.synthesis.tension);
-  currentShareCaption=line+" Discover your own Life Path free at kayalsoulpath.com";
+  currentShareCaption="I'm a "+label+". Discover your own free.";
   document.getElementById("scm-caption").value=currentShareCaption;
   // Real, necessary, Canvas silently falls back to a default font if
   // this specific, custom font hasn't actually finished loading yet,

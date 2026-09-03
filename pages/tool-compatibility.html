@@ -1288,7 +1288,7 @@ function trackShareEvent(action){
 async function openShareCardModal(){
   if(currentScore===null||!currentSynthesisTension)return;
   var line=pickShareLine(currentSynthesisTension);
-  currentShareCaption=currentName1+' + '+currentName2+': '+currentScore+'% resonance. Discover yours free at kayalsoulpath.com';
+  currentShareCaption=currentName1+' + '+currentName2+': '+currentScore+'% resonance. Discover your own free.';
   document.getElementById('scm-caption').value=currentShareCaption;
   var blob=await generateShareCardImage(currentScore,currentSign1,currentSign2,currentName1,currentName2,line);
   currentShareBlob=blob;

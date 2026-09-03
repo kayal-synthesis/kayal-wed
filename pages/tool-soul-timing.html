@@ -981,7 +981,7 @@ function trackShareEvent(action){
 async function openShareCardModal(){
   if(!currentPy||!currentSynthesisTension)return;
   var line=pickShareLine(currentSynthesisTension);
-  currentShareCaption="I'm in Personal Year "+currentPy+". Discover your own timing window free at kayalsoulpath.com";
+  currentShareCaption="I'm in Personal Year "+currentPy+". Discover your own timing window free.";
   document.getElementById('scm-caption').value=currentShareCaption;
   var blob=await generateShareCardImage(currentPy,line);
   currentShareBlob=blob;

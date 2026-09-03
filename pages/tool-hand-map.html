@@ -1665,7 +1665,7 @@ async function openShareCardModal(){
   var domData=HT[currentDomType],pasData=HT[currentPasType];
   var sameType=currentDomType===currentPasType;
   var line=pickShareLine(currentSynthesisTension);
-  currentShareCaption='My hand map: '+domData.n+(sameType?'':' (dominant), '+pasData.n+' (passive)')+'. Discover yours free at kayalsoulpath.com';
+  currentShareCaption='My hand map: '+domData.n+(sameType?'':' (dominant), '+pasData.n+' (passive)')+'. Discover your own free.';
   document.getElementById('scm-caption').value=currentShareCaption;
   var blob=await generateShareCardImage(domData,pasData,sameType,line);
   currentShareBlob=blob;

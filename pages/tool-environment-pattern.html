@@ -823,7 +823,7 @@ async function openShareCardModal(){
   var data=PATTERNS[currentLp]||PATTERNS[1];
   var plainPhrase=data.phrase.replace(/<[^>]*>/g,'');
   var line=pickShareLine(data.synthesis.tension);
-  currentShareCaption='My environment pattern: '+plainPhrase+'. Discover yours free at kayalsoulpath.com';
+  currentShareCaption='My environment pattern: '+plainPhrase+'. Discover your own free.';
   document.getElementById('scm-caption').value=currentShareCaption;
   var blob=await generateShareCardImage(plainPhrase,line);
   currentShareBlob=blob;

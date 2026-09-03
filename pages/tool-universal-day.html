@@ -791,7 +791,7 @@ async function openShareCardModal(){
   if(!currentUdNum||!currentSynthesisTension)return;
   var data=UD[currentUdNum]||UD[1];
   var line=pickShareLine(currentSynthesisTension);
-  currentShareCaption='Today is '+data.n+'. Discover what any date reveals free at kayalsoulpath.com';
+  currentShareCaption='Today is '+data.n+'. Discover what any date reveals free.';
   document.getElementById('scm-caption').value=currentShareCaption;
   var blob=await generateShareCardImage(data.n,line);
   currentShareBlob=blob;
