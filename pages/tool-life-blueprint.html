@@ -1248,7 +1248,18 @@ function calculate(){
     var html="";
     html+="<div class='r-syn'><div class='r-lbl'>What This Reading Is Saying, Taken As A Whole</div><p class='r-tension'>"+data.synthesis.tension+"</p><p class='r-invite'>"+data.synthesis.invitation+"</p></div>";
 
-    data.sections.forEach(function(sec){
+    // Real, deliberate, free-tier trim, confirmed and agreed, three
+    // of the five real sections, "What Drives You," "How You Love
+    // and How You Work," and "The Central Challenge," now held back
+    // for the paid, deeper reading, since Synthesis above already
+    // gives a genuine, real taste of the core tension, and the paid
+    // tier's own, actual Central Challenge section is the complete,
+    // deeper elaboration on that same, exact tension. The real,
+    // complete, original data stays fully intact here, only the
+    // free, rendered set is filtered, so nothing is lost if a real,
+    // future unlock ever needs the other three.
+    var FREE_TIER_SECTIONS=["Who You Are","What To Watch For"];
+    data.sections.filter(function(sec){return FREE_TIER_SECTIONS.indexOf(sec.label)!==-1;}).forEach(function(sec){
       html+="<div class='r-section'><div class='r-lbl'>"+sec.label+"</div>";
       sec.paras.forEach(function(p){html+="<p class='r-para'>"+p+"</p>";});
       html+="</div>";
