@@ -249,8 +249,9 @@ input[type=date].form-input{color-scheme:light}
   .lifeos-invite{max-width:100%;padding:20px 18px}
   .cycle-header{padding:36px 20px}
 }
+.explore-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}@media(max-width:768px){
-  .explore-grid-fix{grid-template-columns:1fr}
+  .explore-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -412,7 +413,7 @@ input[type=date].form-input{color-scheme:light}
     <div class="s-label">Explore More</div>
     <h2 class="s-title">More layers<br><em>await.</em></h2>
     <p class="s-sub">Each free tool reveals a different dimension of your blueprint. Together they form a complete picture.</p>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px" class="explore-grid-fix">
+    <div class="explore-grid">
       <a href="tool-life-blueprint.html" style="padding:22px 20px;background:var(--linen);border:1px solid var(--lt-cream);border-radius:var(--r);text-decoration:none;display:block;transition:all .2s" onmouseover="this.style.borderColor='var(--fern)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--lt-cream)';this.style.transform='none'">
         <div style="font-size:24px;margin-bottom:10px">🔢</div>
         <div style="font-family:var(--ff-h);font-size:14px;color:var(--lt-ink);margin-bottom:6px">Life Blueprint</div>
