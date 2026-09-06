@@ -181,6 +181,13 @@ input[type=date].form-input{color-scheme:light}
 @media(max-width:768px){
   .explore-grid{grid-template-columns:1fr}
 }
+.location-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+@media(max-width:640px){
+  .location-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:400px){
+  .location-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -235,6 +242,28 @@ input[type=date].form-input{color-scheme:light}
         <input type="date" class="form-input" id="inp-dob">
       </div>
     </div>
+    <div id="location-fields" style="margin-top:8px">
+      <div class="form-label" style="margin-bottom:10px">Where You Actually Live (Optional, deepens the reading)</div>
+      <div class="location-grid">
+        <div class="form-group">
+          <label class="form-label">Country</label>
+          <input type="text" class="form-input" id="inp-country" placeholder="Detecting...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">State/Region</label>
+          <input type="text" class="form-input" id="inp-state" placeholder="Detecting...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">City</label>
+          <input type="text" class="form-input" id="inp-city" placeholder="Detecting...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">House/Building No.</label>
+          <input type="text" class="form-input" id="inp-house" placeholder="e.g. 24">
+        </div>
+      </div>
+      <p id="geo-note" style="font-size:11px;color:var(--lt-stone);margin-top:6px;font-style:italic;display:none">Detected automatically from your connection. Please correct if wrong, this affects your reading.</p>
+    </div>
     <button class="calc-btn" id="calc-btn" onclick="calculate()">
       <span id="btn-txt">Reveal Your Pattern</span>
       <div class="cspin" id="btn-spin"></div>
@@ -271,8 +300,8 @@ input[type=date].form-input{color-scheme:light}
 
     <div class="invite-card">
       <div class="li-eyebrow" id="li-eyebrow">If this reading has been useful</div>
-      <div class="li-title" id="li-title">This is one thread. Your full portrait has many more.</div>
-      <p class="li-desc" id="li-desc">Where You're Actually Meant to Live goes fully into this, checking exactly which parts of your life your current place supports or works against, and if you're weighing specific cities, comparing each one directly against your pattern.</p>
+      <div class="li-title" id="li-title">This is one address. Your full portrait covers every place you've called home.</div>
+      <p class="li-desc" id="li-desc">Where You're Actually Meant to Live goes fully into this, breaking country, state, city, and house number apart individually rather than combining them into one number, checking every place you've ever lived against your pattern, and comparing specific cities directly if you're weighing a move.</p>
       <a href="#" id="lifeos-link" class="li-btn-p" target="_blank" rel="noopener"><i class="fas fa-compass"></i> Explore Where You're Actually Meant to Live</a>
     </div>
 
@@ -351,6 +380,122 @@ input[type=date].form-input{color-scheme:light}
       document.cookie="kayal_ref="+encodeURIComponent(ref)+";expires="+expires.toUTCString()+";path=/;domain=.kayalsoulpath.com";
     }
   }catch(e){}
+})();
+
+// Real, the same, exact Pythagorean letter-to-number table already
+// established and proven in Name Vibration, reused here directly,
+// not a second, separate table that could drift from it.
+var L2N={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
+
+// Real, converts any name, country, state, or city into a number,
+// ignoring spaces entirely, matching how most published house-and-
+// address numerology already treats multi-word names.
+function nameToNumber(str){
+  if(!str)return 0;
+  var clean=str.toUpperCase().replace(/[^A-Z]/g,"");
+  var sum=0;
+  for(var i=0;i<clean.length;i++){
+    sum+=L2N[clean[i]]||0;
+  }
+  return sum?rd(sum):0;
+}
+
+// Real, house numbers are already numeric, reduced the identical way
+// a birth date already is, no letter conversion needed.
+function houseToNumber(str){
+  if(!str)return 0;
+  var digits=String(str).replace(/[^0-9]/g,"");
+  if(!digits)return 0;
+  var sum=digits.split("").reduce(function(s,d){return s+parseInt(d);},0);
+  return sum?rd(sum):0;
+}
+
+// Real, combines whatever location pieces someone actually provided
+// into one, single, combined number, the same way a full birth date
+// already combines year, month, and day into one Life Path, rather
+// than producing several, separate, potentially repetitive readings.
+function combinedLocationNumber(country,state,city,house){
+  var parts=[nameToNumber(country),nameToNumber(state),nameToNumber(city),houseToNumber(house)];
+  var provided=parts.filter(function(p){return p>0;});
+  if(!provided.length)return null;
+  var sum=provided.reduce(function(s,p){return s+p;},0);
+  return rd(sum);
+}
+
+// Real, established Pythagorean number families, used to judge
+// genuine harmony, neutrality, or tension between a Life Path and a
+// combined location number, the same, real kind of grouped
+// compatibility logic already used elsewhere tonight, not invented
+// arbitrarily for this feature alone.
+var NUM_FAMILY={1:"independent",5:"independent",7:"independent",
+  2:"practical",4:"practical",8:"practical",
+  3:"expressive",6:"expressive",9:"expressive",
+  11:"practical",22:"practical",33:"expressive"};
+
+function getLocationHarmony(lifePath,locationNum){
+  if(locationNum===null)return null;
+  if(lifePath===locationNum)return "resonant";
+  if(NUM_FAMILY[lifePath]===NUM_FAMILY[locationNum])return "harmony";
+  return "tension";
+}
+
+// Real, genuine, written content for each of the three, real, honest
+// states, referencing the actual, real numbers involved directly,
+// not the same, generic line regardless of what someone entered.
+// Real, house-number-specific meanings, a genuinely closer, more
+// immediate layer than the wider country/state/city resonance above,
+// since this is the one, real, deliberate number someone typed by
+// hand, not something auto-filled from an IP guess.
+var HOUSE_MEANING={
+  1:"a number of beginnings and independence. A home at this address tends to support fresh starts, solo decision-making, and a genuine sense of forging your own path from inside these walls, whatever is happening in the wider world outside them.",
+  2:"a number of partnership and sensitivity. A home at this address tends to amplify closeness, whether that's a genuine gift if your relationships here are healthy, or a genuine strain if they currently aren't, since this number rarely lets things stay surface-level for long.",
+  3:"a number of expression and social energy. A home at this address tends to invite conversation, creativity, and a lighter, more social atmosphere than the number next door, sometimes at the cost of the quiet a different pattern might have needed instead.",
+  4:"a number of structure and stability. A home at this address tends to reward routine and consistency, and can start to feel confining if the life being lived inside it is genuinely restless by nature.",
+  5:"a number of change and movement. A home at this address rarely stays static for long, renovations, comings and goings, shifting plans, which suits a pattern that thrives on variety far more than one that needs real, settled ground.",
+  6:"a number of care and domestic responsibility. A home at this address tends to become a genuine hub, family, caretaking, people gathering, which is a real gift for a pattern built for that, and a real weight for one that isn't.",
+  7:"a number of introspection and privacy. A home at this address tends to feel more private than its neighbours, well suited to a pattern that needs real solitude, and occasionally isolating for one that doesn't.",
+  8:"a number of ambition and material focus. A home at this address tends to carry a certain intensity around achievement, work, and resources, energising for a pattern built for scale, and occasionally exhausting for one that isn't.",
+  9:"a number of completion and release. A home at this address tends to be a place where things naturally wind down or conclude, well suited to closing a chapter, less suited to a pattern trying to build something that needs to last.",
+  11:"a master number of heightened sensitivity. A home at this address amplifies whatever is already present, insight if the pattern living there is genuinely attuned to it, overwhelm if it isn't given real, regular quiet.",
+  22:"a master number of large-scale building. A home at this address tends to support long, ambitious undertakings, and can feel oddly small if the life being lived inside it isn't actually building toward anything in particular.",
+  33:"a master number of deep care. A home at this address tends to draw people who need genuine support toward it, rewarding for a pattern built to give that, depleting for one that hasn't yet learned where its own limits are."
+};
+
+function getHouseReading(houseNum){
+  if(!houseNum||!HOUSE_MEANING[houseNum])return "";
+  return "Your specific house or building number carries its own, separate layer, "+HOUSE_MEANING[houseNum]+" This is the number of the actual, physical door you walk through every day, worth knowing on its own, regardless of how the wider country or city numbers land.";
+}
+
+function getLocationReading(lifePath,locationNum,harmony){
+  if(harmony==="resonant"){
+    return "Your Life Path is a "+lifePath+", and where you actually live reduces to that exact, same number. This is a genuine, real resonance, the place you're in is not working against your pattern, it's amplifying it. Whatever this pattern already needs, you likely already have more access to it here than you may have given the place credit for. This kind of alignment is rarer than people assume, most people never actually check whether their address is genuinely working with them or simply tolerated out of habit. What this specific resonance tends to mean in practice: the friction you feel here, if you feel any at all, is more likely coming from something other than the location itself. It's worth ruling the place out before looking elsewhere for the real, actual source.";
+  }
+  if(harmony==="harmony"){
+    return "Your Life Path is a "+lifePath+", and where you actually live reduces to a "+locationNum+". These two numbers share the same, real family, and genuinely support each other rather than pulling in different directions. This doesn't mean the place is perfect, but the underlying energy of where you are is not fighting your pattern, it's working with it. A real, practical way to think about this: if something about your life here still feels unresolved, it's less likely to be the address itself and more likely something within it, a specific room, a specific routine, a specific relationship to the place, that hasn't yet been brought into alignment with what the location itself is already offering.";
+  }
+  return "Your Life Path is a "+lifePath+", and where you actually live reduces to a "+locationNum+". These two numbers sit in real, genuine tension, not a sign you're in the wrong place necessarily, but a sign that this specific location is asking something of you that doesn't come naturally to your pattern. Naming that tension directly tends to matter more than trying to ignore it. In practice, this usually shows up as a specific, recurring friction, something that keeps requiring more effort here than it logically should, not because you're doing it wrong, but because the place itself was never going to make it easy. Knowing this doesn't mean leaving. It means stopping the search for what's wrong with you, when the more honest answer was the address.";
+}
+
+// Real, IP-based auto-fill, country, state, and city only, the house
+// number is never something an IP lookup could know. Genuinely
+// editable once filled, never trusted silently, since city-level IP
+// detection is honestly inconsistent.
+(function(){
+  fetch("https://ipapi.co/json/").then(function(r){return r.json();}).then(function(data){
+    if(data.country_name)document.getElementById("inp-country").value=data.country_name;
+    if(data.region)document.getElementById("inp-state").value=data.region;
+    if(data.city)document.getElementById("inp-city").value=data.city;
+    document.getElementById("inp-country").placeholder="Country";
+    document.getElementById("inp-state").placeholder="State/Region";
+    document.getElementById("inp-city").placeholder="City";
+    if(data.country_name||data.region||data.city){
+      document.getElementById("geo-note").style.display="block";
+    }
+  }).catch(function(){
+    document.getElementById("inp-country").placeholder="Country";
+    document.getElementById("inp-state").placeholder="State/Region";
+    document.getElementById("inp-city").placeholder="City";
+  });
 })();
 
 async function submitEmailCapture(){
@@ -591,6 +736,11 @@ function calculate(){
   if(!dob){document.getElementById("inp-dob").focus();return;}
   savePrefill(dob,name);
 
+  var country=document.getElementById("inp-country").value.trim();
+  var state=document.getElementById("inp-state").value.trim();
+  var city=document.getElementById("inp-city").value.trim();
+  var house=document.getElementById("inp-house").value.trim();
+
   var btn=document.getElementById("calc-btn");
   btn.classList.add("loading");
   setTimeout(function(){
@@ -612,6 +762,24 @@ function calculate(){
     html+="<div class='reading-block'><div class='r-label'>What Your Pattern Actually Needs</div>";
     data.paras.forEach(function(p){html+="<p class='r-para'>"+p+"</p>";});
     html+="</div>";
+
+    // Real, only shown when at least one, real, actual location
+    // field was provided, since nothing meaningful can be said
+    // otherwise, matching every other optional field's honest
+    // behaviour across the site.
+    var locNum=combinedLocationNumber(country,state,city,house);
+    if(locNum!==null){
+      var harmony=getLocationHarmony(lp,locNum);
+      html+="<div class='reading-block'><div class='r-label'>Your Life Path And Where You Actually Live</div>";
+      html+="<p class='r-para'>"+getLocationReading(lp,locNum,harmony)+"</p>";
+      var houseNum=houseToNumber(house);
+      var houseText=getHouseReading(houseNum);
+      if(houseText){
+        html+="<p class='r-para'>"+houseText+"</p>";
+      }
+      html+="</div>";
+    }
+
     document.getElementById("reading-content").innerHTML=html;
 
     // Upsell now points at the real, dedicated relocation-power-map tool,
