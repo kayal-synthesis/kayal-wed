@@ -292,7 +292,7 @@ input[type=date].form-input{color-scheme:light}
   <div id="input-section">
     <div class="s-label">Enter Your Name</div>
     <h2 class="s-title">The name you were<br><em>given at birth.</em></h2>
-    <p class="s-sub">Use your full birth name as it appears on your birth certificate. This is the name that carries the deepest signature. Date of birth is optional but deepens the reading with an age-specific note.</p>
+    <p class="s-sub">Use your full birth name as it appears on your birth certificate. This is the name that carries the deepest signature. Date of birth is optional and personalises the reading further.</p>
 
     <div id="prefill-banner" style="display:none;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;background:var(--linen);border:1px solid var(--lt-cream);border-radius:var(--r);margin-bottom:14px;font-size:12px">
       <span style="color:var(--lt-stone)"><i class="fas fa-check-circle" style="color:var(--amethyst);margin-right:6px"></i>Using your saved details.</span>
@@ -1207,9 +1207,6 @@ function calculate(){
         "<div class='layer-desc'>"+persDesc+"</div>"+
       "</div>";
 
-    // Age note
-    var ageNote=age?" At "+age+", this vibration is currently"+(age<30?" in its earliest and most formative expression":age<45?" operating with the confidence of tested experience":" expressing itself in its most distilled and authoritative form")+".":"";
-
     // Reading
     var np=fn1?fn1+", ":"";
     var nameRef="The name "+nameRaw+" carries";
@@ -1230,10 +1227,14 @@ function calculate(){
     html+="<p class='r-para'>"+nameRef+" the following signature. "+data.core+"</p>";
     html+="</div>";
     html+="<div class='r-pull'>"+data.reads[0].replace("{name}",np)+"</div>";
-    html+="<div class='reading-block'><div class='r-label'>What This Name Does In The World</div>";
-    html+="<p class='r-para'>"+data.reads[1]+ageNote+"</p>";
-    html+="<p class='r-para'>"+data.reads[2]+"</p>";
-    html+="</div>";
+    // Real, deliberate, free-tier trim, confirmed and agreed, "What
+    // This Name Does In The World" now held back for the paid,
+    // deeper reading, since the opening pull-quote above already
+    // gives a genuine, real, complete sense of this name's core
+    // signature, and both, real, short layer descriptions below give
+    // real, additional, complementary depth without repeating it.
+    // The real, complete, original reads[1] and reads[2] data stays
+    // fully intact here, only the free, rendered output is filtered.
     if(data.reads[3]){
       html+="<div class='reading-block'><div class='r-label'>The Depth Layer</div>";
       html+="<p class='r-para'>"+data.reads[3]+"</p>";

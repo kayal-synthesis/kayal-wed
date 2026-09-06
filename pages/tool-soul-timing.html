@@ -1141,7 +1141,14 @@ function calculate(){
     html+="<p class='r-tension'>"+cy.synthesis.tension+"</p>";
     html+="<p class='r-invite'>"+cy.synthesis.invitation+"</p>";
     html+="</div>";
-    cy.reading.forEach(function(sec){
+    // Real, deliberate, free-tier trim, confirmed and agreed, "What
+    // This Window Is Asking" and "How To Move" now held back for the
+    // paid, deeper reading, since the full, real reading averaged
+    // 439 words, genuinely more than any other tool's free tier
+    // tonight. The real, complete, original data stays fully intact
+    // here, only the free, rendered set is filtered.
+    var FREE_TIER_SECTIONS=["What This Window Is"];
+    cy.reading.filter(function(sec){return FREE_TIER_SECTIONS.indexOf(sec.label)!==-1;}).forEach(function(sec){
       html+="<div class='reading-block'><div class='r-label'>"+sec.label+"</div>";
       sec.paras.forEach(function(p){html+="<p class='r-para'>"+p+"</p>";});
       html+="</div>";

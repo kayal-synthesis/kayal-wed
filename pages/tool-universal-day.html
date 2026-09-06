@@ -924,8 +924,8 @@ function calculate(){
     // Guidance row - no numbers
     var timeRef=isToday?"today":isFuture?"on this day":"on this day";
     document.getElementById("guide-row").innerHTML=
-      "<div class='guide-card'><div class='guide-label' style='color:rgba(138,176,240,.65)'>What works "+timeRef+"</div><div class='guide-val'>"+data.do+"</div></div>"+
-      "<div class='guide-card'><div class='guide-label' style='color:rgba(200,120,80,.65)'>What to approach with care</div><div class='guide-val'>"+data.avoid+"</div></div>";
+      "<div class='guide-card'><div class='guide-label' style='color:#1a3a8a'>What works "+timeRef+"</div><div class='guide-val'>"+data.do+"</div></div>"+
+      "<div class='guide-card'><div class='guide-label' style='color:#a8621f'>What to approach with care</div><div class='guide-val'>"+data.avoid+"</div></div>";
 
     // Personal layer - shown as felt qualities only, no numbers
     var pc=document.getElementById("personal-card");
