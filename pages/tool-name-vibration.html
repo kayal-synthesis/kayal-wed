@@ -26,15 +26,10 @@
   --r:8px;--r-lg:16px;
   --ff-d:'Georgia',serif;--ff-h:'Georgia',serif;
   --ff-b:system-ui,-apple-system,sans-serif;
-  /* Real, new light-background variables, so the input and reading
-     pages can genuinely match the same, real rule already applied
-     across every other tool tonight, hero and footer stay dark. */
   --linen:#faf8ff;--white:#ffffff;--lt-cream:#e2dcf0;--lt-stone:#5a4a78;--lt-ink:#1c1530;
 }
 body{background:var(--linen);color:var(--lt-ink);font-family:var(--ff-b);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-
-/* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,6,15,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(107,63,160,.15);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
 .nav-brand{display:flex;flex-direction:column;gap:1px}
 .nav-brand-name{font-family:var(--ff-d);font-size:16px;font-weight:400;color:var(--pearl);letter-spacing:.06em;text-transform:uppercase}
@@ -44,14 +39,10 @@ a{color:inherit;text-decoration:none}
 .nav-back:hover{color:var(--lilac);border-color:rgba(107,63,160,.5)}
 .nav-cta{padding:8px 18px;background:var(--amethyst);color:#fff;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;transition:background .2s;border:none}
 .nav-cta:hover{background:var(--purple)}
-
-/* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,rgba(61,40,117,.4),transparent 60%),var(--ink)}
 .letter-field{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .lf-letter{position:absolute;font-family:var(--ff-d);font-size:28px;font-weight:700;color:rgba(107,63,160,.12);animation:lf-drift linear infinite}
 @keyframes lf-drift{0%{transform:translateY(110vh) rotate(0deg);opacity:0}5%{opacity:1}95%{opacity:.3}100%{transform:translateY(-10vh) rotate(20deg);opacity:0}}
-
-/* Name → Number animation display */
 .hero-name-reveal{position:relative;z-index:1;margin-bottom:32px;min-height:80px}
 .name-display{font-family:var(--ff-d);font-size:clamp(24px,4vw,44px);font-weight:300;letter-spacing:.12em;color:var(--pearl);line-height:1.3;display:flex;align-items:flex-start;justify-content:center;flex-wrap:wrap;gap:6px}
 .nl{display:inline-flex;flex-direction:column;align-items:center;transition:all .4s ease}
@@ -60,22 +51,17 @@ a{color:inherit;text-decoration:none}
 .nl.lit .nl-n{opacity:1;transform:translateY(0)}
 .nl.lit .nl-c{color:var(--lilac)}
 .nl.vowel.lit .nl-c{color:var(--gold)}
-
 .hero-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--lilac);margin-bottom:24px;position:relative;z-index:1}
 .hero-title{font-family:var(--ff-d);font-size:clamp(26px,5vw,48px);font-weight:300;color:var(--pearl);line-height:1.1;margin-bottom:16px;position:relative;z-index:1}
 .hero-title em{font-style:italic;color:var(--lilac)}
 .hero-sub{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(157,112,208,.65);line-height:1.8;max-width:480px;margin:0 auto 36px;position:relative;z-index:1}
 .hero-cta{padding:14px 32px;background:linear-gradient(135deg,var(--purple),var(--amethyst));color:#fff;border:none;border-radius:var(--r);font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:10px;position:relative;z-index:1;text-transform:uppercase}
 .hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(107,63,160,.4)}
-
-/* MAIN */
 .main{max-width:860px;margin:0 auto;padding:80px 24px}
 .s-label{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#5a3a8a;margin-bottom:10px}
 .s-title{font-family:var(--ff-d);font-size:clamp(22px,3vw,32px);font-weight:300;color:var(--lt-ink);line-height:1.2;margin-bottom:10px}
 .s-title em{font-style:italic;color:var(--amethyst)}
 .s-sub{font-family:var(--ff-h);font-size:14px;font-style:italic;color:var(--lt-stone);line-height:1.75;max-width:560px;margin-bottom:32px}
-
-/* Form */
 .form-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-bottom:20px}
 .form-group{display:flex;flex-direction:column;gap:7px}
 .form-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--lt-stone)}
@@ -89,13 +75,9 @@ input[type=date].form-input{color-scheme:light}
 @keyframes spin{to{transform:rotate(360deg)}}
 .calc-btn.loading .cspin{display:block}
 .calc-btn.loading span{opacity:.6}
-
-/* RESULT */
 #result-section{display:none;margin-top:48px}
 #result-section.show{display:block;animation:fadeUp .5s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-
-/* Number reveal header */
 .nr-header{padding:44px 36px;border-radius:var(--r-lg);text-align:center;position:relative;overflow:hidden;margin-bottom:32px;background:var(--white);border:1px solid var(--lt-cream);box-shadow:0 4px 32px rgba(8,6,15,.08)}
 .nr-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(107,63,160,.05),transparent 60%)}
 .nr-bg{position:absolute;font-family:var(--ff-d);font-size:220px;font-weight:700;color:rgba(107,63,160,.04);top:50%;left:50%;transform:translate(-50%,-50%);line-height:1;pointer-events:none;z-index:0}
@@ -103,8 +85,6 @@ input[type=date].form-input{color-scheme:light}
 .nr-name{font-family:var(--ff-d);font-size:clamp(20px,3.5vw,36px);font-weight:300;color:var(--lt-ink);margin-bottom:8px;position:relative;z-index:1}
 .nr-tags{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;position:relative;z-index:1;margin-bottom:16px}
 .nr-tag{padding:4px 13px;border-radius:20px;font-size:11.5px;font-weight:500;background:rgba(107,63,160,.08);border:1px solid rgba(107,63,160,.28);color:#5a3a8a}
-
-/* Letter chips */
 .chips-section{margin-bottom:28px}
 .chips-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--lt-stone);margin-bottom:12px}
 .letter-chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -112,23 +92,17 @@ input[type=date].form-input{color-scheme:light}
 @keyframes chip-in{to{opacity:1}}
 .lchip-char{font-family:var(--ff-d);font-size:18px;font-weight:400;color:var(--lt-ink);line-height:1}
 .lchip-num{font-size:9px;font-weight:700;line-height:1;margin-top:4px}
-
-/* Reduction chain */
 .chain-section{padding:16px 20px;background:var(--white);border:1px solid var(--lt-cream);border-radius:var(--r);margin-bottom:28px}
 .chain-eq{font-size:11px;color:var(--lt-stone);font-family:monospace;margin-bottom:8px}
 .chain-steps{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .chain-n{font-family:var(--ff-d);font-size:20px;font-weight:300;color:var(--lt-stone)}
 .chain-n.final{color:#a8801a;font-size:28px;font-weight:300}
 .chain-arr{color:rgba(107,63,160,.4);font-size:14px}
-
-/* The two layers card */
 .layers-card{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
 .layer-card{padding:18px 20px;background:var(--white);border:1px solid var(--lt-cream);border-radius:var(--r)}
 .layer-icon{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--lt-stone);margin-bottom:8px}
 .layer-qual{font-family:var(--ff-h);font-size:15px;font-style:italic;color:var(--lt-ink);margin-bottom:4px}
 .layer-desc{font-size:12px;color:var(--lt-stone);line-height:1.6}
-
-/* Reading */
 .reading-block{margin-bottom:26px}
 .r-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--lilac);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .r-label::after{content:'';flex:1;height:1px;background:rgba(107,63,160,.2)}
@@ -141,11 +115,6 @@ input[type=date].form-input{color-scheme:light}
 .r-syn .r-label::after{background:rgba(200,160,48,.18)}
 .r-tension{font-family:var(--ff-h);font-size:16px;font-style:italic;color:rgba(232,224,248,.88);line-height:1.9;margin-bottom:14px;text-align:justify}
 .r-invite{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(200,160,48,.88);line-height:1.85;text-align:justify}
-
-/* Real, new white reading card, wraps just the actual reading text,
-   the name reveal and action bar both stay dark and branded,
-   matching the same, proven approach used on all six previous
-   tools. */
 .reading-light-wrap{background:#fff;border-radius:var(--r-lg);padding:36px 32px;margin-bottom:28px;box-shadow:0 4px 32px rgba(8,6,15,.25)}
 .reading-light-wrap .r-label{color:#5a3a8a}
 .reading-light-wrap .r-para{color:#241a38}
@@ -154,8 +123,6 @@ input[type=date].form-input{color-scheme:light}
 .reading-light-wrap .r-tension{color:#241a38}
 .reading-light-wrap .r-invite{color:#8a6a1a}
 @media(max-width:480px){.reading-light-wrap{padding:28px 20px}}
-
-/* Action bar */
 .new-reading-link{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--lt-stone);margin-bottom:24px;transition:color .2s}
 .new-reading-link:hover{color:var(--lt-ink)}
 .action-bar{display:flex;gap:10px;justify-content:center;margin:10px 0 28px;flex-wrap:wrap}
@@ -163,9 +130,6 @@ input[type=date].form-input{color-scheme:light}
 .act-btn:hover{background:rgba(107,63,160,.06);border-color:var(--amethyst)}
 .act-btn.is-active{background:rgba(107,63,160,.1);border-color:var(--amethyst)}
 .share-menu{position:relative;display:inline-block}
-
-/* Real, new share-card modal, an actual, generated image, not a
-   mockup, matching this tool's own violet, lilac, and gold identity. */
 .scm-backdrop{position:fixed;inset:0;background:rgba(8,6,15,.8);backdrop-filter:blur(6px);z-index:500;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s ease}
 .scm-backdrop.show{display:flex;opacity:1}
 .scm-modal{background:linear-gradient(160deg,rgba(30,21,53,.98),rgba(8,6,15,.99));border:1px solid rgba(107,63,160,.35);width:100%;max-width:440px;border-radius:20px 20px 0 0;padding:8px 22px 26px;position:relative;transform:translateY(24px);transition:transform .3s ease;max-height:90vh;overflow-y:auto}
@@ -193,9 +157,6 @@ input[type=date].form-input{color-scheme:light}
 }
 .toast-msg{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(8,6,15,.97);border:1px solid rgba(107,63,160,.3);color:var(--pearl);padding:11px 22px;border-radius:24px;font-size:12.5px;z-index:300;opacity:0;pointer-events:none;transition:all .3s}
 .toast-msg.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* LifeOS invite */
-/* Reading bridge card, compact */
 .lifeos-invite{max-width:540px;margin:0 auto;padding:26px 28px;background:linear-gradient(135deg,rgba(107,63,160,.24),rgba(200,160,48,.08)),rgba(8,6,15,.94);border:1px solid rgba(107,63,160,.28);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(107,63,160,.16),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(200,160,48,.10),transparent 70%);pointer-events:none}
@@ -210,8 +171,6 @@ input[type=date].form-input{color-scheme:light}
 .li-btn-s:hover{color:var(--lilac);border-color:rgba(107,63,160,.5)}
 .li-foot{font-size:10.5px;color:rgba(157,112,208,.35);margin-top:13px;position:relative;z-index:1}
 .li-foot a{color:rgba(157,112,208,.6)}
-
-/* Upsell choice modal */
 .um-backdrop{position:fixed;inset:0;background:rgba(8,6,15,.75);backdrop-filter:blur(6px);z-index:500;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s ease}
 .um-backdrop.show{display:flex;opacity:1}
 .um-modal{background:linear-gradient(160deg,rgba(30,21,53,.98),rgba(8,6,15,.99));border:1px solid rgba(107,63,160,.35);width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:8px 22px 28px;position:relative;transform:translateY(24px);transition:transform .3s ease;max-height:82vh;overflow-y:auto}
@@ -236,8 +195,6 @@ input[type=date].form-input{color-scheme:light}
   .um-modal{border-radius:20px;padding:28px 28px 30px;max-height:min(600px,86vh)}
   .um-handle{display:none}
 }
-
-/* Footer */
 .footer{background:rgba(8,6,15,.97);border-top:1px solid rgba(107,63,160,.08);padding:36px 24px 20px;margin-top:80px}
 .footer-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .footer-brand{font-family:var(--ff-d);font-size:18px;font-weight:300;color:var(--pearl)}
@@ -245,7 +202,6 @@ input[type=date].form-input{color-scheme:light}
 .footer-links a{font-size:12px;color:rgba(157,112,208,.42);transition:color .2s}
 .footer-links a:hover{color:rgba(157,112,208,.82)}
 .footer-copy{font-size:11px;color:rgba(157,112,208,.2);width:100%;text-align:center;padding-top:14px;border-top:1px solid rgba(107,63,160,.06);margin-top:14px}
-
 @media(max-width:640px){
   .form-grid{grid-template-columns:1fr}
   .layers-card{grid-template-columns:1fr}
@@ -320,7 +276,6 @@ input[type=date].form-input{color-scheme:light}
 
   <div id="result-section">
     <a href="#" class="new-reading-link" onclick="event.preventDefault();startNewNameReading()"><i class="fas fa-arrow-left"></i> Read a different name</a>
-    <!-- Number reveal header -->
     <div class="nr-header">
       <div class="nr-bg" id="nr-bg"></div>
       <div class="nr-label">The vibration encoded in this name</div>
@@ -328,22 +283,18 @@ input[type=date].form-input{color-scheme:light}
       <div class="nr-tags" id="nr-tags"></div>
     </div>
 
-    <!-- Letter chips -->
     <div class="chips-section">
       <div class="chips-label">How the name reduces</div>
       <div class="letter-chips" id="letter-chips"></div>
     </div>
 
-    <!-- Reduction chain -->
     <div class="chain-section">
       <div class="chain-eq" id="chain-eq"></div>
       <div class="chain-steps" id="chain-steps"></div>
     </div>
 
-    <!-- The two hidden layers -->
     <div class="layers-card" id="layers-card"></div>
 
-    <!-- Action bar -->
     <div class="action-bar">
       <button class="act-btn" id="listen-btn" onclick="toggleSpeech()">
         <i class="fas fa-volume-up"></i><span id="listen-lbl">Listen to Your Reading</span>
@@ -353,7 +304,6 @@ input[type=date].form-input{color-scheme:light}
       </div>
     </div>
 
-    <!-- Reading -->
     <div class="reading-light-wrap">
       <div id="reading-content"></div>
     </div>
@@ -368,7 +318,6 @@ input[type=date].form-input{color-scheme:light}
       <div id="email-capture-msg" style="font-size:12.5px;margin-top:10px;display:none"></div>
     </div>
 
-    <!-- LifeOS invite -->
     <div class="lifeos-invite">
       <div class="li-badge"><i class="fas fa-sparkles"></i><span id="li-eyebrow">If this reading has touched something real</span></div>
       <div class="li-title" id="li-title">Your name has layers this reading has not yet reached.</div>
@@ -463,8 +412,6 @@ input[type=date].form-input{color-scheme:light}
 <div class="toast-msg" id="toast-msg"></div>
 
 <script>
-// Real, actual affiliate attribution, matching the same, established
-// system used across the rest of the site.
 (function(){
   try{
     var params=new URLSearchParams(window.location.search);
@@ -519,9 +466,6 @@ async function submitEmailCapture(){
   }
 }
 
-// Real, this tool's own, distinct set of fields, full birth name,
-// first name, and optional DOB, all three genuinely worth saving,
-// not just name and DOB the way most other tools work.
 function loadPrefill(){
   try{
     var savedFull=localStorage.getItem("kayal_full_name");
@@ -708,7 +652,6 @@ var ND={
     }
   }
 };
-// ── LETTER MAP (Pythagorean) ───────────────────────────────
 var L2N={A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
 var VOWELS="AEIOU";
 function l2n(c){return L2N[c.toUpperCase()]||0;}
@@ -735,8 +678,6 @@ function reductionChain(n){
   return steps;
 }
 
-// ── SYNTHESIS per number ──────────────────────────────────
-// These are added since original had none
 var SYNTHESIS={
   1:{tension:"The central tension encoded in this name is between the force of its individuality and the depth of connection that individuality sometimes makes difficult. A name of this vibration speaks of someone built to go first and go alone: which is genuine strength, and a specific kind of cost. What the reading is pointing toward is the form of shared life where the direction does not have to be sacrificed for the depth.",invitation:"What this name is preparing its bearer for: the collaboration, the relationship, or the work that does not require diminishing the independence, but that creates something neither person would have reached alone."},
   2:{tension:"The central tension encoded in this name is between the depth of its attunement to others and the difficulty of extending that attunement equally toward itself. A name of this vibration speaks of someone who genuinely feels what others feel: which is a genuine gift, and a specific form of exhaustion. What the reading is pointing toward is the relationship or practice where the care flows equally in both directions.",invitation:"What this name is preparing its bearer for: the specific form of genuine reciprocity, where the quality of attention they bring to others is brought back to them with the same care."},
@@ -752,16 +693,11 @@ var SYNTHESIS={
   33:{tension:"The central tension encoded in this name is between the genuineness of the care it carries and the sustainability of that care across a full life. A name of this vibration speaks of someone who heals others simply by being fully present with them. What the reading is pointing toward is the specific practice of self-replenishment that matches the scale of what is given.",invitation:"What this name is preparing its bearer for: the space that exists purely for restoration, where the depth of care carried for others is returned, and where nothing is asked of the capacity to serve."}
 };
 
-// ── VOICE ─────────────────────────────────────────────────
 var isSpeaking=false,fullReadingText="",speechChunks=[],chunkIndex=0,speechKeepAlive=null,currentUtterance=null;
 function getBestVoice(){
   var voices=window.speechSynthesis.getVoices();if(!voices.length)return null;
-  // Named voices known to sound genuinely natural, checked first
   var pref=["Microsoft Libby Online (Natural) - English (United Kingdom)","Microsoft Sonia Online (Natural) - English (United Kingdom)","Microsoft Aria Online (Natural) - English (United States)","Google UK English Female","Karen","Moira","Samantha","Victoria","Google US English"];
   for(var i=0;i<pref.length;i++){var v=voices.find(function(v){return v.name===pref[i];});if(v)return v;}
-  // Generic catch-all: any English voice explicitly labelled Natural/Neural/
-  // Enhanced/Premium, modern OS voices carry these labels and are a real
-  // step up from legacy robotic voices, even if not on the named list above
   var tagged=voices.find(function(v){return v.lang.startsWith("en")&&/natural|neural|enhanced|premium/i.test(v.name);});
   if(tagged)return tagged;
   var ef=voices.find(function(v){return v.lang.startsWith("en")&&v.name.toLowerCase().includes("female");});
@@ -783,15 +719,11 @@ function toggleSpeech(){
     var chunk=speechChunks[chunkIndex];
     var u=new SpeechSynthesisUtterance(chunk);
     currentUtterance=u;
-    // Small natural variance per chunk instead of perfectly identical
-    // rate/pitch every time, real speech drifts slightly line to line
     u.rate=0.80+Math.random()*0.05;
     u.pitch=1.02+Math.random()*0.07;
     var v=getBestVoice();if(v)u.voice=v;
     u.onend=function(){
       chunkIndex++;
-      // Slightly longer breath-pause after a question or the end of a
-      // thought, shorter mid-flow, approximates natural reading rhythm
       var endedChunk=chunk;
       var pause=/[?]$/.test(endedChunk)?520:(340+Math.random()*140);
       setTimeout(next,pause);
@@ -804,16 +736,9 @@ function toggleSpeech(){
   isSpeaking=true;btn.classList.add("is-active");lbl.textContent="Pause";
 }
 
-// ── SHARE CARD, real, generated image, this tool's own palette ───
 function showToast(msg){var t=document.getElementById("toast-msg");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2400);}
 var currentShareBlob=null,currentShareCaption='';
 
-// Real, picks a genuinely complete, self-contained sentence for the
-// share card, not just whichever sentence sits at a fixed position.
-// Confirmed necessary directly, some real tension paragraphs use
-// short, deliberate fragments ('Not as a character flaw.') that only
-// make sense continuing the sentence before them, silently broken
-// when isolated alone on a card.
 function pickShareLine(tensionText){
   var sentences=tensionText.split('. ').map(function(s){return s.trim();}).filter(Boolean);
   for(var i=1;i<sentences.length;i++){
@@ -942,9 +867,6 @@ function generateShareCardImage(expr,line){
   });
 }
 
-// Real, lightweight, fire-and-forget tracking, logs every real
-// download or share action, never blocks or delays the actual
-// action itself, and fails silently if it doesn't work.
 function trackShareEvent(action){
   try{
     fetch("https://nofyxayqdwhyabcntmvs.supabase.co/rest/v1/share_events",{
@@ -1020,7 +942,6 @@ function shareToPlatform(m){
   if(urls[m])window.open(urls[m],'_blank','noopener');
 }
 
-// ── HERO LETTER FIELD ─────────────────────────────────────
 (function(){
   var field=document.getElementById("letter-field");
   var alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -1036,7 +957,6 @@ function shareToPlatform(m){
   }
 })();
 
-// ── HERO ANIMATION ────────────────────────────────────────
 function animateHeroName(nameRaw,vals){
   var display=document.getElementById("name-display");
   var letters=nameRaw.toUpperCase().replace(/[^A-Z ]/g,"").split("");
@@ -1053,50 +973,39 @@ function animateHeroName(nameRaw,vals){
   });
 }
 
-// ── UPSELL DECISION (mirrors tool_registry.py name-based tools) ──
-// Soul Urge (what the name wants) matching Personality (how the world sees it) = alignment.
-// A mismatch means there's a gap between the private want and the public read.
-// Only 2 relevant name-based products fit this reading, so both branches show
-// both, just reordered so the best fit leads.
 var TOOL_META={
-  'expression-number-reading':{name:'What Your Name Already Told You',price:'$29',desc:'The natural talents encoded in your full birth name'},
-  'soul-urge-reading':{name:"What You're Really After in Life",price:'$34',desc:'What your heart actually wants underneath everything else'}
+  'name-signature-reading':{name:'What Your Name Says Before You Do',price:'$29',desc:'The natural talents encoded in your full birth name'},
+  'deepest-want-reading':{name:"What You're Really After",price:'$34',desc:'What your heart actually wants underneath everything else'}
 };
 var UPSELL_MAP={
   aligned:{
-    toolId:'expression-number-reading',
-    secondary:['soul-urge-reading'],
+    toolId:'name-signature-reading',
+    secondary:['deepest-want-reading'],
     eyebrow:'What you want and how you are seen already agree',
     titleTpl:function(fn1){return (fn1?fn1+", this":'This')+' name has one unified signature, not two competing ones.';},
-    desc:'What Your Name Already Told You shows you the natural talents encoded in your full birth name, built on a foundation that is already aligned.',
+    desc:'What Your Name Says Before You Do shows you the natural talents encoded in your full birth name, built on a foundation that is already aligned.',
     ctaLabel:'See Our Recommended Reading',
     modalTitle:'Two readings fit what your name just showed.'
   },
   gap:{
-    toolId:'soul-urge-reading',
-    secondary:['expression-number-reading'],
+    toolId:'deepest-want-reading',
+    secondary:['name-signature-reading'],
     eyebrow:'What you want and how you are seen do not fully match',
     titleTpl:function(fn1){return (fn1?fn1+", this":'This')+' name wants something different from what the world reads in it.';},
-    desc:"What You're Really After in Life names exactly what your heart actually wants underneath the character the world encounters.",
+    desc:"What You're Really After names exactly what your heart actually wants underneath the character the world encounters.",
     ctaLabel:'See Our Recommended Reading',
     modalTitle:'Two readings fit what your name just showed.'
   }
 };
 
-// First sentence of a synthesis tension paragraph, every entry in SYNTHESIS
-// is written as "The central tension...is between X and Y." so splitting on
-// the first period reliably isolates a short, self-contained lead line.
 function tensionLead(syn){
   var s=(syn&&syn.tension)?syn.tension.split('.')[0].trim():'';
   return s?s+'.':'';
 }
 
-// What each recommended reading specifically resolves, reused across all
-// 12 numbers so the desc stays specific per-number (via tensionLead) without
-// needing 24 hand-written paragraphs.
 var REC_BRIDGE={
-  'expression-number-reading':'What Your Name Already Told You traces this exact pattern through your full birth name and shows precisely where it is meant to be built.',
-  'soul-urge-reading':"What You're Really After in Life names precisely what sits beneath that tension, the part of this name a free reading can only point toward."
+  'name-signature-reading':'What Your Name Says Before You Do traces this exact pattern through your full birth name and shows precisely where it is meant to be built.',
+  'deepest-want-reading':"What You're Really After names precisely what sits beneath that tension, the part of this name a free reading can only point toward."
 };
 
 var currentName='',currentFname='',currentDob='',currentUp=null,currentExpr=null,currentSynthesisTension=null;
@@ -1110,7 +1019,6 @@ function buildToolURL(toolId){
   return 'https://app.kayalsoulpath.com/tool/'+toolId+'?'+p.toString();
 }
 
-// ── UPSELL MODAL ──────────────────────────────────────────
 function openUpsellModal(e){
   if(e)e.preventDefault();
   if(!currentUp)return false;
@@ -1139,7 +1047,6 @@ document.addEventListener('keydown',function(e){
   if(e.key==='Escape')closeUpsellModal();
 });
 
-// ── CALCULATE ─────────────────────────────────────────────
 function calculate(){
   var nameRaw=document.getElementById("inp-name").value.trim();
   if(!nameRaw){document.getElementById("inp-name").focus();return;}
@@ -1157,17 +1064,14 @@ function calculate(){
     var fn1=fname?fname.split(" ")[0]:(nameRaw.split(" ")[0]);
     var nameUp=nameRaw.toUpperCase().replace(/[^A-Z ]/g,"");
 
-    // Hero animation
     animateHeroName(nameRaw, res.vals);
 
-    // Number reveal header - no number shown, just the quality name
     document.getElementById("nr-bg").textContent=res.expr;
     document.getElementById("nr-name").textContent=data.n;
     document.getElementById("nr-tags").innerHTML=data.t.map(function(t){
       return"<span class='nr-tag'>"+t+"</span>";
     }).join("");
 
-    // Letter chips
     var delay=0;
     document.getElementById("letter-chips").innerHTML=res.letters.map(function(l,i){
       delay+=55;
@@ -1181,7 +1085,6 @@ function calculate(){
         "</div>";
     }).join("");
 
-    // Reduction chain
     var sumStr=res.vals.join(" + ")+" = "+res.raw;
     document.getElementById("chain-eq").textContent=nameUp+" = "+sumStr;
     var ch=reductionChain(res.raw);
@@ -1190,7 +1093,6 @@ function calculate(){
         (i<ch.length-1?"<span class='chain-arr'>→</span>":"");
     }).join("");
 
-    // Two layers - shown as felt qualities, not methodology labels + numbers
     var soulData=ND[res.soulUrge]||ND[1];
     var persData=ND[res.personality]||ND[1];
     var soulDesc=(soulData.soul_reads&&soulData.soul_reads.soul)||soulData.core;
@@ -1207,15 +1109,9 @@ function calculate(){
         "<div class='layer-desc'>"+persDesc+"</div>"+
       "</div>";
 
-    // Reading
     var np=fn1?fn1+", ":"";
     var nameRef="The name "+nameRaw+" carries";
     var html="";
-    // Synthesis, computed here, before the regular sections are
-    // built, so it can be shown first, the real hook most likely to
-    // make someone keep reading or convert, previously built last,
-    // after every regular section, where anyone who lost interest
-    // partway through would never actually reach it.
     var syn=SYNTHESIS[res.expr]||SYNTHESIS[1];
     currentExpr=res.expr;currentSynthesisTension=syn.tension;
     html+="<div class='r-syn'><div class='r-label'>What This Reading Is Saying, Taken As A Whole</div>";
@@ -1227,14 +1123,6 @@ function calculate(){
     html+="<p class='r-para'>"+nameRef+" the following signature. "+data.core+"</p>";
     html+="</div>";
     html+="<div class='r-pull'>"+data.reads[0].replace("{name}",np)+"</div>";
-    // Real, deliberate, free-tier trim, confirmed and agreed, "What
-    // This Name Does In The World" now held back for the paid,
-    // deeper reading, since the opening pull-quote above already
-    // gives a genuine, real, complete sense of this name's core
-    // signature, and both, real, short layer descriptions below give
-    // real, additional, complementary depth without repeating it.
-    // The real, complete, original reads[1] and reads[2] data stays
-    // fully intact here, only the free, rendered output is filtered.
     if(data.reads[3]){
       html+="<div class='reading-block'><div class='r-label'>The Depth Layer</div>";
       html+="<p class='r-para'>"+data.reads[3]+"</p>";
@@ -1243,13 +1131,10 @@ function calculate(){
 
     document.getElementById("reading-content").innerHTML=html;
 
-    // Decide upsell based on soul urge / personality alignment
     var isAligned=(res.soulUrge===res.personality);
     var up=isAligned?UPSELL_MAP.aligned:UPSELL_MAP.gap;
     currentUp=up;currentName=nameRaw;currentFname=fname;currentDob=dob;
 
-    // Update invite copy, desc is now built from THIS reading's own
-    // synthesis tension, not a generic aligned/gap template
     var lead=tensionLead(syn);
     var bridge=REC_BRIDGE[up.toolId];
     document.getElementById("li-eyebrow").textContent=up.eyebrow;
@@ -1257,8 +1142,6 @@ function calculate(){
     document.getElementById("li-desc").textContent=(lead&&bridge)?(lead+" "+bridge):up.desc;
     document.getElementById("li-btn-label").textContent=up.ctaLabel;
 
-    // Speech text, include the invite copy too, so listening all the way
-    // through actually reaches the invitation instead of stopping short
     var readEl=document.createElement("div");readEl.innerHTML=html;
     var readingSpeech=readEl.textContent.replace(/\s+/g," ").trim();
     var inviteDesc=(lead&&bridge)?(lead+" "+bridge):up.desc;
@@ -1266,7 +1149,6 @@ function calculate(){
     fullReadingText=(readingSpeech+" "+inviteSpeech).replace(/\s+/g," ").trim();
     window._shareText="I discovered the vibration encoded in my name at KAYAL SoulPath Institute: "+data.t.join(", ")+". Try yours free.";
 
-    // Show, hide the hero and input step so it reads as a clean next screen
     document.getElementById("hero-section").style.display="none";
     document.getElementById("input-section").style.display="none";
     var rs=document.getElementById("result-section");

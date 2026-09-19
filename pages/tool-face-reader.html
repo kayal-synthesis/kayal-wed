@@ -26,19 +26,11 @@
   --ff-display:'Georgia','Times New Roman',serif;
   --ff-heading:'Georgia',serif;
   --ff-body:system-ui,-apple-system,sans-serif;
-  /* Real, new, light-background variables, added specifically so
-     the input and reading pages can genuinely match Life Blueprint's
-     own, real rule, light everywhere except hero and footer, while
-     every existing, real accent color above stays completely
-     untouched, this tool's own, distinct identity is preserved, not
-     replaced. */
   --linen:#faf8ff;--white:#ffffff;--parchment:#f2edfa;--lt-cream:#e5daf5;
   --lt-stone:#7a6a92;--lt-ink:#1f1530;
 }
 body{background:var(--linen);color:var(--lt-ink);font-family:var(--ff-body);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
 a{color:inherit;text-decoration:none}
-
-/* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(13,10,20,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(124,79,208,0.15);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
 .nav-brand{display:flex;flex-direction:column;gap:1px}
 .nav-brand-name{font-family:var(--ff-display);font-size:16px;font-weight:400;color:var(--cream);letter-spacing:.06em;text-transform:uppercase}
@@ -47,14 +39,10 @@ a{color:inherit;text-decoration:none}
 .nav-back:hover{color:var(--lavender);border-color:rgba(124,79,208,.55)}
 .nav-cta{padding:8px 18px;background:var(--amethyst);color:#fff;border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.04em;transition:background .2s}
 .nav-cta:hover{background:var(--purple)}
-
-/* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,rgba(74,45,138,.35),transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(201,122,160,.12),transparent 50%),var(--ink)}
 .particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .particle{position:absolute;border-radius:50%;animation:float-p linear infinite}
 @keyframes float-p{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:.3}100%{transform:translateY(-10vh) scale(1.5);opacity:0}}
-
-/* Iris */
 .hero-iris-wrap{position:relative;width:200px;height:200px;margin:0 auto 36px;display:flex;align-items:center;justify-content:center}
 .iris-outer{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(124,79,208,.3);animation:iris-pulse 4s ease-in-out infinite}
 .iris-mid{position:absolute;inset:20px;border-radius:50%;border:1px solid rgba(124,79,208,.2);animation:iris-pulse 4s ease-in-out infinite .5s}
@@ -67,7 +55,6 @@ a{color:inherit;text-decoration:none}
 .iris-scan{position:absolute;inset:40px;border-radius:50%;overflow:hidden;pointer-events:none}
 .iris-scan::before{content:'';position:absolute;left:0;right:0;height:2px;background:rgba(124,79,208,.6);top:0;animation:scan-line 3s ease-in-out infinite;box-shadow:0 0 10px rgba(124,79,208,.8)}
 @keyframes scan-line{0%,100%{top:0%;opacity:0}10%{opacity:1}90%{opacity:.5}100%{top:100%;opacity:0}}
-
 .hero-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#c09ae0;margin-bottom:20px;position:relative;z-index:1}
 .hero-title{font-family:var(--ff-display);font-size:clamp(28px,5vw,52px);font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:16px;position:relative;z-index:1}
 .hero-title em{font-style:italic;color:var(--lavender)}
@@ -76,17 +63,12 @@ a{color:inherit;text-decoration:none}
 .hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,79,208,.4)}
 .hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:rgba(196,176,232,.45);font-size:10px;letter-spacing:.14em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:6px;animation:bob 2.5s ease-in-out infinite;z-index:1}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
-
-/* MAIN */
 .main{max-width:860px;margin:0 auto;padding:80px 24px}
-
-/* Upload */
 .upload-section{margin-bottom:60px}
 .section-label{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--purple);margin-bottom:10px}
 .section-title{font-family:var(--ff-display);font-size:clamp(22px,3vw,34px);font-weight:300;color:var(--lt-ink);line-height:1.2;margin-bottom:10px}
 .section-title em{font-style:italic;color:var(--amethyst)}
 .section-sub{font-family:var(--ff-heading);font-size:14px;font-style:italic;color:var(--lt-stone);line-height:1.75;max-width:560px;margin-bottom:36px}
-
 .upload-card{background:var(--white);border:1.5px dashed var(--lt-cream);border-radius:var(--r-lg);padding:48px 36px;text-align:center;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
 .upload-card:hover,.upload-card.drag-over{border-color:var(--amethyst);background:rgba(124,79,208,.04);box-shadow:0 0 40px rgba(124,79,208,.08)}
 .upload-card.has-image{border-style:solid;border-color:rgba(124,79,208,.35);padding:0}
@@ -99,8 +81,6 @@ a{color:inherit;text-decoration:none}
 .upload-btn-ghost{padding:11px 22px;background:transparent;color:var(--purple);border:1px solid rgba(124,79,208,.3);border-radius:var(--r);font-size:12px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
 .upload-btn-ghost:hover{border-color:var(--amethyst);color:var(--lavender)}
 .upload-btn-ghost{font-family:inherit}
-
-/* In-page camera capture */
 .camera-overlay{position:fixed;inset:0;background:#000;z-index:600;display:none;align-items:center;justify-content:center}
 .camera-overlay.show{display:flex}
 .camera-wrap{position:relative;width:100%;height:100%;max-width:520px;max-height:100vh;display:flex;align-items:center;justify-content:center}
@@ -116,8 +96,6 @@ a{color:inherit;text-decoration:none}
 .camera-error{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:32px;text-align:center;background:#000;z-index:3}
 .camera-error p{color:rgba(255,255,255,.75);font-family:var(--ff-body);font-size:14px;line-height:1.6;max-width:340px}
 input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;z-index:-1}
-
-/* Preview */
 .preview-wrap{position:relative;width:100%;max-height:480px;overflow:hidden;border-radius:var(--r-lg)}
 .preview-wrap img{width:100%;max-height:480px;object-fit:cover;display:block;border-radius:var(--r-lg)}
 .preview-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(13,10,20,.8));border-radius:var(--r-lg)}
@@ -129,8 +107,6 @@ input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidde
 .pa-change:hover{background:rgba(255,255,255,.2)}
 .canvas-wrap{position:relative}
 #face-canvas{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:var(--r-lg);pointer-events:none}
-
-/* Analysing */
 .analysing-overlay{position:absolute;inset:0;background:rgba(13,10,20,.85);border-radius:var(--r-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;backdrop-filter:blur(4px);z-index:10}
 .analysing-overlay.hidden{display:none}
 .analyse-spinner{width:56px;height:56px;border-radius:50%;border:2px solid rgba(124,79,208,.2);border-top-color:var(--amethyst);animation:spin .9s linear infinite}
@@ -140,8 +116,6 @@ input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidde
 .analyse-step.active{color:var(--lavender);font-weight:500}
 .analyse-step.done{color:rgba(196,176,232,.8)}
 .analyse-step.done::before{content:'✓ '}
-
-/* Name / DOB */
 .name-row{display:flex;gap:12px;align-items:flex-end;margin-top:20px;flex-wrap:wrap}
 .name-group{flex:1;min-width:200px}
 .form-label{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--lt-stone);margin-bottom:8px}
@@ -150,13 +124,9 @@ input[type=file]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidde
 .form-input::placeholder{color:var(--lt-stone)}
 .dob-group{flex:1;min-width:180px}
 input[type=date].form-input{color-scheme:light}
-
-/* RESULT */
 #result-section{display:none;margin-top:60px}
 #result-section.show{display:block;animation:fadeUp .6s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-
-/* Element reveal */
 .element-reveal{text-align:center;margin-bottom:48px;padding:60px 40px;border-radius:var(--r-lg);position:relative;overflow:hidden}
 .el-bg-anim{position:absolute;inset:0;opacity:.15;background-size:200% 200%;animation:el-bg-shift 8s ease-in-out infinite}
 @keyframes el-bg-shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
@@ -165,18 +135,11 @@ input[type=date].form-input{color-scheme:light}
 .el-subtitle{font-size:10px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:20px;position:relative;z-index:1;opacity:.9}
 .el-traits{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;position:relative;z-index:1}
 .el-trait{padding:5px 14px;border-radius:20px;font-size:11.5px;font-weight:500;border:1px solid currentColor;opacity:.9}
-
-/* Measurements */
 .measurements-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:40px}
 .meas-card{background:var(--white);border:1px solid var(--lt-cream);border-radius:var(--r);padding:14px 12px;text-align:center}
 .meas-label{font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--lt-stone);margin-bottom:6px}
 .meas-value{font-family:var(--ff-display);font-size:13px;font-style:italic;color:var(--purple);line-height:1.3;margin-bottom:4px}
 .meas-desc{font-size:10px;color:var(--lt-stone);font-style:italic}
-
-/* Real, new white reading card, wraps just the actual reading text,
-   the dramatic element reveal above it and the upsell invite below
-   it both stay dark and branded, matching the same, proven approach
-   already used on the Life Blueprint tool. */
 .reading-light-wrap{background:#fff;border-radius:var(--r-lg);padding:36px 32px;margin-bottom:40px;box-shadow:0 4px 32px rgba(13,10,20,.25)}
 .reading-light-wrap .measurements-strip{margin-bottom:32px}
 .reading-light-wrap .meas-card{background:#f5f0ff;border-color:rgba(124,79,208,.18)}
@@ -189,8 +152,6 @@ input[type=date].form-input{color-scheme:light}
 .reading-light-wrap .reading-para{color:#3a2f4a}
 .reading-light-wrap .reading-pull{color:var(--violet);background:rgba(124,79,208,.06)}
 @media(max-width:480px){.reading-light-wrap{padding:28px 20px}}
-
-/* Reading */
 .reading-block{margin-bottom:32px}
 .reading-block-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#c09ae0;margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .reading-block-label::after{content:'';flex:1;height:1px;background:rgba(124,79,208,.25)}
@@ -200,8 +161,6 @@ input[type=date].form-input{color-scheme:light}
 .r-block-accent{background:rgba(212,168,67,.08);border:1px solid rgba(212,168,67,.25);border-radius:var(--r-lg);padding:24px 28px;margin-bottom:16px}
 .r-block-accent .reading-block-label{color:#d4a843}
 .r-block-accent .reading-block-label::after{background:rgba(212,168,67,.2)}
-
-/* Action bar */
 .new-reading-link{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--lt-stone);margin-bottom:24px;transition:color .2s}
 .new-reading-link:hover{color:var(--cream)}
 .action-bar{display:flex;gap:10px;justify-content:center;margin:-8px 0 32px;flex-wrap:wrap}
@@ -209,9 +168,6 @@ input[type=date].form-input{color-scheme:light}
 .action-btn:hover{background:rgba(124,79,208,.18);border-color:var(--amethyst);transform:translateY(-1px)}
 .action-btn.is-active{background:rgba(124,79,208,.25);border-color:var(--amethyst)}
 .share-menu{position:relative;display:inline-block}
-
-/* Real, new share-card modal, an actual, generated image, not a
-   mockup, matching this tool's own purple and gold identity. */
 .scm-backdrop{position:fixed;inset:0;background:rgba(13,10,20,.8);backdrop-filter:blur(6px);z-index:500;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s ease}
 .scm-backdrop.show{display:flex;opacity:1}
 .scm-modal{background:linear-gradient(160deg,rgba(45,31,78,.98),rgba(13,10,20,.99));border:1px solid rgba(124,79,208,.35);width:100%;max-width:440px;border-radius:20px 20px 0 0;padding:8px 22px 26px;position:relative;transform:translateY(24px);transition:transform .3s ease;max-height:90vh;overflow-y:auto}
@@ -239,8 +195,6 @@ input[type=date].form-input{color-scheme:light}
 }
 .share-toast-msg{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(16,13,26,.97);border:1px solid rgba(124,79,208,.35);color:var(--cream);padding:11px 22px;border-radius:24px;font-size:12.5px;z-index:300;opacity:0;pointer-events:none;transition:all .3s}
 .share-toast-msg.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* Reading bridge card, compact */
 .lifeos-invite{max-width:540px;margin:0 auto;padding:26px 28px;background:linear-gradient(135deg,rgba(124,79,208,.22),rgba(212,168,67,.08)),rgba(13,10,20,.92);border:1px solid rgba(212,168,67,.22);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(212,168,67,.16),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(124,79,208,.18),transparent 70%);pointer-events:none}
@@ -255,8 +209,6 @@ input[type=date].form-input{color-scheme:light}
 .li-btn-s:hover{color:var(--lavender);border-color:rgba(124,79,208,.55)}
 .li-foot{font-size:10.5px;color:rgba(208,192,240,.40);margin-top:13px;position:relative;z-index:1}
 .li-foot a{color:rgba(212,168,67,.5)}
-
-/* Upsell choice modal */
 .um-backdrop{position:fixed;inset:0;background:rgba(6,4,10,.7);backdrop-filter:blur(6px);z-index:500;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s ease}
 .um-backdrop.show{display:flex;opacity:1}
 .um-modal{background:linear-gradient(160deg,rgba(30,18,56,.98),rgba(13,10,20,.99));border:1px solid rgba(124,79,208,.3);width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:8px 22px 28px;position:relative;transform:translateY(24px);transition:transform .3s ease;max-height:82vh;overflow-y:auto}
@@ -281,18 +233,12 @@ input[type=date].form-input{color-scheme:light}
   .um-modal{border-radius:20px;padding:28px 28px 30px;max-height:min(600px,86vh)}
   .um-handle{display:none}
 }
-
-/* Error */
 .error-card{background:rgba(201,122,160,.1);border:1px solid rgba(201,122,160,.3);border-radius:var(--r);padding:16px 20px;margin-top:16px;display:none}
 .error-card.show{display:block}
 .error-card p{font-size:13px;color:rgba(220,160,180,.9);line-height:1.6}
-
-/* Privacy */
 .privacy-note{display:flex;align-items:flex-start;gap:10px;padding:14px 18px;background:rgba(124,79,208,.06);border-radius:var(--r);margin-top:14px}
 .privacy-note i{color:var(--amethyst);font-size:14px;margin-top:2px;flex-shrink:0}
 .privacy-note p{font-size:11.5px;color:var(--lt-stone);line-height:1.6;font-style:italic}
-
-/* Footer */
 .footer{background:rgba(13,10,20,.95);border-top:1px solid rgba(124,79,208,.1);padding:40px 24px 24px;margin-top:80px}
 .footer-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .footer-brand{font-family:var(--ff-display);font-size:18px;font-weight:300;color:var(--cream)}
@@ -300,7 +246,6 @@ input[type=date].form-input{color-scheme:light}
 .footer-links a{font-size:12px;color:rgba(208,192,240,.55);transition:color .2s}
 .footer-links a:hover{color:rgba(208,192,240,.85)}
 .footer-copy{font-size:11px;color:rgba(196,176,232,.28);width:100%;text-align:center;padding-top:16px;border-top:1px solid rgba(124,79,208,.08);margin-top:16px}
-
 @media(max-width:600px){
   .measurements-strip{grid-template-columns:repeat(2,1fr)}
   .name-row{flex-direction:column}
@@ -578,8 +523,6 @@ input[type=date].form-input{color-scheme:light}
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/hand-pose-detection@2.0.1/dist/hand-pose-detection.min.js"></script>
 
 <script>
-// Real, actual affiliate attribution, matching the same, established
-// system used across the rest of the site.
 (function(){
   try{
     var params=new URLSearchParams(window.location.search);
@@ -592,8 +535,6 @@ input[type=date].form-input{color-scheme:light}
   }catch(e){}
 })();
 
-// Real, actual email capture, saved to the same, dedicated table
-// used across every tool tonight.
 async function submitEmailCapture(){
   var input=document.getElementById("email-capture-input");
   var email=input.value.trim();
@@ -636,9 +577,6 @@ async function submitEmailCapture(){
   }
 }
 
-// Real, genuine prefill, matching the same, proven approach used
-// elsewhere, this device only, a clear, honest way to change details
-// always stays visible.
 function loadPrefill(){
   try{
     var saved=localStorage.getItem("kayal_dob");
@@ -673,7 +611,6 @@ function savePrefill(dob,name){
 
 loadPrefill();
 
-// ── PARTICLES ──────────────────────────────────────────────
 (function(){
   var c=document.getElementById('particles');
   for(var i=0;i<28;i++){
@@ -685,7 +622,6 @@ loadPrefill();
   }
 })();
 
-// ── FILE HANDLING ──────────────────────────────────────────
 function triggerUpload(){var el=document.getElementById('file-input');if(el)el.click();}
 function showPreviewImage(dataUrl){
   var img=document.getElementById('preview-img');
@@ -705,7 +641,6 @@ function handleFile(e){
   e.target.value='';
 }
 
-// ── IN-PAGE CAMERA CAPTURE ───────────────────────────────────
 var cameraStream=null;
 function openCameraCapture(){
   var overlay=document.getElementById('camera-overlay');
@@ -749,7 +684,6 @@ function captureCameraPhoto(){
   if(!w||!h)return;
   canvas.width=w;canvas.height=h;
   var ctx=canvas.getContext('2d');
-  // Flip horizontally so the saved photo matches the mirrored preview the person just saw
   ctx.translate(w,0);ctx.scale(-1,1);
   ctx.drawImage(video,0,0,w,h);
   var dataUrl=canvas.toDataURL('image/jpeg',0.92);
@@ -759,7 +693,6 @@ function captureCameraPhoto(){
 function resetUpload(){
   document.getElementById('upload-empty').style.display='block';
   document.getElementById('upload-preview').style.display='none';
-  // card onclick removed : drop-zone handles it
   document.getElementById('result-section').style.display='none';
   document.getElementById('result-section').classList.remove('show');
   var ctx=document.getElementById('face-canvas').getContext('2d');
@@ -775,7 +708,6 @@ function startNewReading(){
 function showError(msg){var e=document.getElementById('error-card');e.classList.add('show');document.getElementById('error-msg').textContent=msg||'Could not detect a face. Please try a clearer front-facing photo.';}
 function hideError(){document.getElementById('error-card').classList.remove('show');}
 
-// ── MEDIAPIPE ──────────────────────────────────────────────
 var faceMesh=null,handDetector=null,meshCallback=null;
 function initFaceMesh(cb){
   if(faceMesh){cb();return;}
@@ -790,7 +722,6 @@ async function initHandDetector(){
   return handDetector;
 }
 
-// Landmark indices
 var LM={topForehead:10,chin:152,leftCheek:234,rightCheek:454,leftJaw:172,rightJaw:397,leftTemple:127,rightTemple:356,leftEyeOuter:33,leftEyeInner:133,rightEyeOuter:362,rightEyeInner:263,leftEyeTop:159,leftEyeBottom:145,rightEyeTop:386,rightEyeBottom:374,noseTip:4,noseTop:168,noseLeftWing:131,noseRightWing:360,mouthLeft:61,mouthRight:291,upperLip:13,lowerLip:14,leftBrowInner:46,leftBrowOuter:70,rightBrowInner:276,rightBrowOuter:300,leftBrowTop:52,rightBrowTop:282,foreheadCenter:9,leftHairline:103,rightHairline:332,jawLeft:150,jawRight:379,jawTip:175};
 function pt(lm,idx,w,h){return{x:lm[idx].x*w,y:lm[idx].y*h};}
 function dist(a,b){return Math.sqrt(Math.pow(a.x-b.x,2)+Math.pow(a.y-b.y,2));}
@@ -828,9 +759,6 @@ function startAnalysis(){
         showError('We could not confirm a clear front-facing face. Please try a photo with your full face visible and good lighting.');
         return;
       }
-      // Reject a meaningfully off-axis (turned) head: every ratio this reading
-      // depends on assumes a straight-on face, and a turned head skews all of
-      // them at once, which is the single biggest cause of an inconsistent result.
       var noseX=lm[LM.noseTip].x;
       var leftHalf=Math.abs(noseX-lm[LM.leftCheek].x);
       var rightHalf=Math.abs(lm[LM.rightCheek].x-noseX);
@@ -893,10 +821,6 @@ function drawLandmarks(lm,imgEl){
   ctx.setLineDash([]);
 }
 
-
-// ── YEAR & DAY CALCULATIONS ────────────────────────────────
-
-// Personal Year number (numerology)
 function personalYear(dob){
   var p=dob.split('-').map(Number),cy=new Date().getFullYear();
   return rd(cy.toString().split('').concat(
@@ -904,8 +828,6 @@ function personalYear(dob){
     String(p[2]).padStart(2,'0').split('')
   ).reduce(function(s,c){return s+parseInt(c)},0));
 }
-
-// Personal Day number
 function personalDay(dob){
   var today=new Date();
   var m=today.getMonth()+1,d=today.getDate(),cy=today.getFullYear();
@@ -914,10 +836,7 @@ function personalDay(dob){
     String(d).padStart(2,'0').split('')
   ).reduce(function(s,c){return s+parseInt(c)},0));
 }
-
 function rd(n){if(n===11||n===22||n===33)return n;if(n<10)return n;return rd(String(n).split('').reduce(function(s,d){return s+parseInt(d)},0));}
-
-// Age from DOB
 function getAge(dob){
   var p=dob.split('-').map(Number);
   var today=new Date();
@@ -925,48 +844,18 @@ function getAge(dob){
   if(today.getMonth()+1<p[1]||(today.getMonth()+1===p[1]&&today.getDate()<p[2]))age--;
   return age;
 }
-
-// Five-element year quality: how the current year interacts with the person\'s element
-// Uses a 5-year cycle based on personal year number mapped to element
 function getYearElement(py){
   var map={1:'water',2:'earth',3:'wood',4:'wood',5:'earth',6:'metal',7:'metal',8:'earth',9:'fire',11:'fire',22:'earth',33:'wood'};
   return map[py]||'earth';
 }
-
-// Element interaction quality
 var ELEMENT_INTERACTIONS={
-  'wood-wood':'supporting',   // same element amplifies
-  'wood-fire':'generating',   // wood feeds fire: high output year
-  'wood-earth':'controlling', // wood controls earth: friction with stability
-  'wood-metal':'challenging', // metal cuts wood: demanding year
-  'wood-water':'nourishing',  // water nourishes wood: replenishing year
-  'fire-fire':'amplifying',
-  'fire-earth':'generating',
-  'fire-metal':'controlling',
-  'fire-water':'challenging',
-  'fire-wood':'nourishing',
-  'earth-earth':'amplifying',
-  'earth-metal':'generating',
-  'earth-water':'controlling',
-  'earth-wood':'challenging',
-  'earth-fire':'nourishing',
-  'metal-metal':'amplifying',
-  'metal-water':'generating',
-  'metal-wood':'controlling',
-  'metal-fire':'challenging',
-  'metal-earth':'nourishing',
-  'water-water':'amplifying',
-  'water-wood':'generating',
-  'water-fire':'controlling',
-  'water-earth':'challenging',
-  'water-metal':'nourishing'
+  'wood-wood':'supporting','wood-fire':'generating','wood-earth':'controlling','wood-metal':'challenging','wood-water':'nourishing',
+  'fire-fire':'amplifying','fire-earth':'generating','fire-metal':'controlling','fire-water':'challenging','fire-wood':'nourishing',
+  'earth-earth':'amplifying','earth-metal':'generating','earth-water':'controlling','earth-wood':'challenging','earth-fire':'nourishing',
+  'metal-metal':'amplifying','metal-water':'generating','metal-wood':'controlling','metal-fire':'challenging','metal-earth':'nourishing',
+  'water-water':'amplifying','water-wood':'generating','water-fire':'controlling','water-earth':'challenging','water-metal':'nourishing'
 };
-
-function getInteraction(faceEl,yearEl){
-  return ELEMENT_INTERACTIONS[faceEl+'-'+yearEl]||'neutral';
-}
-
-// Year reading data per element and interaction type
+function getInteraction(faceEl,yearEl){return ELEMENT_INTERACTIONS[faceEl+'-'+yearEl]||'neutral';}
 var YEAR_READINGS={
   wood:{
     supporting:'This year is running on the same frequency as your nature. What that means in practice is that the momentum available to you right now is unusually aligned with your actual instincts. The risk of a same-element year is that you amplify your existing tendencies without the corrective pressure that friction brings. Growth without resistance can become expansion without depth.',
@@ -1004,8 +893,6 @@ var YEAR_READINGS={
     nourishing:'You are being nourished at a root level this year. Something that has been depleted, often without your full awareness, is being restored. The invitation is to rest more than you think you need to.'
   }
 };
-
-// Daily quality readings per personal day number
 var DAY_READINGS={
   1:'Today carries an initiating quality. Something that has been waiting for a beginning is ready to start. The energy available is directional and singular: one thing, moved toward with full attention, will produce more than many things distributed.',
   2:'Today has a relational quality. The most productive use of this day is not solitary output but genuine attention to another person, a partnership, or a collaboration that has been waiting for care.',
@@ -1020,8 +907,6 @@ var DAY_READINGS={
   22:'Today has a building quality of unusual scope. The practical meets the visionary today in a way that allows something significant to be moved forward if the energy is used deliberately.',
   33:'Today carries a quality of service and compassion. What you give today without expectation of return will produce effects that extend beyond the immediate.'
 };
-
-// Health tendencies per element: constitutional, not diagnostic
 var HEALTH_READINGS={
   wood:{
     general:'The Wood face carries a constitutional relationship with the eyes, the tendons, and the liver\'s energy. Under pressure, the Wood element tends to manifest physically as tension that accumulates in the jaw, the neck, and behind the eyes before it surfaces as anything recognisable. The signal to watch for is the quality of your sleep: when Wood faces are under excessive load, the first disruption arrives in the early hours, between two and four in the morning, where a kind of restless waking appears that has nothing to do with external noise.',
@@ -1050,7 +935,6 @@ var HEALTH_READINGS={
   }
 };
 
-// ── ELEMENT CLASSIFICATION ─────────────────────────────────
 function classifyElement(m){
   var s={wood:0,fire:0,earth:0,metal:0,water:0};
   if(m.faceRatio>1.4)s.wood+=3;else if(m.faceRatio>1.2){s.fire+=2;s.wood+=1;}else if(m.faceRatio>1.0){s.earth+=2;s.fire+=1;}else{s.water+=2;s.earth+=1;}
@@ -1061,17 +945,10 @@ function classifyElement(m){
   if(m.mouthRatio>0.4)s.earth+=3;else if(m.mouthRatio>0.34){s.fire+=2;s.earth+=1;}else if(m.mouthRatio>0.28)s.water+=2;else{s.metal+=2;s.wood+=1;}
   var top=Object.keys(s).sort(function(a,b){return s[b]-s[a]});
   var margin=s[top[0]]-s[top[1]];
-  // A close margin means the measurement is genuinely borderline between two
-  // elements, not that the classifier is confidently wrong. Surface that as a
-  // blend rather than forcing a single answer that may flip on a retake.
   var isBlended=margin<=1;
   return{primary:top[0],secondary:top[1],scores:s,margin:margin,isBlended:isBlended};
 }
 
-// ── ELEMENT DATA ───────────────────────────────────────────
-// Real, single source for each element's synthesis, the tension and
-// invitation, referenced both by the reading itself and by the
-// share-card generator below, not two, separate copies.
 var FACE_SYNTHESIS={
   wood:{
     tension:"The central tension that the Wood face carries is the relationship between growth and stillness. You are constitutionally oriented toward forward movement, toward the next chapter, the next build, the next expression of what is possible. This orientation is real. It is valuable. It has produced genuine things in your life. The specific friction it creates is with rest, with the present moment, with the parts of life that require you to be fully here rather than already leaning toward what comes next. The Wood face that has not yet learned to be still tends to carry a low-grade restlessness that others sometimes experience as ambition and that the person themselves experiences as an inability to simply arrive.",
@@ -1086,11 +963,11 @@ var FACE_SYNTHESIS={
     invitation:"What this reading is pointing toward: naming, explicitly and without apology, what you are currently carrying. Not as complaint. As inventory. The Earth face that knows what it is holding can decide what to set down."
   },
   metal:{
-    tension:"The central tension that the Metal face carries is the one between the standard you hold internally and the world's consistent failure to meet it. Your discernment is structural, not chosen. You see what is imprecise, inauthentic, or structurally weak in ideas, environments, and people with a speed and accuracy that others experience as high standards and that you experience as simply seeing clearly. The specific cost of this is that the world rarely meets your full standard. That means you are frequently in the position of either accepting less than you know is possible, or holding out for something that may not arrive in the form you have been waiting for. The Metal face that has not found a way to work with this tends to accumulate a quiet contempt for a world that keeps not quite measuring up.",
-    invitation:"What this reading is pointing toward: finding the specific domain where your standard isn't a ceiling that others fail to reach. It's a level of quality that you yourself are generating. The work where the precision is in the output, not the judgment."
+    tension:"The central tension that the Metal face carries is the one between the standard you hold internally and the world\'s consistent failure to meet it. Your discernment is structural, not chosen. You see what is imprecise, inauthentic, or structurally weak in ideas, environments, and people with a speed and accuracy that others experience as high standards and that you experience as simply seeing clearly. The specific cost of this is that the world rarely meets your full standard. That means you are frequently in the position of either accepting less than you know is possible, or holding out for something that may not arrive in the form you have been waiting for. The Metal face that has not found a way to work with this tends to accumulate a quiet contempt for a world that keeps not quite measuring up.",
+    invitation:"What this reading is pointing toward: finding the specific domain where your standard isn\'t a ceiling that others fail to reach. It\'s a level of quality that you yourself are generating. The work where the precision is in the output, not the judgment."
   },
   water:{
-    tension:"The central tension that the Water face carries is the one between depth and ground. You take in more than others realise. You feel what is in the room before anyone has named it. You carry a quality of perceptive sensitivity that is genuinely rare, and that comes at a specific cost: the difficulty of knowing where your emotional landscape ends and another person's begins. The Water face that has not found its container tends to live in a particular kind of exhaustion that is difficult to explain to people who do not share this nature. From the outside, the Water face often appears calm, contained, even slightly mysterious. What is actually happening is that the calm surface is managing an enormous amount of incoming information that is never entirely still.",
+    tension:"The central tension that the Water face carries is the one between depth and ground. You take in more than others realise. You feel what is in the room before anyone has named it. You carry a quality of perceptive sensitivity that is genuinely rare, and that comes at a specific cost: the difficulty of knowing where your emotional landscape ends and another person\'s begins. The Water face that has not found its container tends to live in a particular kind of exhaustion that is difficult to explain to people who do not share this nature. From the outside, the Water face often appears calm, contained, even slightly mysterious. What is actually happening is that the calm surface is managing an enormous amount of incoming information that is never entirely still.",
     invitation:"What this reading is pointing toward: the specific practice, relationship, or creative form that gives your depth somewhere to land. Not to drain it. To receive it. What you carry needs a container that is large enough to hold it without requiring you to make it smaller first."
   }
 };
@@ -1104,7 +981,6 @@ var ELEMENTS={
     relationships:{wide:'Your wider-set eyes suggest you take in a partner\'s whole context before you commit attention. This makes you a perceptive partner, but it can also mean you hold people at an evaluative distance longer than they would like.',narrow:'Your closer-set eyes suggest an intensity of focus once you have chosen someone. The risk in your relationships is less about commitment and more about tunnel vision: missing signals outside the relationship because your attention is so fully inside it.'},
     watchFor:'Watch for the moment when forward motion becomes avoidance. Wood faces are skilled at reframing an exit as growth, leaving a relationship or a role and calling it expansion when it is actually flight from something that required staying. The honest question to ask yourself before any major move: am I building toward something, or running from something I have not named?',
     upsellNote:'The complete PDF Face Reading covers all twelve zones of your Wood face, including your wealth indicators, your relationship archetype, the three life chapters encoded in your upper, middle, and lower face, and the specific decade when your Wood energy reaches its fullest expression.'},
-
   fire:{glyph:'🔥',name:'Fire',title:'The Fire Bearer',color:'#d4522a',colorLight:'#f4a460',gradFrom:'#3a1a08',gradTo:'#6b2d0a',traits:['Charisma','Passion','Expressiveness','Joy','Magnetism'],
     faceDesc:{faceShape:'Your facial proportions carry the characteristic Fire signature: an animated openness that draws attention without effort, with features that seem calibrated for expression rather than concealment.',eyes:'Your eyes are among the most revealing features of your Fire nature: open, expressive, and communicating before your mouth has formed a word. People often feel seen by you before they have been spoken to.',overall:'There is a warmth that radiates from your facial structure, not as performance, but as the natural emission of a genuinely high-energy presence.'},
     readings:['The Fire face carries the signature of someone whose inner life is conducted at a higher temperature than average. You are likely aware that you feel things more intensely than most people around you: joy more completely, disappointment more acutely, passion more urgently. What you may not know is that this intensity is visibly encoded in your facial proportions.','Your face communicates charisma structurally rather than through expression alone. Even in repose, even in photographs where you are not performing warmth, there is something in the proportional relationship between your features that reads as approachable, energetic, and somehow already in motion.','Fire faces have a particular relationship with influence. People are moved by your presence in ways they cannot fully articulate, and this power is not dependent on what you say. The question the Fire face must eventually answer is: what do you want to move people toward?'],
@@ -1113,7 +989,6 @@ var ELEMENTS={
     relationships:{wide:'Your fuller mouth structure suggests emotional expression comes easily and quickly. You are unlikely to leave someone wondering how you feel. The risk is intensity arriving faster than depth.',narrow:'Your more defined mouth structure suggests your Fire shows up as warmth rather than volume: steady heat rather than visible flame. Partners sometimes misread this restraint as lower interest, when it is closer to a different register of the same intensity.'},
     watchFor:'Watch for the gap between how a project or relationship feels in its first month and how it feels in its twelfth. Fire faces fall in love with beginnings with a force that can outrun the substance underneath. The corrective practice is simple: before committing fully to anything, ask what it will feel like to still be doing this when the initial charge has worn off.',
     upsellNote:'The complete PDF Face Reading covers all twelve zones of your Fire face, including your influence pattern, your relationship with authority, and the specific life chapter in which your Fire energy reaches its full expression.'},
-
   earth:{glyph:'🌍',name:'Earth',title:'The Earth Bearer',color:'#8b6430',colorLight:'#d4a870',gradFrom:'#2c1a08',gradTo:'#5a3a18',traits:['Stability','Nurturing','Reliability','Patience','Abundance'],
     faceDesc:{faceShape:'Your facial structure carries the breadth and groundedness of the Earth element: a generous proportional quality that communicates trustworthiness and permanence before a word is spoken.',eyes:'Your eyes carry the characteristic Earth quality of patient attention: taking in the full picture rather than the immediate surface, noticing what others walk past.',overall:'There is a solidity to your facial architecture that people register as reliability. You are the kind of face people trust immediately, without knowing why.'},
     readings:['The Earth face is the face of someone who holds things together. Not necessarily the person at the front, though Earth faces often end up there through sheer reliability, but the person without whom the structure collapses. You have likely played this role more times than you have been thanked for it.','Your facial proportions communicate abundance in the classical face-reading sense: fullness, generosity, and a natural attunement to the material world. This does not mean wealth comes easily. It means you have a structural capacity for it that others lack. The Earth face is built for sustained accumulation rather than sudden windfall.','There is something in the width and groundedness of your features that people experience as safety. You may have noticed that strangers tell you things they have not told anyone else. This is not accidental. It is a structural phenomenon. Your face broadcasts a frequency of trustworthiness that most people cannot fake and many never achieve.'],
@@ -1122,7 +997,6 @@ var ELEMENTS={
     relationships:{wide:'Your fuller mouth structure suggests generosity expressed through tangible acts: feeding people, fixing things, showing up with practical help before being asked. This is how your love is legible to others, even when you have not said the words.',narrow:'Your more composed mouth structure suggests your Earth nature shows care through consistency rather than display: being there, repeatedly, without needing it acknowledged.'},
     watchFor:'Watch for the moment when your reliability becomes invisible to others and to yourself. Earth faces are so good at carrying weight that the people around them stop noticing it is being carried. The corrective practice is naming, out loud, at least once a season, exactly what you are currently carrying. Not as complaint, but as inventory.',
     upsellNote:'The complete PDF Face Reading covers all twelve zones of your Earth face, including your abundance archetype, your legacy pattern, and the specific decade in which your Earth energy reaches its fullest expression.'},
-
   metal:{glyph:'⚙️',name:'Metal',title:'The Metal Bearer',color:'#6a7a8a',colorLight:'#b8c8d8',gradFrom:'#1a1a22',gradTo:'#2a2a3a',traits:['Precision','Discernment','Integrity','Refinement','Clarity'],
     faceDesc:{faceShape:'Your facial proportions carry the characteristic Metal signature: a structural precision and definition that communicates discernment and inner standard before a word is spoken.',eyes:'Your eyes carry the specific quality of Metal clarity: observant, precise, and more likely to notice what is wrong with a situation than to politely overlook it.',overall:'There is a refinement to your facial architecture that registers as both elegant and exacting. You have probably been described as having high standards. You do, and your face has always known it.'},
     readings:['The Metal face carries the signature of someone for whom quality is not a preference but a requirement. You have a built-in calibration system that most people around you do not possess. You notice imprecision, inauthenticity, and structural weakness in ideas, environments, and people almost involuntarily. This is not perfectionism. It is discernment, and it is encoded in the very architecture of your features.','Metal faces have a particular relationship with integrity. Not as an ethical concept but as a structural one: the quality of being fully aligned between what is believed, what is said, and what is done. You are deeply uncomfortable with misalignment of this kind, and you have probably walked away from situations that others would have found entirely acceptable, simply because something was not quite right.','There is a quiet authority that Metal faces carry: not the loud assertion of power but the unmistakable signal of inner standard. People with Metal faces are often underestimated in the short term and deeply respected in the long term. The arc is almost always long. The depth eventually becomes undeniable.'],
@@ -1131,7 +1005,6 @@ var ELEMENTS={
     relationships:{wide:'Your wider-set eyes suggest you evaluate a partner against a wide field of comparison. Not out of disloyalty, but because precision is simply how you process information, including people.',narrow:'Your closer-set eyes suggest that once someone meets your standard, your attention narrows onto them with unusual intensity. The risk is less wandering attention and more an exacting quality inside the relationship.'},
     watchFor:'Watch for the moment when discernment curdles into contempt. The Metal face\'s gift, seeing exactly what is wrong, has a shadow side that shows up as a quiet, accumulating disdain for people or relationships that do not meet the standard. The corrective practice is naming, specifically, what would need to change for something to meet your bar.',
     upsellNote:'The complete PDF Face Reading covers all twelve zones of your Metal face, including your authority archetype, your precision pattern, and the specific life domain where your Metal nature creates its most significant impact.'},
-
   water:{glyph:'💧',name:'Water',title:'The Water Bearer',color:'#2a6a9a',colorLight:'#70a8d4',gradFrom:'#08182a',gradTo:'#0a2a4a',traits:['Depth','Wisdom','Adaptability','Intuition','Mystery'],
     faceDesc:{faceShape:'Your facial proportions carry the softness and depth of the Water element: a quality of contained intensity that communicates intelligence and mystery in equal measure.',eyes:'Your eyes carry the characteristic Water depth: absorbing more than they reveal, registering the emotional texture of situations with a sensitivity that often feels, to you, like a burden as much as a gift.',overall:'There is a fluidity to your features that makes you difficult to fully read, which is appropriate, because you have always known more than you have shown.'},
     readings:['The Water face carries the signature of someone whose inner life is considerably more active than their outer surface reveals. You have probably been described as quiet, mysterious, or difficult to know, and you are likely aware that these descriptions are incomplete in ways that frustrate you. The depth registered in your facial proportions is the depth of genuine inner complexity, not simply reserve.','Water faces have a specific relationship with intuition that is structural rather than mystical. You process emotional and relational information through channels that are largely unconscious, which means you often know things before you can explain how you know them. This is not a gift. It is a feature of your face type, encoded in the proportional relationships between your features.','There is an adaptability in Water faces that runs deeper than social flexibility. You have an unusual capacity to move through very different environments, relationships, and roles without losing your essential nature: like water that takes the shape of whatever it occupies while remaining entirely itself. Most people who possess this quality do not fully understand how unusual it is.'],
@@ -1142,12 +1015,10 @@ var ELEMENTS={
     upsellNote:'The complete PDF Face Reading covers all twelve zones of your Water face, including your intuitive archetype, your depth pattern, and the specific life domain where your Water nature creates its most significant impact.'}
 };
 
-// ── SPEECH & SHARE ─────────────────────────────────────────
 var isSpeaking=false,fullReadingText='';
 function getBestVoice(){
   var voices=window.speechSynthesis.getVoices();
   if(!voices.length)return null;
-  // Prefer: Google UK English Female, then any UK English, then US English Female
   var preferred=[
     'Google UK English Female',
     'Microsoft Libby Online (Natural) - English (United Kingdom)',
@@ -1159,24 +1030,18 @@ function getBestVoice(){
     var v=voices.find(function(v){return v.name===preferred[i];});
     if(v)return v;
   }
-  // Generic catch-all: any English voice explicitly labelled Natural/Neural/
-  // Enhanced/Premium, catches modern OS voices not on the named list above
   var tagged=voices.find(function(v){return v.lang.startsWith('en')&&/natural|neural|enhanced|premium/i.test(v.name);});
   if(tagged)return tagged;
-  // Fallback: any English female
   var engFemale=voices.find(function(v){return v.lang.startsWith('en')&&v.name.toLowerCase().includes('female');});
   if(engFemale)return engFemale;
-  // Fallback: any English
   var eng=voices.find(function(v){return v.lang.startsWith('en');});
   return eng||voices[0];
 }
 
 function cleanForSpeech(text){
-  // Add natural pauses: insert comma after section headings patterns
-  // Remove HTML artifacts, extra spaces, repetitive punctuation
   return text
     .replace(/\s+/g,' ')
-    .replace(/\.\s+/g,'. ')  // normalise sentence spacing
+    .replace(/\.\s+/g,'. ')
     .replace(/,\s+/g,', ')
     .trim();
 }
@@ -1196,9 +1061,7 @@ function toggleSpeech(){
   if(!fullReadingText)return;
   window.speechSynthesis.cancel();
 
-  // Split into paragraph-sized chunks for better pacing and natural breaks
   var rawChunks=fullReadingText.split(/(?<=[.!?])\s+(?=[A-Z])/);
-  // Group into chunks of ~2 sentences each
   speechChunks=[];
   for(var i=0;i<rawChunks.length;i+=2){
     var chunk=rawChunks.slice(i,i+2).join(' ');
@@ -1228,7 +1091,6 @@ function toggleSpeech(){
     window.speechSynthesis.speak(u);
   }
 
-  // Voices may not be loaded yet on first call
   if(window.speechSynthesis.getVoices().length){
     speakNext();
   } else {
@@ -1239,15 +1101,8 @@ function toggleSpeech(){
 }
 function showToast(msg){var t=document.getElementById('toast-msg');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2400);}
 
-// ── SHARE CARD, real, generated image, per element, no emoji ─────
 var currentShareBlob=null,currentShareCaption='';
 
-// Real, picks a genuinely complete, self-contained sentence for the
-// share card, not just whichever sentence sits at a fixed position.
-// Confirmed necessary directly, some real tension paragraphs use
-// short, deliberate fragments ('Not as a character flaw.') that only
-// make sense continuing the sentence before them, silently broken
-// when isolated alone on a card.
 function pickShareLine(tensionText){
   var sentences=tensionText.split('. ').map(function(s){return s.trim();}).filter(Boolean);
   for(var i=1;i<sentences.length;i++){
@@ -1303,10 +1158,6 @@ function generateShareCardImage(data,line){
     canvas.width=W;canvas.height=H;
     var ctx=canvas.getContext('2d');
 
-    // Real, loads the actual, specific backdrop matching this exact
-    // element, wood, fire, earth, metal, or water, whichever the
-    // real reading revealed. Honest fallback to the existing,
-    // approved gradient if it's missing, slow, or fails to load.
     var backdrop=new Image();
     backdrop.crossOrigin='anonymous';
     var backdropLoaded=false,settled=false;
@@ -1380,9 +1231,6 @@ function generateShareCardImage(data,line){
   });
 }
 
-// Real, lightweight, fire-and-forget tracking, logs every real
-// download or share action, never blocks or delays the actual
-// action itself, and fails silently if it doesn't work.
 function trackShareEvent(action){
   try{
     fetch("https://nofyxayqdwhyabcntmvs.supabase.co/rest/v1/share_events",{
@@ -1460,41 +1308,35 @@ function shareToPlatform(m){
   if(urls[m])window.open(urls[m],'_blank','noopener');
 }
 
-// ── BUILD RESULT ───────────────────────────────────────────
 var currentElement=null,currentName='',currentDob='';
 
-// ── UPSELL DECISION (mirrors tool_registry.py face-image tools) ──
-// wood/water lean into the money-belief and future-arc angles;
-// fire/metal lean into the authority-projection angle.
-// Only 3 face-image products exist in the registry, so every element
-// shows all 3, just reordered so the best fit leads.
 var TOOL_META = {
-  'second-half-reading':  { name: 'Your Strongest Career Decades Ahead',  price: '$49', desc: 'Which decades ahead carry your fullest expression' },
-  'leadership-signature': { name: 'Your Leadership Signature', price: '$44', desc: 'The authority your face projects, and how to own it' },
-  'money-wound-reading':  { name: "The Belief That's Costing You Money",  price: '$34', desc: 'The belief your face confirms that is costing you money' }
+  'later-career-reading':  { name: 'Where Your Strongest Years Are',  price: '$49', desc: 'Which decades ahead carry your fullest expression' },
+  'leadership-reading': { name: 'How Authority Moves Through You', price: '$44', desc: 'The authority your face projects, and how to own it' },
+  'money-belief-reading':  { name: "The Belief That's Costing You Money",  price: '$34', desc: 'The belief your face confirms that is costing you money' }
 };
 var UPSELL_MAP = {
   wood: {
-    toolId: 'second-half-reading',
-    secondary: ['leadership-signature', 'money-wound-reading'],
+    toolId: 'later-career-reading',
+    secondary: ['leadership-reading', 'money-belief-reading'],
     eyebrow: 'Your growth has a direction worth naming',
     titleTpl: function(fn){return (fn?fn+"'s":'Your')+' Wood face is built for what comes next.';},
-    desc: 'Your Strongest Career Decades Ahead shows exactly which decades ahead carry your fullest expression, and when your forward momentum finally pays off.',
+    desc: 'Where Your Strongest Years Are shows exactly which decades ahead carry your fullest expression, and when your forward momentum finally pays off.',
     ctaLabel: 'See My Recommended Reading',
     modalTitle: 'Three readings fit what your Wood face just showed.'
   },
   fire: {
-    toolId: 'leadership-signature',
-    secondary: ['second-half-reading', 'money-wound-reading'],
+    toolId: 'leadership-reading',
+    secondary: ['later-career-reading', 'money-belief-reading'],
     eyebrow: 'What you project is not an accident',
     titleTpl: function(fn){return (fn?fn+"'s":'Your')+' Fire face carries a specific kind of authority.';},
-    desc: 'Your Leadership Signature names exactly what your face projects to others, and shows you how to own it fully instead of giving it away.',
+    desc: 'How Authority Moves Through You names exactly what your face projects to others, and shows you how to own it fully instead of giving it away.',
     ctaLabel: 'See My Recommended Reading',
     modalTitle: 'Three readings fit what your Fire face just showed.'
   },
   earth: {
-    toolId: 'money-wound-reading',
-    secondary: ['second-half-reading', 'leadership-signature'],
+    toolId: 'money-belief-reading',
+    secondary: ['later-career-reading', 'leadership-reading'],
     eyebrow: 'Reliability has a cost worth naming',
     titleTpl: function(fn){return (fn?fn+"'s":'Your')+' Earth face carries a belief about money worth examining.';},
     desc: "The Belief That's Costing You Money names the specific belief your face confirms, the one quietly shaping what you think you are allowed to earn.",
@@ -1502,17 +1344,17 @@ var UPSELL_MAP = {
     modalTitle: 'Three readings fit what your Earth face just showed.'
   },
   metal: {
-    toolId: 'leadership-signature',
-    secondary: ['money-wound-reading', 'second-half-reading'],
+    toolId: 'leadership-reading',
+    secondary: ['money-belief-reading', 'later-career-reading'],
     eyebrow: 'Your standard is not the problem',
     titleTpl: function(fn){return (fn?fn+"'s":'Your')+' Metal face carries a specific kind of authority.';},
-    desc: 'Your Leadership Signature shows you how to turn your discernment into ownership, instead of quiet frustration with a world that keeps not measuring up.',
+    desc: 'How Authority Moves Through You shows you how to turn your discernment into ownership, instead of quiet frustration with a world that keeps not measuring up.',
     ctaLabel: 'See My Recommended Reading',
     modalTitle: 'Three readings fit what your Metal face just showed.'
   },
   water: {
-    toolId: 'money-wound-reading',
-    secondary: ['second-half-reading', 'leadership-signature'],
+    toolId: 'money-belief-reading',
+    secondary: ['later-career-reading', 'leadership-reading'],
     eyebrow: 'What you carry has a cost worth naming',
     titleTpl: function(fn){return (fn?fn+"'s":'Your')+' Water face carries a belief about money worth examining.';},
     desc: "The Belief That's Costing You Money names the specific belief your face confirms, the one quietly shaping what you think your depth is worth.",
@@ -1521,19 +1363,14 @@ var UPSELL_MAP = {
   }
 };
 
-// First sentence of a face-synthesis tension paragraph, used to build a
-// per-element invite description instead of a static per-element template
 function tensionLead(syn){
   var s=(syn&&syn.tension)?syn.tension.split('.')[0].trim():'';
   return s?s+'.':'';
 }
-// What each recommended reading specifically resolves, combined with
-// tensionLead() this gives all 5 elements their own specific desc without
-// hand-writing 5 separate paragraphs
 var REC_BRIDGE={
-  'second-half-reading':'Your Strongest Career Decades Ahead shows exactly which decades ahead carry your fullest expression, once this pattern has somewhere real to go.',
-  'leadership-signature':'Your Leadership Signature names precisely what to do with this, instead of carrying it quietly or giving it away.',
-  'money-wound-reading':"The Belief That's Costing You Money traces this exact pattern back to the specific belief that is shaping what you think you are allowed to have."
+  'later-career-reading':'Where Your Strongest Years Are shows exactly which decades ahead carry your fullest expression, once this pattern has somewhere real to go.',
+  'leadership-reading':'How Authority Moves Through You names precisely what to do with this, instead of carrying it quietly or giving it away.',
+  'money-belief-reading':"The Belief That's Costing You Money traces this exact pattern back to the specific belief that is shaping what you think you are allowed to have."
 };
 
 function buildToolURL(toolId){
@@ -1547,11 +1384,10 @@ function buildToolURL(toolId){
 
 function buildURL(){
   var up=UPSELL_MAP[currentElement];
-  var toolId=up?up.toolId:'money-wound-reading';
+  var toolId=up?up.toolId:'money-belief-reading';
   return buildToolURL(toolId);
 }
 
-// ── UPSELL MODAL ──────────────────────────────────────────
 var currentUp=null;
 function openUpsellModal(e){
   if(e)e.preventDefault();
@@ -1589,11 +1425,8 @@ function buildResult(metrics){
   currentElement=el.primary;
   var data=ELEMENTS[el.primary];
   var sec=ELEMENTS[el.secondary];
-  // DOB is optional: age personalises the "Current Season" section when
-  // given, and the existing no-age fallback copy handles it when not
   var age=currentDob?getAge(currentDob):null;
 
-  // Element reveal card
   document.getElementById('el-reveal').style.background='linear-gradient(135deg,'+data.gradFrom+','+data.gradTo+')';
   document.getElementById('el-bg').style.background='linear-gradient(270deg,'+data.gradFrom+','+data.color+','+data.gradTo+')';
   document.getElementById('el-glyph').textContent=data.glyph;
@@ -1606,7 +1439,6 @@ function buildResult(metrics){
     : 'Your Elemental Face Type';
   document.getElementById('el-traits').innerHTML=data.traits.map(function(t){return'<span class="el-trait" style="color:'+data.colorLight+';border-color:'+data.colorLight+'">'+t+'</span>';}).join('');
 
-  // Measurements
   var fSD=metrics.faceRatio>1.35?'Elongated':metrics.faceRatio>1.15?'Oval':metrics.faceRatio>1.0?'Balanced':'Rounded';
   var jSD=metrics.jawForeheadRatio>0.9?'Strong and defined':metrics.jawForeheadRatio>0.75?'Moderate':'Refined and narrow';
   var eSD=metrics.eyeAspect>0.35?'Open and expressive':metrics.eyeAspect>0.27?'Almond and defined':'Deep-set and focused';
@@ -1630,11 +1462,6 @@ function buildResult(metrics){
     seasonNote='The structure around your '+(jawIsWide?'jaw':'brow')+' suggests that right now, '+(jawIsWide?'visible, structural progress matters more to you than usual. You are in a building phase, whether or not the outer circumstances have caught up yet.':'internal clarity matters more to you than visible progress. You are in a phase of sorting out what is actually true before you act on it.');
   }
 
-  // ── SYNTHESIS: what the whole reading says ────────────────
-  // Moved to build first, right after any blended-element note, the
-  // real hook most likely to make someone keep reading or convert,
-  // previously built last, after every regular section, where anyone
-  // who lost interest partway through would never actually reach it.
   var faceSyn=FACE_SYNTHESIS[el.primary];
 
   var html='';
@@ -1660,10 +1487,8 @@ function buildResult(metrics){
   html+='<div class="reading-block"><div class="reading-block-label">Relationships</div>';
   html+='<p class="reading-para">'+(eyeIsWide?data.relationships.wide:data.relationships.narrow)+'</p></div>';
 
-      document.getElementById('reading-content').innerHTML=html;
+  document.getElementById('reading-content').innerHTML=html;
 
-  // Update invite block, desc now built from THIS element's own
-  // synthesis tension, not a static per-element template
   var up=UPSELL_MAP[el.primary];
   currentUp=up;
   var lead=tensionLead(faceSyn);
@@ -1674,18 +1499,14 @@ function buildResult(metrics){
   document.getElementById('li-desc').textContent=inviteDesc;
   document.getElementById('li-btn-label').textContent=up.ctaLabel;
 
-  // Speech text: derived from rendered HTML to ensure audio matches paragraphs,
-  // plus the invite title so listening reaches the actual invitation
   var readingEl=document.createElement('div');
   readingEl.innerHTML=html;
   fullReadingText=(readingEl.textContent+' '+up.titleTpl(fn)+' '+(bridge||up.desc)).replace(/\s+/g,' ').trim();
   window._shareText=(fn?fn+'\'s':'My')+' Face Energy Reading: '+data.title+' ('+data.name+' element), '+data.traits.slice(0,3).join(', ')+'. Discover your own elemental face type, free, at KAYAL SoulPath Institute.';
 
-  // Update PDF button with personalised URL
   var pdfBtn=document.getElementById('lifeos-pdf-btn');
   if(pdfBtn)pdfBtn.href=buildURL();
 
-  // Show result, hide the hero and upload/form step so it reads as a clean next screen
   document.getElementById('hero-section').style.display='none';
   document.getElementById('upload-section').style.display='none';
   var rs=document.getElementById('result-section');
@@ -1694,7 +1515,6 @@ function buildResult(metrics){
   setTimeout(function(){rs.scrollIntoView({behavior:'smooth',block:'start'});},300);
 }
 
-// ── DRAG AND DROP ──────────────────────────────────────────
 var card=document.getElementById('upload-card');
 card.addEventListener('dragover',function(e){e.preventDefault();card.classList.add('drag-over');});
 card.addEventListener('dragleave',function(){card.classList.remove('drag-over');});

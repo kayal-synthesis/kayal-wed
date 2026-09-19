@@ -19,8 +19,6 @@
 }
 body{background:var(--void);color:var(--pearl);font-family:var(--ff-b);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-
-/* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(5,5,7,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(200,160,48,.08);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
 .nav-brand{display:flex;flex-direction:column;gap:1px}
 .nav-brand-name{font-family:var(--ff-d);font-size:16px;font-weight:400;color:var(--pearl);letter-spacing:.06em;text-transform:uppercase}
@@ -30,33 +28,24 @@ a{color:inherit;text-decoration:none}
 .nav-back:hover{color:var(--gold);border-color:rgba(200,160,48,.4)}
 .nav-cta{padding:8px 18px;background:rgba(200,160,48,.12);color:var(--gold);border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.04em;transition:all .2s;border:1px solid rgba(200,160,48,.2)}
 .nav-cta:hover{background:rgba(200,160,48,.2)}
-
-/* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;background:radial-gradient(ellipse at 50% 35%,rgba(26,26,40,.8),var(--void))}
 .hero-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,160,48,.6);margin-bottom:28px}
-
-/* Mandala */
 .mandala-wrap{position:relative;width:260px;height:260px;margin:0 auto 40px;z-index:1}
 .mandala-svg{width:100%;height:100%}
 .m-ring-1{animation:m-rot 40s linear infinite}
 .m-ring-2{animation:m-rot 28s linear infinite reverse}
 .m-ring-3{animation:m-rot 16s linear infinite}
 @keyframes m-rot{to{transform:rotate(360deg)}}
-
 .hero-title{font-family:var(--ff-d);font-size:clamp(26px,5vw,48px);font-weight:300;color:var(--pearl);line-height:1.1;margin-bottom:16px}
 .hero-title em{font-style:italic;color:rgba(200,160,48,.85)}
 .hero-sub{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(232,224,208,.45);line-height:1.8;max-width:460px;margin:0 auto 36px}
 .hero-cta{padding:14px 32px;background:rgba(200,160,48,.1);color:var(--gold);border:1px solid rgba(200,160,48,.25);border-radius:var(--r);font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:10px;text-transform:uppercase}
 .hero-cta:hover{background:rgba(200,160,48,.18);transform:translateY(-2px)}
-
-/* MAIN */
 .main{max-width:680px;margin:0 auto;padding:80px 24px}
 .sec-label{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,160,48,.55);margin-bottom:10px}
 .sec-title{font-family:var(--ff-d);font-size:clamp(22px,3vw,32px);font-weight:300;color:var(--pearl);line-height:1.2;margin-bottom:10px}
 .sec-title em{font-style:italic;color:rgba(200,160,48,.85)}
 .sec-sub{font-family:var(--ff-h);font-size:14px;font-style:italic;color:rgba(232,224,208,.45);line-height:1.75;max-width:520px;margin-bottom:28px}
-
-/* SETUP */
 .setup-card{background:rgba(26,26,40,.5);border:1px solid rgba(200,160,48,.1);border-radius:var(--r-lg);padding:32px;margin-bottom:28px}
 .form-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px}
 .form-group{display:flex;flex-direction:column;gap:7px}
@@ -66,54 +55,40 @@ a{color:inherit;text-decoration:none}
 .form-input::placeholder{color:var(--stone)}
 textarea.form-input{min-height:72px;font-family:var(--ff-h);font-style:italic;font-size:14px}
 input[type=date].form-input{color-scheme:dark}
-
 .form-sep{height:1px;background:rgba(200,160,48,.08);margin:20px 0}
-
 .dur-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
 .dur-btn{padding:8px 16px;background:rgba(10,10,15,.6);border:1px solid rgba(200,160,48,.15);border-radius:var(--r);font-size:13px;color:rgba(232,224,208,.55);cursor:pointer;transition:all .2s}
 .dur-btn:hover{border-color:rgba(200,160,48,.4);color:var(--pearl)}
 .dur-btn.active{background:rgba(200,160,48,.12);border-color:rgba(200,160,48,.5);color:var(--gold)}
-
 .breath-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
 .breath-btn{padding:6px 14px;background:rgba(10,10,15,.5);border:1px solid rgba(200,160,48,.1);border-radius:20px;font-size:12px;color:rgba(232,224,208,.5);cursor:pointer;transition:all .2s}
 .breath-btn:hover{border-color:rgba(200,160,48,.3);color:var(--pearl)}
 .breath-btn.active{border-color:rgba(200,160,48,.4);color:rgba(200,160,48,.9);background:rgba(200,160,48,.08)}
-
 .start-btn{width:100%;padding:15px 24px;background:rgba(200,160,48,.1);color:var(--gold);border:1px solid rgba(200,160,48,.25);border-radius:var(--r);font-family:var(--ff-b);font-size:14px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;text-transform:uppercase}
 .start-btn:hover{background:rgba(200,160,48,.18);transform:translateY(-1px)}
-
-/* TIMER DISPLAY */
 #timer-display{display:none;text-align:center;padding:48px 24px}
 #timer-display.show{display:block;animation:fadeIn .8s ease}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-
 .timer-mandala-wrap{position:relative;width:320px;height:320px;margin:0 auto 32px;display:flex;align-items:center;justify-content:center}
 #breath-ring-svg{position:absolute;inset:0;width:100%;height:100%}
 .timer-geometry{animation:m-rot 60s linear infinite}
 .geo-counter{animation:m-rot 40s linear infinite reverse}
 .prog-track{fill:none;stroke:rgba(200,160,48,.06);stroke-width:2}
 .prog-fill{fill:none;stroke:rgba(200,160,48,.15);stroke-width:2;stroke-linecap:round;transition:stroke-dashoffset .5s ease,stroke .5s ease}
-
 .breath-phase{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,160,48,.6);height:20px;margin-bottom:8px;transition:color .3s}
 .breath-phase.active{color:rgba(200,160,48,.85)}
-
 .timer-time{font-family:var(--ff-d);font-size:64px;font-weight:300;color:var(--pearl);line-height:1;letter-spacing:-.02em}
 .timer-elapsed{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(232,224,208,.3);margin-top:6px}
 .timer-intention{font-family:var(--ff-h);font-size:14px;font-style:italic;color:rgba(200,160,48,.6);margin-bottom:24px;min-height:24px}
-
 .timer-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .tc-btn{padding:10px 22px;border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;letter-spacing:.04em}
 .tc-primary{background:rgba(200,160,48,.12);color:var(--gold);border:1px solid rgba(200,160,48,.25)}
 .tc-primary:hover{background:rgba(200,160,48,.2)}
 .tc-ghost{background:transparent;color:rgba(232,224,208,.4);border:1px solid rgba(232,224,208,.1)}
 .tc-ghost:hover{color:var(--pearl);border-color:rgba(232,224,208,.25)}
-
-/* BELL FLASH */
 .bell-flash{position:fixed;inset:0;background:rgba(200,160,48,.06);pointer-events:none;opacity:0;transition:opacity .3s;z-index:100}
 .bell-flash.ring{animation:bell-ring .6s ease}
 @keyframes bell-ring{0%,100%{opacity:0}30%{opacity:1}}
-
-/* COMPLETE CARD */
 #complete-card{display:none;background:rgba(10,10,15,.9);border:1px solid rgba(200,160,48,.18);border-radius:var(--r-lg);padding:40px;text-align:center;margin-top:28px}
 #complete-card.show{display:block;animation:fadeIn .6s ease}
 .comp-glyph{font-size:48px;margin-bottom:14px;display:block}
@@ -122,8 +97,6 @@ input[type=date].form-input{color-scheme:dark}
 .comp-stats{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;padding:18px 0;border-top:1px solid rgba(200,160,48,.08);border-bottom:1px solid rgba(200,160,48,.08);margin-bottom:24px}
 .cs .cs-num{font-family:var(--ff-d);font-size:24px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:4px}
 .cs .cs-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
-
-/* POST-SESSION READING */
 #post-reading{display:none;margin-top:40px}
 #post-reading.show{display:block;animation:fadeIn .8s ease}
 .post-eyebrow{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,160,48,.55);margin-bottom:8px}
@@ -140,12 +113,7 @@ input[type=date].form-input{color-scheme:dark}
 .r-syn .r-label::after{background:rgba(200,160,48,.12)}
 .r-tension{font-family:var(--ff-h);font-size:16px;font-style:italic;color:rgba(232,224,208,.88);line-height:1.9;margin-bottom:14px;text-align:justify}
 .r-invite{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(200,160,48,.85);line-height:1.85;text-align:justify}
-
-/* STATIC READING (before session, always shown) */
 .reading-section{margin-top:60px;padding-top:48px;border-top:1px solid rgba(200,160,48,.06)}
-
-/* LIFEOS INVITE */
-/* Reading bridge card, compact */
 .lifeos-invite{max-width:540px;margin:40px auto 0;padding:26px 28px;background:linear-gradient(135deg,rgba(200,160,48,.14),rgba(212,120,32,.06)),rgba(5,5,7,.96);border:1px solid rgba(200,160,48,.22);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(200,160,48,.12),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(212,120,32,.10),transparent 70%);pointer-events:none}
@@ -160,8 +128,6 @@ input[type=date].form-input{color-scheme:dark}
 .li-btn-s:hover{color:var(--pearl);border-color:rgba(232,224,208,.25)}
 .li-foot{font-size:10.5px;color:rgba(232,224,208,.22);margin-top:14px;position:relative;z-index:1}
 .li-foot a{color:rgba(200,160,48,.35)}
-
-/* FOOTER */
 .footer{background:rgba(5,5,7,.97);border-top:1px solid rgba(200,160,48,.06);padding:36px 24px 20px;margin-top:80px}
 .footer-inner{max-width:680px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .footer-brand{font-family:var(--ff-d);font-size:18px;font-weight:300;color:var(--pearl)}
@@ -169,7 +135,6 @@ input[type=date].form-input{color-scheme:dark}
 .footer-links a{font-size:12px;color:rgba(232,224,208,.3);transition:color .2s}
 .footer-links a:hover{color:rgba(232,224,208,.7)}
 .footer-copy{font-size:11px;color:rgba(232,224,208,.15);width:100%;text-align:center;padding-top:14px;border-top:1px solid rgba(200,160,48,.05);margin-top:14px}
-
 @media(max-width:600px){
   .form-row{grid-template-columns:1fr}
   .li-btns{flex-direction:column}
@@ -227,7 +192,6 @@ input[type=date].form-input{color-scheme:dark}
 </section>
 
 <main class="main">
-  <!-- SETUP -->
   <div id="setup-section">
     <div class="sec-label">Configure Your Session</div>
     <h2 class="sec-title">Set your duration<br><em>and your intention.</em></h2>
@@ -284,7 +248,6 @@ input[type=date].form-input{color-scheme:dark}
       </button>
     </div>
 
-    <!-- Static reading, always visible before session -->
     <div class="reading-section">
       <div class="r-block">
         <div class="r-label">On Stillness</div>
@@ -305,7 +268,6 @@ input[type=date].form-input{color-scheme:dark}
     </div>
   </div>
 
-  <!-- TIMER DISPLAY -->
   <div id="timer-display">
     <div class="breath-phase" id="breath-phase"></div>
     <div class="timer-mandala-wrap">
@@ -335,7 +297,6 @@ input[type=date].form-input{color-scheme:dark}
       <button class="tc-btn tc-ghost" onclick="endEarly()"><i class="fas fa-check"></i> Complete</button>
     </div>
 
-    <!-- Complete card -->
     <div id="complete-card">
       <span class="comp-glyph">🙏</span>
       <div class="comp-title" id="comp-title">Session complete.</div>
@@ -346,7 +307,6 @@ input[type=date].form-input{color-scheme:dark}
       </button>
     </div>
 
-    <!-- Post-session personalised reading -->
     <div id="post-reading">
       <div class="post-eyebrow">Your reading for this session</div>
       <div class="post-title" id="post-title"></div>
@@ -356,7 +316,7 @@ input[type=date].form-input{color-scheme:dark}
         <div class="li-title" id="li-title">Your stillness practice has a specific direction this year.</div>
         <p class="li-desc" id="li-desc">What you have received here is a single session reading.</p>
         <div class="li-btns">
-          <a href="https://app.kayalsoulpath.com/tool/personal-year-deep-dive" id="lifeos-link" class="li-btn-p" target="_blank" rel="noopener"><i class="fas fa-compass"></i> <span id="li-btn-label">Go Deeper</span></a>
+          <a href="https://app.kayalsoulpath.com/tool/this-year-reading" id="lifeos-link" class="li-btn-p" target="_blank" rel="noopener"><i class="fas fa-compass"></i> <span id="li-btn-label">Go Deeper</span></a>
           <a href="../pages/enrol/apply.html" class="li-btn-s">Study at the Institute</a>
         </div>
         <div class="li-foot">Already a student? <a href="../pages/student/login.html">Sign in to your portal</a></div>
@@ -379,9 +339,6 @@ input[type=date].form-input{color-scheme:dark}
 </footer>
 
 <script>
-// ── POST-SESSION READINGS per cycle ──────────────────────
-// Nine cycle-specific readings for after the session completes
-// Written in direct, felt language addressed to the person
 var CYCLE_READINGS={
   1:{
     title:"You sat at the beginning of something.",
@@ -538,14 +495,12 @@ var CYCLE_READINGS={
   }
 };
 
-// ── NUMEROLOGY ────────────────────────────────────────────
 function rd(n){if(n===11||n===22||n===33)return n;if(n<10)return n;return rd(String(n).split("").reduce(function(s,d){return s+parseInt(d)},0));}
 function personalYear(dob){
   var p=dob.split("-").map(Number),m=p[1],d=p[2],cy=new Date().getFullYear();
   return rd(String(cy).split("").concat(String(m).padStart(2,"0").split(""),String(d).padStart(2,"0").split("")).reduce(function(s,c){return s+parseInt(c)},0));
 }
 
-// ── TIMER STATE ───────────────────────────────────────────
 var state={
   duration:10,breath:"4-4",intention:"",name:"",dob:"",
   totalSecs:600,remaining:600,elapsed:0,
@@ -563,7 +518,6 @@ var BREATH_PATTERNS={
   "none":[]
 };
 
-// ── CONTROLS ──────────────────────────────────────────────
 function setDuration(mins,btn){
   state.duration=mins;state.totalSecs=mins*60;state.remaining=mins*60;
   document.querySelectorAll(".dur-btn").forEach(function(b){b.classList.remove("active");});
@@ -575,7 +529,6 @@ function setBreath(pattern,btn){
   btn.classList.add("active");
 }
 
-// ── BREATH ────────────────────────────────────────────────
 function initBreath(){breathStep=0;breathSecsLeft=0;updateBreathDisplay();}
 function breathTick(){
   var pattern=BREATH_PATTERNS[state.breath];
@@ -604,7 +557,6 @@ function animateBreath(r){
   else{c.setAttribute("stroke","rgba(200,160,48,.22)");c.setAttribute("fill","rgba(200,160,48,.04)");}
 }
 
-// ── TIMER ─────────────────────────────────────────────────
 function startTimer(){
   state.name=document.getElementById("inp-name").value.trim();
   state.dob=document.getElementById("inp-dob").value;
@@ -706,7 +658,6 @@ function completeSession(){
   document.getElementById("breath-phase").textContent="";
   animateBreath(60);
 
-  // Build post-session reading
   buildPostReading(fn);
 
   setTimeout(function(){comp.scrollIntoView({behavior:"smooth",block:"nearest"});},300);
@@ -717,7 +668,6 @@ function buildPostReading(fn){
   var dob=state.dob;
 
   if(!dob){
-    // No DOB, show gentle static reading
     document.getElementById("post-title").innerHTML="You returned. That is the whole of it.";
     document.getElementById("post-reading-content").innerHTML=
       "<div class='r-block'><div class='r-label'>What Just Happened</div>"+
@@ -731,9 +681,8 @@ function buildPostReading(fn){
     var pNoDob=new URLSearchParams();
     if(fn)pNoDob.set("name",fn);
     pNoDob.set("src","freetool");
-    document.getElementById("lifeos-link").href="https://app.kayalsoulpath.com/tool/personal-year-deep-dive?"+pNoDob.toString();
+    document.getElementById("lifeos-link").href="https://app.kayalsoulpath.com/tool/this-year-reading?"+pNoDob.toString();
   } else {
-    // Has DOB, generate cycle-specific reading
     var py=personalYear(dob);
     var cr=CYCLE_READINGS[py]||CYCLE_READINGS[1];
 
@@ -753,10 +702,9 @@ function buildPostReading(fn){
 
     document.getElementById("post-reading-content").innerHTML=html;
 
-    // Update LifeOS link and invite copy, routes to the tool that matches Personal Year directly
     var p=new URLSearchParams();
     if(fn)p.set("name",fn);p.set("dob",dob);p.set("cy",py);p.set("src","freetool");
-    document.getElementById("lifeos-link").href="https://app.kayalsoulpath.com/tool/personal-year-deep-dive?"+p.toString();
+    document.getElementById("lifeos-link").href="https://app.kayalsoulpath.com/tool/this-year-reading?"+p.toString();
     document.getElementById("li-eyebrow").textContent="If this practice is becoming something real";
     document.getElementById("li-title").textContent=(fn?fn+", your":"Your")+" Personal Year "+py+" has layers this session only opened.";
     var tLead=cr.synthesis&&cr.synthesis.tension?cr.synthesis.tension.split(".")[0].trim()+".":"";
@@ -783,12 +731,10 @@ function newSession(){
   },300);
 }
 
-// Set today's date
 (function(){
   document.getElementById("inp-date").value=new Date().toISOString().split("T")[0];
 })();
 
-// Spacebar to pause
 document.addEventListener("keydown",function(e){
   if(e.code==="Space"&&state.running&&!state.done){e.preventDefault();togglePause();}
 });

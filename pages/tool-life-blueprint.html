@@ -18,10 +18,6 @@
 <meta name="twitter:image" content="https://kayalsoulpath.com/images/share-backdrops/og-example-life-blueprint.png">
 <link rel="stylesheet" href="../css/global.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<!-- Real, used only by the share-card Canvas drawing, a deliberate,
-     genuine departure from the page's own Georgia, chosen specifically
-     for the one, real, shareable moment where more visual distinction
-     is worth it. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
@@ -113,23 +109,12 @@ a{color:inherit;text-decoration:none}
 @media(max-width:480px){
   #calc-body{padding:24px 20px !important}
   #form-row{grid-template-columns:1fr !important;gap:14px !important}
-  /* Edge-to-edge reading card on narrow phones. The card previously
-     stacked the section's 24px side padding with the result panel's
-     own 36px padding, roughly 120px lost combined, plus a visible
-     border/radius/shadow that read as a narrow box floating in a
-     margin rather than the page itself. This breaks the card out to
-     the full viewport width and drops the "card" chrome specifically
-     at this width, while leaving the card untouched on tablet/desktop. */
   #calculator.section{padding-left:0 !important;padding-right:0 !important}
   #reading-card{max-width:100% !important;border-left:none !important;border-right:none !important;border-radius:0 !important;box-shadow:none !important}
   #calc-header{padding-left:20px !important;padding-right:20px !important}
   #result-panel{padding-left:20px !important;padding-right:20px !important}
 }
 </style>
-<!-- Real, live Supabase client, used only to fetch published Insights
-     posts for the "From the Institute" section below, read-only,
-     public data, the same anon key already used throughout the
-     Content Studio and its templates. -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -221,8 +206,6 @@ a{color:inherit;text-decoration:none}
         .act-btn.is-active{background:rgba(181,98,42,.18);border-color:var(--terra)}
         .new-reading-link{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(181,98,42,.55);margin-bottom:20px;text-decoration:none;transition:color .2s}
         .new-reading-link:hover{color:var(--terra)}
-
-        /* Reading bridge card, compact */
         .lifeos-invite{max-width:540px;margin:0 auto;padding:26px 28px;background:linear-gradient(135deg,rgba(201,158,44,.14),rgba(181,98,42,.08)),rgba(26,18,8,.97);border:1px solid rgba(201,158,44,.22);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
         .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(201,158,44,.14),transparent 70%);pointer-events:none}
         .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(181,98,42,.16),transparent 70%);pointer-events:none}
@@ -237,8 +220,6 @@ a{color:inherit;text-decoration:none}
         .li-btn-s:hover{color:var(--linen);border-color:rgba(250,247,242,.3)}
         .li-foot{font-size:10.5px;color:rgba(250,247,242,.22);margin-top:14px;position:relative;z-index:1}
         .li-foot a{color:rgba(201,158,44,.45)}
-
-        /* Upsell choice modal */
         .um-backdrop{position:fixed;inset:0;background:rgba(26,18,8,.75);backdrop-filter:blur(6px);z-index:500;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s ease}
         .um-backdrop.show{display:flex;opacity:1}
         .um-modal{background:linear-gradient(160deg,rgba(44,24,16,.98),rgba(26,18,8,.99));border:1px solid rgba(201,158,44,.35);width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:8px 22px 28px;position:relative;transform:translateY(24px);transition:transform .3s ease;max-height:82vh;overflow-y:auto}
@@ -263,9 +244,6 @@ a{color:inherit;text-decoration:none}
           .um-modal{border-radius:20px;padding:28px 28px 30px;max-height:min(600px,86vh)}
           .um-handle{display:none}
         }
-
-        /* Real, new share-card modal, the actual, generated image, not
-           a mockup, previewed live, then shared or downloaded. */
         .scm-backdrop{position:fixed;inset:0;background:rgba(26,18,8,.75);backdrop-filter:blur(6px);z-index:500;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s ease}
         .scm-backdrop.show{display:flex;opacity:1}
         .scm-modal{background:linear-gradient(160deg,rgba(44,24,16,.98),rgba(26,18,8,.99));border:1px solid rgba(201,158,44,.35);width:100%;max-width:440px;border-radius:20px 20px 0 0;padding:8px 22px 26px;position:relative;transform:translateY(24px);transition:transform .3s ease;max-height:90vh;overflow-y:auto}
@@ -286,7 +264,6 @@ a{color:inherit;text-decoration:none}
           .scm-backdrop{align-items:center}
           .scm-modal{border-radius:20px}
         }
-
         </style>
 
         <a href="#" class="new-reading-link" onclick="event.preventDefault();startNewBlueprintReading()"><i class="fas fa-arrow-left"></i> Read a different date</a>
@@ -309,8 +286,6 @@ a{color:inherit;text-decoration:none}
           </div>
           <div id="email-capture-msg" style="font-size:12.5px;margin-top:10px;display:none"></div>
         </div>
-
-        
 
         <div class="lifeos-invite">
           <div class="li-badge"><i class="fas fa-sparkles"></i><span id="li-eyebrow">If this reading has touched something real</span></div>
@@ -351,10 +326,6 @@ a{color:inherit;text-decoration:none}
     </div>
     <div style="text-align:center;margin-top:28px"><a href="../tools.html" style="font-size:13px;color:var(--terra);font-family:var(--ff-h);font-style:italic">View all free tools</a></div>
 
-    <!-- Real, live Insights posts, related to numerology specifically,
-         fetched directly from the same, real blog_posts table Content
-         Studio publishes to. Hidden entirely until a real, actual post
-         is confirmed to exist, never shown empty or broken. -->
     <div id="related-posts-wrap" style="display:none;margin-top:56px;padding-top:48px;border-top:1px solid var(--cream)">
       <div class="eyebrow">From The Institute</div>
       <h2 class="stitle">Worth reading<br><em>next.</em></h2>
@@ -418,13 +389,6 @@ a{color:inherit;text-decoration:none}
 </div>
 
 <script>
-// Real, actual affiliate attribution, this free tool now
-// participates in the same, established referral system used across
-// the rest of the site. If someone arrives via a real affiliate
-// link, the same, actual kayal_ref cookie gets set here too, so a
-// purchase made later, through a completely different, real path,
-// still correctly credits whoever actually sent them. Last-touch,
-// confirmed, a newer, real referral always overwrites an older one.
 (function(){
   try{
     var params=new URLSearchParams(window.location.search);
@@ -437,15 +401,6 @@ a{color:inherit;text-decoration:none}
   }catch(e){}
 })();
 
-// ── READING DATA ─────────────────────────────────────────────────────────
-// Pure felt human experience. No methodology language shown to visitor.
-// Real, dedicated share taglines, one genuinely composed, catchy
-// line per Life Path, written specifically for the share card, not
-// extracted from the reading's own, therapeutic prose. Confirmed
-// necessary directly, extraction alone could only ever be as good
-// as whatever sentence happened to already exist in the source text,
-// and several of those, by design, were never written to be catchy,
-// stand-alone pull-quotes.
 var SHARE_TAGLINES={
   1:"Something in you has never followed someone else's plan for long, not because you're difficult, but because your direction was always genuinely your own.",
   2:"You notice what people need before they've said a word, and you've spent much of your life giving that care back to yourself last.",
@@ -715,7 +670,6 @@ var READINGS={
 ],synthesis:{tension:"The central tension you are living is between the genuineness of your care for others and the sustainability of that care across a full life. You are someone who heals others simply by being fully present with them. What your life is working on is creating the conditions where that quality of presence is not continuously sourced from reserves that are never refilled.",invitation:"What this reading is pointing toward: the specific practice, relationship, or space in your life that exists purely for your own restoration, where you are the one being held, and where the depth of care you carry for others is returned to you."}}
 };
 
-
 var YQ={1:"a year of beginning: whatever you initiate now will shape the next nine years",2:"a year of cultivation and patience: relationships and quiet growth are the primary themes",3:"a year of creative expansion: what you have been building is ready to be expressed",4:"a year of foundational work: the practical structures of your life need attention",5:"a year of change and liberation: movement arrives whether invited or not",6:"a year of love and responsibility: the quality of your closest relationships is the central theme",7:"a year of reflection and inner development: understanding matters more than achievement",8:"a year of manifestation: what you have worked toward is becoming visible",9:"a year of completion: something has run its full course and is ready to be honoured and released",11:"a year of heightened intuition and spiritual clarity",22:"a year of significant building with lasting impact"};
 var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
 
@@ -725,7 +679,6 @@ function pyear(dob){var p=dob.split("-").map(Number),m=p[1],d=p[2],cy=new Date()
 
 function ord(n){var s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
 
-// Voice
 var isSpeaking=false,fullReadingText="",speechChunks=[],chunkIndex=0,speechKeepAlive=null,currentUtterance=null;
 function getBestVoice(){
   var voices=window.speechSynthesis.getVoices();if(!voices.length)return null;
@@ -762,33 +715,10 @@ function toggleSpeech(){
   isSpeaking=true;btn.classList.add("is-active");lbl.textContent="Pause";
 }
 
-// Share
 function showToast(msg){var t=document.getElementById("toast-msg");t.textContent=msg;t.style.opacity="1";t.style.transform="translateX(-50%) translateY(0)";setTimeout(function(){t.style.opacity="0";t.style.transform="translateX(-50%) translateY(20px)";},2400);}
-
-// ── SHARE CARD, real, generated image, not a mockup ──────────────
-// Canvas draws the actual card at share time, matching the approved
-// visual design exactly, dark background, gradient ring, gradient
-// number, the reading's own real synthesis line, never generic
-// marketing copy. Web Share API with files is used when the real,
-// current browser supports it, letting the OS's own, native share
-// sheet route to whatever app the visitor actually has installed,
-// Instagram and TikTok included, since there's no direct, honest way
-// to hand an image to those two from a plain webpage otherwise. Where
-// that API isn't available, X, WhatsApp, Facebook, Telegram, and
-// Pinterest each get their own, real, documented share-intent URL,
-// none of which can carry an attached image over a URL, only text and
-// a link, so Instagram, TikTok, and Snapchat specifically download
-// the real image instead and say so plainly, the only honest option
-// left for platforms with no web-based image-share intent at all.
 
 var currentShareBlob=null,currentShareCaption="";
 
-// Real, picks a genuinely complete, self-contained sentence for the
-// share card, not just whichever sentence sits at a fixed position.
-// Confirmed necessary directly, some real tension paragraphs use
-// short, deliberate fragments ('Not as a character flaw.') that only
-// make sense continuing the sentence before them, silently broken
-// when isolated alone on a card.
 function pickShareLine(tensionText){
   var sentences=tensionText.split('. ').map(function(s){return s.trim();}).filter(Boolean);
   for(var i=1;i<sentences.length;i++){
@@ -809,10 +739,6 @@ function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight){
   lines.push(line.trim());
   var startY=y-((lines.length-1)*lineHeight)/2;
   for(var i=0;i<lines.length;i++){ctx.fillText(lines[i],x,startY+i*lineHeight);}
-  // Real, actual bottom edge of what was just drawn, not a guess,
-  // confirmed necessary since a longer, wrapped block can extend
-  // well past a fixed, assumed offset, this is what let the badge
-  // below silently collide with longer, real tension text before.
   return startY+(lines.length-1)*lineHeight;
 }
 
@@ -838,12 +764,6 @@ function generateShareCardImage(lp,label,line){
   return new Promise(function(resolve){
     var W=800,cx=W/2,cy=W*0.36,r=125;
 
-    // Real, first pass, throwaway canvas, purely to measure how many
-    // lines this specific, actual tension text wraps into, so the
-    // badge below it, and the canvas itself, can be sized correctly,
-    // confirmed necessary since a fixed, guessed offset let longer,
-    // real text silently overlap the label above it, or the badge
-    // below it, depending on length.
     var mCanvas=document.createElement("canvas");
     mCanvas.width=W;mCanvas.height=W;
     var mctx=mCanvas.getContext("2d");
@@ -859,15 +779,7 @@ function generateShareCardImage(lp,label,line){
     canvas.width=W;canvas.height=H;
     var ctx=canvas.getContext("2d");
 
-    // Real, tries to load the actual backdrop photo for this tool.
-    // If it's missing, slow, or fails for any real reason, falls
-    // back cleanly to the existing, proven gradient, the card must
-    // never be left broken or blank because of this.
     var backdrop=new Image();
-    // Real, needed specifically for file:// testing, where the
-    // browser treats every file as its own, separate origin,
-    // harmless on the real, live site, where genuine same-origin
-    // rules already apply regardless.
     backdrop.crossOrigin="anonymous";
     var backdropLoaded=false,settled=false;
 
@@ -876,20 +788,13 @@ function generateShareCardImage(lp,label,line){
       settled=true;
 
       if(backdropLoaded){
-        // Real, actual photo, scaled to genuinely cover the full
-        // canvas, cropped centrally, never stretched or distorted.
         var scale=Math.max(W/backdrop.width,H/backdrop.height);
         var dw=backdrop.width*scale,dh=backdrop.height*scale;
         var dx=(W-dw)/2,dy=(H-dh)/2;
         ctx.drawImage(backdrop,dx,dy,dw,dh);
-        // Real, dark overlay, on top of the actual photo, ensures
-        // text and the ring stay legible regardless of the specific
-        // image.
         ctx.fillStyle="rgba(13,7,4,0.45)";
         ctx.fillRect(0,0,W,H);
       }else{
-        // Real, honest fallback, the same, existing, approved
-        // gradient wash, used whenever no real backdrop is available.
         var bgGrad=ctx.createLinearGradient(0,0,W,H);
         bgGrad.addColorStop(0,"#2a1442");
         bgGrad.addColorStop(0.35,"#1a1208");
@@ -898,8 +803,6 @@ function generateShareCardImage(lp,label,line){
         ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
       }
 
-    // Real, second, warm glow, off-center, for genuine depth and
-    // asymmetry.
     var glow2=ctx.createRadialGradient(cx+80,cy-60,10,cx+80,cy-60,320);
     glow2.addColorStop(0,"rgba(232,150,60,0.35)");
     glow2.addColorStop(1,"rgba(232,150,60,0)");
@@ -909,8 +812,6 @@ function generateShareCardImage(lp,label,line){
     glow.addColorStop(0,"rgba(201,158,44,0.4)");glow.addColorStop(0.45,"rgba(181,98,42,0.2)");glow.addColorStop(1,"rgba(181,98,42,0)");
     ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
 
-    // Real, small, decorative spark accents, genuine, subtle visual
-    // energy within what a still image can honestly offer.
     drawSpark(ctx,90,130,10,"rgba(232,180,74,0.55)");
     drawSpark(ctx,700,110,7,"rgba(232,150,60,0.4)");
     drawSpark(ctx,660,H-140,12,"rgba(157,112,208,0.35)");
@@ -953,22 +854,15 @@ function generateShareCardImage(lp,label,line){
     ctx.fillStyle="#ffffff";
     ctx.fillText(ctaText,cx,ctaY+1);
     canvas.toBlob(function(blob){resolve(blob);},"image/png");
-    } // real, end of draw()
+    }
 
-    backdrop.onload=function(){console.log("Real, backdrop image genuinely loaded:",backdrop.src);backdropLoaded=true;draw();};
-    backdrop.onerror=function(e){console.error("Real, backdrop image FAILED to load:",backdrop.src,e);draw();};
+    backdrop.onload=function(){backdropLoaded=true;draw();};
+    backdrop.onerror=function(){draw();};
     backdrop.src="../images/share-backdrops/life-blueprint.jpg";
-    // Real, honest timeout, a slow-loading image never holds the
-    // whole share flow hostage, falls back after a short, real wait.
     setTimeout(draw,1200);
   });
 }
 
-// Real, lightweight, fire-and-forget tracking, logs every real
-// download or share action, never blocks or delays the actual
-// action itself, and fails silently if it doesn't work, matching
-// the same, honest pattern already used for the related-posts
-// feature above.
 function trackShareEvent(action){
   try{
     fetch("https://nofyxayqdwhyabcntmvs.supabase.co/rest/v1/share_events",{
@@ -990,10 +884,6 @@ async function openShareCardModal(){
   var line=SHARE_TAGLINES[lp]||pickShareLine(data.synthesis.tension);
   currentShareCaption="I'm a "+label+". Discover your own free.";
   document.getElementById("scm-caption").value=currentShareCaption;
-  // Real, necessary, Canvas silently falls back to a default font if
-  // this specific, custom font hasn't actually finished loading yet,
-  // confirmed this must be awaited first, unlike Georgia or system-ui,
-  // which are always already available.
   try{await document.fonts.load('italic 400 33px "Playfair Display"');}catch(e){}
   var blob=await generateShareCardImage(lp,label,line);
   currentShareBlob=blob;
@@ -1051,19 +941,15 @@ function shareToPlatform(m){
   if(urls[m])window.open(urls[m],"_blank","noopener");
 }
 
-
-// ── UPSELL DECISION (mirrors tool_registry.py life-path tools) ──
-// Master numbers (11/22/33) carry a distinct weight the registry treats separately.
-// Only 2 relevant life-path products fit this reading, so both branches show
-// both, just reordered so the best fit leads.
+// ── UPSELL DECISION (UPDATED: current catalog IDs + names) ──
 var TOOL_META={
-  'master-number-reading':{name:"Why Your Life Feels Heavier Than Everyone Else's",price:'$44',desc:'Built specifically for 11, 22, and 33 Life Paths'},
-  'life-path-deep-dive':{name:'Your Core Life Pattern, Fully Explained',price:'$49',desc:'Your Life Path number decoded in full, not the generic version'}
+  'heavy-life-reading':{name:"Why Your Life Feels Heavier Than Everyone Else's",price:'$44',desc:'Built specifically for 11, 22, and 33 Life Paths'},
+  'core-pattern-reading':{name:'The Pattern Your Whole Life Is Built On',price:'$49',desc:'Your Life Path number decoded in full, not the generic version'}
 };
 var UPSELL_MAP={
   master:{
-    toolId:'master-number-reading',
-    secondary:['life-path-deep-dive'],
+    toolId:'heavy-life-reading',
+    secondary:['core-pattern-reading'],
     eyebrow:'This is not a standard Life Path',
     titleTpl:function(fn,lp){return (fn?fn+"'s":'A')+' Life Path '+lp+' carries a specific kind of weight.';},
     desc:"Why Your Life Feels Heavier Than Everyone Else's is built specifically for 11, 22, and 33 Life Paths, the full weight of what you carry, decoded completely.",
@@ -1071,11 +957,11 @@ var UPSELL_MAP={
     modalTitle:'Two readings fit what your Life Path just showed.'
   },
   standard:{
-    toolId:'life-path-deep-dive',
-    secondary:['master-number-reading'],
+    toolId:'core-pattern-reading',
+    secondary:['heavy-life-reading'],
     eyebrow:'If this reading has touched something real',
     titleTpl:function(fn,lp){return (fn?fn+"'s":'Your')+' Life Path '+lp+' has layers this reading has not yet reached.';},
-    desc:'Your Core Life Pattern, Fully Explained decodes your number in full, not the generic version, going into every dimension this teaser only opened the door to.',
+    desc:'The Pattern Your Whole Life Is Built On decodes your number in full, not the generic version, going into every dimension this teaser only opened the door to.',
     ctaLabel:'See Our Recommended Reading',
     modalTitle:'Two readings fit what your Life Path just showed.'
   }
@@ -1083,17 +969,13 @@ var UPSELL_MAP={
 
 var currentLp=null,currentUp=null;
 
-// First sentence of a Life Path synthesis tension paragraph, used to build
-// a per-number invite description instead of a static per-bucket one
 function tensionLead(syn){
   var s=(syn&&syn.tension)?syn.tension.split(".")[0].trim():"";
   return s?s+".":"";
 }
-// What each recommended reading specifically resolves, combined with
-// tensionLead() this gives all 11 Life Path numbers their own specific desc
 var REC_BRIDGE={
-  "master-number-reading":"Why Your Life Feels Heavier Than Everyone Else\'s is built specifically for this weight, decoding what an 11, 22, or 33 actually carries and asks of you.",
-  "life-path-deep-dive":"Your Core Life Pattern, Fully Explained traces this exact tension through every dimension this teaser only opened the door to."
+  "heavy-life-reading":"Why Your Life Feels Heavier Than Everyone Else\'s is built specifically for this weight, decoding what an 11, 22, or 33 actually carries and asks of you.",
+  "core-pattern-reading":"The Pattern Your Whole Life Is Built On traces this exact tension through every dimension this teaser only opened the door to."
 };
 
 function buildToolURL(toolId){
@@ -1107,7 +989,6 @@ function buildToolURL(toolId){
   return "https://app.kayalsoulpath.com/tool/"+toolId+"?"+p.toString();
 }
 
-// ── UPSELL MODAL ──────────────────────────────────────────
 function openUpsellModal(e){
   if(e)e.preventDefault();
   if(!currentUp)return false;
@@ -1136,10 +1017,6 @@ document.addEventListener("keydown",function(e){
   if(e.key==="Escape")closeUpsellModal();
 });
 
-// Real, actual email capture, saved to its own, dedicated table,
-// genuine, visible feedback either way, unlike the silent,
-// background share tracking, this is a direct, real action someone
-// took and deserves a real response.
 async function submitEmailCapture(){
   var input=document.getElementById("email-capture-input");
   var email=input.value.trim();
@@ -1182,10 +1059,6 @@ async function submitEmailCapture(){
   }
 }
 
-// Real, genuine prefill, using localStorage, this device only, no
-// real, actual account system exists to tie this to a person more
-// broadly. A clear, honest "change details" option always stays
-// visible, nothing is ever locked in silently.
 function loadPrefill(){
   try{
     var saved=localStorage.getItem("kayal_dob");
@@ -1240,24 +1113,9 @@ function calculate(){
     document.getElementById("r-intro").textContent=intro;
     document.getElementById("r-tags").innerHTML=data.tags.map(function(t){return"<span style='padding:4px 12px;background:rgba(181,98,42,.07);border:1px solid rgba(181,98,42,.18);border-radius:3px;font-size:11.5px;color:#4a3f34'>"+t+"</span>";}).join("");
 
-    // Build reading, synthesis moved to the front, right after the
-    // intro and tags, the real hook most likely to make a visitor
-    // keep reading or convert, previously built last, after every
-    // other section, where anyone who lost interest partway through
-    // the reading would never actually reach it.
     var html="";
     html+="<div class='r-syn'><div class='r-lbl'>What This Reading Is Saying, Taken As A Whole</div><p class='r-tension'>"+data.synthesis.tension+"</p><p class='r-invite'>"+data.synthesis.invitation+"</p></div>";
 
-    // Real, deliberate, free-tier trim, confirmed and agreed, three
-    // of the five real sections, "What Drives You," "How You Love
-    // and How You Work," and "The Central Challenge," now held back
-    // for the paid, deeper reading, since Synthesis above already
-    // gives a genuine, real taste of the core tension, and the paid
-    // tier's own, actual Central Challenge section is the complete,
-    // deeper elaboration on that same, exact tension. The real,
-    // complete, original data stays fully intact here, only the
-    // free, rendered set is filtered, so nothing is lost if a real,
-    // future unlock ever needs the other three.
     var FREE_TIER_SECTIONS=["Who You Are","What To Watch For"];
     data.sections.filter(function(sec){return FREE_TIER_SECTIONS.indexOf(sec.label)!==-1;}).forEach(function(sec){
       html+="<div class='r-section'><div class='r-lbl'>"+sec.label+"</div>";
@@ -1265,15 +1123,11 @@ function calculate(){
       html+="</div>";
     });
 
-    // Year note as pull quote
     var yearNote=(fn?fn+", in":"In")+" "+new Date().getFullYear()+", at "+age+", you are in "+(YQ[py]||"a year of significant movement")+". This year is not happening around you. It is in conversation with everything your blueprint has been building toward.";
     html+="<div class='r-section'><div class='r-lbl'>This Year</div><div class='r-pull'>"+yearNote+"</div></div>";
 
     document.getElementById("reading-content").innerHTML=html;
 
-    // Pinnacles moved to LifeOS premium
-
-    // Update invite copy and modal state
     var isMaster=(lp===11||lp===22||lp===33);
     var up=isMaster?UPSELL_MAP.master:UPSELL_MAP.standard;
     currentLp=lp;currentUp=up;
@@ -1285,15 +1139,10 @@ function calculate(){
     document.getElementById("li-desc").textContent=inviteDesc;
     document.getElementById("li-btn-label").textContent=up.ctaLabel;
 
-    // Speech, include the invite title too, so listening reaches the
-    // actual invitation instead of stopping at synthesis. Skip repeating
-    // the lead sentence in audio since it was just spoken as part of the
-    // synthesis paragraph.
     var readEl=document.createElement("div");readEl.innerHTML=html;
     fullReadingText=(readEl.textContent+" "+up.titleTpl(fn,lp)+" "+(bridge||up.desc)).replace(/\s+/g," ").trim();
     window._shareText="I discovered what my birth date encodes at KAYAL SoulPath Institute. Qualities: "+data.tags.join(", ")+". Try yours free.";
 
-    // Show result, hide the hero and input step so it reads as a clean next screen
     document.getElementById("hero-section").style.display="none";
     document.getElementById("input-heading").style.display="none";
     document.getElementById("calc-header").style.display="none";
@@ -1317,7 +1166,6 @@ function startNewBlueprintReading(){
 document.getElementById("inp-dob").addEventListener("keydown",function(e){if(e.key==="Enter")calculate();});
 document.getElementById("inp-name").addEventListener("keydown",function(e){if(e.key==="Enter")calculate();});
 
-// Hero cycling number
 (function(){
   var df=document.getElementById("digit-field"),h="",d="123456789";
   for(var i=0;i<126;i++)h+="<span>"+d[i%9]+"</span>";
@@ -1328,17 +1176,10 @@ document.getElementById("inp-name").addEventListener("keydown",function(e){if(e.
   setInterval(next,2000);
 })();
 
-// Reveal on scroll
 (function(){var els=document.querySelectorAll(".reveal");var io=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add("visible");io.unobserve(en.target);}});},{threshold:.12});els.forEach(function(el){io.observe(el);});})();
 
-// Responsive form row
 (function(){var r=document.getElementById("form-row");if(r&&window.innerWidth<640)r.style.gridTemplateColumns="1fr";})();
 
-// ── RELATED INSIGHTS POSTS, real, live, fetched directly ──────────
-// Pulls real, published posts from the same, single blog_posts table
-// Content Studio writes to, filtered to the category most relevant to
-// this specific tool. Never a second, hand-maintained list that could
-// drift the way the article template's own tool references once did.
 (function(){
   var SUPABASE_URL="https://nofyxayqdwhyabcntmvs.supabase.co";
   var SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vZnl4YXlxZHdoeWFiY250bXZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODA3OTUsImV4cCI6MjA4ODY1Njc5NX0.qnK0KlkElg8C4UA6Asz8M1L11BVgY5vyiYvlp1VDSMw";
@@ -1372,8 +1213,6 @@ document.getElementById("inp-name").addEventListener("keydown",function(e){if(e.
 
       document.getElementById("related-posts-wrap").style.display="block";
     }catch(e){
-      // Real, honest failure, the section simply stays hidden, never
-      // shown broken or empty to a real visitor.
     }
   }
   loadRelatedPosts();

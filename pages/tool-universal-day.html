@@ -27,15 +27,10 @@
   --ff-d:'Georgia','Times New Roman',serif;
   --ff-h:'Georgia',serif;
   --ff-b:system-ui,-apple-system,sans-serif;
-  /* Real, new light-background variables, so the input and reading
-     pages can genuinely match the same, real rule already applied
-     across every other tool tonight, hero and footer stay dark. */
   --linen:#f5f7fc;--white:#ffffff;--lt-cream:#dde4f2;--lt-stone:#4a5a78;--lt-ink:#12182c;
 }
 body{background:var(--linen);color:var(--lt-ink);font-family:var(--ff-b);line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-
-/* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(6,8,16,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(42,82,192,.1);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
 .nav-brand{display:flex;flex-direction:column;gap:1px}
 .nav-brand-name{font-family:var(--ff-d);font-size:16px;font-weight:400;color:var(--cream);letter-spacing:.06em;text-transform:uppercase}
@@ -45,36 +40,27 @@ a{color:inherit;text-decoration:none}
 .nav-back:hover{color:var(--mist);border-color:rgba(42,82,192,.5)}
 .nav-cta{padding:8px 18px;background:var(--azure);color:#fff;border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.04em;transition:background .2s;border:none}
 .nav-cta:hover{background:var(--sky)}
-
-/* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,rgba(42,82,192,.28),transparent 55%),var(--ink)}
 .stars{position:absolute;inset:0;pointer-events:none}
 .star{position:absolute;border-radius:50%;background:#fff;animation:twinkle ease-in-out infinite}
 @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:.9}}
 .hero-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(138,176,240,.75);margin-bottom:24px;position:relative;z-index:1}
-
-/* Clock, the signature */
 .clock-wrap{position:relative;width:220px;height:220px;margin:0 auto 36px;z-index:1}
 .clock-svg{width:100%;height:100%}
 .clock-hand-h{transform-origin:110px 110px;animation:rot-h 12s linear infinite}
 .clock-hand-m{transform-origin:110px 110px;animation:rot-m 1s linear infinite}
 @keyframes rot-h{to{transform:rotate(360deg)}}
 @keyframes rot-m{to{transform:rotate(360deg)}}
-
 .hero-title{font-family:var(--ff-d);font-size:clamp(26px,5vw,48px);font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:16px;position:relative;z-index:1}
 .hero-title em{font-style:italic;color:rgba(138,176,240,.9)}
 .hero-sub{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(138,176,240,.58);line-height:1.8;max-width:480px;margin:0 auto 36px;position:relative;z-index:1}
 .hero-cta{padding:14px 32px;background:linear-gradient(135deg,var(--azure),var(--sky));color:#fff;border:none;border-radius:var(--r);font-size:13px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:10px;position:relative;z-index:1;text-transform:uppercase}
 .hero-cta:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(42,82,192,.4)}
-
-/* MAIN */
 .main{max-width:860px;margin:0 auto;padding:80px 24px}
 .s-label{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#1a3a8a;margin-bottom:10px}
 .s-title{font-family:var(--ff-d);font-size:clamp(22px,3vw,32px);font-weight:300;color:var(--lt-ink);line-height:1.2;margin-bottom:10px}
 .s-title em{font-style:italic;color:var(--azure)}
 .s-sub{font-family:var(--ff-h);font-size:14px;font-style:italic;color:var(--lt-stone);line-height:1.75;max-width:560px;margin-bottom:32px}
-
-/* Form */
 .form-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:12px;margin-bottom:20px}
 .form-group{display:flex;flex-direction:column;gap:7px}
 .form-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--lt-stone)}
@@ -88,13 +74,9 @@ input[type=date].form-input{color-scheme:light}
 @keyframes spin{to{transform:rotate(360deg)}}
 .calc-btn.loading .cspin{display:block}
 .calc-btn.loading span{opacity:.6}
-
-/* RESULT */
 #result-section{display:none;margin-top:48px}
 #result-section.show{display:block;animation:fadeUp .5s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-
-/* Day header */
 .day-header{padding:44px 36px;border-radius:var(--r-lg);text-align:center;position:relative;overflow:hidden;margin-bottom:28px;background:var(--white);border:1px solid var(--lt-cream);box-shadow:0 4px 32px rgba(6,8,16,.08)}
 .day-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(42,82,192,.05),transparent 60%)}
 .day-bg{position:absolute;font-family:var(--ff-d);font-size:260px;font-weight:700;color:rgba(42,82,192,.03);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0;line-height:1}
@@ -104,20 +86,14 @@ input[type=date].form-input{color-scheme:light}
 .day-phrase em{font-style:italic;color:var(--azure)}
 .day-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;position:relative;z-index:1}
 .day-tag{padding:4px 13px;border-radius:20px;font-size:11.5px;background:rgba(42,82,192,.08);border:1px solid rgba(42,82,192,.28);color:#1a3a8a}
-
-/* Guidance cards */
 .guide-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
 .guide-card{padding:18px 20px;background:var(--white);border:1px solid var(--lt-cream);border-radius:var(--r)}
 .guide-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
 .guide-val{font-family:var(--ff-h);font-size:14px;font-style:italic;color:var(--lt-ink);line-height:1.65}
-
-/* Personal layer card */
 .personal-card{padding:18px 22px;background:var(--white);border:1px solid rgba(200,168,48,.3);border-radius:var(--r);margin-bottom:28px;display:none}
 .personal-eyebrow{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#a8791a;margin-bottom:8px}
 .personal-qual{font-family:var(--ff-d);font-size:20px;font-weight:300;color:var(--lt-ink);margin-bottom:8px}
 .personal-desc{font-family:var(--ff-h);font-size:14px;font-style:italic;color:var(--lt-stone);line-height:1.75}
-
-/* Reading */
 .reading-block{margin-bottom:26px}
 .r-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(138,176,240,.7);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .r-label::after{content:'';flex:1;height:1px;background:rgba(42,82,192,.2)}
@@ -130,11 +106,6 @@ input[type=date].form-input{color-scheme:light}
 .r-syn .r-label::after{background:rgba(200,168,48,.18)}
 .r-tension{font-family:var(--ff-h);font-size:16px;font-style:italic;color:rgba(220,232,255,.88);line-height:1.9;margin-bottom:14px;text-align:justify}
 .r-invite{font-family:var(--ff-h);font-size:15px;font-style:italic;color:rgba(200,168,48,.88);line-height:1.85;text-align:justify}
-
-/* Real, new white reading card, wraps just the actual reading text,
-   the day reveal, guide row, and action bar all stay dark and
-   branded, matching the same, proven approach used on all eight
-   previous tools. */
 .reading-light-wrap{background:#fff;border-radius:var(--r-lg);padding:36px 32px;margin-bottom:28px;box-shadow:0 4px 32px rgba(6,8,16,.25)}
 .reading-light-wrap .r-label{color:#1e3a8a}
 .reading-light-wrap .r-para{color:#1a2038}
@@ -143,8 +114,6 @@ input[type=date].form-input{color-scheme:light}
 .reading-light-wrap .r-tension{color:#1a2038}
 .reading-light-wrap .r-invite{color:#8a6a1a}
 @media(max-width:480px){.reading-light-wrap{padding:28px 20px}}
-
-/* Action bar */
 .new-reading-link{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--lt-stone);margin-bottom:24px;transition:color .2s}
 .new-reading-link:hover{color:var(--lt-ink)}
 .action-bar{display:flex;gap:10px;justify-content:center;margin:10px 0 28px;flex-wrap:wrap}
@@ -152,9 +121,6 @@ input[type=date].form-input{color-scheme:light}
 .act-btn:hover{background:rgba(42,82,192,.06);border-color:var(--sky)}
 .act-btn.is-active{background:rgba(42,82,192,.1);border-color:var(--sky)}
 .share-menu{position:relative;display:inline-block}
-
-/* Real, new share-card modal, an actual, generated image, not a
-   mockup, matching this tool's own navy, azure, and gold identity. */
 .scm-backdrop{position:fixed;inset:0;background:rgba(6,8,16,.8);backdrop-filter:blur(6px);z-index:500;display:none;align-items:flex-end;justify-content:center;opacity:0;transition:opacity .25s ease}
 .scm-backdrop.show{display:flex;opacity:1}
 .scm-modal{background:linear-gradient(160deg,rgba(18,24,50,.98),rgba(6,8,16,.99));border:1px solid rgba(42,82,192,.35);width:100%;max-width:440px;border-radius:20px 20px 0 0;padding:8px 22px 26px;position:relative;transform:translateY(24px);transition:transform .3s ease;max-height:90vh;overflow-y:auto}
@@ -182,9 +148,6 @@ input[type=date].form-input{color-scheme:light}
 }
 .toast-msg{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(6,8,16,.97);border:1px solid rgba(42,82,192,.3);color:var(--cream);padding:11px 22px;border-radius:24px;font-size:12.5px;z-index:300;opacity:0;pointer-events:none;transition:all .3s}
 .toast-msg.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* LifeOS invite */
-/* Reading bridge card, compact */
 .lifeos-invite{max-width:540px;margin:0 auto;padding:26px 28px;background:linear-gradient(135deg,rgba(42,82,192,.22),rgba(200,168,48,.06)),rgba(6,8,16,.94);border:1px solid rgba(200,168,48,.22);border-left:3px solid var(--gold);border-radius:var(--r-lg);position:relative;overflow:hidden}
 .lifeos-invite::before{content:'';position:absolute;top:-50%;right:-8%;width:200px;height:200px;background:radial-gradient(circle,rgba(42,82,192,.16),transparent 70%);pointer-events:none}
 .lifeos-invite::after{content:'';position:absolute;bottom:-40%;left:-6%;width:160px;height:160px;background:radial-gradient(circle,rgba(200,168,48,.10),transparent 70%);pointer-events:none}
@@ -199,8 +162,6 @@ input[type=date].form-input{color-scheme:light}
 .li-btn-s:hover{color:var(--mist);border-color:rgba(42,82,192,.5)}
 .li-foot{font-size:10.5px;color:rgba(138,176,240,.28);margin-top:14px;position:relative;z-index:1}
 .li-foot a{color:rgba(42,82,192,.45)}
-
-/* Footer */
 .footer{background:rgba(6,8,16,.97);border-top:1px solid rgba(42,82,192,.07);padding:36px 24px 20px;margin-top:80px}
 .footer-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .footer-brand{font-family:var(--ff-d);font-size:18px;font-weight:300;color:var(--cream)}
@@ -208,7 +169,6 @@ input[type=date].form-input{color-scheme:light}
 .footer-links a{font-size:12px;color:rgba(138,176,240,.38);transition:color .2s}
 .footer-links a:hover{color:rgba(138,176,240,.78)}
 .footer-copy{font-size:11px;color:rgba(138,176,240,.18);width:100%;text-align:center;padding-top:14px;border-top:1px solid rgba(42,82,192,.06);margin-top:14px}
-
 @media(max-width:640px){
   .form-grid{grid-template-columns:1fr}
   .guide-row{grid-template-columns:1fr}
@@ -239,7 +199,6 @@ input[type=date].form-input{color-scheme:light}
   <div class="stars" id="stars"></div>
   <div class="hero-eyebrow">Free Reading · Soul Blueprint Science</div>
 
-  <!-- Clock signature -->
   <div class="clock-wrap">
     <svg class="clock-svg" viewBox="0 0 220 220">
       <circle cx="110" cy="110" r="105" fill="rgba(18,24,50,.5)" stroke="rgba(42,82,192,.18)" stroke-width="1.5"/>
@@ -290,7 +249,6 @@ input[type=date].form-input{color-scheme:light}
 
   <div id="result-section">
     <a href="#" class="new-reading-link" onclick="event.preventDefault();startNewDayReading()"><i class="fas fa-arrow-left"></i> Read a different date</a>
-    <!-- Day header -->
     <div class="day-header">
       <div class="day-bg" id="day-bg"></div>
       <div class="day-eyebrow">The energy encoded in this date</div>
@@ -299,17 +257,14 @@ input[type=date].form-input{color-scheme:light}
       <div class="day-tags" id="day-tags"></div>
     </div>
 
-    <!-- Guidance -->
     <div class="guide-row" id="guide-row"></div>
 
-    <!-- Personal layer -->
     <div class="personal-card" id="personal-card">
       <div class="personal-eyebrow">Your personal layer for this date</div>
       <div class="personal-qual" id="personal-qual"></div>
       <div class="personal-desc" id="personal-desc"></div>
     </div>
 
-    <!-- Action bar -->
     <div class="action-bar">
       <button class="act-btn" id="listen-btn" onclick="toggleSpeech()">
         <i class="fas fa-volume-up"></i><span id="listen-lbl">Listen to Your Reading</span>
@@ -319,7 +274,6 @@ input[type=date].form-input{color-scheme:light}
       </div>
     </div>
 
-    <!-- Reading -->
     <div class="reading-light-wrap">
       <div id="reading-content"></div>
     </div>
@@ -334,13 +288,12 @@ input[type=date].form-input{color-scheme:light}
       <div id="email-capture-msg" style="font-size:12.5px;margin-top:10px;display:none"></div>
     </div>
 
-    <!-- LifeOS invite -->
     <div class="lifeos-invite">
       <div class="li-badge"><i class="fas fa-sparkles"></i><span id="li-eyebrow">If this reading has been useful</span></div>
       <div class="li-title" id="li-title">Every day has a month-by-month and year-by-year context.</div>
       <p class="li-desc" id="li-desc">What you have seen here is the quality of a single date.</p>
       <div class="li-btns">
-        <a href="https://app.kayalsoulpath.com/tool/daily-personal-oracle" id="lifeos-link" class="li-btn-p" target="_blank" rel="noopener"><i class="fas fa-compass"></i> <span id="li-btn-label">Read What Today Is Asking of You</span></a>
+        <a href="https://app.kayalsoulpath.com/tool/today-reading" id="lifeos-link" class="li-btn-p" target="_blank" rel="noopener"><i class="fas fa-compass"></i> <span id="li-btn-label">Read What Today Is Asking of You</span></a>
         <a href="../pages/enrol/apply.html" class="li-btn-s">Study at the Institute</a>
       </div>
       <div class="li-foot">Already a student? <a href="../pages/student/login.html">Sign in to your portal</a></div>
@@ -475,9 +428,6 @@ async function submitEmailCapture(){
   }
 }
 
-// Real, only the user's own, fixed details, DOB and name, get
-// prefilled, the date being queried is left fresh every time, since
-// it genuinely changes with each, real use of this tool.
 function loadPrefill(){
   try{
     var saved=localStorage.getItem("kayal_dob");
@@ -512,9 +462,6 @@ function savePrefill(dob,name){
 
 loadPrefill();
 
-// Real, new global state, needed for the share-card feature, this
-// file had no existing pattern for holding the current reading's
-// values across functions.
 var currentUdNum=null,currentSynthesisTension=null;
 
 var UD={
@@ -575,7 +522,6 @@ var UD={
 };
 
 
-// ── SYNTHESIS per day quality ─────────────────────────────
 var SYNTHESIS={
   1:{tension:"The central tension of a day like this is between the genuine opening it is offering and the pull of inertia from everything that was already in motion before it arrived. A day of this quality is not simply another day. It is a specific quality of available beginning, and what you do with that quality has more weight than it appears to from inside the ordinary texture of the morning.",invitation:"What this day is pointing toward: the one thing you have been postponing that, if you took the first concrete step today, would look different by evening."},
   2:{tension:"The central tension of a day like this is between its pace and your habits. A day of this quality runs slowly by design, and the specific difficulty is not resisting action but resisting the wrong kind of action: the forced, the premature, the unilateral. What it is asking for is a different quality of presence than most days.",invitation:"What this day is pointing toward: the conversation you have been avoiding, or the relationship that deserves more of your genuine attention than you have been giving it."},
@@ -588,7 +534,6 @@ var SYNTHESIS={
   9:{tension:"The central tension of a day like this is between the genuine difficulty of letting things end and the genuine necessity of doing so. A day of this quality is completing something. The specific work is recognising what is completing and allowing it to complete fully rather than extending it artificially.",invitation:"What this day is pointing toward: the thing that is ready to be honoured and released, so that what comes next can begin in the space it creates."}
 };
 
-// ── CALCULATION ───────────────────────────────────────────
 function rd(n){if(n===11||n===22||n===33)return n;if(n<10)return n;return rd(String(n).split("").reduce(function(s,d){return s+parseInt(d)},0));}
 function uday(ds){
   var p=ds.split("-").map(Number);
@@ -599,7 +544,6 @@ function pday(dob,dateStr){
   return rd(rd(bm+bd)+uday(dateStr));
 }
 
-// ── VOICE ─────────────────────────────────────────────────
 var isSpeaking=false,fullReadingText="",speechChunks=[],chunkIndex=0,speechKeepAlive=null,currentUtterance=null;
 function getBestVoice(){
   var voices=window.speechSynthesis.getVoices();if(!voices.length)return null;
@@ -636,16 +580,9 @@ function toggleSpeech(){
   isSpeaking=true;btn.classList.add("is-active");lbl.textContent="Pause";
 }
 
-// ── SHARE CARD, real, generated image, this tool's own palette ───
 function showToast(msg){var t=document.getElementById("toast-msg");t.textContent=msg;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2400);}
 var currentShareBlob=null,currentShareCaption='';
 
-// Real, picks a genuinely complete, self-contained sentence for the
-// share card, not just whichever sentence sits at a fixed position.
-// Confirmed necessary directly, some real tension paragraphs use
-// short, deliberate fragments ('Not as a character flaw.') that only
-// make sense continuing the sentence before them, silently broken
-// when isolated alone on a card.
 function pickShareLine(tensionText){
   var sentences=tensionText.split('. ').map(function(s){return s.trim();}).filter(Boolean);
   for(var i=1;i<sentences.length;i++){
@@ -773,9 +710,6 @@ function generateShareCardImage(dayName,line){
   });
 }
 
-// Real, lightweight, fire-and-forget tracking, logs every real
-// download or share action, never blocks or delays the actual
-// action itself, and fails silently if it doesn't work.
 function trackShareEvent(action){
   try{
     fetch("https://nofyxayqdwhyabcntmvs.supabase.co/rest/v1/share_events",{
@@ -852,11 +786,9 @@ function shareToPlatform(m){
   if(urls[m])window.open(urls[m],'_blank','noopener');
 }
 
-// ── INIT ──────────────────────────────────────────────────
 var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
 var DAYS=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
-// Stars
 (function(){
   var s=document.getElementById("stars");
   for(var i=0;i<80;i++){
@@ -867,7 +799,6 @@ var DAYS=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
   }
 })();
 
-// Clock number markers
 (function(){
   var g=document.getElementById("clock-nums");
   for(var i=1;i<=9;i++){
@@ -883,13 +814,11 @@ var DAYS=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
   }
 })();
 
-// Set today as default date
 (function(){
   var today=new Date().toISOString().split("T")[0];
   document.getElementById("inp-date").value=today;
 })();
 
-// ── CALCULATE ─────────────────────────────────────────────
 function calculate(){
   var ds=document.getElementById("inp-date").value;
   var dob=document.getElementById("inp-dob").value;
@@ -913,7 +842,6 @@ function calculate(){
     var isToday=ds===new Date().toISOString().split("T")[0];
     var isFuture=d>new Date();
 
-    // Day header - no number shown, just quality phrase
     document.getElementById("day-bg").textContent=n;
     document.getElementById("day-date-str").textContent=dateStr;
     document.getElementById("day-phrase").innerHTML=data.n.replace("The Day of ","A day of <em>").replace("The Day for ","A day for <em>")+"</em>";
@@ -921,13 +849,11 @@ function calculate(){
       return"<span class='day-tag'>"+t+"</span>";
     }).join("");
 
-    // Guidance row - no numbers
     var timeRef=isToday?"today":isFuture?"on this day":"on this day";
     document.getElementById("guide-row").innerHTML=
       "<div class='guide-card'><div class='guide-label' style='color:#1a3a8a'>What works "+timeRef+"</div><div class='guide-val'>"+data.do+"</div></div>"+
       "<div class='guide-card'><div class='guide-label' style='color:#a8621f'>What to approach with care</div><div class='guide-val'>"+data.avoid+"</div></div>";
 
-    // Personal layer - shown as felt qualities only, no numbers
     var pc=document.getElementById("personal-card");
     if(dob){
       var pd=pday(dob,ds);
@@ -939,7 +865,6 @@ function calculate(){
       pc.style.display="none";
     }
 
-    // Reading - no number references
     var np=fn?fn+", ":"";
     var tensePrefix=isToday?"Today carries ":isFuture?"This date will carry ":"This date carried ";
     var intro=np+tensePrefix+"the quality of "+data.n.toLowerCase().replace("the day of ","").replace("the day for ","")+". ";
@@ -959,12 +884,10 @@ function calculate(){
 
     document.getElementById("reading-content").innerHTML=html;
 
-    // LifeOS link
     var p=new URLSearchParams();
     if(fn)p.set("name",fn);if(dob)p.set("dob",dob);p.set("date",ds);p.set("src","freetool");
-    document.getElementById("lifeos-link").href="https://app.kayalsoulpath.com/tool/daily-personal-oracle?"+p.toString();
+    document.getElementById("lifeos-link").href="https://app.kayalsoulpath.com/tool/today-reading?"+p.toString();
 
-    // Update invite, desc built from THIS day's own synthesis tension
     var tLead=syn&&syn.tension?syn.tension.split(".")[0].trim()+".":"";
     var inviteTitle,inviteBridge;
     document.getElementById("li-eyebrow").textContent="If this reading has been useful";
@@ -978,14 +901,10 @@ function calculate(){
     document.getElementById("li-title").textContent=inviteTitle;
     document.getElementById("li-desc").textContent=tLead?(tLead+" "+inviteBridge):inviteBridge;
 
-    // Speech, include the invite title/bridge too, so listening reaches the
-    // actual invitation instead of stopping at synthesis. Skip repeating the
-    // lead sentence in audio since syn.tension was just spoken in full.
     var readEl=document.createElement("div");readEl.innerHTML=html;
     fullReadingText=(readEl.textContent+" "+inviteTitle+" "+inviteBridge).replace(/\s+/g," ").trim();
     window._shareText="I read the energy of "+dateStr+" at KAYAL SoulPath Institute: "+data.n+". Try any date free.";
 
-    // Show, hide the hero and input step so it reads as a clean next screen
     document.getElementById("hero-section").style.display="none";
     document.getElementById("input-section").style.display="none";
     var rs=document.getElementById("result-section");
