@@ -28,11 +28,7 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
   --k-gold-dim: rgba(201,158,44,.32);
 }
 
-/* ── Compact hero: this page's job is to get to the tools
-   immediately, not hold a reader with long-form text, so the
-   shared .page-hero/.section spacing (built for editorial
-   pages) is overridden here, locally, without touching the
-   shared classes used elsewhere on the site. ────────────── */
+/* ── Compact hero ─────────────────────────────────────────── */
 .page-hero{padding:28px 0 22px}
 .page-hero-title{margin-bottom:6px}
 .tools-section{padding:20px 0 64px}
@@ -78,8 +74,10 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
 .tc-face{--tc:#7a3fb5}
 .tc-hand{--tc:#3a8a55}
 .tc-meditation{--tc:#8a7a4a}
+.tc-environment{--tc:#2a7a8a}
+.tc-vitality{--tc:#b5622a}
 
-/* ── Closing band: LifeOS + Affiliate combined ──────────────── */
+/* ── Closing band: LifeOS + Affiliate combined ───────────── */
 .closing-band{background:var(--ink);border-radius:var(--r-lg);padding:48px 44px;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;margin-top:56px}
 .closing-main-title{font-family:var(--ff-heading);font-size:24px;color:var(--linen);margin-bottom:10px;line-height:1.3}
 .closing-main-desc{font-size:14px;color:rgba(250,247,242,.55);line-height:1.75;margin-bottom:22px}
@@ -95,6 +93,42 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
 }
 @media(max-width:540px){
   .tools-controls{flex-direction:column;align-items:flex-start}
+}
+
+/* ── WhatsApp floating button ── */
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 998;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(37,211,102,.4);
+  transition: all .2s;
+  animation: waPulse 3s ease-in-out infinite;
+}
+.wa-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 32px rgba(37,211,102,.55);
+}
+.wa-float svg { width: 28px; height: 28px; }
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,.4); }
+  50% { box-shadow: 0 6px 32px rgba(37,211,102,.65); }
+}
+@media (max-width: 768px) {
+  .wa-float { bottom: 24px; right: 14px; width: 52px; height: 52px; }
+  .wa-float svg { width: 26px; height: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-float { animation: none !important; }
 }
 </style>
 </head>
@@ -118,15 +152,15 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
     <ul class="nav-links">
       <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
       <li class="nav-item">
-        <button class="nav-link" data-dropdown="courses">Courses
+        <button class="nav-link" data-dropdown="courses">Programmes
           <svg class="nav-caret" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
         </button>
         <div class="nav-dropdown">
-          <a href="pages/courses/numerology.html">&#128290; Numerology</a>
-          <a href="pages/courses/astrology.html">&#9800; Astrology</a>
-          <a href="pages/courses/physiognomy.html">&#128065;&#65039; Physiognomy &middot; Face Reading</a>
-          <a href="pages/courses/palmistry.html">&#129354; Palmistry &middot; Palm Reading</a>
-          <a href="pages/courses/spirit-science.html">&#10024; Spirit Science</a>
+          <a href="pages/courses/numerology.html">🔢 Numerology</a>
+          <a href="pages/courses/astrology.html">♈ Astrology</a>
+          <a href="pages/courses/physiognomy.html">👁️ Physiognomy &middot; Face Reading</a>
+          <a href="pages/courses/palmistry.html">🤚 Palmistry &middot; Palm Reading</a>
+          <a href="pages/courses/spirit-science.html">✨ Spirit Science</a>
           <a href="pages/courses/index.html" style="border-top:1px solid rgba(201,158,44,.15);margin-top:6px;padding-top:12px;color:var(--terra)">All Programmes &#8594;</a>
         </div>
       </li>
@@ -136,8 +170,10 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
       <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <a href="pages/courses/index.html" class="btn btn-outline" style="font-size:12px;padding:9px 20px">Enrol Now</a>
-      <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:12px;padding:9px 20px">Open LifeOS</a>
+      <a href="pages/student/login.html" class="nav-student-btn">
+        <i class="fas fa-graduation-cap"></i> Student Portal
+      </a>
+      <a href="pages/enrol/apply.html" class="btn btn-primary" style="font-size:12px;padding:9px 20px">Apply Now</a>
       <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -147,7 +183,7 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
   <ul class="nav-mobile-links">
     <li><a href="about.html">About</a></li>
     <li>
-      <button class="nav-mobile-toggle">Courses &#9660;</button>
+      <button class="nav-mobile-toggle">Programmes &#9660;</button>
       <div class="nav-mobile-sub">
         <a href="pages/courses/numerology.html">Numerology</a>
         <a href="pages/courses/astrology.html">Astrology</a>
@@ -161,10 +197,11 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
     <li><a href="insights.html">Insights</a></li>
     <li><a href="consultation.html">Consultation</a></li>
     <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://wa.me/601112245285?text=Hi%2C%20I%27m%20interested%20in%20the%20programmes%20at%20KAYAL%20SoulPath%20Institute" target="_blank" rel="noopener">Talk to Us on WhatsApp</a></li>
   </ul>
   <div class="nav-mobile-actions">
-    <a href="pages/courses/index.html" class="btn btn-outline" style="justify-content:center">Enrol Now</a>
-    <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-primary" style="justify-content:center">Open LifeOS</a>
+    <a href="pages/student/login.html" class="btn btn-outline" style="justify-content:center"><i class="fas fa-graduation-cap" style="margin-right:6px"></i>Student Portal</a>
+    <a href="pages/enrol/apply.html" class="btn btn-primary" style="justify-content:center">Apply Now</a>
   </div>
 </div>
 
@@ -436,6 +473,7 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
           <a href="https://www.linkedin.com/in/kayalsoulpath" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-linkedin-in"></i></a>
           <a href="https://www.facebook.com/share/1845UT2nXn/" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-facebook-f"></i></a>
           <a href="https://t.me/kayalsoulpath" target="_blank" rel="noopener" class="footer-social"><i class="fab fa-telegram-plane"></i></a>
+          <a href="https://wa.me/601112245285?text=Hi%2C%20I%27m%20interested%20in%20the%20programmes%20at%20KAYAL%20SoulPath%20Institute" target="_blank" rel="noopener" class="footer-social" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
       <div>
@@ -443,6 +481,8 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         <ul class="footer-links">
           <li><a href="about.html">Our Story</a></li>
           <li><a href="about.html#mission">Mission &amp; Vision</a></li>
+          <li><a href="pages/student/login.html">Student Portal</a></li>
+          <li><a href="pages/enrol/apply.html">Apply for Admission</a></li>
           <li><a href="consultation.html">1:1 Consultation</a></li>
           <li><a href="contact.html">Contact Us</a></li>
         </ul>
@@ -463,6 +503,7 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
           <li><a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener">KAYAL LifeOS</a></li>
           <li><a href="tools.html">Free Tools</a></li>
           <li><a href="insights.html">Insights</a></li>
+          <li><a href="https://wa.me/601112245285" target="_blank" rel="noopener">Talk to Us on WhatsApp</a></li>
           <li><a href="pages/advertise.html">Advertise With Us</a></li>
         </ul>
       </div>
@@ -478,6 +519,11 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
     </div>
   </div>
 </footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/601112245285?text=Hi%2C%20I%27m%20interested%20in%20the%20programmes%20at%20KAYAL%20SoulPath%20Institute" target="_blank" rel="noopener" class="wa-float" aria-label="Talk to us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
 
 <script src="js/global.js"></script>
 <script>
@@ -519,7 +565,7 @@ function goTool(n,url){
 // ── PERSONALISE THE CLOSING BAND BASED ON EXPLORED TOOLS ────
 var TOOL_NAMES={1:'Life Blueprint',2:'Name Vibration',3:'Universal Day',4:'Compatibility Blueprint',5:'Soul Timing Window',6:'Face Energy Reader',7:'Hand Map Reader',8:'Sacred Timer',9:'Environment Blueprint',10:'Vitality Blueprint'};
 function personalizeClosing(){
-  if(explored.size===0)return; // keep the default copy already in the HTML
+  if(explored.size===0)return;
   var names=Array.from(explored).sort(function(a,b){return a-b;}).map(function(n){return TOOL_NAMES[n];});
   var list=names.length===1?names[0]:(names.slice(0,-1).join(', ')+' and '+names[names.length-1]);
   var titleEl=document.getElementById('closing-title');
@@ -547,17 +593,5 @@ personalizeClosing();
 })();
 </script>
 
-<!-- Tawk.to Live Chat -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6a1ac2936f88d91c31d3620f/1jps8g46o';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
 </body>
 </html>

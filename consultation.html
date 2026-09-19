@@ -13,13 +13,86 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="shortcut icon" type="image/png" href="images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1:1 Consultation — KAYAL SoulPath Institute</title>
-<meta name="description" content="Book a private 90-minute consultation with a KAYAL master reader. Your complete soul blueprint prepared in advance.">
-<link rel="stylesheet" href="css/global.css">
-<link rel="stylesheet" href="css/contact.css">
+<title>1:1 Consultation | KAYAL SoulPath Institute</title>
+<meta name="description" content="Book a private consultation with a KAYAL-certified reader. Your complete soul blueprint prepared in advance, plus a written PDF report of your reading. Single Focus $197, Dual Focus $297, or Complete Overview $447.">
+<link rel="canonical" href="https://kayalsoulpath.com/consultation.html">
+<meta property="og:title" content="1:1 Consultation | KAYAL SoulPath Institute">
+<meta property="og:description" content="Private consultation with a KAYAL-certified reader. Your complete soul blueprint prepared in advance, plus a written PDF report of your reading.">
+<meta property="og:image" content="https://kayalsoulpath.com/images/Spiritism_Consciousness_Studies.jpg">
+<meta property="og:url" content="https://kayalsoulpath.com/consultation.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KAYAL SoulPath Institute">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="1:1 Consultation | KAYAL SoulPath Institute">
+<meta name="twitter:description" content="Private consultation with a KAYAL-certified reader. Your complete soul blueprint prepared in advance, plus a written PDF report of your reading.">
+<meta name="twitter:image" content="https://kayalsoulpath.com/images/Spiritism_Consciousness_Studies.jpg">
+<link rel="stylesheet" href="css/global.css?v=26">
+<link rel="stylesheet" href="css/contact.css?v=26">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+/* ── ANNOUNCEMENT BAR (self-contained, sticky) ── */
+.announcement-bar {
+  background: #2c1810;
+  color: rgba(255,255,255,.85);
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .04em;
+  padding: 0 60px 0 24px;
+  height: 40px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 902;
+  width: 100%;
+}
+.announcement-bar span { display: inline; }
+.announcement-bar strong { color: #ffffff; font-weight: 500; }
+.announcement-bar a {
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,.4);
+  white-space: nowrap;
+  font-weight: 500;
+}
+.announcement-bar a:hover { text-decoration-color: #ffffff; }
+.announcement-bar-close {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: rgba(255,255,255,.6);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+.announcement-bar-close:hover { color: #ffffff; }
+@media (max-width: 768px) {
+  .announcement-bar {
+    font-size: 11px;
+    padding: 8px 40px 8px 14px;
+    height: auto;
+    min-height: 38px;
+    text-align: center;
+  }
+  .announcement-bar strong { display: none; }
+}
+
+/* Nav sits below sticky announcement bar */
+#nav {
+  top: 40px;
+}
+@media (max-width: 768px) {
+  #nav { top: 38px; }
+}
+
 /* Consultation-specific styles missing from contact.css */
 .response-badges {
   display: flex;
@@ -50,6 +123,92 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   0%,100% { opacity:1; transform:scale(1); }
   50%      { opacity:.6; transform:scale(1.3); }
 }
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Reader trust section */
+.reader-trust {
+  background: var(--white);
+  border: 1px solid var(--cream);
+  border-radius: 12px;
+  padding: 28px 26px;
+  margin-bottom: 48px;
+}
+.reader-trust-title {
+  font-family: var(--ff-heading);
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.reader-trust-body {
+  font-size: 14.5px;
+  color: var(--slate);
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+.reader-trust-criteria {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.reader-trust-criteria li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--slate);
+  line-height: 1.6;
+}
+.reader-trust-criteria li::before {
+  content: '✦';
+  color: var(--terra);
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+@media (max-width: 768px) {
+  .reader-trust { padding: 22px 20px; }
+  .reader-trust-title { font-size: 18px; }
+  .reader-trust-body { font-size: 14px; }
+}
+
+/* WhatsApp float (matching homepage) */
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 998;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(37,211,102,.4);
+  transition: all .2s;
+  animation: waPulse 3s ease-in-out infinite;
+}
+.wa-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 32px rgba(37,211,102,.55);
+}
+.wa-float svg { width: 28px; height: 28px; }
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,.4); }
+  50% { box-shadow: 0 6px 32px rgba(37,211,102,.65); }
+}
+@media (max-width: 768px) {
+  .wa-float { bottom: 80px; right: 14px; width: 52px; height: 52px; }
+  .wa-float svg { width: 26px; height: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-float { animation: none !important; }
+}
 </style>
 </head>
 <body>
@@ -59,7 +218,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="announcement-bar">
-  <span>Only 8 slots available this month — Single Focus from $197.</span>
+  <span>Private consultations now open. <strong>12 slots per month.</strong> Applications accepted on a rolling basis.</span>
   <a href="pages/courses/index.html">View all programmes</a>
   <button class="announcement-bar-close">×</button>
 </div>
@@ -73,14 +232,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <ul class="nav-links">
       <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
       <li class="nav-item">
-        <button class="nav-link" data-dropdown="courses">Courses
+        <button class="nav-link" data-dropdown="courses">Programmes
           <svg class="nav-caret" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
         </button>
         <div class="nav-dropdown">
           <a href="pages/courses/numerology.html">🔢 Numerology</a>
           <a href="pages/courses/astrology.html">♈ Astrology</a>
-          <a href="pages/courses/physiognomy.html">👁️ Physiognomy — Face Reading</a>
-          <a href="pages/courses/palmistry.html">🤚 Palmistry — Palm Reading</a>
+          <a href="pages/courses/physiognomy.html">👁️ Physiognomy &middot; Face Reading</a>
+          <a href="pages/courses/palmistry.html">🤚 Palmistry &middot; Palm Reading</a>
           <a href="pages/courses/spirit-science.html">✨ Spirit Science</a>
           <a href="pages/courses/index.html" style="border-top:1px solid rgba(201,158,44,.15);margin-top:6px;padding-top:12px;color:var(--terra);">All Programmes →</a>
         </div>
@@ -91,8 +250,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <a href="pages/courses/index.html" class="btn btn-outline" style="font-size:12px;padding:9px 20px">Enrol Now</a>
-      <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:12px;padding:9px 20px">Open LifeOS</a>
+      <a href="pages/student/login.html" class="nav-student-btn">
+        <i class="fas fa-graduation-cap"></i> Student Portal
+      </a>
+      <a href="pages/enrol/apply.html" class="btn btn-primary" style="font-size:12px;padding:9px 20px">Apply Now</a>
       <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -103,7 +264,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <ul class="nav-mobile-links">
     <li><a href="about.html">About</a></li>
     <li>
-      <button class="nav-mobile-toggle">Courses ▾</button>
+      <button class="nav-mobile-toggle">Programmes ▾</button>
       <div class="nav-mobile-sub">
         <a href="pages/courses/numerology.html">Numerology</a>
         <a href="pages/courses/astrology.html">Astrology</a>
@@ -117,19 +278,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="insights.html">Insights</a></li>
     <li><a href="consultation.html">Consultation</a></li>
     <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://wa.me/601112245285?text=Hi%2C%20I%27m%20interested%20in%20a%20private%20consultation" target="_blank" rel="noopener">Talk to Us on WhatsApp</a></li>
   </ul>
   <div class="nav-mobile-actions">
-    <a href="pages/courses/index.html" class="btn btn-outline" style="justify-content:center">Enrol Now</a>
-    <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-primary" style="justify-content:center">Open LifeOS</a>
+    <a href="pages/student/login.html" class="btn btn-outline" style="justify-content:center"><i class="fas fa-graduation-cap" style="margin-right:6px"></i>Student Portal</a>
+    <a href="pages/enrol/apply.html" class="btn btn-primary" style="justify-content:center">Apply Now</a>
   </div>
 </div>
 
 <div class="page-hero" style="padding-top:calc(var(--nav-h) + 40px)">
   <div class="container">
-    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">—</span><span>1:1 Consultation</span></div>
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span>1:1 Consultation</span></div>
     <div class="eyebrow">Private Session</div>
     <h1 class="page-hero-title">A complete blueprint<br><em>reading, just for you.</em></h1>
-    <p class="page-hero-sub">Choose your focus, book your session. Your complete blueprint is prepared in advance — Single Focus ($197 · 60 min), Dual Focus ($297 · 90 min), or Complete Overview ($447 · 120 min).</p>
+    <p class="page-hero-sub">Choose your focus, book your session. Your complete blueprint is prepared in advance and you receive a written PDF report of your reading. Single Focus ($197 · 60 min), Dual Focus ($297 · 90 min), or Complete Overview ($447 · 120 min).</p>
   </div>
 </div>
 
@@ -163,10 +325,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </div>
           <div style="display:flex;gap:16px;padding:20px;background:var(--white);border:1px solid var(--cream);border-radius:12px;align-items:flex-start">
+            <div style="font-size:28px;flex-shrink:0">📄</div>
+            <div>
+              <h4 style="font-family:var(--ff-heading);font-size:17px;color:var(--ink);margin-bottom:6px">Written PDF report of your reading</h4>
+              <p style="font-size:14px;color:var(--stone);line-height:1.7">Within 48 hours of the session you receive a structured PDF report capturing every finding in writing. Not just on the recording, but in a document you can return to for years.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;padding:20px;background:var(--white);border:1px solid var(--cream);border-radius:12px;align-items:flex-start">
             <div style="font-size:28px;flex-shrink:0">✉️</div>
             <div>
               <h4 style="font-family:var(--ff-heading);font-size:17px;color:var(--ink);margin-bottom:6px">30-day follow-up email support</h4>
-              <p style="font-size:14px;color:var(--stone);line-height:1.7">Questions that arise after the session — about timing, about a specific insight, about next steps — are answered directly by your reader for 30 days after the session.</p>
+              <p style="font-size:14px;color:var(--stone);line-height:1.7">Questions that arise after the session, about timing, about a specific insight, about next steps, are answered directly by your reader for 30 days after the session.</p>
             </div>
           </div>
           <div style="display:flex;gap:16px;padding:20px;background:var(--white);border:1px solid var(--cream);border-radius:12px;align-items:flex-start">
@@ -178,10 +347,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
+        <!-- Who will read for you -->
+        <div class="reader-trust">
+          <h3 class="reader-trust-title">Who will read for you</h3>
+          <p class="reader-trust-body">Every consultation is conducted by a KAYAL-certified reader, trained directly under founder Segun Samson Oke using the same four-pillar synthesis taught in the Institute's programmes. We do not outsource readings and we do not use AI to prepare them. Your reader studies your profile personally before your session begins.</p>
+          <ul class="reader-trust-criteria">
+            <li>Trained and certified in Soul Blueprint Science by KAYAL SoulPath Institute</li>
+            <li>Minimum one full year of four-pillar study before conducting private sessions</li>
+            <li>Bound by KAYAL's confidentiality and professional conduct standards</li>
+            <li>Directly supervised and reviewed by the founder</li>
+          </ul>
+        </div>
+
         <!-- Pricing -->
         <div style="margin-bottom:48px">
           <h3 style="font-family:var(--ff-heading);font-size:20px;color:var(--ink);margin-bottom:20px">Session Pricing</h3>
-          <p style="font-size:13.5px;color:var(--stone);line-height:1.7;margin-bottom:24px">Choose the scope that matches your situation. All sessions include full blueprint preparation, recording, and 30-day follow-up support.</p>
+          <p style="font-size:13.5px;color:var(--stone);line-height:1.7;margin-bottom:24px">Choose the scope that matches your situation. All sessions include full blueprint preparation, recording, a written PDF report of your reading, and 30-day follow-up support.</p>
 
           <!-- Tier 1 -->
           <div style="background:var(--white);border:1px solid var(--cream);border-radius:12px;padding:22px;margin-bottom:12px;display:flex;align-items:flex-start;gap:20px">
@@ -189,7 +370,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-family:var(--ff-body);font-weight:600;margin-bottom:5px">Single Focus</div>
               <div style="font-family:var(--ff-heading);font-size:17px;color:var(--ink);margin-bottom:4px">One Area of Life</div>
               <div style="font-size:13px;color:var(--stone);line-height:1.6">Love &amp; relationships, career, health, wealth, or spiritual development. Deep dive into one specific domain.</div>
-              <div style="font-size:12px;color:var(--stone);margin-top:8px">⏱ 60-minute session</div>
+              <div style="font-size:12px;color:var(--stone);margin-top:8px">⏱ 60-minute session · Written PDF report included</div>
             </div>
             <div style="text-align:right;flex-shrink:0">
               <div style="font-family:var(--ff-display);font-size:40px;color:var(--terra);line-height:1">$197</div>
@@ -203,8 +384,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div style="flex:1">
               <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-family:var(--ff-body);font-weight:600;margin-bottom:5px">Dual Focus</div>
               <div style="font-family:var(--ff-heading);font-size:17px;color:var(--ink);margin-bottom:4px">Two Areas of Life</div>
-              <div style="font-size:13px;color:var(--stone);line-height:1.6">Two related areas explored in depth — for example, career &amp; wealth, or love &amp; spiritual path. The most common choice for new clients.</div>
-              <div style="font-size:12px;color:var(--stone);margin-top:8px">⏱ 90-minute session</div>
+              <div style="font-size:13px;color:var(--stone);line-height:1.6">Two related areas explored in depth. For example, career &amp; wealth, or love &amp; spiritual path. The most common choice for new clients.</div>
+              <div style="font-size:12px;color:var(--stone);margin-top:8px">⏱ 90-minute session · Written PDF report included</div>
             </div>
             <div style="text-align:right;flex-shrink:0">
               <div style="font-family:var(--ff-display);font-size:40px;color:var(--terra);line-height:1">$297</div>
@@ -217,8 +398,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div style="flex:1">
               <div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-family:var(--ff-body);font-weight:600;margin-bottom:5px">Complete Overview</div>
               <div style="font-family:var(--ff-heading);font-size:17px;color:var(--ink);margin-bottom:4px">All Areas of Life</div>
-              <div style="font-size:13px;color:var(--stone);line-height:1.6">The full synthesis — life purpose, relationships, wealth blueprint, health patterns, and timing. Your most complete picture in a single session. Full four-pillar cross-validation applied.</div>
-              <div style="font-size:12px;color:var(--stone);margin-top:8px">⏱ 120-minute session · Full blueprint PDF included</div>
+              <div style="font-size:13px;color:var(--stone);line-height:1.6">The full synthesis. Life purpose, relationships, wealth blueprint, health patterns, and timing. Your most complete picture in a single session, with full four-pillar cross-validation applied.</div>
+              <div style="font-size:12px;color:var(--stone);margin-top:8px">⏱ 120-minute session · Written PDF report included</div>
             </div>
             <div style="text-align:right;flex-shrink:0">
               <div style="font-family:var(--ff-display);font-size:40px;color:var(--terra);line-height:1">$447</div>
@@ -238,18 +419,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div style="width:10px;height:10px;border-radius:50%;background:#f59e0b;flex-shrink:0;animation:blink 1.5s ease infinite"></div>
           <div>
             <div style="font-family:var(--ff-body);font-size:13px;font-weight:600;color:var(--terra);margin-bottom:2px">Limited Availability</div>
-            <div style="font-size:13px;color:var(--slate)">We accept a maximum of 12 new consultation clients per month. <strong style="color:var(--ink)">6 slots remaining for April 2026.</strong></div>
+            <div style="font-size:13px;color:var(--slate)">We accept a maximum of 12 new consultation clients per month. <strong style="color:var(--ink)">Slots fill on a rolling basis.</strong></div>
           </div>
         </div>
 
         <!-- Testimonial -->
         <div style="background:var(--white);border:1px solid var(--cream);border-radius:16px;padding:32px">
           <div style="font-size:40px;color:rgba(201,158,44,.2);font-family:var(--ff-display);line-height:1;margin-bottom:8px">"</div>
-          <blockquote style="font-family:var(--ff-heading);font-size:18px;font-style:italic;color:var(--slate);line-height:1.75;margin-bottom:20px">My reader had clearly spent serious time with my chart before the session. Within the first ten minutes she had named a pattern that had been operating in my life for fifteen years — a pattern I had never been able to articulate. By the end of the 90 minutes, I had a map. I knew what I was dealing with. That kind of clarity has a value that I could not put a price on.</blockquote>
+          <blockquote style="font-family:var(--ff-heading);font-size:18px;font-style:italic;color:var(--slate);line-height:1.75;margin-bottom:20px">My reader had clearly spent serious time with my chart before the session. Within the first ten minutes she had named a pattern that had been operating in my life for fifteen years, a pattern I had never been able to articulate. By the end of the 90 minutes, I had a map. I knew what I was dealing with. That kind of clarity has a value that I could not put a price on.</blockquote>
           <div style="display:flex;align-items:center;gap:12px">
             <div style="width:40px;height:40px;border-radius:50%;background:var(--parchment);border:1.5px solid rgba(201,158,44,.2);display:flex;align-items:center;justify-content:center;font-family:var(--ff-heading);font-size:16px;color:var(--terra)">S</div>
             <div>
-              <div style="font-size:14px;font-weight:600;color:var(--ink)">Sarah Wong</div>
+              <div style="font-size:14px;font-weight:600;color:var(--ink)">S.W.</div>
               <div style="font-size:12px;color:var(--stone)">Consultation Client · Kuala Lumpur</div>
             </div>
           </div>
@@ -261,7 +442,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="contact-info-card">
           <div class="contact-info-title">Book Your Consultation</div>
           <form action="https://formspree.io/f/maqkkzlv" method="POST">
-            <input type="hidden" name="_subject" value="New Consultation Booking — KAYAL SoulPath Institute">
+            <input type="hidden" name="_subject" value="New Consultation Booking | KAYAL SoulPath Institute">
             <input type="hidden" name="_replyto" value="contact@kayalsoulpath.com">
             <input type="hidden" name="_next" value="index.html">
 
@@ -285,7 +466,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="form-group">
               <label>Birth Time (if known)</label>
               <input type="time" name="birth_time">
-              <div class="field-hint">As precise as possible — improves astrological accuracy</div>
+              <div class="field-hint">As precise as possible. Improves astrological accuracy.</div>
             </div>
             <div class="form-group">
               <label>Birth City &amp; Country *</label>
@@ -295,7 +476,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <label>Session Type &amp; Focus *</label>
               <select name="focus_area" required onchange="updatePrice(this)">
                 <option value="">Choose your session type…</option>
-                <optgroup label="Single Focus — $197 · 60 min">
+                <optgroup label="Single Focus | $197 · 60 min">
                   <option value="single_career">Life Purpose &amp; Career Direction ($197)</option>
                   <option value="single_love">Relationships &amp; Love ($197)</option>
                   <option value="single_health">Health &amp; Wellbeing ($197)</option>
@@ -303,14 +484,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <option value="single_spiritual">Spiritual Development ($197)</option>
                   <option value="single_timing">Timing &amp; Major Decisions ($197)</option>
                 </optgroup>
-                <optgroup label="Dual Focus — $297 · 90 min">
+                <optgroup label="Dual Focus | $297 · 90 min">
                   <option value="dual_career_wealth">Career + Wealth Blueprint ($297)</option>
                   <option value="dual_love_spiritual">Love + Spiritual Path ($297)</option>
                   <option value="dual_purpose_timing">Life Purpose + Timing ($297)</option>
-                  <option value="dual_custom">Custom Dual Focus — specify below ($297)</option>
+                  <option value="dual_custom">Custom Dual Focus | specify below ($297)</option>
                 </optgroup>
-                <optgroup label="Complete Overview — $447 · 120 min">
-                  <option value="complete">Complete Overview — All Areas of Life ($447)</option>
+                <optgroup label="Complete Overview | $447 · 120 min">
+                  <option value="complete">Complete Overview | All Areas of Life ($447)</option>
                 </optgroup>
               </select>
               <div class="field-hint" id="price-hint">Your session fee is confirmed once you select a type above.</div>
@@ -366,7 +547,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="newsletter-inner">
       <div class="eyebrow" style="justify-content:center;color:var(--stone)">Soul Blueprint wisdom</div>
       <h2 class="newsletter-title">Weekly insights<br><em>delivered.</em></h2>
-      <p class="newsletter-desc">Moon phase guidance, Soul Blueprint teachings, and exclusive KAYAL insights — every Monday.</p>
+      <p class="newsletter-desc">Moon phase guidance, Soul Blueprint teachings, and exclusive KAYAL insights, every Monday.</p>
       <form class="newsletter-form" action="https://formspree.io/f/maqkkzlv" method="POST">
         <input type="hidden" name="_replyto" value="contact@kayalsoulpath.com">
         <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
@@ -382,7 +563,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div>
         <div class="footer-brand-name">KAYAL</div>
         <div class="footer-brand-sub">SoulPath Institute</div>
-        <p class="footer-tagline">Soul Blueprint Science — the four ancient pillars of self-knowledge.</p>
+        <p class="footer-tagline">Soul Blueprint Science: the four ancient pillars of self-knowledge.</p>
+        <p style="font-size:11.5px;color:rgba(250,247,242,.45);margin-bottom:16px;letter-spacing:.02em">Kuala Lumpur, Malaysia</p>
         <div class="footer-socials">
           <a href="https://www.instagram.com/kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="https://www.youtube.com/@kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
@@ -391,6 +573,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="https://www.linkedin.com/in/kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           <a href="https://www.facebook.com/share/1845UT2nXn/" target="_blank" rel="noopener" class="footer-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://t.me/kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+          <a href="https://wa.me/601112245285" target="_blank" rel="noopener" class="footer-social" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
       <div>
@@ -433,9 +616,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<style>
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-</style>
+<a href="https://wa.me/601112245285?text=Hi%2C%20I%27d%20like%20to%20book%20a%20private%20consultation" target="_blank" rel="noopener" class="wa-float" aria-label="Talk to us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
 <script src="js/global.js"></script>
 <script>
 function updatePrice(sel) {
@@ -456,7 +640,7 @@ function updatePrice(sel) {
     dual_love_spiritual:{price:'$297', dur:'90-minute session'},
     dual_purpose_timing:{price:'$297', dur:'90-minute session'},
     dual_custom:        {price:'$297', dur:'90-minute session'},
-    complete:           {price:'$447', dur:'120-minute session · Full blueprint PDF included'},
+    complete:           {price:'$447', dur:'120-minute session · Written PDF report included'},
   };
 
   if (val && map[val]) {
@@ -469,18 +653,6 @@ function updatePrice(sel) {
     hint.textContent = 'Your session fee is confirmed once you select a type above.';
   }
 }
-</script>
-<!-- Tawk.to Live Chat -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6a1ac2936f88d91c31d3620f/1jps8g46o';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
 </script>
 </body>
 </html>

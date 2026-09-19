@@ -13,12 +13,117 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="shortcut icon" type="image/png" href="images/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — KAYAL SoulPath Institute</title>
-<meta name="description" content="Get in touch with KAYAL SoulPath Institute. Course enquiries, general questions, and advertising partnerships.">
-<link rel="stylesheet" href="css/global.css">
-<link rel="stylesheet" href="css/contact.css">
+<title>Contact | KAYAL SoulPath Institute</title>
+<meta name="description" content="Get in touch with KAYAL SoulPath Institute. Course enquiries, general questions, and advertising partnerships. Response within 24 hours.">
+<link rel="canonical" href="https://kayalsoulpath.com/contact.html">
+<meta property="og:title" content="Contact | KAYAL SoulPath Institute">
+<meta property="og:description" content="Course enquiries, general questions, and advertising partnerships. Response within 24 hours.">
+<meta property="og:url" content="https://kayalsoulpath.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KAYAL SoulPath Institute">
+<link rel="stylesheet" href="css/global.css?v=26">
+<link rel="stylesheet" href="css/contact.css?v=26">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
+/* ── ANNOUNCEMENT BAR (self-contained, sticky) ── */
+.announcement-bar {
+  background: #2c1810;
+  color: rgba(255,255,255,.85);
+  font-family: 'Outfit', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .04em;
+  padding: 0 60px 0 24px;
+  height: 40px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 902;
+  width: 100%;
+}
+.announcement-bar span { display: inline; }
+.announcement-bar strong { color: #ffffff; font-weight: 500; }
+.announcement-bar a {
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,.4);
+  white-space: nowrap;
+  font-weight: 500;
+}
+.announcement-bar a:hover { text-decoration-color: #ffffff; }
+.announcement-bar-close {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: rgba(255,255,255,.6);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+.announcement-bar-close:hover { color: #ffffff; }
+@media (max-width: 768px) {
+  .announcement-bar {
+    font-size: 11px;
+    padding: 8px 40px 8px 14px;
+    height: auto;
+    min-height: 38px;
+    text-align: center;
+  }
+  .announcement-bar strong { display: none; }
+}
+
+/* Nav sits below sticky announcement bar */
+#nav {
+  top: 40px;
+}
+@media (max-width: 768px) {
+  #nav { top: 38px; }
+}
+
+/* WhatsApp float (matching homepage) */
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 998;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(37,211,102,.4);
+  transition: all .2s;
+  animation: waPulse 3s ease-in-out infinite;
+}
+.wa-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 32px rgba(37,211,102,.55);
+}
+.wa-float svg { width: 28px; height: 28px; }
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,.4); }
+  50% { box-shadow: 0 6px 32px rgba(37,211,102,.65); }
+}
+@media (max-width: 768px) {
+  .wa-float { bottom: 80px; right: 14px; width: 52px; height: 52px; }
+  .wa-float svg { width: 26px; height: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-float { animation: none !important; }
+}
+
+/* Page-specific */
 .contact-info-col { display: flex; flex-direction: column; gap: 18px; }
 .contact-info-block {
   background: var(--white);
@@ -87,6 +192,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .response-badge { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--slate); padding: 8px 12px; background: var(--parchment); border: 1px solid var(--cream); border-radius: 8px; }
 .response-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; animation: pulse-dot 2s ease infinite; }
 @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
+
+/* Consent line under forms */
+.form-consent {
+  font-size: 11.5px;
+  color: var(--stone);
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+.form-consent a {
+  color: var(--terra);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.form-consent a:hover { color: var(--terra-l); }
 </style>
 </head>
 <body>
@@ -96,8 +216,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="announcement-bar">
-  <span>New intake 2026 — Soul Blueprint Science. <strong>Limited places.</strong></span>
-  <a href="pages/courses/index.html">View all courses</a>
+  <span>New intake 2026 &middot; Soul Blueprint Science. <strong>Limited places.</strong></span>
+  <a href="pages/courses/index.html">View all programmes</a>
   <button class="announcement-bar-close">×</button>
 </div>
 
@@ -110,14 +230,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <ul class="nav-links">
       <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
       <li class="nav-item">
-        <button class="nav-link" data-dropdown="courses">Courses
+        <button class="nav-link" data-dropdown="courses">Programmes
           <svg class="nav-caret" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
         </button>
         <div class="nav-dropdown">
           <a href="pages/courses/numerology.html">🔢 Numerology</a>
           <a href="pages/courses/astrology.html">♈ Astrology</a>
-          <a href="pages/courses/physiognomy.html">👁️ Physiognomy — Face Reading</a>
-          <a href="pages/courses/palmistry.html">🤚 Palmistry — Palm Reading</a>
+          <a href="pages/courses/physiognomy.html">👁️ Physiognomy &middot; Face Reading</a>
+          <a href="pages/courses/palmistry.html">🤚 Palmistry &middot; Palm Reading</a>
           <a href="pages/courses/spirit-science.html">✨ Spirit Science</a>
           <a href="pages/courses/index.html" style="border-top:1px solid rgba(201,158,44,.15);margin-top:6px;padding-top:12px;color:var(--terra);">All Programmes →</a>
         </div>
@@ -128,8 +248,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
     </ul>
     <div class="nav-right">
-      <a href="pages/courses/index.html" class="btn btn-outline" style="font-size:12px;padding:9px 20px">Enrol Now</a>
-      <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:12px;padding:9px 20px">Open LifeOS</a>
+      <a href="pages/student/login.html" class="nav-student-btn">
+        <i class="fas fa-graduation-cap"></i> Student Portal
+      </a>
+      <a href="pages/enrol/apply.html" class="btn btn-primary" style="font-size:12px;padding:9px 20px">Apply Now</a>
       <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -140,7 +262,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <ul class="nav-mobile-links">
     <li><a href="about.html">About</a></li>
     <li>
-      <button class="nav-mobile-toggle">Courses ▾</button>
+      <button class="nav-mobile-toggle">Programmes ▾</button>
       <div class="nav-mobile-sub">
         <a href="pages/courses/numerology.html">Numerology</a>
         <a href="pages/courses/astrology.html">Astrology</a>
@@ -154,15 +276,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="insights.html">Insights</a></li>
     <li><a href="consultation.html">Consultation</a></li>
     <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://wa.me/601112245285?text=Hi%2C%20I%27m%20interested%20in%20the%20programmes%20at%20KAYAL%20SoulPath%20Institute" target="_blank" rel="noopener">Talk to Us on WhatsApp</a></li>
   </ul>
   <div class="nav-mobile-actions">
-    <a href="pages/courses/index.html" class="btn btn-outline" style="justify-content:center">Enrol Now</a>
-    <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-primary" style="justify-content:center">Open LifeOS</a>
+    <a href="pages/student/login.html" class="btn btn-outline" style="justify-content:center"><i class="fas fa-graduation-cap" style="margin-right:6px"></i>Student Portal</a>
+    <a href="pages/enrol/apply.html" class="btn btn-primary" style="justify-content:center">Apply Now</a>
   </div>
 </div>
 
 <div class="page-hero">
   <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span>Contact</span></div>
     <div class="eyebrow">Get In Touch</div>
     <h1 class="page-hero-title">How can we<br><em>help you?</em></h1>
     <p class="page-hero-sub">Choose the type of enquiry below and a member of our team will respond personally within 24 hours.</p>
@@ -174,7 +298,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="contact-tabs reveal">
       <button class="contact-tab active" data-tab="general">General Enquiry</button>
-      <button class="contact-tab" data-tab="course">Course Enrolment</button>
+      <button class="contact-tab" data-tab="course">Programme Enrolment</button>
       <button class="contact-tab" data-tab="advertise" id="advertise">Advertising &amp; Partnerships</button>
     </div>
 
@@ -186,10 +310,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="contact-form-panel active" id="tab-general">
           <div class="form-intro">
             <h2 class="form-title">Send us a message</h2>
-            <p class="form-desc">For questions about the institute, Kayal LifeOS, or anything else — fill in the form below and we will respond within 24 hours.</p>
+            <p class="form-desc">For questions about the institute, Kayal LifeOS, or anything else. Fill in the form below and we will respond within 24 hours.</p>
           </div>
           <form id="general-form" class="contact-form" action="https://formspree.io/f/maqkkzlv" method="POST">
-            <input type="hidden" name="_subject" value="General Enquiry — KAYAL SoulPath">
+            <input type="hidden" name="_subject" value="General Enquiry | KAYAL SoulPath">
             <input type="hidden" name="_replyto" value="contact@kayalsoulpath.com">
             <div class="form-row">
               <div class="form-group">
@@ -207,7 +331,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="form-group">
               <label class="form-label" for="g-phone">Phone / WhatsApp Number</label>
-              <input type="tel" id="g-phone" name="phone" class="form-input" placeholder="+1 234 567 8900">
+              <input type="tel" id="g-phone" name="phone" class="form-input" placeholder="+60 12 345 6789">
             </div>
             <div class="form-group">
               <label class="form-label" for="g-subject">Subject *</label>
@@ -230,6 +354,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Send Message →</button>
             <div class="form-note">Your details are kept private. We will never share your information with third parties.</div>
+            <p class="form-consent">By submitting, you agree to our <a href="pages/privacy-policy.html">Privacy Policy</a>.</p>
           </form>
           <div class="form-success" id="general-success" style="display:none">
             <div class="form-success-icon">✓</div>
@@ -238,14 +363,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
-        <!-- COURSE ENROLMENT -->
+        <!-- PROGRAMME ENROLMENT -->
         <div class="contact-form-panel" id="tab-course">
           <div class="form-intro">
-            <h2 class="form-title">Course Enrolment Enquiry</h2>
+            <h2 class="form-title">Programme Enrolment Enquiry</h2>
             <p class="form-desc">Tell us which programme you are interested in. Our admissions team will review your enquiry and respond with intake availability, full programme details, and next steps within 24 hours.</p>
           </div>
           <form id="course-form" class="contact-form" action="https://formspree.io/f/maqkkzlv" method="POST">
-            <input type="hidden" name="_subject" value="Course Enrolment Enquiry — KAYAL SoulPath">
+            <input type="hidden" name="_subject" value="Programme Enrolment Enquiry | KAYAL SoulPath">
             <input type="hidden" name="_replyto" value="contact@kayalsoulpath.com">
             <div class="form-row">
               <div class="form-group">
@@ -263,34 +388,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="form-group">
               <label class="form-label" for="c-phone">Phone / WhatsApp Number *</label>
-              <input type="tel" id="c-phone" name="phone" class="form-input" placeholder="+1 234 567 8900" required>
+              <input type="tel" id="c-phone" name="phone" class="form-input" placeholder="+60 12 345 6789" required>
               <div class="field-hint">We may follow up via WhatsApp for faster communication</div>
             </div>
             <div class="form-group">
               <label class="form-label" for="c-course">Programme of Interest *</label>
               <select id="c-course" name="course" class="form-select" required>
                 <option value="">Select a programme</option>
-                <option>Numerology — $697 (12 weeks)</option>
-                <option>Astrology — $897 (14 weeks)</option>
-                <option>Physiognomy — $447 (10 weeks)</option>
-                <option>Palmistry — $447 (10 weeks)</option>
-                <option>Spirit Science — $997 (12 weeks)</option>
-                <option>Full Blueprint Bundle — All Five Programmes ($2,997)</option>
-                <option value="unsure">Not sure — I need guidance</option>
+                <option>Numerology</option>
+                <option>Astrology</option>
+                <option>Physiognomy</option>
+                <option>Palmistry</option>
+                <option>Spirit Science</option>
+                <option>Full Blueprint Bundle (all five programmes)</option>
+                <option value="unsure">Not sure. I need guidance.</option>
               </select>
             </div>
             <div class="form-group">
               <label class="form-label" for="c-background">Your Background &amp; Experience</label>
               <textarea id="c-background" name="background" class="form-textarea" style="min-height:100px"
-                placeholder="Tell us a little about yourself — any prior study or experience in this field, and why this programme interests you…"></textarea>
+                placeholder="Tell us a little about yourself, including any prior study or experience in this field, and why this programme interests you…"></textarea>
             </div>
             <div class="form-group">
               <label class="form-label" for="c-start">Preferred Start Date</label>
               <select id="c-start" name="preferred_start" class="form-select">
                 <option value="">Select an option</option>
                 <option>As soon as possible</option>
-                <option>Within 1–3 months</option>
-                <option>3–6 months from now</option>
+                <option>Within 1 to 3 months</option>
+                <option>3 to 6 months from now</option>
                 <option>Next intake (flexible)</option>
               </select>
             </div>
@@ -301,10 +426,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="course-form-note">
               <div class="course-form-note-icon">ℹ</div>
-              <div>Our admissions team will review your enquiry and reply within 24 hours with full programme details, the instalment plan options, and next steps for enrolment.</div>
+              <div>Our admissions team will review your enquiry and reply within 24 hours with full programme details, instalment plan options, and next steps for enrolment.</div>
             </div>
             <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Submit Enrolment Enquiry →</button>
             <div class="form-note">All information is treated with complete confidentiality.</div>
+            <p class="form-consent">By submitting, you agree to our <a href="pages/privacy-policy.html">Privacy Policy</a>.</p>
           </form>
           <div class="form-success" id="course-success" style="display:none">
             <div class="form-success-icon">✓</div>
@@ -317,16 +443,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="contact-form-panel" id="tab-advertise">
           <div class="form-intro">
             <h2 class="form-title">Advertising &amp; Partnerships</h2>
-            <p class="form-desc">KAYAL SoulPath attracts a highly engaged audience of spiritual seekers, practitioners, and students. We offer display advertising, sponsored content, and product partnerships.</p>
+            <p class="form-desc">KAYAL SoulPath reaches a highly engaged audience of spiritual seekers, practitioners, and students. We offer display advertising, sponsored content, and product partnerships.</p>
           </div>
           <div class="ad-info-grid">
             <div class="ad-info-box"><div class="ad-info-num">12K+</div><div class="ad-info-label">Monthly Visitors</div></div>
-            <div class="ad-info-box"><div class="ad-info-num">4.8m</div><div class="ad-info-label">Avg. Time on Site</div></div>
+            <div class="ad-info-box"><div class="ad-info-num">4:48</div><div class="ad-info-label">Avg. Time on Site</div></div>
             <div class="ad-info-box"><div class="ad-info-num">73%</div><div class="ad-info-label">Female Audience</div></div>
             <div class="ad-info-box"><div class="ad-info-num">89%</div><div class="ad-info-label">Engaged Readers</div></div>
           </div>
           <form id="advertise-form" class="contact-form" action="https://formspree.io/f/maqkkzlv" method="POST">
-            <input type="hidden" name="_subject" value="Advertising Enquiry — KAYAL SoulPath">
+            <input type="hidden" name="_subject" value="Advertising Enquiry | KAYAL SoulPath">
             <input type="hidden" name="_replyto" value="contact@kayalsoulpath.com">
             <div class="form-row">
               <div class="form-group">
@@ -359,8 +485,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <select id="a-budget" name="budget" class="form-select">
                 <option value="">Select a range</option>
                 <option>Under $500/month</option>
-                <option>$500 – $1,500/month</option>
-                <option>$1,500 – $5,000/month</option>
+                <option>$500 to $1,500/month</option>
+                <option>$1,500 to $5,000/month</option>
                 <option>$5,000+/month</option>
                 <option>Prefer to discuss</option>
               </select>
@@ -371,6 +497,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 placeholder="What you offer, who your target audience is, and what you hope to achieve through this partnership…" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Submit Partnership Enquiry →</button>
+            <p class="form-consent">By submitting, you agree to our <a href="pages/privacy-policy.html">Privacy Policy</a>.</p>
           </form>
           <div class="form-success" id="advertise-success" style="display:none">
             <div class="form-success-icon">✓</div>
@@ -391,7 +518,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="contact-info-val">Within 24 hours</span>
           </div>
           <div class="contact-info-row">
-            <span class="contact-info-label">Course enrolment</span>
+            <span class="contact-info-label">Programme enrolment</span>
             <span class="contact-info-val">Within 24 hours</span>
           </div>
           <div class="contact-info-row">
@@ -406,41 +533,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
           <div class="contact-info-row">
             <span class="contact-info-label">Office hours</span>
-            <span class="contact-info-val">Mon – Fri, 9am – 6pm WAT</span>
+            <span class="contact-info-val">Mon to Fri, 9am to 6pm MYT</span>
           </div>
           <div class="response-badges">
-            <div class="response-badge"><div class="response-badge-dot"></div>24hr booking confirmation</div>
+            <div class="response-badge"><div class="response-badge-dot"></div>24hr response time</div>
             <div class="response-badge"><span>🔒</span>Completely confidential</div>
           </div>
         </div>
 
         <div class="contact-info-block">
-          <h3 class="contact-info-title">Current Programmes &amp; Fees</h3>
-          <div class="contact-info-row">
-            <span class="contact-info-label">Numerology</span>
-            <span class="contact-info-val">$697 · 12 weeks</span>
+          <h3 class="contact-info-title">About the Institute</h3>
+          <p style="font-size:13.5px;color:var(--slate);line-height:1.75;margin-bottom:14px">KAYAL SoulPath Institute is a school of esoteric science, founded and directed by <strong style="color:var(--ink)">Segun Samson Oke</strong>. All enquiries are received by the institute and responded to within 24 hours.</p>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+            <a href="about.html" style="color:var(--terra);text-decoration:none;display:flex;align-items:center;gap:6px">→ Read the founder's full story</a>
+            <a href="pages/courses/index.html" style="color:var(--terra);text-decoration:none;display:flex;align-items:center;gap:6px">→ Explore all programmes</a>
+            <a href="consultation.html" style="color:var(--terra);text-decoration:none;display:flex;align-items:center;gap:6px">→ Book a private consultation</a>
           </div>
-          <div class="contact-info-row">
-            <span class="contact-info-label">Astrology</span>
-            <span class="contact-info-val">$897 · 14 weeks</span>
-          </div>
-          <div class="contact-info-row">
-            <span class="contact-info-label">Physiognomy</span>
-            <span class="contact-info-val">$447 · 10 weeks</span>
-          </div>
-          <div class="contact-info-row">
-            <span class="contact-info-label">Palmistry</span>
-            <span class="contact-info-val">$447 · 10 weeks</span>
-          </div>
-          <div class="contact-info-row">
-            <span class="contact-info-label">Spirit Science</span>
-            <span class="contact-info-val">$997 · 12 weeks</span>
-          </div>
-          <div class="contact-info-row">
-            <span class="contact-info-label">Full Bundle</span>
-            <span class="contact-info-val" style="color:var(--terra);font-weight:500">$2,997 (save $488)</span>
-          </div>
-          <div style="font-size:11.5px;color:var(--stone);font-style:italic;font-family:var(--ff-heading);margin-top:10px">All programmes offer a 3-instalment payment plan.</div>
         </div>
 
         <div class="contact-info-block">
@@ -450,16 +558,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="faq-a">No. Every programme is designed to take complete beginners to professional-level competency. No prior knowledge is required for any of our foundation programmes.</div>
           </div>
           <div class="faq-item">
-            <button class="faq-q">How are courses delivered?</button>
-            <div class="faq-a">All programmes are delivered online — a combination of recorded modules, live weekly sessions, and personal mentorship. You can study at your own pace within the programme timeline.</div>
+            <button class="faq-q">How are programmes delivered?</button>
+            <div class="faq-a">All programmes are delivered online: a combination of recorded modules, live weekly sessions, and personal mentorship. You can study at your own pace within the programme timeline.</div>
           </div>
           <div class="faq-item">
             <button class="faq-q">Are instalment plans available?</button>
-            <div class="faq-a">Yes. Every programme offers a 3-instalment plan spread over 3 months at no extra cost. Details are shared in your admissions response.</div>
+            <div class="faq-a">Yes. Every programme offers a 3-instalment plan spread over 3 months at no extra cost. Full details are shared in your admissions response.</div>
           </div>
           <div class="faq-item">
             <button class="faq-q">What is Kayal LifeOS?</button>
-            <div class="faq-a">Kayal LifeOS is our standalone app — 149 personal Soul Blueprint readings. It is separate from the institute programmes, though enrolled students receive a discount.</div>
+            <div class="faq-a">Kayal LifeOS is our standalone app, offering 113 personal Soul Blueprint readings. It is separate from the institute programmes, though enrolled students receive a discount.</div>
           </div>
           <div class="faq-item">
             <button class="faq-q">Do you issue certificates?</button>
@@ -470,7 +578,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="contact-lifeos-promo">
           <div class="contact-lifeos-promo-label">While you wait</div>
           <div class="contact-lifeos-promo-title">Explore Kayal LifeOS</div>
-          <p class="contact-lifeos-promo-desc">149 personal readings. Your complete Soul Blueprint — decoded today.</p>
+          <p class="contact-lifeos-promo-desc">113 personal readings. Your complete Soul Blueprint, decoded today.</p>
           <a href="https://app.kayalsoulpath.com" target="_blank" rel="noopener" class="btn btn-dark" style="width:100%;justify-content:center;margin-top:4px">Open the App →</a>
         </div>
 
@@ -485,7 +593,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div>
         <div class="footer-brand-name">KAYAL</div>
         <div class="footer-brand-sub">SoulPath Institute</div>
-        <p class="footer-tagline">Soul Blueprint Science — a complete map of a human life, drawn from the four ancient pillars of self-knowledge.</p>
+        <p class="footer-tagline">Soul Blueprint Science: a complete map of a human life, drawn from the four ancient pillars of self-knowledge.</p>
+        <p style="font-size:11.5px;color:rgba(250,247,242,.45);margin-bottom:16px;letter-spacing:.02em">Kuala Lumpur, Malaysia</p>
         <div class="footer-socials">
           <a href="https://www.instagram.com/kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="https://www.youtube.com/@kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
@@ -494,6 +603,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="https://www.linkedin.com/in/kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           <a href="https://www.facebook.com/share/1845UT2nXn/" target="_blank" rel="noopener" class="footer-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://t.me/kayalsoulpath" target="_blank" rel="noopener" class="footer-social" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+          <a href="https://wa.me/601112245285" target="_blank" rel="noopener" class="footer-social" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
       <div>
@@ -536,6 +646,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
+<a href="https://wa.me/601112245285?text=Hi%2C%20I%27d%20like%20to%20ask%20a%20question" target="_blank" rel="noopener" class="wa-float" aria-label="Talk to us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
 <script src="js/global.js"></script>
 <script>
 const tabs = document.querySelectorAll('.contact-tab');
@@ -573,11 +687,11 @@ function handleFormSubmit(formId, successId) {
         s.style.display = 'block';
         s.scrollIntoView({ behavior: 'smooth' });
       } else {
-        btn.textContent = 'Error — please try again';
+        btn.textContent = 'Error. Please try again.';
         btn.disabled = false;
       }
     } catch {
-      btn.textContent = 'Error — please try again';
+      btn.textContent = 'Error. Please try again.';
       btn.disabled = false;
     }
   });
@@ -593,18 +707,6 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     if (!isOpen) item.classList.add('open');
   });
 });
-</script>
-<!-- Tawk.to Live Chat -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6a1ac2936f88d91c31d3620f/1jps8g46o';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
 </script>
 </body>
 </html>
